@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
+import 'package:pdam_inventory/persentations/resources/style_app.dart';
 
 ThemeData getApplicationTheme() {
   return ThemeData(
     primaryColor: ColorApp.primary,
     useMaterial3: true,
     fontFamily: 'Mulish',
-    appBarTheme: const AppBarTheme(
+    scaffoldBackgroundColor: ColorApp.white,
+    appBarTheme: AppBarTheme(
       backgroundColor: ColorApp.primary,
-      iconTheme: IconThemeData(
+      centerTitle: true,
+      iconTheme: const IconThemeData(
+        color: ColorApp.white,
+      ),
+      titleTextStyle: StyleApp.textLg.copyWith(
+        fontWeight: FontWeight.w600,
         color: ColorApp.white,
       ),
     ),

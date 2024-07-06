@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
+import 'package:pdam_inventory/persentations/resources/route_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
 import 'package:pdam_inventory/persentations/widgets/button/icon_circle_button.dart';
 import 'package:pdam_inventory/persentations/widgets/custom_cached_network_image.dart';
@@ -53,7 +54,9 @@ class HeaderHomeCard extends StatelessWidget {
           ),
           const SpacerWidth(8),
           IconCircleButton(
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, Routes.notification);
+            },
             icon: LineIcons.bellAlt,
           ),
         ],
