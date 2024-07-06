@@ -1,4 +1,7 @@
 class StringApp {
+  static const String pdam = "PDAM";
+  static const String pdamInventory = "PDAM Inventory";
+
   static const String historyStock = "History Stock";
   static const String product = "Product";
   static const String purchaseItem = "Pembelian Barang";
