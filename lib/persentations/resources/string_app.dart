@@ -9,7 +9,10 @@ class StringApp {
   static const String requestedItem = "Permintaan Barang";
   static const String submitPurchase = 'Ajukan Pembelian Barang';
 
+  static const String detailPurchaseItem = "Detail Pembelian Barang";
+
   static const String notifcation = 'Notifikasi';
   static const String searchItem = 'Cari Barang';
   static const String totalInventory = 'Total Persediaan';
+  static const String total = 'Total';
 }

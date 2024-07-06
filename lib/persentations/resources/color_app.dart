@@ -8,9 +8,12 @@ class ColorApp {
   static const Color blackText = Color(0xFF1E1E1E);
   static const Color grey = Color(0xFFF5F5F5);
   static const Color greyText = Color(0xFF757575);
+  static const Color greyText76 = Color(0xFF767676);
   static const Color border = Color(0xFFD9D9D9);
   static const Color borderE5 = Color(0xFFE5E5E5);
+  static const Color border30 = Color(0xFF303030);
   static const Color borderB3 = Color(0xFFB3B3B3);
+  static const Color borderB2 = Color(0xFFB2B2B2);
   static const Color yellow = Color(0xfff8e153);
   static const Color green = Color(0xff00863F);
   static const Color greenBg = Color(0xffE1F5EA);
