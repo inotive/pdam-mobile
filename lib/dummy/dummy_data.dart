@@ -73,7 +73,7 @@ List<FeatureDummyModel> features = [
     id: 2,
     title: StringApp.product,
     icon: ImageApp.product,
-    routes: '',
+    routes: Routes.product,
   ),
   FeatureDummyModel(
     id: 3,

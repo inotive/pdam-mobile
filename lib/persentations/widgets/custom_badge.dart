@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
+import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
 class CustomBadge extends StatelessWidget {
   const CustomBadge({
@@ -8,11 +9,13 @@ class CustomBadge extends StatelessWidget {
     required this.text,
     this.backgroundColor = ColorApp.greenBg,
     this.textColor = ColorApp.green,
+    this.icon,
   });
 
   final String text;
   final Color backgroundColor;
   final Color textColor;
+  final Widget? icon;
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +28,20 @@ class CustomBadge extends StatelessWidget {
         color: backgroundColor,
         borderRadius: BorderRadius.circular(4),
       ),
-      child: Text(
-        text,
-        style: StyleApp.textSm.copyWith(
-          color: textColor,
-          fontWeight: FontWeight.w600,
-        ),
+      child: Row(
+        children: [
+          if (icon != null) ...[
+            icon!,
+            const SpacerWidth(2),
+          ],
+          Text(
+            text,
+            style: StyleApp.textSm.copyWith(
+              color: textColor,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ],
       ),
     );
   }
