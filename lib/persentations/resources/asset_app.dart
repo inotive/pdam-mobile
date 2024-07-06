@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 const IMAGE_APP = "assets/images";
+const ICON_APP = "assets/icons";
 
 class ImageApp {
   static const String historyStock = "$IMAGE_APP/history-stock.png";
@@ -13,4 +14,8 @@ class ImageApp {
   static const String profile = "$IMAGE_APP/dm-profile.png";
   static const String dmEqualTee = "$IMAGE_APP/dm-equal-tee.png";
   static const String dmReducing = "$IMAGE_APP/dm-reducing.png";
+}
+
+class IconApp {
+  static const String notification = "$ICON_APP/ic-bell.svg";
 }
