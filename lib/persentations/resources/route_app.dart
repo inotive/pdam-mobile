@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pdam_inventory/persentations/modules/history_stock/history_stock_view.dart';
 import 'package:pdam_inventory/persentations/modules/notification/notification_view.dart';
+import 'package:pdam_inventory/persentations/modules/purchase_item/purchase_item_view.dart';
 import 'package:pdam_inventory/persentations/modules/splash/splash_view.dart';
 import 'package:pdam_inventory/persentations/modules/undefined/undefined_view.dart';
 
@@ -8,6 +9,7 @@ class Routes {
   static const String splash = '/';
   static const String notification = '/notification';
   static const String historyStock = '/history-stock';
+  static const String purchaseItem = '/purchase-item';
 }
 
 class RouterGenerator {
@@ -19,6 +21,8 @@ class RouterGenerator {
         return MaterialPageRoute(builder: (_) => const NotificationView());
       case Routes.historyStock:
         return MaterialPageRoute(builder: (_) => const HistoryStockView());
+      case Routes.purchaseItem:
+        return MaterialPageRoute(builder: (_) => const PurchaseItemView());
       default:
         return MaterialPageRoute(builder: (_) => const UndefinedView());
     }

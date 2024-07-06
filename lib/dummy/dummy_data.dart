@@ -79,7 +79,7 @@ List<FeatureDummyModel> features = [
     id: 3,
     title: StringApp.purchaseItem,
     icon: ImageApp.purchaseItem,
-    routes: '',
+    routes: Routes.purchaseItem,
   ),
   FeatureDummyModel(
     id: 4,
