@@ -25,11 +25,13 @@ class StyleApp {
     fontWeight: FontWeight.w400,
     color: ColorApp.blackText,
   );
+
   static const TextStyle textXl = TextStyle(
     fontSize: FontSizeApp.xl,
     fontWeight: FontWeight.w400,
     color: ColorApp.blackText,
   );
+
   static const TextStyle text2xl = TextStyle(
     fontSize: FontSizeApp.xxl,
     fontWeight: FontWeight.w400,
