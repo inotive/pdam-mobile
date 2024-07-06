@@ -5,6 +5,7 @@ ThemeData getApplicationTheme() {
   return ThemeData(
     primaryColor: ColorApp.primary,
     useMaterial3: true,
+    fontFamily: 'Mulish',
     appBarTheme: const AppBarTheme(
       backgroundColor: ColorApp.primary,
       iconTheme: IconThemeData(
