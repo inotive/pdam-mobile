@@ -11,26 +11,31 @@ class FeatureCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: double.infinity,
-          height: 72,
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          decoration: BoxDecoration(
-            color: ColorApp.grey,
-            borderRadius: BorderRadius.circular(8),
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, data.routes);
+      },
+      child: Column(
+        children: [
+          Container(
+            width: double.infinity,
+            height: 72,
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            decoration: BoxDecoration(
+              color: ColorApp.grey,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Image.asset(
+              data.icon,
+            ),
           ),
-          child: Image.asset(
-            data.icon,
+          const SpacerHeight(8),
+          Text(
+            data.title,
+            style: StyleApp.textNormal,
           ),
-        ),
-        const SpacerHeight(8),
-        Text(
-          data.title,
-          style: StyleApp.textNormal,
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

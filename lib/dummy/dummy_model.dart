@@ -27,3 +27,37 @@ class FeatureDummyModel {
   final String icon;
   final String routes;
 }
+
+class StatusModel {
+  StatusModel({
+    required this.id,
+    required this.text,
+    required this.isActive,
+  });
+
+  final int id;
+  final String text;
+  final bool isActive;
+}
+
+class ProductModel {
+  ProductModel({
+    required this.id,
+    required this.name,
+    required this.stock,
+    required this.addedStock,
+    required this.status,
+    required this.type,
+    required this.date,
+    required this.image,
+  });
+
+  final int id;
+  final String name;
+  final int stock;
+  final int addedStock;
+  final String status;
+  final String type;
+  final String date;
+  final String image;
+}

@@ -10,4 +10,6 @@ class StringApp {
   static const String submitPurchase = 'Ajukan Pembelian Barang';
 
   static const String notifcation = 'Notifikasi';
+  static const String searchItem = 'Cari Barang';
+  static const String totalInventory = 'Total Persediaan';
 }

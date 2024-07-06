@@ -18,4 +18,5 @@ class ImageApp {
 
 class IconApp {
   static const String notification = "$ICON_APP/ic-bell.svg";
+  static const String filter = "$ICON_APP/ic-filter.svg";
 }
