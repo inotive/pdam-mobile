@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pdam_inventory/data/config_app.dart';
 import 'package:pdam_inventory/persentations/modules/splash/splash_view.dart';
+import 'package:pdam_inventory/persentations/resources/route_app.dart';
 import 'package:pdam_inventory/persentations/resources/theme_app.dart';
 
 class MyApp extends StatelessWidget {
@@ -11,7 +12,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: getApplicationTheme(),
       title: ConfigApp.appName,
-      home: const SplashView(),
+      onGenerateRoute: RouterGenerator.getRoute,
+      initialRoute: Routes.splash,
     );
   }
 }
