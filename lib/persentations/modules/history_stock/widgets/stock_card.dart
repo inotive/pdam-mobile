@@ -7,8 +7,8 @@ import 'package:pdam_inventory/persentations/widgets/custom_badge.dart';
 import 'package:pdam_inventory/persentations/widgets/custom_cached_network_image.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
-class ProductCard extends StatelessWidget {
-  const ProductCard(this.data, {super.key});
+class StockCard extends StatelessWidget {
+  const StockCard(this.data, {super.key});
 
   final ProductModel data;
 

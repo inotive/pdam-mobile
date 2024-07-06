@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:pdam_inventory/dummy/dummy_data.dart';
 import 'package:pdam_inventory/dummy/dummy_model.dart';
 import 'package:pdam_inventory/persentations/modules/history_stock/widgets/status_card.dart';
-import 'package:pdam_inventory/persentations/modules/history_stock/widgets/product_card.dart';
+import 'package:pdam_inventory/persentations/modules/history_stock/widgets/stock_card.dart';
 import 'package:pdam_inventory/persentations/resources/asset_app.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
@@ -61,7 +61,7 @@ class _HistoryStockViewState extends State<HistoryStockView> {
                 child: Column(
                     children: productsItems
                         .map(
-                          (item) => ProductCard(item),
+                          (item) => StockCard(item),
                         )
                         .toList())),
           )
