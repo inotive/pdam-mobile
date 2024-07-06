@@ -65,31 +65,31 @@ List<FeatureDummyModel> features = [
   FeatureDummyModel(
     id: 1,
     title: StringApp.historyStock,
-    icon: IconApp.historyStock,
+    icon: ImageApp.historyStock,
     routes: '',
   ),
   FeatureDummyModel(
     id: 2,
     title: StringApp.product,
-    icon: IconApp.product,
+    icon: ImageApp.product,
     routes: '',
   ),
   FeatureDummyModel(
     id: 3,
     title: StringApp.purchaseItem,
-    icon: IconApp.purchaseItem,
+    icon: ImageApp.purchaseItem,
     routes: '',
   ),
   FeatureDummyModel(
     id: 4,
     title: StringApp.stockOpname,
-    icon: IconApp.stockOpname,
+    icon: ImageApp.stockOpname,
     routes: '',
   ),
   FeatureDummyModel(
     id: 4,
     title: StringApp.requestedItem,
-    icon: IconApp.requestItem,
+    icon: ImageApp.requestItem,
     routes: '',
   ),
 ];
