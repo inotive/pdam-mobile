@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pdam_inventory/data/config_app.dart';
+import 'package:pdam_inventory/app/config_app.dart';
 import 'package:pdam_inventory/persentations/resources/route_app.dart';
 import 'package:pdam_inventory/persentations/resources/theme_app.dart';
 
