@@ -5,6 +5,8 @@ const ICON_APP = "assets/icons";
 
 class ImageApp {
   // Dummy Image
+
+  static const String profile = "$IMAGE_APP/dm-profile.png";
   static const String dmEqualTee = "$IMAGE_APP/dm-equal-tee.png";
   static const String dmReducing = "$IMAGE_APP/dm-reducing.png";
 }
