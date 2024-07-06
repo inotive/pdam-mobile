@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 
 ThemeData getApplicationTheme() {
@@ -14,3 +15,10 @@ ThemeData getApplicationTheme() {
     ),
   );
 }
+
+SystemUiOverlayStyle systemUiOverlayStyle = const SystemUiOverlayStyle(
+  systemNavigationBarColor: Colors.white,
+  statusBarColor: ColorApp.primary,
+  statusBarIconBrightness: Brightness.light,
+  systemNavigationBarIconBrightness: Brightness.light,
+);
