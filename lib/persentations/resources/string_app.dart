@@ -23,4 +23,11 @@ class StringApp {
   static const String totalStockOutThisMonth = 'Total Stock Keluar (Bulan Ini)';
   static const String riwayatStock = 'Riwayat Stock';
   static const String purchase = 'Pembelian';
+  static const String totalRequested = 'Total Permintaan';
+  static const String totalAgreed = 'Total Disetujui';
+  static const String totalPending = 'Total Pending';
+  static const String historyRequestedItem = 'Riwayat Permintaan Barang';
+  static const String detailRequestedItem = 'Detail Permintaan Barang';
+  static const String createdAt = 'Created At';
+  static const String updatedAt = 'Updated At';
 }
