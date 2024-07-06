@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pdam_inventory/persentations/resources/theme_app.dart';
+import 'package:pdam_inventory/persentations/widgets/card/header_home_card.dart';
 
 class DesignSystemView extends StatelessWidget {
   const DesignSystemView({super.key});
@@ -10,7 +11,9 @@ class DesignSystemView extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
     return Scaffold(
       body: ListView(
-        children: [],
+        children: [
+          HeaderHomeCard(),
+        ],
       ),
     );
   }
