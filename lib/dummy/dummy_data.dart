@@ -97,7 +97,7 @@ List<FeatureDummyModel> features = [
     id: 5,
     title: StringApp.acceptedItem,
     icon: ImageApp.requestItem,
-    routes: '',
+    routes: Routes.acceptedItem,
   ),
 ];
 

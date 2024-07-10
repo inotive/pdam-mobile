@@ -11,6 +11,7 @@ class StringApp {
   static const String submitPurchase = 'Ajukan Pembelian Barang';
 
   static const String detailPurchaseItem = "Detail Pembelian Barang";
+  static const String detailAcceptedItem = "Detail Penerimaan Barang";
 
   static const String notifcation = 'Notifikasi';
   static const String searchItem = 'Cari Barang';
@@ -48,4 +49,13 @@ class StringApp {
   static const String position = 'Jabatan';
   static const String agreedTime = 'Waktu Persetujuan';
   static const String note = 'Catatan';
+
+  static const String receivedBy = 'Diterima oleh';
+
+  static const String message = 'Pesan';
+  static const String totalItemPreviouslyReceived = 'Total Barang Diterima Sebelumnya';
+  static const String receivedOnShelf = 'Diterima di Rak';
+  static const String receivedOnWarehouse = 'Diterima di Gudang';
+  static const String remainder = 'Sisa';
+  static const String receiveItem = 'Terima Barang';
 }

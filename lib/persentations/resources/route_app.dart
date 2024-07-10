@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pdam_inventory/persentations/modules/accepted_item/accepted_item_view.dart';
+import 'package:pdam_inventory/persentations/modules/accepted_item/received_item_view.dart';
 import 'package:pdam_inventory/persentations/modules/history_stock/history_stock_view.dart';
 import 'package:pdam_inventory/persentations/modules/notification/notification_view.dart';
 import 'package:pdam_inventory/persentations/modules/product/product_view.dart';
@@ -16,6 +18,8 @@ class Routes {
   static const String product = '/product';
   static const String requestedItem = '/requested-item';
   static const String stockOpname = '/stock-opname';
+  static const String acceptedItem = '/accepted-item';
+  static const String receivedItem = '/received-item';
 }
 
 class RouterGenerator {
@@ -35,6 +39,10 @@ class RouterGenerator {
         return MaterialPageRoute(builder: (_) => const RequestedItemView());
       case Routes.stockOpname:
         return MaterialPageRoute(builder: (_) => const StockOpnameView());
+      case Routes.acceptedItem:
+        return MaterialPageRoute(builder: (_) => const AcceptedItemView());
+      case Routes.receivedItem:
+        return MaterialPageRoute(builder: (_) => const ReceivedItemView());
       default:
         return MaterialPageRoute(builder: (_) => const UndefinedView());
     }
