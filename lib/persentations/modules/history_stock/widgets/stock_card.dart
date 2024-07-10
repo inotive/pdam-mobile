@@ -4,7 +4,6 @@ import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
 import 'package:pdam_inventory/persentations/widgets/custom_badge.dart';
-import 'package:pdam_inventory/persentations/widgets/custom_cached_network_image.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
 class StockCard extends StatelessWidget {
@@ -26,11 +25,17 @@ class StockCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          CustomNetworkImage(
-            width: 56,
-            height: 56,
-            borderRadius: 8,
-            url: data.image,
+          Container(
+            height: 40,
+            width: 40,
+            decoration: BoxDecoration(
+              color: data.status == 'Barang Masuk' ? ColorApp.greenBg : ColorApp.redBg,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Icon(
+              data.status == 'Barang Masuk' ? Icons.arrow_upward : Icons.arrow_downward,
+              color: data.status == 'Barang Masuk' ? ColorApp.green : ColorApp.red,
+            ),
           ),
           const SpacerWidth(12),
           Expanded(
@@ -51,8 +56,8 @@ class StockCard extends StatelessWidget {
                   child: Row(
                     children: [
                       CustomBadge(
-                        textColor: data.status == 'Barang Masuk' ? ColorApp.green : ColorApp.red,
-                        backgroundColor: data.status == 'Barang Masuk' ? ColorApp.greenBg : ColorApp.redBg,
+                        textColor: ColorApp.greyText,
+                        backgroundColor: ColorApp.grey,
                         text: data.status == 'Barang Masuk'
                             ? " + ${data.addedStock.toString()} Stock"
                             : " - ${data.addedStock.toString()} Stock",
