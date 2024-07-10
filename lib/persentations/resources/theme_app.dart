@@ -6,9 +6,10 @@ import 'package:pdam_inventory/persentations/resources/style_app.dart';
 ThemeData getApplicationTheme() {
   return ThemeData(
     primaryColor: ColorApp.primary,
-    useMaterial3: true,
     fontFamily: 'Mulish',
     scaffoldBackgroundColor: ColorApp.white,
+    splashColor: ColorApp.primary,
+    highlightColor: ColorApp.primary,
     appBarTheme: AppBarTheme(
       backgroundColor: ColorApp.primary,
       centerTitle: true,

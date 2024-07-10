@@ -33,4 +33,19 @@ class StringApp {
   static const String updatedAt = 'Updated At';
 
   static const String seeMore = 'Lihat Lebih Banyak';
+
+  static const String referenceNomor = 'Nomor Referensi';
+  static const String transactionDate = 'Tanggal Transaksi';
+  static const String supplier = 'Supplier';
+  static const String status = 'Status';
+  static const String createdBy = 'Dibuat Oleh';
+
+  static const String subtotal = 'Subtotal';
+  static const String discount = 'Discount';
+  static const String delivery = 'Delivery';
+  static const String tax = 'Tax';
+
+  static const String position = 'Jabatan';
+  static const String agreedTime = 'Waktu Persetujuan';
+  static const String note = 'Catatan';
 }

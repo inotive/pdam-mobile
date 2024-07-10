@@ -1,14 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:mobkit_dashed_border/mobkit_dashed_border.dart';
-import 'package:pdam_inventory/persentations/modules/purchase_item/widgets/purchase_item_detail_product_card.dart';
-import 'package:pdam_inventory/persentations/modules/purchase_item/widgets/purchase_tab_detail.dart';
+import 'package:pdam_inventory/persentations/modules/purchase_item/widgets/purchase_detail_po_tab.dart';
+import 'package:pdam_inventory/persentations/modules/purchase_item/widgets/purchase_detail_status_tab.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
-import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
-class PurchaseItemDetailView extends StatelessWidget {
+class PurchaseItemDetailView extends StatefulWidget {
   const PurchaseItemDetailView({super.key});
+
+  @override
+  State<PurchaseItemDetailView> createState() => _PurchaseItemDetailViewState();
+}
+
+class _PurchaseItemDetailViewState extends State<PurchaseItemDetailView> with TickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    _tabController = TabController(length: 2, vsync: this);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,17 +27,16 @@ class PurchaseItemDetailView extends StatelessWidget {
       appBar: AppBar(
         title: const Text(StringApp.detailPurchaseItem),
       ),
-      body: ListView(
+      body: Column(
         children: [
           _header(),
-          const SpacerHeight(6),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                _tabs(),
-                const SpacerHeight(12),
-                const PurchaseItemDetailProductCard(),
+          _tabbar(),
+          Expanded(
+            child: TabBarView(
+              controller: _tabController,
+              children: const [
+                PurchaseDetailPoTab(),
+                PurchaseDetailStatusTab(),
               ],
             ),
           ),
@@ -35,20 +45,26 @@ class PurchaseItemDetailView extends StatelessWidget {
     );
   }
 
-  Row _tabs() {
-    return const Row(
-      children: [
-        Flexible(
-          child: PurchaseTabDetail(
-            text: 'Detail PO',
-            isActive: true,
-          ),
+  TabBar _tabbar() {
+    return TabBar(
+      controller: _tabController,
+      dividerColor: Colors.transparent,
+      indicatorColor: ColorApp.primary,
+      indicatorWeight: 1,
+      indicatorSize: TabBarIndicatorSize.tab,
+      labelStyle: StyleApp.prompt.copyWith(
+        fontWeight: FontWeight.w500,
+      ),
+      unselectedLabelStyle: StyleApp.prompt.copyWith(
+        fontWeight: FontWeight.w500,
+        color: ColorApp.blackText.withOpacity(0.5),
+      ),
+      tabs: const [
+        Tab(
+          text: 'DETAIL PO',
         ),
-        Flexible(
-          child: PurchaseTabDetail(
-            text: 'Status',
-            isActive: false,
-          ),
+        Tab(
+          text: 'APPROVAL STATUS',
         ),
       ],
     );
@@ -56,64 +72,19 @@ class PurchaseItemDetailView extends StatelessWidget {
 
   Container _header() {
     return Container(
+      margin: const EdgeInsets.all(8.0),
       padding: const EdgeInsets.symmetric(
-        vertical: 24,
-        horizontal: 16,
+        vertical: 12.0,
       ),
       decoration: const BoxDecoration(
-        border: DashedBorder(
-          dashLength: 4,
-          bottom: BorderSide(
-            width: 1,
-            color: ColorApp.border,
-          ),
-        ),
+        color: ColorApp.grey,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'PO-000001',
-            style: StyleApp.textXl.copyWith(
-              color: ColorApp.blackText,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-          const SpacerHeight(6),
-          const SpacerHeight(6),
-          Text(
-            '06 Juli 2024',
-            style: StyleApp.textNormal.copyWith(
-              color: ColorApp.greyText,
-            ),
-          ),
-          const SpacerHeight(6),
-          Row(
-            children: [
-              Container(
-                height: 24,
-                width: 24,
-                alignment: Alignment.center,
-                padding: const EdgeInsets.fromLTRB(8, 1.5, 8, 2.5),
-                decoration: const BoxDecoration(color: ColorApp.primary, shape: BoxShape.circle),
-                child: Text(
-                  'J',
-                  style: StyleApp.textNormal.copyWith(
-                    fontWeight: FontWeight.w600,
-                    color: ColorApp.white,
-                  ),
-                ),
-              ),
-              const SpacerWidth(8),
-              Text(
-                'John Doe',
-                style: StyleApp.textNormal.copyWith(
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ],
-          ),
-        ],
+      alignment: Alignment.center,
+      child: Text(
+        'PO-000001',
+        style: StyleApp.textXl.copyWith(
+          fontWeight: FontWeight.w700,
+        ),
       ),
     );
   }

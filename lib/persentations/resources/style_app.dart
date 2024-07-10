@@ -37,4 +37,9 @@ class StyleApp {
     fontWeight: FontWeight.w400,
     color: ColorApp.blackText,
   );
+
+  static const TextStyle prompt = TextStyle(
+    fontFamily: 'Prompt',
+    color: ColorApp.blackText,
+  );
 }
