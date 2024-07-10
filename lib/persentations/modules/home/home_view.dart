@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pdam_inventory/dummy/dummy_data.dart';
+import 'package:pdam_inventory/persentations/modules/home/sections/home_history_stock_section.dart';
 import 'package:pdam_inventory/persentations/modules/home/widgets/feature_card.dart';
 import 'package:pdam_inventory/persentations/modules/home/widgets/header_home_card.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
@@ -25,20 +26,9 @@ class HomeView extends StatelessWidget {
               vertical: 14,
               horizontal: 16,
             ),
-            child: Column(
-              children: [
-                Container(
-                  width: double.infinity,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    color: ColorApp.grey,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                _feature(),
-              ],
-            ),
+            child: _feature(),
           ),
+          const HomeHistoryStockSection(),
         ],
       ),
     );
@@ -73,6 +63,7 @@ class HomeView extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(top: 16),
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Flexible(
@@ -82,36 +73,29 @@ class HomeView extends StatelessWidget {
               Flexible(
                 child: FeatureCard(features[1]),
               ),
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+              const SpacerWidth(12),
               Flexible(
                 child: FeatureCard(features[2]),
               ),
-              const SpacerWidth(12),
-              Flexible(
-                child: FeatureCard(features[3]),
-              ),
             ],
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(top: 16),
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Flexible(
+                child: FeatureCard(features[3]),
+              ),
+              const SpacerWidth(12),
+              Flexible(
                 child: FeatureCard(features[4]),
               ),
+              const SpacerWidth(12),
               Flexible(
-                child: Container(
-                  width: double.infinity,
-                ),
+                child: FeatureCard(features[5]),
               ),
             ],
           ),

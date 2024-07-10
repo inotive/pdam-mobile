@@ -33,6 +33,7 @@ class FeatureCard extends StatelessWidget {
           Text(
             data.title,
             style: StyleApp.textNormal,
+            textAlign: TextAlign.center,
           ),
         ],
       ),

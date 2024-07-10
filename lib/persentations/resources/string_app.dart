@@ -7,6 +7,7 @@ class StringApp {
   static const String purchaseItem = "Pembelian Barang";
   static const String stockOpname = "Stock Opname";
   static const String requestedItem = "Permintaan Barang";
+  static const String acceptedItem = "Penerimaan Barang";
   static const String submitPurchase = 'Ajukan Pembelian Barang';
 
   static const String detailPurchaseItem = "Detail Pembelian Barang";
@@ -30,4 +31,6 @@ class StringApp {
   static const String detailRequestedItem = 'Detail Permintaan Barang';
   static const String createdAt = 'Created At';
   static const String updatedAt = 'Updated At';
+
+  static const String seeMore = 'Lihat Lebih Banyak';
 }

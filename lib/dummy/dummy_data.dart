@@ -93,6 +93,12 @@ List<FeatureDummyModel> features = [
     icon: ImageApp.requestItem,
     routes: Routes.requestedItem,
   ),
+  FeatureDummyModel(
+    id: 5,
+    title: StringApp.acceptedItem,
+    icon: ImageApp.requestItem,
+    routes: '',
+  ),
 ];
 
 List<StatusModel> statuses = [

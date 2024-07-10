@@ -20,8 +20,6 @@ class HistoryStockView extends StatefulWidget {
 class _HistoryStockViewState extends State<HistoryStockView> {
   int statusIndex = 1;
 
-  List<ProductModel> incomingItems = [];
-  List<ProductModel> exitItems = [];
   List<ProductModel> productsItems = [];
 
   onStatusTapped(int id) {
