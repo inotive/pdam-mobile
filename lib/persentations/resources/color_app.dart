@@ -23,6 +23,7 @@ class ColorApp {
   static const Color redBg = Color(0xffFEE9E7);
   static const Color brown = Color(0xffBF6A02);
   static const Color brownBg = Color(0xffFFF5E9);
+  static const Color track = Color(0xffDADADA);
 
   static Color shimmerBase = Colors.grey.shade100;
   static Color shimmerHighlight = Colors.grey.shade300;

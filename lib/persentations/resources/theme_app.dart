@@ -21,6 +21,11 @@ ThemeData getApplicationTheme() {
         color: ColorApp.white,
       ),
     ),
+    scrollbarTheme: ScrollbarThemeData(
+      thumbColor: WidgetStateProperty.all(ColorApp.primary),
+      trackColor: WidgetStateProperty.all(ColorApp.track),
+      minThumbLength: 300.0,
+    ),
   );
 }
 

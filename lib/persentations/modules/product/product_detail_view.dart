@@ -1,13 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:pdam_inventory/persentations/modules/product/widgets/history_stock_card.dart';
+import 'package:pdam_inventory/persentations/modules/product/tabs/product_history_stock_tab.dart';
+import 'package:pdam_inventory/persentations/modules/product/tabs/product_warehouse_stock_tab.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
 import 'package:pdam_inventory/persentations/widgets/custom_cached_network_image.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
-class ProductDetailView extends StatelessWidget {
+class ProductDetailView extends StatefulWidget {
   const ProductDetailView({super.key});
+
+  @override
+  State<ProductDetailView> createState() => _ProductDetailViewState();
+}
+
+class _ProductDetailViewState extends State<ProductDetailView> with TickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    _tabController = TabController(length: 2, vsync: this);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,82 +30,48 @@ class ProductDetailView extends StatelessWidget {
       appBar: AppBar(
         title: const Text(StringApp.detailProduct),
       ),
-      body: ListView(
+      body: Column(
         children: [
           _products(),
           _count(),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 24,
-              horizontal: 16,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  StringApp.riwayatStock,
-                  style: StyleApp.textLg.copyWith(
-                    fontWeight: FontWeight.w700,
-                    color: ColorApp.black,
-                  ),
-                ),
-                const SpacerHeight(16),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 24.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '6 Jul 2024',
-                        style: StyleApp.textNormal.copyWith(
-                          fontStyle: FontStyle.italic,
-                          color: ColorApp.borderB3,
-                        ),
-                      ),
-                      const HistoryStockCard(),
-                      const HistoryStockCard(),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 24.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '5 Jul 2024',
-                        style: StyleApp.textNormal.copyWith(
-                          fontStyle: FontStyle.italic,
-                          color: ColorApp.borderB3,
-                        ),
-                      ),
-                      const HistoryStockCard(),
-                      const HistoryStockCard(),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 24.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '4 Jul 2024',
-                        style: StyleApp.textNormal.copyWith(
-                          fontStyle: FontStyle.italic,
-                          color: ColorApp.borderB3,
-                        ),
-                      ),
-                      const HistoryStockCard(),
-                      const HistoryStockCard(),
-                    ],
-                  ),
-                ),
+          const SpacerHeight(12),
+          _tabbar(),
+          Expanded(
+            child: TabBarView(
+              controller: _tabController,
+              children: const [
+                ProductHistoryStockTab(),
+                ProductWarehouseStockTab(),
               ],
             ),
           ),
         ],
       ),
+    );
+  }
+
+  TabBar _tabbar() {
+    return TabBar(
+      controller: _tabController,
+      dividerColor: Colors.transparent,
+      indicatorColor: ColorApp.primary,
+      indicatorWeight: 1,
+      indicatorSize: TabBarIndicatorSize.tab,
+      labelStyle: StyleApp.prompt.copyWith(
+        fontWeight: FontWeight.w500,
+      ),
+      unselectedLabelStyle: StyleApp.prompt.copyWith(
+        fontWeight: FontWeight.w500,
+        color: ColorApp.blackText.withOpacity(0.5),
+      ),
+      tabs: const [
+        Tab(
+          text: 'RIWAYAT STOCK',
+        ),
+        Tab(
+          text: 'STOCK GUDANG',
+        ),
+      ],
     );
   }
 
