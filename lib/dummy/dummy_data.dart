@@ -85,7 +85,7 @@ List<FeatureDummyModel> features = [
     id: 4,
     title: StringApp.stockOpname,
     icon: ImageApp.stockOpname,
-    routes: '',
+    routes: Routes.stockOpname,
   ),
   FeatureDummyModel(
     id: 4,

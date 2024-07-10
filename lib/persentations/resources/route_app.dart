@@ -5,6 +5,7 @@ import 'package:pdam_inventory/persentations/modules/product/product_view.dart';
 import 'package:pdam_inventory/persentations/modules/purchase_item/purchase_item_view.dart';
 import 'package:pdam_inventory/persentations/modules/requested_item/requested_item_view.dart';
 import 'package:pdam_inventory/persentations/modules/splash/splash_view.dart';
+import 'package:pdam_inventory/persentations/modules/stock_opname/stock_opname_view.dart';
 import 'package:pdam_inventory/persentations/modules/undefined/undefined_view.dart';
 
 class Routes {
@@ -14,6 +15,7 @@ class Routes {
   static const String purchaseItem = '/purchase-item';
   static const String product = '/product';
   static const String requestedItem = '/requested-item';
+  static const String stockOpname = '/stock-opname';
 }
 
 class RouterGenerator {
@@ -31,6 +33,8 @@ class RouterGenerator {
         return MaterialPageRoute(builder: (_) => const ProductView());
       case Routes.requestedItem:
         return MaterialPageRoute(builder: (_) => const RequestedItemView());
+      case Routes.stockOpname:
+        return MaterialPageRoute(builder: (_) => const StockOpnameView());
       default:
         return MaterialPageRoute(builder: (_) => const UndefinedView());
     }
