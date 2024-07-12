@@ -18,6 +18,8 @@ dependencies:
   flutter_svg: ^2.0.10+1
   mobkit_dashed_border: ^0.0.6
   pie_chart: ^5.4.0
+  internet_connection_checker: ^1.0.0+1
+  dio: ^5.5.0+1
 
 dev_dependencies:
   flutter_test:
