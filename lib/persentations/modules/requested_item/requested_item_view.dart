@@ -3,10 +3,12 @@ import 'package:pdam_inventory/app/di.dart';
 import 'package:pdam_inventory/domain/model/purchase_request_model.dart';
 import 'package:pdam_inventory/persentations/modules/requested_item/viewmodel/requested_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/requested_item/widgets/requested_item_date_card.dart';
+import 'package:pdam_inventory/persentations/modules/requested_item/widgets/requested_item_skeleton.dart';
 import 'package:pdam_inventory/persentations/packages/state_renderer/state_renderer_impl.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
+import 'package:pdam_inventory/persentations/widgets/card/empty_card.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
 class RequestedItemView extends StatefulWidget {
@@ -76,6 +78,17 @@ class _RequestedItemViewState extends State<RequestedItemView> {
                   stream: _requestedViewModel.outputPurchaseRequest,
                   builder: (context, snapshot) {
                     final data = snapshot.data ?? List.empty();
+
+                    if (ConnectionState.waiting == snapshot.connectionState) {
+                      return const RequestedItemSkeleton();
+                    }
+
+                    if (data.isEmpty) {
+                      return const EmptyCard(
+                        message: "${StringApp.requestedItemNotYet}!",
+                      );
+                    }
+
                     return Column(
                       children: data.map((item) {
                         return RequestedItemDateCard(item);

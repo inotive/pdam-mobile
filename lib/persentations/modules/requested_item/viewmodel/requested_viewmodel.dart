@@ -16,6 +16,7 @@ class RequestedViewModel extends BaseViewModel implements RequestedViewModelInpu
 
   @override
   void start() {
+    inputState.add(ContentState());
     _loadData();
   }
 
@@ -26,7 +27,6 @@ class RequestedViewModel extends BaseViewModel implements RequestedViewModelInpu
   }
 
   _loadData() async {
-    inputState.add(LoadingState(stateRendererType: StateRendererType.POPUP_LOADING_STATE));
     (await _purchaseRequestUsecase.execute(queries)).fold((failure) {
       inputState.add(ErrorState(StateRendererType.SNACKBAR_ERROR_STATE, failure.message));
     }, (data) async {
