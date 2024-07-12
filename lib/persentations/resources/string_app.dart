@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 const EMPTY = "";
+const STRIP = "-";
 const ZERO = 0;
 
 class StringApp {

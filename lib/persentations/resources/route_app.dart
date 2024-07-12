@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pdam_inventory/app/di.dart';
 import 'package:pdam_inventory/persentations/modules/accepted_item/accepted_item_view.dart';
 import 'package:pdam_inventory/persentations/modules/accepted_item/received_item_view.dart';
 import 'package:pdam_inventory/persentations/modules/history_stock/history_stock_view.dart';
@@ -38,6 +39,7 @@ class RouterGenerator {
       case Routes.product:
         return MaterialPageRoute(builder: (_) => const ProductView());
       case Routes.requestedItem:
+        initPurchaseRequestModule();
         return MaterialPageRoute(builder: (_) => const RequestedItemView());
       case Routes.stockOpname:
         return MaterialPageRoute(builder: (_) => const StockOpnameView());

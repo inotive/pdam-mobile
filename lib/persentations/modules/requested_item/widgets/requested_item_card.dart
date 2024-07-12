@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobkit_dashed_border/mobkit_dashed_border.dart';
+import 'package:pdam_inventory/app/extensions.dart';
+import 'package:pdam_inventory/domain/model/purchase_request_model.dart';
 import 'package:pdam_inventory/persentations/modules/requested_item/requested_detail_item_view.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
@@ -7,7 +9,9 @@ import 'package:pdam_inventory/persentations/widgets/custom_badge.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
 class RequestedItemCard extends StatelessWidget {
-  const RequestedItemCard({super.key});
+  const RequestedItemCard(this.data, {super.key});
+
+  final PurchaseRequest data;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +51,7 @@ class RequestedItemCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'PO000001',
+                        data.requestNumber,
                         style: StyleApp.textNormal.copyWith(
                           color: ColorApp.blackText,
                           fontWeight: FontWeight.w700,
@@ -62,7 +66,7 @@ class RequestedItemCard extends StatelessWidget {
                   ),
                   const SpacerHeight(6),
                   Text(
-                    'Equal Tee Coupler hdpe 75mm,  Reducing Coupler hdpe 63mm, Reducing Coupler hdpe 110mm-9..',
+                    data.requestDescription,
                     style: StyleApp.textNormal.copyWith(
                       color: ColorApp.greyText,
                     ),
@@ -105,8 +109,8 @@ class RequestedItemCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const CustomBadge(
-                    text: 'Disetujui',
+                  CustomBadge(
+                    text: data.status.toTitleCase(),
                   ),
                 ],
               ),
