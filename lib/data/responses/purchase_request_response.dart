@@ -1,6 +1,7 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'package:json_annotation/json_annotation.dart';
+import 'package:pdam_inventory/data/responses/base_response.dart';
 import 'package:pdam_inventory/data/responses/pagination_base_response.dart';
 part 'purchase_request_response.g.dart';
 
@@ -15,6 +16,40 @@ class PurchaseRequestPaginationResponse extends PaginationBaseResponse {
       _$PurchaseRequestPaginationResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$PurchaseRequestPaginationResponseToJson(this);
+}
+
+@JsonSerializable()
+class PurchaseRequestSummaryResponse extends BaseResponse {
+  PurchaseRequestSummaryResponse(this.data);
+
+  @JsonKey(name: 'data')
+  PurchaseRequestSummaryDataResponse? data;
+
+  factory PurchaseRequestSummaryResponse.fromJson(Map<String, dynamic> json) =>
+      _$PurchaseRequestSummaryResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PurchaseRequestSummaryResponseToJson(this);
+}
+
+@JsonSerializable()
+class PurchaseRequestSummaryDataResponse {
+  PurchaseRequestSummaryDataResponse(
+    this.totalRequested,
+    this.totalAgreed,
+    this.totalPending,
+  );
+
+  @JsonKey(name: "total_permintaan")
+  int? totalRequested;
+  @JsonKey(name: "total_disetujui")
+  int? totalAgreed;
+  @JsonKey(name: "total_pending")
+  int? totalPending;
+
+  factory PurchaseRequestSummaryDataResponse.fromJson(Map<String, dynamic> json) =>
+      _$PurchaseRequestSummaryDataResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PurchaseRequestSummaryDataResponseToJson(this);
 }
 
 @JsonSerializable()

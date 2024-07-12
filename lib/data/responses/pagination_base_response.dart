@@ -10,7 +10,7 @@ class PaginationBaseResponse {
   @JsonKey(name: 'status')
   StatusPaginationResponse? status;
   @JsonKey(name: "meta")
-  MetaResponse? meta;
+  MetaPaginationResponse? meta;
 }
 
 @JsonSerializable()
@@ -62,8 +62,8 @@ class LinkItemResponse {
 }
 
 @JsonSerializable()
-class MetaResponse {
-  MetaResponse(
+class MetaPaginationResponse {
+  MetaPaginationResponse(
     this.currentPage,
     this.from,
     this.lastPage,
@@ -91,7 +91,7 @@ class MetaResponse {
   @JsonKey(name: "total")
   int? total;
 
-  factory MetaResponse.fromJson(Map<String, dynamic> json) => _$MetaResponseFromJson(json);
+  factory MetaPaginationResponse.fromJson(Map<String, dynamic> json) => _$MetaPaginationResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$MetaResponseToJson(this);
+  Map<String, dynamic> toJson() => _$MetaPaginationResponseToJson(this);
 }

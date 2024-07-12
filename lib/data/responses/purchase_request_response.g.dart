@@ -23,7 +23,8 @@ PurchaseRequestPaginationResponse _$PurchaseRequestPaginationResponseFromJson(
               json['status'] as Map<String, dynamic>)
       ..meta = json['meta'] == null
           ? null
-          : MetaResponse.fromJson(json['meta'] as Map<String, dynamic>);
+          : MetaPaginationResponse.fromJson(
+              json['meta'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$PurchaseRequestPaginationResponseToJson(
         PurchaseRequestPaginationResponse instance) =>
@@ -32,6 +33,40 @@ Map<String, dynamic> _$PurchaseRequestPaginationResponseToJson(
       'status': instance.status,
       'meta': instance.meta,
       'data': instance.data,
+    };
+
+PurchaseRequestSummaryResponse _$PurchaseRequestSummaryResponseFromJson(
+        Map<String, dynamic> json) =>
+    PurchaseRequestSummaryResponse(
+      json['data'] == null
+          ? null
+          : PurchaseRequestSummaryDataResponse.fromJson(
+              json['data'] as Map<String, dynamic>),
+    )..meta = json['meta'] == null
+        ? null
+        : MetaResponse.fromJson(json['meta'] as Map<String, dynamic>);
+
+Map<String, dynamic> _$PurchaseRequestSummaryResponseToJson(
+        PurchaseRequestSummaryResponse instance) =>
+    <String, dynamic>{
+      'meta': instance.meta,
+      'data': instance.data,
+    };
+
+PurchaseRequestSummaryDataResponse _$PurchaseRequestSummaryDataResponseFromJson(
+        Map<String, dynamic> json) =>
+    PurchaseRequestSummaryDataResponse(
+      (json['total_permintaan'] as num?)?.toInt(),
+      (json['total_disetujui'] as num?)?.toInt(),
+      (json['total_pending'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$PurchaseRequestSummaryDataResponseToJson(
+        PurchaseRequestSummaryDataResponse instance) =>
+    <String, dynamic>{
+      'total_permintaan': instance.totalRequested,
+      'total_disetujui': instance.totalAgreed,
+      'total_pending': instance.totalPending,
     };
 
 PurchaseRequestDateResponse _$PurchaseRequestDateResponseFromJson(

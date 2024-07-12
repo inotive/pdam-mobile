@@ -15,10 +15,10 @@ class MetaResponse {
   int? code;
   @JsonKey(name: "status")
   String? status;
-  @JsonKey(name: "messsage")
-  String? messsage;
+  @JsonKey(name: "message")
+  String? message;
 
-  MetaResponse(this.code, this.status, this.messsage);
+  MetaResponse(this.code, this.status, this.message);
 
   factory MetaResponse.fromJson(Map<String, dynamic> json) => _$MetaResponseFromJson(json);
 

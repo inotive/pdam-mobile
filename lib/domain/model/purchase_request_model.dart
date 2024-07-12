@@ -4,6 +4,20 @@ class PurchaseRequestPagination {
   List<PurchaseRequestDate> data;
 }
 
+class PurchaseRequestSummary {
+  PurchaseRequestSummary(this.data);
+
+  PurchaseRequestSummaryData? data;
+}
+
+class PurchaseRequestSummaryData {
+  PurchaseRequestSummaryData(this.totalRequested, this.totalAgreed, this.totalPending);
+
+  int totalRequested;
+  int totalAgreed;
+  int totalPending;
+}
+
 class PurchaseRequestDate {
   PurchaseRequestDate(
     this.id,

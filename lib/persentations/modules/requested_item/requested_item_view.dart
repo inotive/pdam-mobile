@@ -9,6 +9,7 @@ import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
 import 'package:pdam_inventory/persentations/widgets/card/empty_card.dart';
+import 'package:pdam_inventory/persentations/widgets/shimmer/shimmer_widget.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
 class RequestedItemView extends StatefulWidget {
@@ -112,24 +113,55 @@ class _RequestedItemViewState extends State<RequestedItemView> {
       decoration: const BoxDecoration(
         color: ColorApp.white,
       ),
-      child: Row(
-        children: [
-          _count(
-            12,
-            StringApp.totalRequested,
-          ),
-          const SpacerWidth(8),
-          _count(
-            12,
-            StringApp.totalAgreed,
-          ),
-          const SpacerWidth(8),
-          _count(
-            12,
-            StringApp.totalPending,
-          ),
-        ],
-      ),
+      child: StreamBuilder<PurchaseRequestSummaryData>(
+          stream: _requestedViewModel.outputPurchaseSummaryRequest,
+          builder: (context, snapshot) {
+            if (ConnectionState.waiting == snapshot.connectionState) {
+              return const Row(
+                children: [
+                  Flexible(
+                    child: ShimmerWidget(
+                      width: double.infinity,
+                      height: 120,
+                    ),
+                  ),
+                  SpacerWidth(8),
+                  Flexible(
+                    child: ShimmerWidget(
+                      width: double.infinity,
+                      height: 120,
+                    ),
+                  ),
+                  SpacerWidth(8),
+                  Flexible(
+                    child: ShimmerWidget(
+                      width: double.infinity,
+                      height: 120,
+                    ),
+                  ),
+                ],
+              );
+            }
+
+            return Row(
+              children: [
+                _count(
+                  snapshot.data?.totalRequested ?? 0,
+                  StringApp.totalRequested,
+                ),
+                const SpacerWidth(8),
+                _count(
+                  snapshot.data?.totalAgreed ?? 0,
+                  StringApp.totalAgreed,
+                ),
+                const SpacerWidth(8),
+                _count(
+                  snapshot.data?.totalPending ?? 0,
+                  StringApp.totalPending,
+                ),
+              ],
+            );
+          }),
     );
   }
 

@@ -18,7 +18,8 @@ PaginationBaseResponse _$PaginationBaseResponseFromJson(
               json['status'] as Map<String, dynamic>)
       ..meta = json['meta'] == null
           ? null
-          : MetaResponse.fromJson(json['meta'] as Map<String, dynamic>);
+          : MetaPaginationResponse.fromJson(
+              json['meta'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$PaginationBaseResponseToJson(
         PaginationBaseResponse instance) =>
@@ -72,7 +73,9 @@ Map<String, dynamic> _$LinkItemResponseToJson(LinkItemResponse instance) =>
       'active': instance.active,
     };
 
-MetaResponse _$MetaResponseFromJson(Map<String, dynamic> json) => MetaResponse(
+MetaPaginationResponse _$MetaPaginationResponseFromJson(
+        Map<String, dynamic> json) =>
+    MetaPaginationResponse(
       (json['current_page'] as num?)?.toInt(),
       (json['from'] as num?)?.toInt(),
       (json['last_page'] as num?)?.toInt(),
@@ -85,7 +88,8 @@ MetaResponse _$MetaResponseFromJson(Map<String, dynamic> json) => MetaResponse(
       (json['total'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$MetaResponseToJson(MetaResponse instance) =>
+Map<String, dynamic> _$MetaPaginationResponseToJson(
+        MetaPaginationResponse instance) =>
     <String, dynamic>{
       'current_page': instance.currentPage,
       'from': instance.from,

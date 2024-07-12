@@ -5,4 +5,5 @@ import "package:pdam_inventory/domain/model/purchase_request_model.dart";
 
 abstract class PurchaseRequestRepository {
   Future<Either<Failure, PurchaseRequestPagination>> purchaseRequest(Map<String, dynamic> queries);
+  Future<Either<Failure, PurchaseRequestSummary>> purchaseRequestSummary();
 }

@@ -12,6 +12,24 @@ extension PurchaseRequestPaginationResponseMapper on PurchaseRequestPaginationRe
   }
 }
 
+extension PurchaseRequestSummaryResponseMapper on PurchaseRequestSummaryResponse? {
+  PurchaseRequestSummary toDomain() {
+    return PurchaseRequestSummary(
+      this?.data?.toDomain(),
+    );
+  }
+}
+
+extension PurchaseRequestSummaryDataResponseMapper on PurchaseRequestSummaryDataResponse? {
+  PurchaseRequestSummaryData toDomain() {
+    return PurchaseRequestSummaryData(
+      this?.totalRequested?.orZero() ?? ZERO,
+      this?.totalAgreed?.orZero() ?? ZERO,
+      this?.totalPending?.orZero() ?? ZERO,
+    );
+  }
+}
+
 extension PurchaseRequestDateResponseMapper on PurchaseRequestDateResponse? {
   PurchaseRequestDate toDomain() {
     List<PurchaseRequest> data =

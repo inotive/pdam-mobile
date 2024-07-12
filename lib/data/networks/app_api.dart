@@ -14,4 +14,7 @@ abstract class AppServiceClient {
   Future<PurchaseRequestPaginationResponse> purchaseRequest(
     @Queries() Map<String, dynamic> queries,
   );
+
+  @GET('/mobile/purchase-request/summary')
+  Future<PurchaseRequestSummaryResponse> purchaseRequestSummary();
 }

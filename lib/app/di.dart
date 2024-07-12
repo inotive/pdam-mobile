@@ -7,6 +7,7 @@ import 'package:pdam_inventory/data/networks/dio_factory.dart';
 import 'package:pdam_inventory/data/networks/network_info.dart';
 import 'package:pdam_inventory/data/repository/purchase_request_repository_impl.dart';
 import 'package:pdam_inventory/domain/repository/purchase_request_repository.dart';
+import 'package:pdam_inventory/domain/usecase/purchase_request_summary_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/purchase_request_usecase.dart';
 import 'package:pdam_inventory/persentations/modules/requested_item/viewmodel/requested_viewmodel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -42,7 +43,8 @@ Future<void> initAppModule() async {
 initPurchaseRequestModule() {
   if (!GetIt.I.isRegistered<PurchaseRequestUsecase>()) {
     instance.registerFactory<PurchaseRequestUsecase>(() => PurchaseRequestUsecase(instance()));
-    instance.registerFactory<RequestedViewModel>(() => RequestedViewModel(instance()));
+    instance.registerFactory<PurchaseRequestSummaryUsecase>(() => PurchaseRequestSummaryUsecase(instance()));
+    instance.registerFactory<RequestedViewModel>(() => RequestedViewModel(instance(), instance()));
   }
 }
 
