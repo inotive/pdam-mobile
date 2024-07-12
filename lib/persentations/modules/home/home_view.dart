@@ -4,10 +4,7 @@ import 'package:pdam_inventory/dummy/dummy_data.dart';
 import 'package:pdam_inventory/persentations/modules/home/sections/home_history_stock_section.dart';
 import 'package:pdam_inventory/persentations/modules/home/widgets/feature_card.dart';
 import 'package:pdam_inventory/persentations/modules/home/widgets/header_home_card.dart';
-import 'package:pdam_inventory/persentations/resources/color_app.dart';
-import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/theme_app.dart';
-import 'package:pdam_inventory/persentations/widgets/button/custom_button.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
 class HomeView extends StatelessWidget {
@@ -17,7 +14,6 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
     return Scaffold(
-      bottomNavigationBar: _bottomNavbar(),
       body: ListView(
         children: [
           const HeaderHomeCard(),
@@ -29,29 +25,6 @@ class HomeView extends StatelessWidget {
             child: _feature(),
           ),
           const HomeHistoryStockSection(),
-        ],
-      ),
-    );
-  }
-
-  Container _bottomNavbar() {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: const BoxDecoration(
-        border: Border(
-          top: BorderSide(
-            width: 1,
-            color: ColorApp.border,
-          ),
-        ),
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          CustomButton(
-            text: StringApp.submitPurchase,
-            onPressed: () {},
-          ),
         ],
       ),
     );

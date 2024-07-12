@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:pdam_inventory/persentations/modules/home/home_view.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
+import 'package:pdam_inventory/persentations/resources/route_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
 
@@ -19,7 +19,7 @@ class _SplashViewState extends State<SplashView> {
   }
 
   _goNext() {
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomeView()));
+    Navigator.pushReplacementNamed(context, Routes.mainMenu);
   }
 
   @override

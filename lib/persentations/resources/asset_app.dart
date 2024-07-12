@@ -20,4 +20,7 @@ class IconApp {
   static const String notification = "$ICON_APP/ic-bell.svg";
   static const String filter = "$ICON_APP/ic-filter.svg";
   static const String box = "$ICON_APP/ic-box.svg";
+  static const String box2 = "$ICON_APP/ic-box@2.svg";
+  static const String home = "$ICON_APP/ic-home.svg";
+  static const String profile = "$ICON_APP/ic-profile.svg";
 }

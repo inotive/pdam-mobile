@@ -58,4 +58,8 @@ class StringApp {
   static const String receivedOnWarehouse = 'Diterima di Gudang';
   static const String remainder = 'Sisa';
   static const String receiveItem = 'Terima Barang';
+
+  static const String home = 'Home';
+  static const String itemOrProduct = 'Barang/Produk';
+  static const String profile = 'Profile';
 }
