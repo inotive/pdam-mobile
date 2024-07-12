@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "509556517644",
+    "project_id": "pdam-inventory",
+    "storage_bucket": "pdam-inventory.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:509556517644:android:3dbd28571c646139887729",
+        "android_client_info": {
+          "package_name": "com.inotivedev.pdam_inventory"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDR4uKT0pHsO9uBe-RT-4SrQ9B5KhQU9zw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
