@@ -1,3 +1,8 @@
+// ignore_for_file: constant_identifier_names
+
+const EMPTY = "";
+const ZERO = 0;
+
 class StringApp {
   static const String pdam = "PDAM";
   static const String pdamInventory = "PDAM Inventory";
@@ -62,4 +67,8 @@ class StringApp {
   static const String home = 'Home';
   static const String itemOrProduct = 'Barang/Produk';
   static const String profile = 'Profile';
+
+  static const String loading = 'Loading';
+  static const String ok = 'Ok';
+  static const String retryAgain = 'Retry Again';
 }

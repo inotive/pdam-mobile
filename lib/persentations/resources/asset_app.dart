@@ -2,6 +2,7 @@
 
 const IMAGE_APP = "assets/images";
 const ICON_APP = "assets/icons";
+const ANIMATION_APP = "assets/animations";
 
 class ImageApp {
   static const String historyStock = "$IMAGE_APP/history-stock.png";
@@ -23,4 +24,10 @@ class IconApp {
   static const String box2 = "$ICON_APP/ic-box@2.svg";
   static const String home = "$ICON_APP/ic-home.svg";
   static const String profile = "$ICON_APP/ic-profile.svg";
+}
+
+class AnimationApp {
+  static const String error = "$ANIMATION_APP/error.json";
+  static const String empty = "$ANIMATION_APP/empty.json";
+  static const String success = "$ANIMATION_APP/success.json";
 }
