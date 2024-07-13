@@ -10,6 +10,7 @@ part 'app_api.g.dart';
 abstract class AppServiceClient {
   factory AppServiceClient(Dio dio, {String baseUrl}) = _AppServiceClient;
 
+  /* Purchase Request */
   @GET('/mobile/purchase-request')
   Future<PurchaseRequestPaginationResponse> purchaseRequest(
     @Queries() Map<String, dynamic> queries,
@@ -17,4 +18,8 @@ abstract class AppServiceClient {
 
   @GET('/mobile/purchase-request/summary')
   Future<PurchaseRequestSummaryResponse> purchaseRequestSummary();
+
+  @GET('/mobile/purchase-request/{id}/show')
+  Future<PurchaseRequestDetailResponse> purchaseRequestDetail(@Path() int id);
+  /* End Purchase Request */
 }

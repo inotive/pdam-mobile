@@ -62,3 +62,24 @@ extension PurchaseRequestResponseMapper on PurchaseRequestResponse? {
     );
   }
 }
+
+extension PurchaseRequestDetailResponseMapper on PurchaseRequestDetailResponse? {
+  PurchaseRequestDetail toDomain() {
+    return PurchaseRequestDetail(this?.data.toDomain());
+  }
+}
+
+extension PurchaseRequuestDetailDataResponseMapper on PurchaseRequestDetailDataResponse? {
+  PurchaseRequestDetailData toDomain() {
+    List<PurchaseRequestProduct> products = (this?.products?.map((item) => item.toDomain()) ?? const Iterable.empty())
+        .cast<PurchaseRequestProduct>()
+        .toList();
+    return PurchaseRequestDetailData(this?.detail.toDomain(), products);
+  }
+}
+
+extension PurchaseRequestProductResponseMapper on PurchaseRequestProductResponse? {
+  PurchaseRequestProduct toDomain() {
+    return PurchaseRequestProduct(this?.id.orZero() ?? ZERO);
+  }
+}

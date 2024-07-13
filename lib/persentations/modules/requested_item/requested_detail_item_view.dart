@@ -1,14 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:mobkit_dashed_border/mobkit_dashed_border.dart';
+import 'package:pdam_inventory/app/di.dart';
+import 'package:pdam_inventory/app/extensions.dart';
+import 'package:pdam_inventory/domain/model/purchase_request_model.dart';
+import 'package:pdam_inventory/persentations/modules/requested_item/viewmodel/requested_detail_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/requested_item/widgets/detail_requested_item_card.dart';
+import 'package:pdam_inventory/persentations/packages/state_renderer/state_renderer_impl.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
+import 'package:pdam_inventory/persentations/widgets/card/empty_card.dart';
 import 'package:pdam_inventory/persentations/widgets/custom_badge.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
-class RequestedDetailItemView extends StatelessWidget {
-  const RequestedDetailItemView({super.key});
+class RequestedDetailItemView extends StatefulWidget {
+  const RequestedDetailItemView({super.key, required this.id});
+
+  final int id;
+
+  @override
+  State<RequestedDetailItemView> createState() => _RequestedDetailItemViewState();
+}
+
+class _RequestedDetailItemViewState extends State<RequestedDetailItemView> {
+  final RequestedDetailViewModel _requestedDetailViewModel = instance<RequestedDetailViewModel>();
+
+  _bind() {
+    _requestedDetailViewModel.detail(widget.id);
+  }
+
+  @override
+  void initState() {
+    _bind();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _requestedDetailViewModel.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,29 +49,46 @@ class RequestedDetailItemView extends StatelessWidget {
           StringApp.detailRequestedItem,
         ),
       ),
-      body: ListView(
-        children: [
-          _product(),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 24,
-              horizontal: 16,
-            ),
-            child: Column(
-              children: [
-                DetailRequestedItemCard(),
-                DetailRequestedItemCard(),
-                DetailRequestedItemCard(),
-                DetailRequestedItemCard(),
-              ],
-            ),
-          ),
-        ],
-      ),
+      body: StreamBuilder<FlowState>(
+          stream: _requestedDetailViewModel.outputState,
+          builder: (context, snapshot) {
+            return snapshot.data?.getScreenWidget(context, _getContentWidget(), () {
+                  _bind();
+                }) ??
+                Container();
+          }),
     );
   }
 
-  Container _product() {
+  Widget _getContentWidget() {
+    return StreamBuilder<PurchaseRequestDetailData>(
+        stream: _requestedDetailViewModel.outputPurchaseDetailRequest,
+        builder: (context, snapshot) {
+          List<PurchaseRequestProduct> products = snapshot.data?.products ?? List.empty();
+          return ListView(
+            children: [
+              _product(snapshot.data?.detail),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 24,
+                  horizontal: 16,
+                ),
+                child: products.isEmpty
+                    ? const EmptyCard(
+                        message: StringApp.productNotYet,
+                      )
+                    : Column(
+                        children: products.map((item) {
+                          return const DetailRequestedItemCard();
+                        }).toList(),
+                      ),
+              ),
+            ],
+          );
+        });
+  }
+
+  Container _product(PurchaseRequest? purchase) {
     return Container(
       padding: const EdgeInsets.symmetric(
         vertical: 24,
@@ -64,7 +112,7 @@ class RequestedDetailItemView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'PR0000010',
+                    purchase?.requestNumber ?? '-',
                     style: StyleApp.textXl.copyWith(
                       color: ColorApp.blackText,
                       fontWeight: FontWeight.w700,
@@ -72,18 +120,14 @@ class RequestedDetailItemView extends StatelessWidget {
                   ),
                   const SpacerHeight(6),
                   Text(
-                    '06 Juli 2024',
+                    purchase?.createdAt == EMPTY ? '-' : purchase?.createdAt.toString() ?? '',
                     style: StyleApp.textNormal.copyWith(
                       color: ColorApp.greyText,
                     ),
                   ),
                 ],
               ),
-              const CustomBadge(
-                backgroundColor: ColorApp.brownBg,
-                textColor: ColorApp.brown,
-                text: "Sedang Purchase Order",
-              ),
+              status(purchase?.status ?? EMPTY),
             ],
           ),
           const SpacerHeight(6),
@@ -115,5 +159,22 @@ class RequestedDetailItemView extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Widget status(String status) {
+    switch (status) {
+      case 'draft':
+        return CustomBadge(
+          backgroundColor: ColorApp.grey,
+          textColor: ColorApp.greyText,
+          text: status.toTitleCase(),
+        );
+      default:
+        return CustomBadge(
+          backgroundColor: ColorApp.brownBg,
+          textColor: ColorApp.brown,
+          text: status.toTitleCase(),
+        );
+    }
   }
 }

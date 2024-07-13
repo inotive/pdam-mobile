@@ -20,17 +20,17 @@ class RequestedViewModel extends BaseViewModel implements RequestedViewModelInpu
   Map<String, dynamic> queries = {};
 
   @override
-  void start() {
-    // inputState.add(ContentState());
-    _loadData();
+  void start() async {
+    inputState.add(ContentState());
     _loadSummary();
+    _loadData();
   }
 
-  @override
-  void dispose() {
-    _purchaseRequestStreamController.close();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   if (!_purchaseRequestStreamController.isClosed) _purchaseRequestStreamController.close();
+  //   if (!_purchaseRequestSummaryStreamController.isClosed) _purchaseRequestSummaryStreamController.close();
+  // }
 
   _loadData() async {
     (await _purchaseRequestUsecase.execute(queries)).fold((failure) {
@@ -44,9 +44,9 @@ class RequestedViewModel extends BaseViewModel implements RequestedViewModelInpu
   _loadSummary() async {
     // ignore: void_checks
     (await _purchaseRequestSummaryUsecase.execute(Void)).fold((failure) {
-      inputState.add(ErrorState(StateRendererType.POPUP_ERROR_STATE, failure.message));
-    }, (data) {
-      inputState.add(ContentState());
+      // inputState.add(ErrorState(StateRendererType.POPUP_ERROR_STATE, failure.message));
+    }, (data) async {
+      // inputState.add(ContentState());
       inputPurchaseSummaryRequest.add(data.data);
     });
   }

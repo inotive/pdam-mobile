@@ -118,3 +118,44 @@ class PurchaseRequestResponse {
 
   Map<String, dynamic> toJson() => _$PurchaseRequestResponseToJson(this);
 }
+
+@JsonSerializable()
+class PurchaseRequestDetailResponse extends BaseResponse {
+  PurchaseRequestDetailResponse(this.data);
+
+  @JsonKey(name: 'data')
+  PurchaseRequestDetailDataResponse? data;
+
+  factory PurchaseRequestDetailResponse.fromJson(Map<String, dynamic> json) =>
+      _$PurchaseRequestDetailResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PurchaseRequestDetailResponseToJson(this);
+}
+
+@JsonSerializable()
+class PurchaseRequestDetailDataResponse {
+  PurchaseRequestDetailDataResponse(this.detail, this.products);
+
+  @JsonKey(name: 'detail')
+  PurchaseRequestResponse? detail;
+  @JsonKey(name: 'list_product')
+  List<PurchaseRequestProductResponse>? products;
+
+  factory PurchaseRequestDetailDataResponse.fromJson(Map<String, dynamic> json) =>
+      _$PurchaseRequestDetailDataResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PurchaseRequestDetailDataResponseToJson(this);
+}
+
+@JsonSerializable()
+class PurchaseRequestProductResponse {
+  PurchaseRequestProductResponse(this.id);
+
+  @JsonKey(name: 'id')
+  int? id;
+
+  factory PurchaseRequestProductResponse.fromJson(Map<String, dynamic> json) =>
+      _$PurchaseRequestProductResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PurchaseRequestProductResponseToJson(this);
+}

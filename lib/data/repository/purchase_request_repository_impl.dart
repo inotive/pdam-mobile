@@ -58,4 +58,28 @@ class PurchaseRequestRepositoryImpl implements PurchaseRequestRepository {
       return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, PurchaseRequestDetail>> purchaseRequestDetail(int id) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final response = await _purchaseRequestDatasource.purchaseRequestDetail(id);
+
+        if (response.meta?.code == ResponseCode.SUCCESS) {
+          return Right(response.toDomain());
+        } else {
+          return Left(
+            Failure(
+              response.meta?.code ?? ResponseCode.DEFAULT,
+              response.meta?.message ?? ResponseMessage.DEFAULT,
+            ),
+          );
+        }
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+    }
+  }
 }

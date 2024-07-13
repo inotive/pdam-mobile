@@ -74,4 +74,5 @@ class StringApp {
   static const String retryAgain = 'Retry Again';
 
   static const String requestedItemNotYet = 'Belum ada permintaann barang';
+  static const String productNotYet = 'Belum ada produk';
 }

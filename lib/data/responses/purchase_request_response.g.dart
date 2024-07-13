@@ -123,3 +123,53 @@ Map<String, dynamic> _$PurchaseRequestResponseToJson(
       'updated_at': instance.updatedAt,
       'deleted_at': instance.deletedAt,
     };
+
+PurchaseRequestDetailResponse _$PurchaseRequestDetailResponseFromJson(
+        Map<String, dynamic> json) =>
+    PurchaseRequestDetailResponse(
+      json['data'] == null
+          ? null
+          : PurchaseRequestDetailDataResponse.fromJson(
+              json['data'] as Map<String, dynamic>),
+    )..meta = json['meta'] == null
+        ? null
+        : MetaResponse.fromJson(json['meta'] as Map<String, dynamic>);
+
+Map<String, dynamic> _$PurchaseRequestDetailResponseToJson(
+        PurchaseRequestDetailResponse instance) =>
+    <String, dynamic>{
+      'meta': instance.meta,
+      'data': instance.data,
+    };
+
+PurchaseRequestDetailDataResponse _$PurchaseRequestDetailDataResponseFromJson(
+        Map<String, dynamic> json) =>
+    PurchaseRequestDetailDataResponse(
+      json['detail'] == null
+          ? null
+          : PurchaseRequestResponse.fromJson(
+              json['detail'] as Map<String, dynamic>),
+      (json['list_product'] as List<dynamic>?)
+          ?.map((e) => PurchaseRequestProductResponse.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$PurchaseRequestDetailDataResponseToJson(
+        PurchaseRequestDetailDataResponse instance) =>
+    <String, dynamic>{
+      'detail': instance.detail,
+      'list_product': instance.products,
+    };
+
+PurchaseRequestProductResponse _$PurchaseRequestProductResponseFromJson(
+        Map<String, dynamic> json) =>
+    PurchaseRequestProductResponse(
+      (json['id'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$PurchaseRequestProductResponseToJson(
+        PurchaseRequestProductResponse instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+    };

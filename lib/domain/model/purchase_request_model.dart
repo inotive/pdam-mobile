@@ -61,3 +61,22 @@ class PurchaseRequest {
   String updatedAt;
   String deletedAt;
 }
+
+class PurchaseRequestDetail {
+  PurchaseRequestDetail(this.data);
+
+  PurchaseRequestDetailData? data;
+}
+
+class PurchaseRequestDetailData {
+  PurchaseRequestDetailData(this.detail, this.products);
+
+  PurchaseRequest? detail;
+  List<PurchaseRequestProduct> products;
+}
+
+class PurchaseRequestProduct {
+  PurchaseRequestProduct(this.id);
+
+  int id;
+}

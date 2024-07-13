@@ -4,6 +4,7 @@ import 'package:pdam_inventory/data/responses/purchase_request_response.dart';
 abstract class PurchaseRequestDataSource {
   Future<PurchaseRequestPaginationResponse> purchaseRequest(Map<String, dynamic> queries);
   Future<PurchaseRequestSummaryResponse> purchaseRequestSummary();
+  Future<PurchaseRequestDetailResponse> purchaseRequestDetail(int id);
 }
 
 class PurchaseRequestDataSourceImpl implements PurchaseRequestDataSource {
@@ -19,5 +20,10 @@ class PurchaseRequestDataSourceImpl implements PurchaseRequestDataSource {
   @override
   Future<PurchaseRequestSummaryResponse> purchaseRequestSummary() async {
     return await _appServiceClient.purchaseRequestSummary();
+  }
+
+  @override
+  Future<PurchaseRequestDetailResponse> purchaseRequestDetail(int id) async {
+    return await _appServiceClient.purchaseRequestDetail(id);
   }
 }

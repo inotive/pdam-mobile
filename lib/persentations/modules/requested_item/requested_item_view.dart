@@ -4,7 +4,6 @@ import 'package:pdam_inventory/domain/model/purchase_request_model.dart';
 import 'package:pdam_inventory/persentations/modules/requested_item/viewmodel/requested_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/requested_item/widgets/requested_item_date_card.dart';
 import 'package:pdam_inventory/persentations/modules/requested_item/widgets/requested_item_skeleton.dart';
-import 'package:pdam_inventory/persentations/packages/state_renderer/state_renderer_impl.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
@@ -33,12 +32,6 @@ class _RequestedItemViewState extends State<RequestedItemView> {
   }
 
   @override
-  void dispose() {
-    _requestedViewModel.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorApp.grey,
@@ -47,11 +40,15 @@ class _RequestedItemViewState extends State<RequestedItemView> {
           StringApp.requestedItem,
         ),
       ),
-      body: StreamBuilder<FlowState>(
-          stream: _requestedViewModel.outputState,
-          builder: (context, snapshot) {
-            return snapshot.data?.getScreenWidget(context, _getContentWidget(), () {}) ?? _getContentWidget();
-          }),
+      body: _getContentWidget(),
+      // body: StreamBuilder<FlowState>(
+      //     stream: _requestedViewModel.outputState,
+      //     builder: (context, snapshot) {
+      //       return snapshot.data?.getScreenWidget(context, _getContentWidget(), () {
+      //             _bind();
+      //           }) ??
+      //           Container();
+      //     }),
     );
   }
 
