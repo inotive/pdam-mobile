@@ -45,4 +45,30 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
       return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> logout() async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final response = await _authenticationDataSource.logout();
+        if (response.meta?.code == ResponseCode.SUCCESS) {
+          _appPreference.removeString(PREFS_KEY_TOKEN);
+          _appPreference.removeString(PREFS_KEY_IS_USER_LOGGED_IN);
+          _appPreference.removeString(PREFS_KEY_NAME);
+          return const Right(true);
+        } else {
+          return Left(
+            Failure(
+              response.meta?.code ?? ResponseCode.DEFAULT,
+              response.meta?.message ?? ResponseMessage.DEFAULT,
+            ),
+          );
+        }
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+    }
+  }
 }

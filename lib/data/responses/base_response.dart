@@ -24,3 +24,12 @@ class MetaResponse {
 
   Map<String, dynamic> toJson() => _$MetaResponseToJson(this);
 }
+
+@JsonSerializable()
+class MessageResponse extends BaseResponse {
+  MessageResponse();
+
+  factory MessageResponse.fromJson(Map<String, dynamic> json) => _$MessageResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MessageResponseToJson(this);
+}

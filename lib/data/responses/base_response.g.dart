@@ -28,3 +28,14 @@ Map<String, dynamic> _$MetaResponseToJson(MetaResponse instance) =>
       'status': instance.status,
       'message': instance.message,
     };
+
+MessageResponse _$MessageResponseFromJson(Map<String, dynamic> json) =>
+    MessageResponse()
+      ..meta = json['meta'] == null
+          ? null
+          : MetaResponse.fromJson(json['meta'] as Map<String, dynamic>);
+
+Map<String, dynamic> _$MessageResponseToJson(MessageResponse instance) =>
+    <String, dynamic>{
+      'meta': instance.meta,
+    };

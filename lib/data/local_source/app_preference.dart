@@ -33,4 +33,8 @@ class AppPreference {
   Future<String> getString(String key) async {
     return _sharedPreferences.getString(key) ?? "";
   }
+
+  Future<void> removeString(String key) async {
+    _sharedPreferences.remove(key);
+  }
 }

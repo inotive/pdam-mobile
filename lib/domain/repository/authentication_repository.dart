@@ -6,4 +6,5 @@ import 'package:dartz/dartz.dart';
 
 abstract class AuthenticationRepository {
   Future<Either<Failure, bool>> login(LoginRequest request);
+  Future<Either<Failure, bool>> logout();
 }
