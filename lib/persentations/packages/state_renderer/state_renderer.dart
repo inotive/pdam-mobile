@@ -22,6 +22,7 @@ enum StateRendererType {
   FULL_SCREEN_LOADING_STATE,
   FULL_SCREEN_ERROR_STATE,
   CONTENT_SCREEN_STATE, // THE UI OF THE SCREEN
+  CONTENT_WITHOUT_DISMISS_SCREEN_STATE, // THE UI OF THE SCREEN
   EMPTY_SCREEN_STATE // EMPTY VIEW WHEN WE RECEIVE NO DATA FROM API SIDE FOR LIST SCREEN
 }
 
@@ -77,6 +78,8 @@ class StateRenderer extends StatelessWidget {
           ),
         );
       case StateRendererType.CONTENT_SCREEN_STATE:
+        return Container();
+      case StateRendererType.CONTENT_WITHOUT_DISMISS_SCREEN_STATE:
         return Container();
       case StateRendererType.EMPTY_SCREEN_STATE:
         return _getItemsInColumn([_getMessage(message)]);

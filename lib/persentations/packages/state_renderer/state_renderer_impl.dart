@@ -50,6 +50,16 @@ class ContentState extends FlowState {
   StateRendererType getStateRendererType() => StateRendererType.CONTENT_SCREEN_STATE;
 }
 
+class ContentWithoutDimissState extends FlowState {
+  ContentWithoutDimissState();
+
+  @override
+  String getMessage() => EMPTY;
+
+  @override
+  StateRendererType getStateRendererType() => StateRendererType.CONTENT_WITHOUT_DISMISS_SCREEN_STATE;
+}
+
 // EMPTY STATE
 class EmptyState extends FlowState {
   String message;
@@ -136,12 +146,12 @@ extension FlowStateExtension on FlowState {
         }
       case const (ContentState):
         {
-          if (getStateRendererType() == StateRendererType.POPUP_LOADING_STATE) {
-            dismissDialog(context);
-            return contentScreenWidget;
-          } else {
-            return contentScreenWidget;
-          }
+          dismissDialog(context);
+          return contentScreenWidget;
+        }
+      case const (ContentWithoutDimissState):
+        {
+          return contentScreenWidget;
         }
       case const (EmptyState):
         {

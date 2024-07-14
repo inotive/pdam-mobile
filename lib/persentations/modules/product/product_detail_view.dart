@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:pdam_inventory/app/di.dart';
+import 'package:pdam_inventory/domain/model/product_model.dart';
 import 'package:pdam_inventory/persentations/modules/product/tabs/product_history_stock_tab.dart';
 import 'package:pdam_inventory/persentations/modules/product/tabs/product_warehouse_stock_tab.dart';
+import 'package:pdam_inventory/persentations/modules/product/viewmodel/product_viewmodel.dart';
+import 'package:pdam_inventory/persentations/packages/state_renderer/state_renderer_impl.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
@@ -8,18 +12,27 @@ import 'package:pdam_inventory/persentations/widgets/custom_cached_network_image
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
 class ProductDetailView extends StatefulWidget {
-  const ProductDetailView({super.key});
+  const ProductDetailView({super.key, required this.id});
+
+  final int id;
 
   @override
   State<ProductDetailView> createState() => _ProductDetailViewState();
 }
 
 class _ProductDetailViewState extends State<ProductDetailView> with TickerProviderStateMixin {
+  ProductViewmodel _productViewmodel = instance<ProductViewmodel>();
+
   late TabController _tabController;
+
+  _bind() {
+    _productViewmodel.productDetail(widget.id);
+  }
 
   @override
   void initState() {
     _tabController = TabController(length: 2, vsync: this);
+    _bind();
     super.initState();
   }
 
@@ -30,24 +43,39 @@ class _ProductDetailViewState extends State<ProductDetailView> with TickerProvid
       appBar: AppBar(
         title: const Text(StringApp.detailProduct),
       ),
-      body: Column(
-        children: [
-          _products(),
-          _count(),
-          const SpacerHeight(12),
-          _tabbar(),
-          Expanded(
-            child: TabBarView(
-              controller: _tabController,
-              children: const [
-                ProductHistoryStockTab(),
-                ProductWarehouseStockTab(),
-              ],
-            ),
-          ),
-        ],
-      ),
+      body: StreamBuilder<FlowState>(
+          stream: _productViewmodel.outputState,
+          builder: (context, snapshot) {
+            return snapshot.data?.getScreenWidget(context, _getContentWidget(), () {
+                  _bind();
+                }) ??
+                Container();
+          }),
     );
+  }
+
+  Widget _getContentWidget() {
+    return StreamBuilder<ProductDetailData>(
+        stream: _productViewmodel.outputProductDetail,
+        builder: (context, snapshot) {
+          return Column(
+            children: [
+              _products(snapshot.data),
+              _count(snapshot.data),
+              const SpacerHeight(12),
+              _tabbar(),
+              Expanded(
+                child: TabBarView(
+                  controller: _tabController,
+                  children: const [
+                    ProductHistoryStockTab(),
+                    ProductWarehouseStockTab(),
+                  ],
+                ),
+              ),
+            ],
+          );
+        });
   }
 
   TabBar _tabbar() {
@@ -75,7 +103,7 @@ class _ProductDetailViewState extends State<ProductDetailView> with TickerProvid
     );
   }
 
-  Container _count() {
+  Container _count(ProductDetailData? detail) {
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
       decoration: const BoxDecoration(
@@ -112,7 +140,7 @@ class _ProductDetailViewState extends State<ProductDetailView> with TickerProvid
                         ),
                         const SpacerHeight(6),
                         Text(
-                          '3100',
+                          detail?.max ?? '-',
                           style: StyleApp.textLg.copyWith(
                             color: ColorApp.blackText,
                             fontWeight: FontWeight.w700,
@@ -155,7 +183,7 @@ class _ProductDetailViewState extends State<ProductDetailView> with TickerProvid
                         ),
                         const SpacerHeight(6),
                         Text(
-                          '1400',
+                          detail?.min ?? '-',
                           style: StyleApp.textLg.copyWith(
                             color: ColorApp.blackText,
                             fontWeight: FontWeight.w700,
@@ -173,7 +201,7 @@ class _ProductDetailViewState extends State<ProductDetailView> with TickerProvid
     );
   }
 
-  Container _products() {
+  Container _products(ProductDetailData? detail) {
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 24, 16, 12),
       decoration: const BoxDecoration(
@@ -194,7 +222,7 @@ class _ProductDetailViewState extends State<ProductDetailView> with TickerProvid
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Equal Tee Coupler hdpe 75mm',
+                  detail?.name ?? '-',
                   style: StyleApp.textXl.copyWith(
                     color: ColorApp.blackText,
                     fontWeight: FontWeight.w700,
@@ -202,7 +230,7 @@ class _ProductDetailViewState extends State<ProductDetailView> with TickerProvid
                 ),
                 const SpacerHeight(6),
                 Text(
-                  'ETCHDP7',
+                  detail?.code ?? '-',
                   style: StyleApp.textNormal.copyWith(
                     color: ColorApp.greyText,
                   ),
@@ -232,5 +260,11 @@ class _ProductDetailViewState extends State<ProductDetailView> with TickerProvid
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _productViewmodel.dispose();
+    super.dispose();
   }
 }

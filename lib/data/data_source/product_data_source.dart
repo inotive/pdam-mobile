@@ -3,6 +3,7 @@ import 'package:pdam_inventory/data/responses/product_response.dart';
 
 abstract class ProductDataSource {
   Future<ProductResponse> products();
+  Future<ProductDetailResponse> productDetail(int id);
 }
 
 class ProductDataSourceImpl extends ProductDataSource {
@@ -12,5 +13,10 @@ class ProductDataSourceImpl extends ProductDataSource {
   @override
   Future<ProductResponse> products() async {
     return await _appServiceClient.products();
+  }
+
+  @override
+  Future<ProductDetailResponse> productDetail(int id) async {
+    return await _appServiceClient.productDetail(id);
   }
 }

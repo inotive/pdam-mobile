@@ -40,5 +40,8 @@ abstract class AppServiceClient {
   /* Products */
   @GET('/web/master/product')
   Future<ProductResponse> products();
+
+  @GET('/web/master/product/{id}/show')
+  Future<ProductDetailResponse> productDetail(@Path() int id);
   /* End Products */
 }

@@ -6,4 +6,5 @@ import 'package:pdam_inventory/domain/model/product_model.dart';
 
 abstract class ProductRepository {
   Future<Either<Failure, Product>> products();
+  Future<Either<Failure, ProductDetail>> productDetail(int id);
 }

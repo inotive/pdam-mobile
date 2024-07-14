@@ -99,7 +99,7 @@ class _ProductViewState extends State<ProductView> {
                       (item) => GestureDetector(
                           onTap: () => Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => const ProductDetailView()),
+                                MaterialPageRoute(builder: (context) => ProductDetailView(id: item.id)),
                               ),
                           child: ProductCard(item)),
                     )
