@@ -27,7 +27,7 @@ class _LoginViewState extends State<LoginView> {
   final TextEditingController _passwordController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
-  bool obscureText = false;
+  bool obscureText = true;
 
   _bind() {
     _loginViewModel.start();
