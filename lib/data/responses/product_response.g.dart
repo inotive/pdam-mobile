@@ -88,3 +88,52 @@ Map<String, dynamic> _$UnitDataResponseToJson(UnitDataResponse instance) =>
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
     };
+
+ProductDetailResponse _$ProductDetailResponseFromJson(
+        Map<String, dynamic> json) =>
+    ProductDetailResponse(
+      json['data'] == null
+          ? null
+          : ProductDetailDataResponse.fromJson(
+              json['data'] as Map<String, dynamic>),
+    )..meta = json['meta'] == null
+        ? null
+        : MetaResponse.fromJson(json['meta'] as Map<String, dynamic>);
+
+Map<String, dynamic> _$ProductDetailResponseToJson(
+        ProductDetailResponse instance) =>
+    <String, dynamic>{
+      'meta': instance.meta,
+      'data': instance.data,
+    };
+
+ProductDetailDataResponse _$ProductDetailDataResponseFromJson(
+        Map<String, dynamic> json) =>
+    ProductDetailDataResponse(
+      (json['id'] as num?)?.toInt(),
+      json['code'] as String?,
+      json['product_category_id'] as String?,
+      json['name'] as String?,
+      json['min'] as String?,
+      json['max'] as String?,
+      json['created_at'] as String?,
+      json['updated_at'] as String?,
+      json['product_category'] == null
+          ? null
+          : CategoryDataResponse.fromJson(
+              json['product_category'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$ProductDetailDataResponseToJson(
+        ProductDetailDataResponse instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'code': instance.code,
+      'product_category_id': instance.productCategoryId,
+      'name': instance.name,
+      'min': instance.min,
+      'max': instance.max,
+      'created_at': instance.createdAt,
+      'updated_at': instance.updatedAt,
+      'product_category': instance.category,
+    };

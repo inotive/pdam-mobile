@@ -102,3 +102,53 @@ class UnitDataResponse {
 
   Map<String, dynamic> toJson() => _$UnitDataResponseToJson(this);
 }
+
+@JsonSerializable()
+class ProductDetailResponse extends BaseResponse {
+  ProductDetailResponse(this.data);
+
+  @JsonKey(name: 'data')
+  ProductDetailDataResponse? data;
+
+  factory ProductDetailResponse.fromJson(Map<String, dynamic> json) => _$ProductDetailResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ProductDetailResponseToJson(this);
+}
+
+@JsonSerializable()
+class ProductDetailDataResponse {
+  ProductDetailDataResponse(
+    this.id,
+    this.code,
+    this.productCategoryId,
+    this.name,
+    this.min,
+    this.max,
+    this.createdAt,
+    this.updatedAt,
+    this.category,
+  );
+
+  @JsonKey(name: "id")
+  int? id;
+  @JsonKey(name: "code")
+  String? code;
+  @JsonKey(name: "product_category_id")
+  String? productCategoryId;
+  @JsonKey(name: "name")
+  String? name;
+  @JsonKey(name: "min")
+  String? min;
+  @JsonKey(name: "max")
+  String? max;
+  @JsonKey(name: "created_at")
+  String? createdAt;
+  @JsonKey(name: "updated_at")
+  String? updatedAt;
+  @JsonKey(name: "product_category")
+  CategoryDataResponse? category;
+
+  factory ProductDetailDataResponse.fromJson(Map<String, dynamic> json) => _$ProductDetailDataResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ProductDetailDataResponseToJson(this);
+}

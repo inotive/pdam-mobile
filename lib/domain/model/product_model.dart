@@ -57,3 +57,33 @@ class UnitData {
   String createdAt;
   String updatedAt;
 }
+
+class ProductDetail {
+  ProductDetail(this.data);
+
+  ProductDetailData? data;
+}
+
+class ProductDetailData {
+  ProductDetailData(
+    this.id,
+    this.code,
+    this.productCategoryId,
+    this.name,
+    this.min,
+    this.max,
+    this.createdAt,
+    this.updatedAt,
+    this.category,
+  );
+
+  int id;
+  String code;
+  String productCategoryId;
+  String name;
+  String min;
+  String max;
+  String createdAt;
+  String updatedAt;
+  CategoryData? category;
+}

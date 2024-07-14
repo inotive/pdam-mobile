@@ -50,3 +50,25 @@ extension UnitDataResponseMapper on UnitDataResponse? {
     );
   }
 }
+
+extension ProductDetailDataResponseMapper on ProductDetailDataResponse? {
+  ProductDetailData toDomain() {
+    return ProductDetailData(
+      this?.id.orZero() ?? ZERO,
+      this?.code.orEmpty() ?? EMPTY,
+      this?.productCategoryId.orEmpty() ?? EMPTY,
+      this?.name.orEmpty() ?? EMPTY,
+      this?.min.orEmpty() ?? EMPTY,
+      this?.max.orEmpty() ?? EMPTY,
+      this?.createdAt.orEmpty() ?? EMPTY,
+      this?.updatedAt.orEmpty() ?? EMPTY,
+      this?.category.toDomain(),
+    );
+  }
+}
+
+extension ProductDetailResponseMapper on ProductDetailResponse? {
+  ProductDetail toDomain() {
+    return ProductDetail(this?.data?.toDomain());
+  }
+}
