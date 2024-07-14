@@ -11,10 +11,12 @@ import 'package:pdam_inventory/data/repository/purchase_request_repository_impl.
 import 'package:pdam_inventory/domain/repository/authentication_repository.dart';
 import 'package:pdam_inventory/domain/repository/purchase_request_repository.dart';
 import 'package:pdam_inventory/domain/usecase/authentication/login_usecase.dart';
+import 'package:pdam_inventory/domain/usecase/authentication/logout_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/purchase_request_detail_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/purchase_request_summary_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/purchase_request_usecase.dart';
 import 'package:pdam_inventory/persentations/modules/auth/login/viewmodel/login_viewmodel.dart';
+import 'package:pdam_inventory/persentations/modules/profile/viewmodel/profile_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/requested_item/viewmodel/requested_detail_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/requested_item/viewmodel/requested_viewmodel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -52,12 +54,20 @@ Future<void> initAppModule() async {
 // initAppModule
   initLoginModule();
   initPurchaseRequestDetailModule();
+  initProfiileModule();
 }
 
 initLoginModule() {
   if (!GetIt.I.isRegistered<LoginUsecase>()) {
     instance.registerFactory<LoginUsecase>(() => LoginUsecase(instance()));
     instance.registerFactory<LoginViewModel>(() => LoginViewModel(instance()));
+  }
+}
+
+initProfiileModule() {
+  if (!GetIt.I.isRegistered<LogoutUsecase>()) {
+    instance.registerFactory<LogoutUsecase>(() => LogoutUsecase(instance()));
+    instance.registerFactory<ProfileViewModel>(() => ProfileViewModel(instance()));
   }
 }
 
@@ -82,4 +92,5 @@ resetModules() {
   initLoginModule();
   initPurchaseRequestModule();
   initPurchaseRequestDetailModule();
+  initProfiileModule();
 }

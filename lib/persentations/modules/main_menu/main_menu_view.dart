@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pdam_inventory/persentations/modules/home/home_view.dart';
+import 'package:pdam_inventory/persentations/modules/profile/profile_view.dart';
 import 'package:pdam_inventory/persentations/resources/asset_app.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
@@ -23,9 +24,7 @@ class _MainMenuViewState extends State<MainMenuView> {
     const Center(
       child: Text("Barang/Produk"),
     ),
-    const Center(
-      child: Text("Profile"),
-    ),
+    const ProfileView(),
   ];
 
   void onTap(int index) {
