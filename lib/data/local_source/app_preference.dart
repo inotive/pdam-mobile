@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 const String PREFS_KEY_IS_USER_LOGGED_IN = "PREFS_KEY_IS_USER_LOGGED_IN";
 const String PREFS_KEY_TOKEN = "PREFS_KEY_TOKEN";
+const String PREFS_KEY_NAME = "PREFS_KEY_NAME";
 
 class AppPreference {
   final SharedPreferences _sharedPreferences;
@@ -23,5 +24,13 @@ class AppPreference {
 
   Future<String> getUserToken() async {
     return _sharedPreferences.getString(PREFS_KEY_TOKEN) ?? "";
+  }
+
+  Future<void> setString(String key, String value) async {
+    _sharedPreferences.setString(key, value);
+  }
+
+  Future<String> getString(String key) async {
+    return _sharedPreferences.getString(key) ?? "";
   }
 }

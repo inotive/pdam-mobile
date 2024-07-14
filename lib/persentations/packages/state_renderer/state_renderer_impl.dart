@@ -149,8 +149,8 @@ extension FlowStateExtension on FlowState {
       case const (SuccessState):
         {
           dismissDialog(context);
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            context.showFlash<bool>(
+          WidgetsBinding.instance.addPostFrameCallback(
+            (_) => context.showFlash<bool>(
               barrierDismissible: true,
               duration: const Duration(seconds: 3),
               builder: (context, controller) => FlashBar(
@@ -166,8 +166,8 @@ extension FlowStateExtension on FlowState {
                 ),
                 elevation: 0,
               ),
-            );
-          });
+            ),
+          );
           // return content ui of the screen
           return contentScreenWidget;
         }

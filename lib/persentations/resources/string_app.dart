@@ -80,8 +80,10 @@ class StringApp {
   static const String productNotYet = 'Belum ada produk';
 
   static const String nameUser = 'Nama user';
+  static const String nameUserValidation = 'Nama user harus diisi';
   static const String username = 'Username';
   static const String password = 'Kata Sandi';
+  static const String passwordValidation = 'Kata sandi harus diisi';
   static const String passwordHint = 'Masukkan Kata Sandi';
   static const String login = 'Masuk';
 }
