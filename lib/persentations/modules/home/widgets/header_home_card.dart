@@ -10,7 +10,10 @@ import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 class HeaderHomeCard extends StatelessWidget {
   const HeaderHomeCard({
     super.key,
+    required this.name,
   });
+
+  final String name;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +46,7 @@ class HeaderHomeCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'Jane doe',
+                  name,
                   style: StyleApp.textXl.copyWith(
                     color: ColorApp.white,
                     fontWeight: FontWeight.w700,
