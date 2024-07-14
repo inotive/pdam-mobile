@@ -136,8 +136,12 @@ extension FlowStateExtension on FlowState {
         }
       case const (ContentState):
         {
-          dismissDialog(context);
-          return contentScreenWidget;
+          if (getStateRendererType() == StateRendererType.POPUP_LOADING_STATE) {
+            dismissDialog(context);
+            return contentScreenWidget;
+          } else {
+            return contentScreenWidget;
+          }
         }
       case const (EmptyState):
         {

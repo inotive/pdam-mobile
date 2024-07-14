@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:pdam_inventory/app/di.dart';
+import 'package:pdam_inventory/persentations/modules/product/product_detail_view.dart';
+import 'package:pdam_inventory/persentations/modules/product/viewmodel/product_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/product/widgets/product_card.dart';
+import 'package:pdam_inventory/persentations/modules/product/widgets/product_skeleton.dart';
+import 'package:pdam_inventory/persentations/packages/state_renderer/state_renderer_impl.dart';
 import 'package:pdam_inventory/persentations/resources/asset_app.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
+import 'package:pdam_inventory/persentations/widgets/card/empty_card.dart';
 import 'package:pdam_inventory/persentations/widgets/forms/search_input_field.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 import 'package:pie_chart/pie_chart.dart';
@@ -17,6 +23,8 @@ class ProductView extends StatefulWidget {
 }
 
 class _ProductViewState extends State<ProductView> {
+  final ProductViewmodel _productViewmodel = instance<ProductViewmodel>();
+
   final dataMap = {
     "467 - IN HAND": 467.0,
     "56 - OUT": 56.0,
@@ -29,23 +37,76 @@ class _ProductViewState extends State<ProductView> {
     const Color(0xFF23B9FF),
   ];
 
+  _bind() {
+    _productViewmodel.start();
+  }
+
+  @override
+  void initState() {
+    _bind();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appBar(),
-      body: ListView(
-        children: [
-          _chart(),
-          const ProductCard(),
-          const ProductCard(),
-          const ProductCard(),
-          const ProductCard(),
-          const ProductCard(),
-          const ProductCard(),
-          const ProductCard(),
-          const ProductCard(),
-        ],
-      ),
+      body: StreamBuilder<FlowState>(
+          stream: _productViewmodel.outputState,
+          builder: (context, snapshot) {
+            return snapshot.data?.getScreenWidget(
+                  context,
+                  _getContentWidget(),
+                  () {
+                    _bind();
+                  },
+                ) ??
+                _getContentWidget();
+          }),
+    );
+  }
+
+  ListView _getContentWidget() {
+    return ListView(
+      children: [
+        _chart(),
+        StreamBuilder(
+          stream: _productViewmodel.outputProducts,
+          builder: (context, snapshot) {
+            final data = snapshot.data ?? List.empty();
+
+            if (ConnectionState.waiting == snapshot.connectionState) {
+              return const Column(
+                children: [
+                  ProductSkeleton(),
+                  ProductSkeleton(),
+                  ProductSkeleton(),
+                  ProductSkeleton(),
+                  ProductSkeleton(),
+                ],
+              );
+            }
+
+            if (data.isEmpty) {
+              return const EmptyCard(
+                message: StringApp.productNotYet,
+              );
+            }
+
+            return Column(
+                children: data
+                    .map(
+                      (item) => GestureDetector(
+                          onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const ProductDetailView()),
+                              ),
+                          child: ProductCard(item)),
+                    )
+                    .toList());
+          },
+        ),
+      ],
     );
   }
 
@@ -169,5 +230,11 @@ class _ProductViewState extends State<ProductView> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _productViewmodel.dispose();
+    super.dispose();
   }
 }

@@ -39,6 +39,7 @@ class RouterGenerator {
       case Routes.purchaseItem:
         return MaterialPageRoute(builder: (_) => const PurchaseItemView());
       case Routes.product:
+        initProductModule();
         return MaterialPageRoute(builder: (_) => const ProductView());
       case Routes.requestedItem:
         initPurchaseRequestModule();
