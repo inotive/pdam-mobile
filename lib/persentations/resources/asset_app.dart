@@ -5,6 +5,10 @@ const ICON_APP = "assets/icons";
 const ANIMATION_APP = "assets/animations";
 
 class ImageApp {
+  // Logo
+  static const String logoWithText = "$IMAGE_APP/logo-with-text.png";
+  static const String logo = "$IMAGE_APP/logo.png";
+
   static const String historyStock = "$IMAGE_APP/history-stock.png";
   static const String product = "$IMAGE_APP/product.png";
   static const String purchaseItem = "$IMAGE_APP/purchase-item.png";
