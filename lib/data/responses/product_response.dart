@@ -1,0 +1,104 @@
+// ignore_for_file: depend_on_referenced_packages
+
+import 'package:json_annotation/json_annotation.dart';
+import 'package:pdam_inventory/data/responses/base_response.dart';
+part 'product_response.g.dart';
+
+@JsonSerializable()
+class ProductResponse extends BaseStatusResponse {
+  ProductResponse(this.data);
+
+  @JsonKey(name: 'data')
+  List<ProductDataResponse>? data;
+
+  factory ProductResponse.fromJson(Map<String, dynamic> json) => _$ProductResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ProductResponseToJson(this);
+}
+
+@JsonSerializable()
+class ProductDataResponse {
+  ProductDataResponse(
+    this.id,
+    this.unit,
+    this.category,
+    this.name,
+    this.code,
+    this.min,
+    this.max,
+    this.stock,
+    this.createdAt,
+    this.updatedAt,
+  );
+
+  @JsonKey(name: "id")
+  int? id;
+  @JsonKey(name: "unit")
+  UnitDataResponse? unit;
+  @JsonKey(name: "category")
+  CategoryDataResponse? category;
+  @JsonKey(name: "name")
+  String? name;
+  @JsonKey(name: "code")
+  String? code;
+  @JsonKey(name: "min")
+  String? min;
+  @JsonKey(name: "max")
+  String? max;
+  @JsonKey(name: "stock")
+  int? stock;
+  @JsonKey(name: "created_at")
+  String? createdAt;
+  @JsonKey(name: "updated_at")
+  String? updatedAt;
+
+  factory ProductDataResponse.fromJson(Map<String, dynamic> json) => _$ProductDataResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ProductDataResponseToJson(this);
+}
+
+@JsonSerializable()
+class CategoryDataResponse {
+  CategoryDataResponse(
+    this.id,
+    this.name,
+    this.createdAt,
+    this.updatedAt,
+  );
+
+  @JsonKey(name: "id")
+  int? id;
+  @JsonKey(name: "name")
+  String? name;
+  @JsonKey(name: "created_at")
+  String? createdAt;
+  @JsonKey(name: "updated_at")
+  String? updatedAt;
+
+  factory CategoryDataResponse.fromJson(Map<String, dynamic> json) => _$CategoryDataResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CategoryDataResponseToJson(this);
+}
+
+@JsonSerializable()
+class UnitDataResponse {
+  UnitDataResponse(
+    this.id,
+    this.name,
+    this.createdAt,
+    this.updatedAt,
+  );
+
+  @JsonKey(name: "id")
+  int? id;
+  @JsonKey(name: "name")
+  String? name;
+  @JsonKey(name: "created_at")
+  String? createdAt;
+  @JsonKey(name: "updated_at")
+  String? updatedAt;
+
+  factory UnitDataResponse.fromJson(Map<String, dynamic> json) => _$UnitDataResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UnitDataResponseToJson(this);
+}

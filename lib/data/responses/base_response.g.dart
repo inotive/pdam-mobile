@@ -39,3 +39,26 @@ Map<String, dynamic> _$MessageResponseToJson(MessageResponse instance) =>
     <String, dynamic>{
       'meta': instance.meta,
     };
+
+BaseStatusResponse _$BaseStatusResponseFromJson(Map<String, dynamic> json) =>
+    BaseStatusResponse()
+      ..status = json['status'] == null
+          ? null
+          : StatusDataResponse.fromJson(json['status'] as Map<String, dynamic>);
+
+Map<String, dynamic> _$BaseStatusResponseToJson(BaseStatusResponse instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+    };
+
+StatusDataResponse _$StatusDataResponseFromJson(Map<String, dynamic> json) =>
+    StatusDataResponse(
+      (json['code'] as num?)?.toInt(),
+      json['message'] as String?,
+    );
+
+Map<String, dynamic> _$StatusDataResponseToJson(StatusDataResponse instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+    };

@@ -33,3 +33,23 @@ class MessageResponse extends BaseResponse {
 
   Map<String, dynamic> toJson() => _$MessageResponseToJson(this);
 }
+
+@JsonSerializable()
+class BaseStatusResponse {
+  @JsonKey(name: "status")
+  StatusDataResponse? status;
+}
+
+@JsonSerializable()
+class StatusDataResponse {
+  @JsonKey(name: 'code')
+  int? code;
+  @JsonKey(name: "message")
+  String? message;
+
+  StatusDataResponse(this.code, this.message);
+
+  factory StatusDataResponse.fromJson(Map<String, dynamic> json) => _$StatusDataResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$StatusDataResponseToJson(this);
+}
