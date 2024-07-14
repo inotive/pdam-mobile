@@ -18,7 +18,7 @@ UserDataResponse _$UserDataResponseFromJson(Map<String, dynamic> json) =>
       json['username'] as String?,
       json['role'] == null
           ? null
-          : RoleResponse.fromJson(json['role'] as Map<String, dynamic>),
+          : RoleDataResponse.fromJson(json['role'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$UserDataResponseToJson(UserDataResponse instance) =>
@@ -34,7 +34,8 @@ Map<String, dynamic> _$UserDataResponseToJson(UserDataResponse instance) =>
       'role': instance.role,
     };
 
-RoleResponse _$RoleResponseFromJson(Map<String, dynamic> json) => RoleResponse(
+RoleDataResponse _$RoleDataResponseFromJson(Map<String, dynamic> json) =>
+    RoleDataResponse(
       (json['id'] as num?)?.toInt(),
       json['name'] as String?,
       json['guard_name'] as String?,
@@ -42,7 +43,7 @@ RoleResponse _$RoleResponseFromJson(Map<String, dynamic> json) => RoleResponse(
       json['updated_at'] as String?,
     );
 
-Map<String, dynamic> _$RoleResponseToJson(RoleResponse instance) =>
+Map<String, dynamic> _$RoleDataResponseToJson(RoleDataResponse instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

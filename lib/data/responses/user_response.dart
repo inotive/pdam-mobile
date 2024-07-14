@@ -34,7 +34,7 @@ class UserDataResponse {
   @JsonKey(name: "username")
   String? username;
   @JsonKey(name: "role")
-  RoleResponse? role;
+  RoleDataResponse? role;
 
   factory UserDataResponse.fromJson(Map<String, dynamic> json) => _$UserDataResponseFromJson(json);
 
@@ -42,8 +42,8 @@ class UserDataResponse {
 }
 
 @JsonSerializable()
-class RoleResponse {
-  RoleResponse(
+class RoleDataResponse {
+  RoleDataResponse(
     this.id,
     this.name,
     this.guardName,
@@ -62,7 +62,7 @@ class RoleResponse {
   @JsonKey(name: 'updated_at')
   String? updatedAt;
 
-  factory RoleResponse.fromJson(Map<String, dynamic> json) => _$RoleResponseFromJson(json);
+  factory RoleDataResponse.fromJson(Map<String, dynamic> json) => _$RoleDataResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$RoleResponseToJson(this);
+  Map<String, dynamic> toJson() => _$RoleDataResponseToJson(this);
 }
