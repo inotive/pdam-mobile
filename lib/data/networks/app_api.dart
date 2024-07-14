@@ -2,6 +2,7 @@
 
 import 'package:dio/dio.dart';
 import 'package:pdam_inventory/app/config_app.dart';
+import 'package:pdam_inventory/data/responses/authentication_response.dart';
 import 'package:pdam_inventory/data/responses/purchase_request_response.dart';
 import 'package:retrofit/retrofit.dart';
 part 'app_api.g.dart';
@@ -22,4 +23,12 @@ abstract class AppServiceClient {
   @GET('/mobile/purchase-request/{id}/show')
   Future<PurchaseRequestDetailResponse> purchaseRequestDetail(@Path() int id);
   /* End Purchase Request */
+
+  /* Authentication */
+  @POST('/auth/login')
+  Future<LoginResponse> login(
+    @Field() String username,
+    @Field() String password,
+  );
+  /* End Authentication */
 }
