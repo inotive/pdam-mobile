@@ -5,7 +5,7 @@ import 'package:pdam_inventory/persentations/resources/asset_app.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
-import 'package:pdam_inventory/persentations/widgets/forms/input_field.dart';
+import 'package:pdam_inventory/persentations/widgets/forms/search_input_field.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 import 'package:pie_chart/pie_chart.dart';
 
@@ -156,7 +156,7 @@ class _ProductViewState extends State<ProductView> {
         preferredSize: const Size.fromHeight(64),
         child: Container(
           padding: const EdgeInsets.all(16),
-          child: const InputField(
+          child: const SearchInputField(
             hint: StringApp.searchItem,
             // onChanged: (String val) {
             //   filterSearch(val);

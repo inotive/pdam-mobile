@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pdam_inventory/app/di.dart';
 import 'package:pdam_inventory/persentations/modules/accepted_item/accepted_item_view.dart';
 import 'package:pdam_inventory/persentations/modules/accepted_item/received_item_view.dart';
+import 'package:pdam_inventory/persentations/modules/auth/login/login_view.dart';
 import 'package:pdam_inventory/persentations/modules/history_stock/history_stock_view.dart';
 import 'package:pdam_inventory/persentations/modules/main_menu/main_menu_view.dart';
 import 'package:pdam_inventory/persentations/modules/notification/notification_view.dart';
@@ -23,6 +24,7 @@ class Routes {
   static const String acceptedItem = '/accepted-item';
   static const String receivedItem = '/received-item';
   static const String mainMenu = '/main-menu';
+  static const String login = '/login';
 }
 
 class RouterGenerator {
@@ -49,6 +51,8 @@ class RouterGenerator {
         return MaterialPageRoute(builder: (_) => const ReceivedItemView());
       case Routes.mainMenu:
         return MaterialPageRoute(builder: (_) => const MainMenuView());
+      case Routes.login:
+        return MaterialPageRoute(builder: (_) => const LoginView());
       default:
         return MaterialPageRoute(builder: (_) => const UndefinedView());
     }

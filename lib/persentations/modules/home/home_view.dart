@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:pdam_inventory/dummy/dummy_data.dart';
 import 'package:pdam_inventory/persentations/modules/home/sections/home_history_stock_section.dart';
 import 'package:pdam_inventory/persentations/modules/home/widgets/feature_card.dart';
 import 'package:pdam_inventory/persentations/modules/home/widgets/header_home_card.dart';
-import 'package:pdam_inventory/persentations/resources/theme_app.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
 class HomeView extends StatelessWidget {
@@ -12,7 +10,6 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
     return Scaffold(
       body: ListView(
         children: [

@@ -8,6 +8,9 @@ class StringApp {
   static const String pdam = "PDAM";
   static const String pdamInventory = "PDAM Inventory";
 
+  static const String welcomeBack = "Selamat Datang";
+  static const String pdamInventoryApp = "Aplikasi inventory PDAM";
+
   static const String historyStock = "History Stock";
   static const String product = "Product";
   static const String purchaseItem = "Pembelian Barang";
@@ -75,4 +78,10 @@ class StringApp {
 
   static const String requestedItemNotYet = 'Belum ada permintaann barang';
   static const String productNotYet = 'Belum ada produk';
+
+  static const String nameUser = 'Nama user';
+  static const String username = 'Username';
+  static const String password = 'Kata Sandi';
+  static const String passwordHint = 'Masukkan Kata Sandi';
+  static const String login = 'Masuk';
 }
