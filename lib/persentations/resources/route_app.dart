@@ -7,6 +7,7 @@ import 'package:pdam_inventory/persentations/modules/history_stock/history_stock
 import 'package:pdam_inventory/persentations/modules/main_menu/main_menu_view.dart';
 import 'package:pdam_inventory/persentations/modules/notification/notification_view.dart';
 import 'package:pdam_inventory/persentations/modules/product/product_view.dart';
+import 'package:pdam_inventory/persentations/modules/product/search_product_view.dart';
 import 'package:pdam_inventory/persentations/modules/purchase_item/purchase_item_view.dart';
 import 'package:pdam_inventory/persentations/modules/requested_item/requested_item_view.dart';
 import 'package:pdam_inventory/persentations/modules/splash/splash_view.dart';
@@ -25,6 +26,7 @@ class Routes {
   static const String receivedItem = '/received-item';
   static const String mainMenu = '/main-menu';
   static const String login = '/login';
+  static const String searchProduct = '/search-product';
 }
 
 class RouterGenerator {
@@ -54,6 +56,8 @@ class RouterGenerator {
         return MaterialPageRoute(builder: (_) => const MainMenuView());
       case Routes.login:
         return MaterialPageRoute(builder: (_) => const LoginView());
+      case Routes.searchProduct:
+        return MaterialPageRoute(builder: (_) => const SearchProductView());
       default:
         return MaterialPageRoute(builder: (_) => const UndefinedView());
     }

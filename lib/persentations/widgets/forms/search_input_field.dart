@@ -6,7 +6,17 @@ class SearchInputField extends StatelessWidget {
   final Widget? suffixIcon;
   final TextEditingController? controller;
   final Function(String)? onChanged;
-  const SearchInputField({super.key, required this.hint, this.suffixIcon, this.controller, this.onChanged});
+  final bool readOnly;
+  final Function()? onTap;
+  const SearchInputField({
+    super.key,
+    required this.hint,
+    this.suffixIcon,
+    this.controller,
+    this.onChanged,
+    this.readOnly = false,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +24,8 @@ class SearchInputField extends StatelessWidget {
       controller: controller,
       onChanged: onChanged,
       cursorColor: ColorApp.primary,
+      onTap: onTap,
+      readOnly: readOnly,
       decoration: InputDecoration(
         filled: true,
         fillColor: ColorApp.white,

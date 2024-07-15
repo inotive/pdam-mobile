@@ -17,6 +17,7 @@ class ProductViewmodel extends BaseViewModel implements ProductViewmodelInputs, 
   ProductViewmodel(this._productDetailUsecase, this._productUsecase);
 
   final StreamController _productStreamController = BehaviorSubject<List<ProductData>>();
+  final StreamController _productSearchStreamController = BehaviorSubject<List<ProductData>>();
   final StreamController _productDetailStreamController = BehaviorSubject<ProductDetailData>();
 
   @override
@@ -47,6 +48,19 @@ class ProductViewmodel extends BaseViewModel implements ProductViewmodelInputs, 
   }
 
   @override
+  search(String query) async {
+    // ignore: void_checks
+    (await _productUsecase.execute(Void)).fold((failure) {
+      inputState.add(ErrorState(StateRendererType.SNACKBAR_ERROR_STATE, failure.message));
+    }, (data) {
+      inputState.add(ContentWithoutDimissState());
+      _productSearchStreamController.add(
+        data.data.where((item) => item.name.toString().toLowerCase().contains(query.toLowerCase())).toList(),
+      );
+    });
+  }
+
+  @override
   Sink get inputProducts => _productStreamController.sink;
 
   @override
@@ -57,14 +71,24 @@ class ProductViewmodel extends BaseViewModel implements ProductViewmodelInputs, 
 
   @override
   Stream<ProductDetailData> get outputProductDetail => _productDetailStreamController.stream.map((detail) => detail);
+
+  @override
+  Sink get inputProductsSearch => _productSearchStreamController.sink;
+
+  @override
+  Stream<List<ProductData>> get outputProductsSearch => _productSearchStreamController.stream.map((search) => search);
 }
 
 abstract class ProductViewmodelInputs {
+  search(String query);
+
   Sink get inputProducts;
+  Sink get inputProductsSearch;
   Sink get inputProductDetail;
 }
 
 abstract class ProductViewmodelOutputs {
   Stream<List<ProductData>> get outputProducts;
+  Stream<List<ProductData>> get outputProductsSearch;
   Stream<ProductDetailData> get outputProductDetail;
 }

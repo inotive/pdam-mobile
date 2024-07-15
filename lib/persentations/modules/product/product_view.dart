@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pdam_inventory/app/di.dart';
-import 'package:pdam_inventory/persentations/modules/product/product_detail_view.dart';
 import 'package:pdam_inventory/persentations/modules/product/viewmodel/product_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/product/widgets/product_card.dart';
 import 'package:pdam_inventory/persentations/modules/product/widgets/product_skeleton.dart';
 import 'package:pdam_inventory/persentations/packages/state_renderer/state_renderer_impl.dart';
 import 'package:pdam_inventory/persentations/resources/asset_app.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
+import 'package:pdam_inventory/persentations/resources/route_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
 import 'package:pdam_inventory/persentations/widgets/card/empty_card.dart';
@@ -96,12 +96,7 @@ class _ProductViewState extends State<ProductView> {
             return Column(
                 children: data
                     .map(
-                      (item) => GestureDetector(
-                          onTap: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => ProductDetailView(id: item.id)),
-                              ),
-                          child: ProductCard(item)),
+                      (item) => ProductCard(item),
                     )
                     .toList());
           },
@@ -217,12 +212,11 @@ class _ProductViewState extends State<ProductView> {
         preferredSize: const Size.fromHeight(64),
         child: Container(
           padding: const EdgeInsets.all(16),
-          child: const SearchInputField(
+          child: SearchInputField(
             hint: StringApp.searchItem,
-            // onChanged: (String val) {
-            //   filterSearch(val);
-            // },
-            suffixIcon: Icon(
+            readOnly: true,
+            onTap: () => Navigator.pushNamed(context, Routes.searchProduct),
+            suffixIcon: const Icon(
               Icons.search,
               color: ColorApp.black,
             ),
