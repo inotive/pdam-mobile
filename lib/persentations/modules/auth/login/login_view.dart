@@ -12,7 +12,7 @@ import 'package:pdam_inventory/persentations/resources/route_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
 import 'package:pdam_inventory/persentations/widgets/button/custom_button.dart';
-import 'package:pdam_inventory/persentations/widgets/forms/input_field.dart';
+import 'package:pdam_inventory/persentations/widgets/forms/input_field_with_label.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
 class LoginView extends StatefulWidget {
@@ -148,7 +148,7 @@ class _LoginViewState extends State<LoginView> {
               ),
               child: Column(
                 children: [
-                  InputField(
+                  InputFieldWithLabel(
                     hint: StringApp.username,
                     label: StringApp.username,
                     controller: _usernameController,
@@ -160,7 +160,7 @@ class _LoginViewState extends State<LoginView> {
                     },
                   ),
                   const SpacerHeight(16),
-                  InputField(
+                  InputFieldWithLabel(
                     hint: StringApp.password,
                     label: StringApp.password,
                     obscureText: obscureText,

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
 
-class InputField extends StatelessWidget {
-  const InputField({
+class InputFieldWithLabel extends StatelessWidget {
+  const InputFieldWithLabel({
     super.key,
     required this.label,
     this.hint,
