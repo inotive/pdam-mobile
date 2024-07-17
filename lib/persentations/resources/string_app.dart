@@ -89,4 +89,10 @@ class StringApp {
   static const String logout = 'Keluar';
   static const String loginDesc = 'Masukkan nama user dan kata sandi untuk melanjutkan';
   static const String forgotPassword = 'Forgot Password';
+
+  static const String allDataOpname = 'Semua Data Opname';
+  static const String timeBy = 'Waktu Dibuat';
+  static const String pic = 'PIC';
+  static const String productHasOpname = 'Produk yang Diopname';
+  static const String timeDone = 'Waktu Selesai';
 }

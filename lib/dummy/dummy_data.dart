@@ -220,3 +220,11 @@ List<ProductModel> products = [
         'https://s3-alpha-sig.figma.com/img/492e/aef3/023115226ab55879588194128edabbc1?Expires=1721001600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=OnXPf31kgmeL~gM8cTP9dL8PnLe4oQCbdX0jMbpDosf1oqFDqv58bdrROmGmjQ8UbQQJtg2Vxx7qRU8jrZmpe7UyqzxNsXWzra44GZgC3yHUN3C1U~2fspWALUJGpSsFURhwUZAxrmAcw2knUZbxes21PEm2GoCT0WGlZUsjYaIN4nZvGsWRTJyv2mH9kF6XkoGCQR7jimrN9fVq9UBVccvjhtqM4lB0a57PceczQKpa9r6YlBjPhZXN6Rsza9ZlCrlcWgwhoO9WfFdbhbQzqcK-qYjBLcm5lOnygRyoWaimV7sKrR~abaMVz2qFQY9GIZ0RYtK9XamKOOfqOgrzaw__',
   ),
 ];
+
+List<String> opnameDropdowns = [
+  'OPO-091289237812',
+  'OPO-129ASA123K12',
+  'OPO-9871263QWQ71',
+  'OPO-9871263QWQ72',
+  'OPO-9871263QWQ74',
+];
