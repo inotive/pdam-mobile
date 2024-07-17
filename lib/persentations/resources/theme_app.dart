@@ -17,7 +17,7 @@ ThemeData getApplicationTheme() {
         color: ColorApp.white,
       ),
       titleTextStyle: StyleApp.textLg.copyWith(
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w900,
         color: ColorApp.white,
       ),
     ),
