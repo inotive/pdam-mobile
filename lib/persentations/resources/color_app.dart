@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 class ColorApp {
-  static const Color primary = Color(0xFF415DF3);
-  static const Color primaryBg = Color(0xFFD9E5FD);
+  static const Color primary = Color(0xFF3E4095);
+  static const Color primaryBgOpacity = Color(0xFFD9E5FD);
   static const Color primaryBgLinear1 = Color(0xFF2F2D88);
   static const Color primaryBgLinear2 = Color(0xFF242360);
+
+  static const Color blue = Color(0xFF415DF3);
 
   static const Color black = Color(0xFF000000);
   static const Color black33 = Color(0xFF333333);

@@ -46,10 +46,17 @@ class HeaderHomeCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  name,
+                  'Tested',
                   style: StyleApp.textXl.copyWith(
                     color: ColorApp.white,
                     fontWeight: FontWeight.w700,
+                  ),
+                ),
+                Text(
+                  'Supervisor',
+                  style: StyleApp.textNormal.copyWith(
+                    color: ColorApp.white.withOpacity(0.8),
+                    fontStyle: FontStyle.italic,
                   ),
                 ),
               ],

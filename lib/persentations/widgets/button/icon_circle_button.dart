@@ -31,10 +31,14 @@ class IconCircleButton extends StatelessWidget {
         padding: const EdgeInsets.all(8),
         decoration: const BoxDecoration(
           shape: BoxShape.circle,
-          color: ColorApp.primaryBg,
+          color: ColorApp.primaryBgOpacity,
         ),
         child: isSvg
-            ? SvgPicture.asset(svg)
+            ? SvgPicture.asset(
+                svg,
+                // ignore: deprecated_member_use
+                color: ColorApp.primary,
+              )
             : Icon(
                 icon,
               ),

@@ -15,6 +15,7 @@ class ImageApp {
   static const String purchaseItem = "$IMAGE_APP/purchase-item.png";
   static const String requestItem = "$IMAGE_APP/requsted-item.png";
   static const String stockOpname = "$IMAGE_APP/stock-opname.png";
+  static const String acceptedItem = "$IMAGE_APP/accepted-item.png";
 
   // Vector
   static const String vector1 = "$IMAGE_APP/vector-1.png";
