@@ -95,4 +95,5 @@ class StringApp {
   static const String pic = 'PIC';
   static const String productHasOpname = 'Produk yang Diopname';
   static const String timeDone = 'Waktu Selesai';
+  static const String detailStockOpname = 'Detail Stock Opname';
 }
