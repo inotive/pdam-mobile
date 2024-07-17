@@ -5,4 +5,5 @@ class FontSizeApp {
   static const double lg = 16.0;
   static const double xl = 18.0;
   static const double xxl = 20.0;
+  static const double xl3 = 24.0;
 }

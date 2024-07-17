@@ -1,9 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/widgets.dart';
 import 'package:pdam_inventory/app/di.dart';
 import 'package:pdam_inventory/data/local_source/app_preference.dart';
 import 'package:pdam_inventory/persentations/modules/auth/login/viewmodel/login_viewmodel.dart';
 import 'package:pdam_inventory/persentations/packages/state_renderer/state_renderer_impl.dart';
+import 'package:pdam_inventory/persentations/resources/asset_app.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/route_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
@@ -64,96 +67,145 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 
-  ListView _getContentWidget() {
-    return ListView(
+  Stack _getContentWidget() {
+    return Stack(
+      alignment: Alignment.center,
       children: [
-        _header(),
-        const SpacerHeight(32),
-        Form(
-          key: _formKey,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
-            child: Column(
-              children: [
-                InputField(
-                  hint: StringApp.username,
-                  label: StringApp.nameUser,
-                  controller: _usernameController,
-                  validator: (String? value) {
-                    if (value!.isEmpty) {
-                      return StringApp.nameUserValidation;
-                    }
-                    return null;
-                  },
-                ),
-                const SpacerHeight(16),
-                InputField(
-                  hint: StringApp.password,
-                  label: StringApp.password,
-                  obscureText: obscureText,
-                  controller: _passwordController,
-                  validator: (String? value) {
-                    if (value!.isEmpty) {
-                      return StringApp.passwordValidation;
-                    }
-                    return null;
-                  },
-                  suffixIcon: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        obscureText = !obscureText;
-                      });
-                    },
-                    child: Icon(
-                      obscureText ? Icons.visibility_outlined : Icons.visibility_off_outlined,
-                      color: ColorApp.border,
-                    ),
-                  ),
-                ),
-                const SpacerHeight(32),
-                CustomButton(
-                  text: StringApp.login,
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      _loginViewModel.login();
-                    }
-                  },
-                )
-              ],
+        Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [ColorApp.primaryBgLinear1, ColorApp.primaryBgLinear2],
             ),
           ),
         ),
+        Positioned(
+          top: 0,
+          right: 0,
+          left: 0,
+          child: Image.asset(ImageApp.vector1),
+        ),
+        Positioned(
+          bottom: 0,
+          right: 0,
+          left: 0,
+          child: Image.asset(ImageApp.vector2),
+        ),
+        _content(),
       ],
     );
   }
 
-  Container _header() {
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 16.0,
-        vertical: 24.0,
-      ),
-      decoration: const BoxDecoration(
-        color: ColorApp.primary,
-        borderRadius: BorderRadius.vertical(
-          bottom: Radius.circular(16),
-        ),
-      ),
+  Padding _content() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            "${StringApp.welcomeBack},",
-            style: StyleApp.textLg.copyWith(
+          Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
               color: ColorApp.white,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Image.asset(
+              ImageApp.logoSplash,
+              width: 38,
+              height: 32,
             ),
           ),
-          const SpacerHeight(4),
-          Text(
-            StringApp.pdamInventoryApp,
-            style: StyleApp.text2xl.copyWith(
-              fontWeight: FontWeight.w700,
-              color: ColorApp.white,
+          const SpacerHeight(24),
+          Column(
+            children: [
+              Text(
+                StringApp.login,
+                style: StyleApp.text3xl.copyWith(
+                  color: ColorApp.white,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SpacerHeight(8),
+              Text(
+                StringApp.loginDesc,
+                style: StyleApp.textNormal.copyWith(
+                  color: ColorApp.white,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+          const SpacerHeight(40),
+          Form(
+            key: _formKey,
+            child: Container(
+              padding: const EdgeInsets.symmetric(
+                vertical: 24,
+                horizontal: 20,
+              ),
+              decoration: BoxDecoration(
+                color: ColorApp.white,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Column(
+                children: [
+                  InputField(
+                    hint: StringApp.username,
+                    label: StringApp.username,
+                    controller: _usernameController,
+                    validator: (String? value) {
+                      if (value!.isEmpty) {
+                        return StringApp.nameUserValidation;
+                      }
+                      return null;
+                    },
+                  ),
+                  const SpacerHeight(16),
+                  InputField(
+                    hint: StringApp.password,
+                    label: StringApp.password,
+                    obscureText: obscureText,
+                    controller: _passwordController,
+                    validator: (String? value) {
+                      if (value!.isEmpty) {
+                        return StringApp.passwordValidation;
+                      }
+                      return null;
+                    },
+                    suffixIcon: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          obscureText = !obscureText;
+                        });
+                      },
+                      child: Icon(
+                        obscureText ? Icons.visibility_outlined : Icons.visibility_off_outlined,
+                        color: ColorApp.grey99A,
+                      ),
+                    ),
+                  ),
+                  const SpacerHeight(8),
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: Text(
+                      "${StringApp.forgotPassword}?",
+                      style: StyleApp.textSm.copyWith(
+                        color: ColorApp.primary,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      textAlign: TextAlign.right,
+                    ),
+                  ),
+                  const SpacerHeight(24),
+                  CustomButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        _loginViewModel.login();
+                      }
+                    },
+                    text: StringApp.login,
+                  ),
+                ],
+              ),
             ),
           ),
         ],

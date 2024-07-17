@@ -46,11 +46,13 @@ class LoginViewModel extends BaseViewModel implements LoginViewModelInputs, Logi
   @override
   login() async {
     inputState.add(LoadingState(stateRendererType: StateRendererType.POPUP_LOADING_STATE));
-    (await _loginUsecase.execute(LoginInput(_loginObject.username, _loginObject.password))).fold(
-        (failure) => {
-              // left -> failure
-              inputState.add(ErrorState(StateRendererType.POPUP_ERROR_STATE, failure.message))
-            }, (data) {
+    (await _loginUsecase.execute(LoginInput(_loginObject.username, _loginObject.password))).fold((failure) {
+      // left -> failure
+      inputState.add(ErrorState(StateRendererType.SNACKBAR_ERROR_STATE, failure.message));
+      Future.delayed(const Duration(seconds: 3), () {
+        inputState.add(ContentState());
+      });
+    }, (data) {
       // right -> success (data)
       inputState.add(ContentState());
 

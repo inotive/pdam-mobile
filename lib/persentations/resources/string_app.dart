@@ -85,6 +85,8 @@ class StringApp {
   static const String password = 'Kata Sandi';
   static const String passwordValidation = 'Kata sandi harus diisi';
   static const String passwordHint = 'Masukkan Kata Sandi';
-  static const String login = 'Masuk';
+  static const String login = 'Login';
   static const String logout = 'Keluar';
+  static const String loginDesc = 'Masukkan nama user dan kata sandi untuk melanjutkan';
+  static const String forgotPassword = 'Forgot Password';
 }

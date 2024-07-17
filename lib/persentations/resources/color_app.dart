@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ColorApp {
-  static const Color primary = Color(0xFF417DF3);
+  static const Color primary = Color(0xFF415DF3);
   static const Color primaryBg = Color(0xFFD9E5FD);
   static const Color primaryBgLinear1 = Color(0xFF2F2D88);
   static const Color primaryBgLinear2 = Color(0xFF242360);
@@ -13,6 +13,8 @@ class ColorApp {
   static const Color greyF4 = Color(0xFFF4F4F4);
   static const Color grey = Color(0xFFF5F5F5);
   static const Color greyF6 = Color(0xFFF6F6F6);
+  static const Color greyFA = Color(0xFFFAFAFA);
+  static const Color grey99A = Color(0xFF99A1BC);
   static const Color greyText = Color(0xFF757575);
   static const Color greyText76 = Color(0xFF767676);
   static const Color border = Color(0xFFD9D9D9);

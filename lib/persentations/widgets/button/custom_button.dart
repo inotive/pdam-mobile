@@ -12,7 +12,7 @@ class CustomButton extends StatelessWidget {
     super.key,
     required this.text,
     required this.onPressed,
-    this.height = 40,
+    this.height = 42,
     this.width = double.infinity,
   });
 
