@@ -189,7 +189,7 @@ class _LoginViewState extends State<LoginView> {
                     child: Text(
                       "${StringApp.forgotPassword}?",
                       style: StyleApp.textSm.copyWith(
-                        color: ColorApp.primary,
+                        color: ColorApp.blue,
                         fontWeight: FontWeight.w600,
                       ),
                       textAlign: TextAlign.right,

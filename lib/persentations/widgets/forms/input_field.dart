@@ -37,7 +37,7 @@ class InputField extends StatelessWidget {
           label: Text(
             label,
             style: StyleApp.textSm.copyWith(
-              color: ColorApp.primary,
+              color: ColorApp.blue,
               fontWeight: FontWeight.w600,
             ),
           ),
