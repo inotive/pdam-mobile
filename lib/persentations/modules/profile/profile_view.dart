@@ -56,7 +56,11 @@ class _ProfileViewState extends State<ProfileView> {
             padding: const EdgeInsets.all(16.0),
             child: CustomButton(
               onPressed: () {
-                _profileViewModel.logout();
+                _appPreference.removeString(PREFS_KEY_TOKEN);
+                _appPreference.removeString(PREFS_KEY_IS_USER_LOGGED_IN);
+                _appPreference.removeString(PREFS_KEY_NAME);
+                // _profileViewModel.logout();
+                Navigator.pushReplacementNamed(context, Routes.login);
               },
               text: StringApp.logout,
             ),

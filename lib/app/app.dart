@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:pdam_inventory/app/config_app.dart';
 import 'package:pdam_inventory/persentations/resources/route_app.dart';
 import 'package:pdam_inventory/persentations/resources/theme_app.dart';
@@ -9,7 +8,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+    // SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
     return MaterialApp(
       theme: getApplicationTheme(),
       title: ConfigApp.appName,

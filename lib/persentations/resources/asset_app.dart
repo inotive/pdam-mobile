@@ -8,12 +8,17 @@ class ImageApp {
   // Logo
   static const String logoWithText = "$IMAGE_APP/logo-with-text.png";
   static const String logo = "$IMAGE_APP/logo.png";
+  static const String logoSplash = "$IMAGE_APP/logo-splash.png";
 
   static const String historyStock = "$IMAGE_APP/history-stock.png";
   static const String product = "$IMAGE_APP/product.png";
   static const String purchaseItem = "$IMAGE_APP/purchase-item.png";
   static const String requestItem = "$IMAGE_APP/requsted-item.png";
   static const String stockOpname = "$IMAGE_APP/stock-opname.png";
+
+  // Vector
+  static const String vector1 = "$IMAGE_APP/vector-1.png";
+  static const String vector2 = "$IMAGE_APP/vector-2.png";
 
   // Dummy Image
   static const String profile = "$IMAGE_APP/dm-profile.png";
