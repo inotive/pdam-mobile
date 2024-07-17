@@ -24,6 +24,7 @@ class StringApp {
 
   static const String notifcation = 'Notifikasi';
   static const String searchItem = 'Cari Barang';
+  static const String itemName = 'Nama Barang';
   static const String totalInventory = 'Total Persediaan';
   static const String total = 'Total';
   static const String totalProduct = 'Total Product';
@@ -96,4 +97,12 @@ class StringApp {
   static const String productHasOpname = 'Produk yang Diopname';
   static const String timeDone = 'Waktu Selesai';
   static const String detailStockOpname = 'Detail Stock Opname';
+
+  static const String manualInput = 'MANUAL INPUT';
+  static const String byReference = 'DENGAN REFERENSI';
+  static const String qty = 'Qty';
+  static const String save = 'Simpan';
+
+  static const String reference = 'Referensi';
+  static const String referenceHint = 'Pilih nomor referensi';
 }

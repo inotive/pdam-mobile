@@ -8,6 +8,7 @@ class SearchInputField extends StatelessWidget {
   final Function(String)? onChanged;
   final bool readOnly;
   final Function()? onTap;
+  final TextAlign textAlign;
   const SearchInputField({
     super.key,
     required this.hint,
@@ -16,6 +17,7 @@ class SearchInputField extends StatelessWidget {
     this.onChanged,
     this.readOnly = false,
     this.onTap,
+    this.textAlign = TextAlign.start,
   });
 
   @override
@@ -26,6 +28,7 @@ class SearchInputField extends StatelessWidget {
       cursorColor: ColorApp.primary,
       onTap: onTap,
       readOnly: readOnly,
+      textAlign: textAlign,
       decoration: InputDecoration(
         filled: true,
         fillColor: ColorApp.white,

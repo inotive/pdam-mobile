@@ -5,7 +5,7 @@ import 'package:pdam_inventory/persentations/resources/style_app.dart';
 class CustomOutlineButton extends StatelessWidget {
   const CustomOutlineButton({
     super.key,
-    this.height = 32.0,
+    this.height = 36.0,
     this.width = double.infinity,
     this.margin = EdgeInsets.zero,
     required this.text,

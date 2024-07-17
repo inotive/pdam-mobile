@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pdam_inventory/app/di.dart';
 import 'package:pdam_inventory/persentations/modules/accepted_item/accepted_item_view.dart';
-import 'package:pdam_inventory/persentations/modules/accepted_item/received_item_view.dart';
 import 'package:pdam_inventory/persentations/modules/auth/login/login_view.dart';
 import 'package:pdam_inventory/persentations/modules/history_stock/history_stock_view.dart';
 import 'package:pdam_inventory/persentations/modules/main_menu/main_menu_view.dart';
@@ -9,6 +8,7 @@ import 'package:pdam_inventory/persentations/modules/notification/notification_v
 import 'package:pdam_inventory/persentations/modules/product/product_view.dart';
 import 'package:pdam_inventory/persentations/modules/product/search_product_view.dart';
 import 'package:pdam_inventory/persentations/modules/purchase_item/purchase_item_view.dart';
+import 'package:pdam_inventory/persentations/modules/received_item/received_item_view.dart';
 import 'package:pdam_inventory/persentations/modules/requested_item/requested_item_view.dart';
 import 'package:pdam_inventory/persentations/modules/splash/splash_view.dart';
 import 'package:pdam_inventory/persentations/modules/stock_opname/stock_opname_view.dart';

@@ -228,3 +228,11 @@ List<String> opnameDropdowns = [
   'OPO-9871263QWQ72',
   'OPO-9871263QWQ74',
 ];
+
+List<String> itemReceiveds = [
+  'B001 - Equal Tee Coupler hdpe 75mm',
+  'B002 - Equal Tee Coupler hdpe 110mm',
+  'B003 - Equal Tee Coupler hdpe 90mm',
+  'B004 - Equal Tee Coupler hdpe 70mm',
+  'B005 - Equal Tee Coupler hdpe 60mm',
+];
