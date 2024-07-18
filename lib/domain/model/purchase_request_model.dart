@@ -42,6 +42,9 @@ class PurchaseRequest {
     this.status,
     this.approveDate,
     this.reasonCancel,
+    this.createdBy,
+    this.updatedBy,
+    this.deletedBy,
     this.createdAt,
     this.updatedAt,
     this.deletedAt,
@@ -57,6 +60,9 @@ class PurchaseRequest {
   String status;
   String approveDate;
   String reasonCancel;
+  String createdBy;
+  String updatedBy;
+  String deletedBy;
   String createdAt;
   String updatedAt;
   String deletedAt;
@@ -76,7 +82,23 @@ class PurchaseRequestDetailData {
 }
 
 class PurchaseRequestProduct {
-  PurchaseRequestProduct(this.id);
+  PurchaseRequestProduct(
+    this.code,
+    this.id,
+    this.name,
+    this.qty,
+    this.unitName,
+    this.createdAt,
+    this.updatedAt,
+    this.notes,
+  );
 
+  String code;
   int id;
+  String name;
+  String qty;
+  String unitName;
+  String createdAt;
+  String updatedAt;
+  String notes;
 }

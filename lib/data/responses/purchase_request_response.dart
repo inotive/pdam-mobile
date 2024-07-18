@@ -82,6 +82,9 @@ class PurchaseRequestResponse {
     this.status,
     this.approveDate,
     this.reasonCancel,
+    this.createdBy,
+    this.updatedBy,
+    this.deletedBy,
     this.createdAt,
     this.updatedAt,
     this.deletedAt,
@@ -107,6 +110,12 @@ class PurchaseRequestResponse {
   String? approveDate;
   @JsonKey(name: 'reason_cancel')
   String? reasonCancel;
+  @JsonKey(name: 'created_by')
+  String? createdBy;
+  @JsonKey(name: 'updated_by')
+  String? updatedBy;
+  @JsonKey(name: 'deleted_by')
+  String? deletedBy;
   @JsonKey(name: 'created_at')
   String? createdAt;
   @JsonKey(name: 'updated_at')
@@ -149,10 +158,33 @@ class PurchaseRequestDetailDataResponse {
 
 @JsonSerializable()
 class PurchaseRequestProductResponse {
-  PurchaseRequestProductResponse(this.id);
+  PurchaseRequestProductResponse(
+    this.code,
+    this.id,
+    this.name,
+    this.qty,
+    this.unitName,
+    this.createdAt,
+    this.updatedAt,
+    this.notes,
+  );
 
+  @JsonKey(name: 'code')
+  String? code;
   @JsonKey(name: 'id')
   int? id;
+  @JsonKey(name: 'name')
+  String? name;
+  @JsonKey(name: 'qty')
+  String? qty;
+  @JsonKey(name: 'unit_name')
+  String? unitName;
+  @JsonKey(name: 'created_at')
+  String? createdAt;
+  @JsonKey(name: 'updated_at')
+  String? updatedAt;
+  @JsonKey(name: 'notes')
+  String? notes;
 
   factory PurchaseRequestProductResponse.fromJson(Map<String, dynamic> json) =>
       _$PurchaseRequestProductResponseFromJson(json);

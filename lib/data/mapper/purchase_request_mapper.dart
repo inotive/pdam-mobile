@@ -56,6 +56,9 @@ extension PurchaseRequestResponseMapper on PurchaseRequestResponse? {
       this?.status.orEmpty() ?? EMPTY,
       this?.approveDate.orEmpty() ?? EMPTY,
       this?.reasonCancel.orEmpty() ?? EMPTY,
+      this?.createdBy.orEmpty() ?? EMPTY,
+      this?.updatedBy.orEmpty() ?? EMPTY,
+      this?.deletedBy.orEmpty() ?? EMPTY,
       this?.createdAt.orEmpty() ?? EMPTY,
       this?.updatedAt.orEmpty() ?? EMPTY,
       this?.deletedAt.orEmpty() ?? EMPTY,
@@ -80,6 +83,15 @@ extension PurchaseRequuestDetailDataResponseMapper on PurchaseRequestDetailDataR
 
 extension PurchaseRequestProductResponseMapper on PurchaseRequestProductResponse? {
   PurchaseRequestProduct toDomain() {
-    return PurchaseRequestProduct(this?.id.orZero() ?? ZERO);
+    return PurchaseRequestProduct(
+      this?.code.orEmpty() ?? EMPTY,
+      this?.id.orZero() ?? ZERO,
+      this?.name.orEmpty() ?? EMPTY,
+      this?.qty.orEmpty() ?? EMPTY,
+      this?.unitName.orEmpty() ?? EMPTY,
+      this?.createdAt.orEmpty() ?? EMPTY,
+      this?.updatedAt.orEmpty() ?? EMPTY,
+      this?.notes.orEmpty() ?? EMPTY,
+    );
   }
 }

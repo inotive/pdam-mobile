@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobkit_dashed_border/mobkit_dashed_border.dart';
+import 'package:pdam_inventory/app/helpers/date_formatter.dart';
+import 'package:pdam_inventory/domain/model/purchase_request_model.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
@@ -7,7 +9,9 @@ import 'package:pdam_inventory/persentations/widgets/custom_cached_network_image
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
 class DetailRequestedItemCard extends StatelessWidget {
-  const DetailRequestedItemCard({super.key});
+  const DetailRequestedItemCard(this.data, {super.key});
+
+  final PurchaseRequestProduct data;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +54,7 @@ class DetailRequestedItemCard extends StatelessWidget {
                     const SpacerWidth(12),
                     Expanded(
                       child: Text(
-                        'Equal Tee Coupler hdpe 75mm',
+                        data.name,
                         style: StyleApp.textLg.copyWith(
                           color: ColorApp.blackText,
                           fontWeight: FontWeight.w700,
@@ -59,7 +63,7 @@ class DetailRequestedItemCard extends StatelessWidget {
                     ),
                     const SpacerWidth(8),
                     Text(
-                      '3 Buah',
+                      '${data.qty} Buah',
                       style: StyleApp.textLg.copyWith(
                         color: ColorApp.primary,
                         fontWeight: FontWeight.w700,
@@ -70,7 +74,7 @@ class DetailRequestedItemCard extends StatelessWidget {
                 ),
                 const SpacerHeight(6),
                 Text(
-                  'Notes',
+                  data.notes,
                   style: StyleApp.textNormal.copyWith(
                     color: ColorApp.greyText,
                     fontStyle: FontStyle.italic,
@@ -96,7 +100,7 @@ class DetailRequestedItemCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '23 Juli 2024',
+                      DateFormatterApp.formatIndoDate(data.createdAt),
                       style: StyleApp.textSm.copyWith(
                         color: ColorApp.greyText,
                       ),
@@ -114,7 +118,7 @@ class DetailRequestedItemCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '23 Juli 2024',
+                      DateFormatterApp.formatIndoDate(data.updatedAt),
                       style: StyleApp.textSm.copyWith(
                         color: ColorApp.greyText,
                       ),

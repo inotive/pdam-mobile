@@ -5,7 +5,7 @@ class DateFormatterApp {
   static String formatIndoDate(String? date) {
     if (date == null || date == "" || date == "null") return "-";
     initializeDateFormatting('id_ID');
-    final f = DateFormat("EEEE, dd MMM yyyy", "id_ID").format(DateTime.parse(date));
+    final f = DateFormat("dd MMMM yyyy", "id_ID").format(DateTime.parse(date));
     return f.toString();
   }
 

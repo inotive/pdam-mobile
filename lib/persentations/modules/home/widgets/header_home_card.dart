@@ -46,7 +46,7 @@ class HeaderHomeCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'Tested',
+                  name,
                   style: StyleApp.textXl.copyWith(
                     color: ColorApp.white,
                     fontWeight: FontWeight.w700,

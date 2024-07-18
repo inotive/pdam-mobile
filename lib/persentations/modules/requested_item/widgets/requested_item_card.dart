@@ -93,7 +93,7 @@ class RequestedItemCard extends StatelessWidget {
                         padding: const EdgeInsets.fromLTRB(8, 1.5, 8, 2.5),
                         decoration: const BoxDecoration(color: ColorApp.primary, shape: BoxShape.circle),
                         child: Text(
-                          'J',
+                          data.createdBy.getInitials(),
                           style: StyleApp.textNormal.copyWith(
                             fontWeight: FontWeight.w600,
                             color: ColorApp.white,
@@ -102,16 +102,14 @@ class RequestedItemCard extends StatelessWidget {
                       ),
                       const SpacerWidth(8),
                       Text(
-                        'John Doe',
+                        data.createdBy,
                         style: StyleApp.textNormal.copyWith(
                           fontWeight: FontWeight.w600,
                         ),
                       ),
                     ],
                   ),
-                  CustomBadge(
-                    text: data.status.toTitleCase(),
-                  ),
+                  _status(),
                 ],
               ),
             ),
@@ -119,5 +117,36 @@ class RequestedItemCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget _status() {
+    switch (data.status) {
+      case 'Batal':
+        return CustomBadge(
+          backgroundColor: ColorApp.redBg,
+          textColor: ColorApp.red,
+          text: data.status.toTitleCase(),
+        );
+      case 'Menunggu Disetujui':
+        return CustomBadge(
+          backgroundColor: ColorApp.yellow.withOpacity(0.1),
+          textColor: ColorApp.yellow,
+          text: data.status.toTitleCase(),
+        );
+      case 'Sedang Purchase Order':
+        return CustomBadge(
+          backgroundColor: ColorApp.brownBg,
+          textColor: ColorApp.brown,
+          text: data.status.toTitleCase(),
+        );
+      case 'Disetujui':
+        return CustomBadge(
+          text: data.status.toTitleCase(),
+        );
+      default:
+        return CustomBadge(
+          text: data.status.toTitleCase(),
+        );
+    }
   }
 }

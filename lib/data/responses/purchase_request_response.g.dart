@@ -101,6 +101,9 @@ PurchaseRequestResponse _$PurchaseRequestResponseFromJson(
       json['status'] as String?,
       json['approve_date'] as String?,
       json['reason_cancel'] as String?,
+      json['created_by'] as String?,
+      json['updated_by'] as String?,
+      json['deleted_by'] as String?,
       json['created_at'] as String?,
       json['updated_at'] as String?,
       json['deleted_at'] as String?,
@@ -119,6 +122,9 @@ Map<String, dynamic> _$PurchaseRequestResponseToJson(
       'status': instance.status,
       'approve_date': instance.approveDate,
       'reason_cancel': instance.reasonCancel,
+      'created_by': instance.createdBy,
+      'updated_by': instance.updatedBy,
+      'deleted_by': instance.deletedBy,
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
       'deleted_at': instance.deletedAt,
@@ -165,11 +171,25 @@ Map<String, dynamic> _$PurchaseRequestDetailDataResponseToJson(
 PurchaseRequestProductResponse _$PurchaseRequestProductResponseFromJson(
         Map<String, dynamic> json) =>
     PurchaseRequestProductResponse(
+      json['code'] as String?,
       (json['id'] as num?)?.toInt(),
+      json['name'] as String?,
+      json['qty'] as String?,
+      json['unit_name'] as String?,
+      json['created_at'] as String?,
+      json['updated_at'] as String?,
+      json['notes'] as String?,
     );
 
 Map<String, dynamic> _$PurchaseRequestProductResponseToJson(
         PurchaseRequestProductResponse instance) =>
     <String, dynamic>{
+      'code': instance.code,
       'id': instance.id,
+      'name': instance.name,
+      'qty': instance.qty,
+      'unit_name': instance.unitName,
+      'created_at': instance.createdAt,
+      'updated_at': instance.updatedAt,
+      'notes': instance.notes,
     };

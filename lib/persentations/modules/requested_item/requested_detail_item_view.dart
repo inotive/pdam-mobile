@@ -79,7 +79,7 @@ class _RequestedDetailItemViewState extends State<RequestedDetailItemView> {
                       )
                     : Column(
                         children: products.map((item) {
-                          return const DetailRequestedItemCard();
+                          return DetailRequestedItemCard(item);
                         }).toList(),
                       ),
               ),
@@ -140,7 +140,7 @@ class _RequestedDetailItemViewState extends State<RequestedDetailItemView> {
                 padding: const EdgeInsets.fromLTRB(8, 1.5, 8, 2.5),
                 decoration: const BoxDecoration(color: ColorApp.primary, shape: BoxShape.circle),
                 child: Text(
-                  'J',
+                  purchase?.createdBy.getInitials() ?? EMPTY,
                   style: StyleApp.textNormal.copyWith(
                     fontWeight: FontWeight.w600,
                     color: ColorApp.white,
@@ -149,7 +149,7 @@ class _RequestedDetailItemViewState extends State<RequestedDetailItemView> {
               ),
               const SpacerWidth(8),
               Text(
-                'John Doe',
+                purchase?.createdBy ?? EMPTY,
                 style: StyleApp.textNormal.copyWith(
                   fontWeight: FontWeight.w600,
                 ),
@@ -163,16 +163,30 @@ class _RequestedDetailItemViewState extends State<RequestedDetailItemView> {
 
   Widget status(String status) {
     switch (status) {
-      case 'draft':
+      case 'Batal':
         return CustomBadge(
-          backgroundColor: ColorApp.grey,
-          textColor: ColorApp.greyText,
+          backgroundColor: ColorApp.redBg,
+          textColor: ColorApp.red,
+          text: status.toTitleCase(),
+        );
+      case 'Menunggu Disetujui':
+        return CustomBadge(
+          backgroundColor: ColorApp.yellow.withOpacity(0.1),
+          textColor: ColorApp.yellow,
+          text: status.toTitleCase(),
+        );
+      case 'Sedang Purchase Order':
+        return CustomBadge(
+          backgroundColor: ColorApp.brownBg,
+          textColor: ColorApp.brown,
+          text: status.toTitleCase(),
+        );
+      case 'Disetujui':
+        return CustomBadge(
           text: status.toTitleCase(),
         );
       default:
         return CustomBadge(
-          backgroundColor: ColorApp.brownBg,
-          textColor: ColorApp.brown,
           text: status.toTitleCase(),
         );
     }
