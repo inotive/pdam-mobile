@@ -32,4 +32,28 @@ class ReceiveOrderRepositoryImpl implements ReceiveOrderRepository {
       return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, ReceiveOrderDetail>> receiveOrderDetail(int id) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final response = await _receiveOrderDataSource.receiveOrderDetail(id);
+
+        if (response.meta?.code == ResponseCode.SUCCESS) {
+          return Right(response.toDomain());
+        } else {
+          return Left(
+            Failure(
+              response.meta?.code ?? ResponseCode.DEFAULT,
+              response.meta?.message ?? ResponseMessage.DEFAULT,
+            ),
+          );
+        }
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+    }
+  }
 }

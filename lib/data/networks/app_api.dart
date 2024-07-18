@@ -47,9 +47,10 @@ abstract class AppServiceClient {
   /* End Products */
 
   /* Receive Order */
-
   @GET('/mobile/receive-order')
   Future<ReceiveOrderPaginationResponse> receiveOrders();
 
+  @GET('/mobile/receive-order/{id}/show')
+  Future<ReceiveOrderDetailResponse> receiveOrderDetail(@Path() int id);
   /* End Receive Order */
 }

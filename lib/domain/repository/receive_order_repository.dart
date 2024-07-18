@@ -5,4 +5,5 @@ import 'package:pdam_inventory/domain/model/receive_order_model.dart';
 
 abstract class ReceiveOrderRepository {
   Future<Either<Failure, ReceiveOrderPagination>> receiveOrders();
+  Future<Either<Failure, ReceiveOrderDetail>> receiveOrderDetail(int id);
 }
