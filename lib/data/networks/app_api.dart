@@ -6,6 +6,7 @@ import 'package:pdam_inventory/data/responses/authentication_response.dart';
 import 'package:pdam_inventory/data/responses/base_response.dart';
 import 'package:pdam_inventory/data/responses/product_response.dart';
 import 'package:pdam_inventory/data/responses/purchase_request_response.dart';
+import 'package:pdam_inventory/data/responses/receive_order_response.dart';
 import 'package:retrofit/retrofit.dart';
 part 'app_api.g.dart';
 
@@ -44,4 +45,11 @@ abstract class AppServiceClient {
   @GET('/web/master/product/{id}/show')
   Future<ProductDetailResponse> productDetail(@Path() int id);
   /* End Products */
+
+  /* Receive Order */
+
+  @GET('/mobile/receive-order')
+  Future<ReceiveOrderPaginationResponse> receiveOrders();
+
+  /* End Receive Order */
 }
