@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mobkit_dashed_border/mobkit_dashed_border.dart';
+import 'package:pdam_inventory/domain/model/receive_order_model.dart';
 import 'package:pdam_inventory/persentations/resources/asset_app.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
@@ -9,7 +10,9 @@ import 'package:pdam_inventory/persentations/widgets/custom_cached_network_image
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
 class DetailAcceptedItemCard extends StatelessWidget {
-  const DetailAcceptedItemCard({super.key});
+  const DetailAcceptedItemCard(this.data, {super.key});
+
+  final ReceiveOrderDetailProduct data;
 
   @override
   Widget build(BuildContext context) {
@@ -34,27 +37,27 @@ class DetailAcceptedItemCard extends StatelessWidget {
               children: [
                 _item(
                   StringApp.message,
-                  '200',
+                  data.pesan,
                 ),
                 const SpacerHeight(6),
                 _item(
                   StringApp.totalItemPreviouslyReceived,
-                  '0',
+                  data.totalBarangDiterimaSebelumnya,
                 ),
                 const SpacerHeight(6),
                 _item(
                   StringApp.receivedOnShelf,
-                  '200',
+                  data.diterimaDiRak,
                 ),
                 const SpacerHeight(6),
                 _item(
                   StringApp.receivedOnWarehouse,
-                  '100',
+                  data.diterimaDiGudang,
                 ),
                 const SpacerHeight(6),
                 _item(
                   StringApp.remainder,
-                  '0',
+                  data.sisa,
                 ),
               ],
             ),
@@ -113,7 +116,7 @@ class DetailAcceptedItemCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Equal Tee Coupler hdpe 75mm',
+                        data.name,
                         style: StyleApp.textLg.copyWith(
                           fontWeight: FontWeight.w700,
                           color: ColorApp.blackText,
@@ -121,7 +124,7 @@ class DetailAcceptedItemCard extends StatelessWidget {
                       ),
                       const SpacerHeight(2),
                       Text(
-                        '1241853571761',
+                        data.code,
                         style: StyleApp.textNormal.copyWith(
                           color: ColorApp.greyText,
                           fontStyle: FontStyle.italic,
@@ -141,15 +144,15 @@ class DetailAcceptedItemCard extends StatelessWidget {
                     SvgPicture.asset(IconApp.box),
                     const SpacerWidth(4),
                     Text(
-                      '30 barang',
+                      '${data.qty} barang',
                       style: StyleApp.textNormal.copyWith(
                         color: ColorApp.greyText,
                       ),
                     ),
                   ],
                 ),
-                const Text(
-                  'Rp. 25.000.000',
+                Text(
+                  'Rp. ${data.price}',
                   style: StyleApp.textNormal,
                 ),
               ],

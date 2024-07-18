@@ -23,7 +23,9 @@ import 'package:pdam_inventory/domain/usecase/products/product_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/purchase_request_detail_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/purchase_request_summary_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/purchase_request_usecase.dart';
+import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_detail_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_usecase.dart';
+import 'package:pdam_inventory/persentations/modules/accepted_item/viewmodel/receive_order_detail_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/accepted_item/viewmodel/receive_order_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/auth/login/viewmodel/login_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/product/viewmodel/product_viewmodel.dart';
@@ -71,6 +73,7 @@ Future<void> initAppModule() async {
   initPurchaseRequestDetailModule();
   initProfiileModule();
   initReceiveOrderModule();
+  initReceiveOrderDetailModule();
 }
 
 initLoginModule() {
@@ -114,6 +117,13 @@ initReceiveOrderModule() {
   if (!GetIt.I.isRegistered<ReceiveOrderUsecase>()) {
     instance.registerFactory<ReceiveOrderUsecase>(() => ReceiveOrderUsecase(instance()));
     instance.registerFactory<ReceiveOrderViewmodel>(() => ReceiveOrderViewmodel(instance()));
+  }
+}
+
+initReceiveOrderDetailModule() {
+  if (!GetIt.I.isRegistered<ReceiveOrderDetailUsecase>()) {
+    instance.registerFactory<ReceiveOrderDetailUsecase>(() => ReceiveOrderDetailUsecase(instance()));
+    instance.registerFactory<ReceiveOrderDetailViewmodel>(() => ReceiveOrderDetailViewmodel(instance()));
   }
 }
 

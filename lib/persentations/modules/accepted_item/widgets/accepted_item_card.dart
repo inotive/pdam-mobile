@@ -22,7 +22,9 @@ class AcceptedItemCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const DetailAcceptedItemView(),
+            builder: (context) => DetailAcceptedItemView(
+              id: data.id,
+            ),
           ),
         );
       },
