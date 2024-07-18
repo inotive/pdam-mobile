@@ -87,3 +87,29 @@ class ProductDetailData {
   String updatedAt;
   CategoryData? category;
 }
+
+class ProductSummaryChart {
+  ProductSummaryChart(this.inHand, this.outStock, this.inStock);
+
+  int inHand;
+  int outStock;
+  int inStock;
+}
+
+class ProductSummaryData {
+  ProductSummaryData(
+    this.chart,
+    this.totalProduct,
+    this.lowStock,
+  );
+
+  ProductSummaryChart? chart;
+  int totalProduct;
+  int lowStock;
+}
+
+class ProductSummary {
+  ProductSummary(this.data);
+
+  ProductSummaryData? data;
+}

@@ -137,3 +137,56 @@ Map<String, dynamic> _$ProductDetailDataResponseToJson(
       'updated_at': instance.updatedAt,
       'product_category': instance.category,
     };
+
+ProductSummaryChartResponse _$ProductSummaryChartResponseFromJson(
+        Map<String, dynamic> json) =>
+    ProductSummaryChartResponse(
+      (json['in_hand'] as num?)?.toInt(),
+      (json['out'] as num?)?.toInt(),
+      (json['in'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$ProductSummaryChartResponseToJson(
+        ProductSummaryChartResponse instance) =>
+    <String, dynamic>{
+      'in_hand': instance.inHand,
+      'out': instance.outStock,
+      'in': instance.inStock,
+    };
+
+ProductSummaryDataResponse _$ProductSummaryDataResponseFromJson(
+        Map<String, dynamic> json) =>
+    ProductSummaryDataResponse(
+      json['chart'] == null
+          ? null
+          : ProductSummaryChartResponse.fromJson(
+              json['chart'] as Map<String, dynamic>),
+      (json['total_product'] as num?)?.toInt(),
+      (json['low_stock'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$ProductSummaryDataResponseToJson(
+        ProductSummaryDataResponse instance) =>
+    <String, dynamic>{
+      'chart': instance.chart,
+      'total_product': instance.totalProduct,
+      'low_stock': instance.lowStock,
+    };
+
+ProductSummaryResponse _$ProductSummaryResponseFromJson(
+        Map<String, dynamic> json) =>
+    ProductSummaryResponse(
+      json['data'] == null
+          ? null
+          : ProductSummaryDataResponse.fromJson(
+              json['data'] as Map<String, dynamic>),
+    )..meta = json['meta'] == null
+        ? null
+        : MetaResponse.fromJson(json['meta'] as Map<String, dynamic>);
+
+Map<String, dynamic> _$ProductSummaryResponseToJson(
+        ProductSummaryResponse instance) =>
+    <String, dynamic>{
+      'meta': instance.meta,
+      'data': instance.data,
+    };

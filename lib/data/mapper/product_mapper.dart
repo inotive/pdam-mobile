@@ -72,3 +72,29 @@ extension ProductDetailResponseMapper on ProductDetailResponse? {
     return ProductDetail(this?.data?.toDomain());
   }
 }
+
+extension ProductSummaryChartResponseMapper on ProductSummaryChartResponse? {
+  ProductSummaryChart toDomain() {
+    return ProductSummaryChart(
+      this?.inHand.orZero() ?? ZERO,
+      this?.outStock.orZero() ?? ZERO,
+      this?.inStock.orZero() ?? ZERO,
+    );
+  }
+}
+
+extension ProductSummaryDataResponseMapper on ProductSummaryDataResponse? {
+  ProductSummaryData toDomain() {
+    return ProductSummaryData(
+      this?.chart.toDomain(),
+      this?.totalProduct.orZero() ?? ZERO,
+      this?.lowStock.orZero() ?? ZERO,
+    );
+  }
+}
+
+extension ProductSummaryResponseMapper on ProductSummaryResponse? {
+  ProductSummary toDomain() {
+    return ProductSummary(this?.data?.toDomain());
+  }
+}
