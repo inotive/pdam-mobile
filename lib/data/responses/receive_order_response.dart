@@ -1,6 +1,7 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'package:json_annotation/json_annotation.dart';
+import 'package:pdam_inventory/data/responses/base_response.dart';
 import 'package:pdam_inventory/data/responses/pagination_base_response.dart';
 part 'receive_order_response.g.dart';
 
@@ -88,4 +89,103 @@ class ReceiveOrderPaginationResponse extends PaginationBaseResponse {
       _$ReceiveOrderPaginationResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ReceiveOrderPaginationResponseToJson(this);
+}
+
+@JsonSerializable()
+class ReceiveOrderDetailDataDetailResponse {
+  ReceiveOrderDetailDataDetailResponse(
+    this.noBukti,
+    this.noRef,
+    this.date,
+    this.receivedBy,
+  );
+
+  @JsonKey(name: "no_bukti")
+  String? noBukti;
+  @JsonKey(name: "no_ref")
+  String? noRef;
+  @JsonKey(name: "date")
+  String? date;
+  @JsonKey(name: "received_by")
+  String? receivedBy;
+
+  factory ReceiveOrderDetailDataDetailResponse.fromJson(Map<String, dynamic> json) =>
+      _$ReceiveOrderDetailDataDetailResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ReceiveOrderDetailDataDetailResponseToJson(this);
+}
+
+@JsonSerializable()
+class ReceiveOrderDetailProductResponse {
+  ReceiveOrderDetailProductResponse(
+    this.code,
+    this.id,
+    this.name,
+    this.unitName,
+    this.qty,
+    this.price,
+    this.pesan,
+    this.totalBarangDiterimaSebelumnya,
+    this.diterimaDiRak,
+    this.diterimaDiGudang,
+    this.sisa,
+    this.notes,
+  );
+
+  @JsonKey(name: "code")
+  String? code;
+  @JsonKey(name: "id")
+  int? id;
+  @JsonKey(name: "name")
+  String? name;
+  @JsonKey(name: "unit_name")
+  String? unitName;
+  @JsonKey(name: "qty")
+  String? qty;
+  @JsonKey(name: "price")
+  String? price;
+  @JsonKey(name: "pesan")
+  String? pesan;
+  @JsonKey(name: "total_barang_diterima_sebelumnya")
+  String? totalBarangDiterimaSebelumnya;
+  @JsonKey(name: "diterima_di_rak")
+  String? diterimaDiRak;
+  @JsonKey(name: "diterima_di_gudang")
+  String? diterimaDiGudang;
+  @JsonKey(name: "sisa")
+  String? sisa;
+  @JsonKey(name: "notes")
+  String? notes;
+
+  factory ReceiveOrderDetailProductResponse.fromJson(Map<String, dynamic> json) =>
+      _$ReceiveOrderDetailProductResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ReceiveOrderDetailProductResponseToJson(this);
+}
+
+@JsonSerializable()
+class ReceiveOrderDetailDataResponse {
+  ReceiveOrderDetailDataResponse(this.detail, this.products);
+
+  @JsonKey(name: "detail")
+  ReceiveOrderDetailDataDetailResponse? detail;
+  @JsonKey(name: 'list_product')
+  List<ReceiveOrderDetailProductResponse>? products;
+
+  factory ReceiveOrderDetailDataResponse.fromJson(Map<String, dynamic> json) =>
+      _$ReceiveOrderDetailDataResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ReceiveOrderDetailDataResponseToJson(this);
+}
+
+@JsonSerializable()
+class ReceiveOrderDetailResponse extends BaseResponse {
+  ReceiveOrderDetailResponse(this.data);
+
+  @JsonKey(name: 'data')
+  ReceiveOrderDetailDataResponse? data;
+
+  factory ReceiveOrderDetailResponse.fromJson(Map<String, dynamic> json) => _$ReceiveOrderDetailResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ReceiveOrderDetailResponseToJson(this);
 }

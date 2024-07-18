@@ -45,3 +45,50 @@ extension ReceiverOrderPaginationResponseMapper on ReceiveOrderPaginationRespons
     return ReceiveOrderPagination(data);
   }
 }
+
+extension ReceiveOrderDetailDataDetailResponseMapper on ReceiveOrderDetailDataDetailResponse? {
+  ReceiveOrderDetailDataDetail toDomain() {
+    return ReceiveOrderDetailDataDetail(
+      this?.noBukti.orEmpty() ?? EMPTY,
+      this?.noRef.orEmpty() ?? EMPTY,
+      this?.date.orEmpty() ?? EMPTY,
+      this?.receivedBy.orEmpty() ?? EMPTY,
+    );
+  }
+}
+
+extension ReceiveOrderDetailProductResponseMapper on ReceiveOrderDetailProductResponse? {
+  ReceiveOrderDetailProduct toDomain() {
+    return ReceiveOrderDetailProduct(
+      this?.code.orEmpty() ?? EMPTY,
+      this?.id.orZero() ?? ZERO,
+      this?.name.orEmpty() ?? EMPTY,
+      this?.unitName.orEmpty() ?? EMPTY,
+      this?.qty.orEmpty() ?? EMPTY,
+      this?.price.orEmpty() ?? EMPTY,
+      this?.pesan.orEmpty() ?? EMPTY,
+      this?.totalBarangDiterimaSebelumnya.orEmpty() ?? EMPTY,
+      this?.diterimaDiRak.orEmpty() ?? EMPTY,
+      this?.diterimaDiGudang.orEmpty() ?? EMPTY,
+      this?.sisa.orEmpty() ?? EMPTY,
+      this?.notes.orEmpty() ?? EMPTY,
+    );
+  }
+}
+
+extension ReceiveOrderDetailDataResponseMapper on ReceiveOrderDetailDataResponse? {
+  ReceiveOrderDetailData toDomain() {
+    List<ReceiveOrderDetailProduct> products =
+        (this?.products?.map((item) => item.toDomain()) ?? const Iterable.empty())
+            .cast<ReceiveOrderDetailProduct>()
+            .toList();
+
+    return ReceiveOrderDetailData(this?.detail.toDomain(), products);
+  }
+}
+
+extension ReceiveOrderDetailRessponseMapper on ReceiveOrderDetailResponse? {
+  ReceiveOrderDetail toDomain() {
+    return ReceiveOrderDetail(this?.data.toDomain());
+  }
+}

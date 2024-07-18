@@ -91,3 +91,94 @@ Map<String, dynamic> _$ReceiveOrderPaginationResponseToJson(
       'meta': instance.meta,
       'data': instance.data,
     };
+
+ReceiveOrderDetailDataDetailResponse
+    _$ReceiveOrderDetailDataDetailResponseFromJson(Map<String, dynamic> json) =>
+        ReceiveOrderDetailDataDetailResponse(
+          json['no_bukti'] as String?,
+          json['no_ref'] as String?,
+          json['date'] as String?,
+          json['received_by'] as String?,
+        );
+
+Map<String, dynamic> _$ReceiveOrderDetailDataDetailResponseToJson(
+        ReceiveOrderDetailDataDetailResponse instance) =>
+    <String, dynamic>{
+      'no_bukti': instance.noBukti,
+      'no_ref': instance.noRef,
+      'date': instance.date,
+      'received_by': instance.receivedBy,
+    };
+
+ReceiveOrderDetailProductResponse _$ReceiveOrderDetailProductResponseFromJson(
+        Map<String, dynamic> json) =>
+    ReceiveOrderDetailProductResponse(
+      json['code'] as String?,
+      (json['id'] as num?)?.toInt(),
+      json['name'] as String?,
+      json['unit_name'] as String?,
+      json['qty'] as String?,
+      json['price'] as String?,
+      json['pesan'] as String?,
+      json['total_barang_diterima_sebelumnya'] as String?,
+      json['diterima_di_rak'] as String?,
+      json['diterima_di_gudang'] as String?,
+      json['sisa'] as String?,
+      json['notes'] as String?,
+    );
+
+Map<String, dynamic> _$ReceiveOrderDetailProductResponseToJson(
+        ReceiveOrderDetailProductResponse instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'id': instance.id,
+      'name': instance.name,
+      'unit_name': instance.unitName,
+      'qty': instance.qty,
+      'price': instance.price,
+      'pesan': instance.pesan,
+      'total_barang_diterima_sebelumnya':
+          instance.totalBarangDiterimaSebelumnya,
+      'diterima_di_rak': instance.diterimaDiRak,
+      'diterima_di_gudang': instance.diterimaDiGudang,
+      'sisa': instance.sisa,
+      'notes': instance.notes,
+    };
+
+ReceiveOrderDetailDataResponse _$ReceiveOrderDetailDataResponseFromJson(
+        Map<String, dynamic> json) =>
+    ReceiveOrderDetailDataResponse(
+      json['detail'] == null
+          ? null
+          : ReceiveOrderDetailDataDetailResponse.fromJson(
+              json['detail'] as Map<String, dynamic>),
+      (json['list_product'] as List<dynamic>?)
+          ?.map((e) => ReceiveOrderDetailProductResponse.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$ReceiveOrderDetailDataResponseToJson(
+        ReceiveOrderDetailDataResponse instance) =>
+    <String, dynamic>{
+      'detail': instance.detail,
+      'list_product': instance.products,
+    };
+
+ReceiveOrderDetailResponse _$ReceiveOrderDetailResponseFromJson(
+        Map<String, dynamic> json) =>
+    ReceiveOrderDetailResponse(
+      json['data'] == null
+          ? null
+          : ReceiveOrderDetailDataResponse.fromJson(
+              json['data'] as Map<String, dynamic>),
+    )..meta = json['meta'] == null
+        ? null
+        : MetaResponse.fromJson(json['meta'] as Map<String, dynamic>);
+
+Map<String, dynamic> _$ReceiveOrderDetailResponseToJson(
+        ReceiveOrderDetailResponse instance) =>
+    <String, dynamic>{
+      'meta': instance.meta,
+      'data': instance.data,
+    };
