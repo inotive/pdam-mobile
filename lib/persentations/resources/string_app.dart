@@ -105,4 +105,6 @@ class StringApp {
 
   static const String reference = 'Referensi';
   static const String referenceHint = 'Pilih nomor referensi';
+
+  static const String acceptedItemNotYet = 'Belum ada penerimaan barang';
 }

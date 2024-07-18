@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mobkit_dashed_border/mobkit_dashed_border.dart';
+import 'package:pdam_inventory/app/extensions.dart';
+import 'package:pdam_inventory/domain/model/receive_order_model.dart';
 import 'package:pdam_inventory/persentations/modules/accepted_item/detail_accepted_item_view.dart';
 import 'package:pdam_inventory/persentations/resources/asset_app.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
@@ -9,7 +11,9 @@ import 'package:pdam_inventory/persentations/resources/style_app.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
 class AcceptedItemCard extends StatelessWidget {
-  const AcceptedItemCard({super.key});
+  const AcceptedItemCard(this.data, {super.key});
+
+  final ReceiveOrder data;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +50,7 @@ class AcceptedItemCard extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            'TB-10234135-925',
+                            data.noBukti,
                             style: StyleApp.textNormal.copyWith(
                               fontWeight: FontWeight.w700,
                               color: ColorApp.blackText,
@@ -62,7 +66,7 @@ class AcceptedItemCard extends StatelessWidget {
                     ),
                     const SpacerHeight(6),
                     Text(
-                      'BUY-2602142525-1',
+                      data.noRef,
                       style: StyleApp.textNormal.copyWith(
                         color: ColorApp.greyText,
                       ),
@@ -75,7 +79,7 @@ class AcceptedItemCard extends StatelessWidget {
                     SvgPicture.asset(IconApp.box),
                     const SpacerWidth(4),
                     Text(
-                      '30 barang',
+                      '${data.count} barang',
                       style: StyleApp.textNormal.copyWith(
                         color: ColorApp.greyText,
                       ),
@@ -106,7 +110,7 @@ class AcceptedItemCard extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      'Inotive Technology',
+                      data.receivedBy,
                       style: StyleApp.textNormal.copyWith(
                         fontWeight: FontWeight.w600,
                       ),
@@ -119,7 +123,7 @@ class AcceptedItemCard extends StatelessWidget {
                       padding: const EdgeInsets.fromLTRB(8, 1.5, 8, 2.5),
                       decoration: const BoxDecoration(color: ColorApp.primary, shape: BoxShape.circle),
                       child: Text(
-                        'I',
+                        data.receivedBy.getInitials(),
                         style: StyleApp.textNormal.copyWith(
                           fontWeight: FontWeight.w600,
                           color: ColorApp.white,

@@ -3,6 +3,7 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:pdam_inventory/data/data_source/authentication_data_source.dart';
 import 'package:pdam_inventory/data/data_source/product_data_source.dart';
 import 'package:pdam_inventory/data/data_source/purchase_request_data_source.dart';
+import 'package:pdam_inventory/data/data_source/receive_order_data_source.dart';
 import 'package:pdam_inventory/data/local_source/app_preference.dart';
 import 'package:pdam_inventory/data/networks/app_api.dart';
 import 'package:pdam_inventory/data/networks/dio_factory.dart';
@@ -10,9 +11,11 @@ import 'package:pdam_inventory/data/networks/network_info.dart';
 import 'package:pdam_inventory/data/repository/authentication_repository_impl.dart';
 import 'package:pdam_inventory/data/repository/product_repository_impl.dart';
 import 'package:pdam_inventory/data/repository/purchase_request_repository_impl.dart';
+import 'package:pdam_inventory/data/repository/receive_order_repository_impl.dart';
 import 'package:pdam_inventory/domain/repository/authentication_repository.dart';
 import 'package:pdam_inventory/domain/repository/product_repository.dart';
 import 'package:pdam_inventory/domain/repository/purchase_request_repository.dart';
+import 'package:pdam_inventory/domain/repository/receive_order_repository.dart';
 import 'package:pdam_inventory/domain/usecase/authentication/login_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/authentication/logout_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/products/product_detail_usecase.dart';
@@ -20,6 +23,8 @@ import 'package:pdam_inventory/domain/usecase/products/product_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/purchase_request_detail_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/purchase_request_summary_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/purchase_request_usecase.dart';
+import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_usecase.dart';
+import 'package:pdam_inventory/persentations/modules/accepted_item/viewmodel/receive_order_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/auth/login/viewmodel/login_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/product/viewmodel/product_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/profile/viewmodel/profile_viewmodel.dart';
@@ -51,6 +56,7 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<PurchaseRequestDataSource>(() => PurchaseRequestDataSourceImpl(instance()));
   instance.registerLazySingleton<AuthenticationDataSource>(() => AuthenticationDataSourceImpl(instance()));
   instance.registerLazySingleton<ProductDataSource>(() => ProductDataSourceImpl(instance()));
+  instance.registerLazySingleton<ReceiveOrderDataSource>(() => ReceiveOrderDataSourceImpl(instance()));
 
   // repository
   instance
@@ -58,11 +64,13 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<AuthenticationRepository>(
       () => AuthenticationRepositoryImpl(instance(), instance(), instance()));
   instance.registerLazySingleton<ProductRepository>(() => ProductRepositoryImpl(instance(), instance()));
+  instance.registerLazySingleton<ReceiveOrderRepository>(() => ReceiveOrderRepositoryImpl(instance(), instance()));
 
 // initAppModule
   initLoginModule();
   initPurchaseRequestDetailModule();
   initProfiileModule();
+  initReceiveOrderModule();
 }
 
 initLoginModule() {
@@ -102,6 +110,13 @@ initProductModule() {
   }
 }
 
+initReceiveOrderModule() {
+  if (!GetIt.I.isRegistered<ReceiveOrderUsecase>()) {
+    instance.registerFactory<ReceiveOrderUsecase>(() => ReceiveOrderUsecase(instance()));
+    instance.registerFactory<ReceiveOrderViewmodel>(() => ReceiveOrderViewmodel(instance()));
+  }
+}
+
 resetModules() {
   instance.reset(dispose: false);
   initAppModule();
@@ -110,4 +125,5 @@ resetModules() {
   initPurchaseRequestDetailModule();
   initProfiileModule();
   initProductModule();
+  initReceiveOrderModule();
 }

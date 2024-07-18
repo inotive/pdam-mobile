@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:pdam_inventory/app/helpers/date_formatter.dart';
+import 'package:pdam_inventory/domain/model/receive_order_model.dart';
 import 'package:pdam_inventory/persentations/modules/accepted_item/widgets/accepted_item_card.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
-import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
 class AcceptedItemByDateCard extends StatelessWidget {
-  const AcceptedItemByDateCard({super.key});
+  const AcceptedItemByDateCard(this.data, {super.key});
+
+  final ReceiveOrderDate data;
 
   @override
   Widget build(BuildContext context) {
@@ -15,18 +18,18 @@ class AcceptedItemByDateCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '6 Jul 2024',
+            DateFormatterApp.formatIndoDate(data.date),
             style: StyleApp.textNormal.copyWith(
               color: ColorApp.borderB3,
               fontStyle: FontStyle.italic,
             ),
           ),
-          const SpacerHeight(8),
-          const AcceptedItemCard(),
-          const SpacerHeight(8),
-          const AcceptedItemCard(),
-          const SpacerHeight(8),
-          const AcceptedItemCard(),
+          ...List.generate(data.receiveOrder.length, (idx) {
+            return Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: AcceptedItemCard(data.receiveOrder[idx]),
+            );
+          }),
         ],
       ),
     );
