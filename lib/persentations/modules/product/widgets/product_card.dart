@@ -31,8 +31,8 @@ class ProductCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomNetworkImage(
-              height: 56,
-              width: 56,
+              height: 40,
+              width: 40,
               borderRadius: 4,
               url: data.image,
             ),
@@ -63,7 +63,7 @@ class ProductCard extends StatelessWidget {
                       CustomBadge(
                         text: data.stockIn.toString(),
                         icon: const Icon(
-                          Icons.arrow_downward,
+                          Icons.arrow_upward,
                           size: 14,
                           color: ColorApp.green,
                         ),
@@ -74,7 +74,7 @@ class ProductCard extends StatelessWidget {
                         backgroundColor: ColorApp.redBg,
                         textColor: ColorApp.red,
                         icon: const Icon(
-                          Icons.arrow_upward,
+                          Icons.arrow_downward,
                           size: 14,
                           color: ColorApp.red,
                         ),
