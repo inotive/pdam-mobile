@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:pdam_inventory/app/config_app.dart';
 import 'package:pdam_inventory/data/responses/authentication_response.dart';
 import 'package:pdam_inventory/data/responses/base_response.dart';
+import 'package:pdam_inventory/data/responses/history_stock_response.dart';
 import 'package:pdam_inventory/data/responses/product_response.dart';
 import 'package:pdam_inventory/data/responses/purchase_request_response.dart';
 import 'package:pdam_inventory/data/responses/receive_order_response.dart';
@@ -56,4 +57,11 @@ abstract class AppServiceClient {
   @GET('/mobile/receive-order/{id}/show')
   Future<ReceiveOrderDetailResponse> receiveOrderDetail(@Path() int id);
   /* End Receive Order */
+
+  /* History Stock */
+
+  @GET('/mobile/product-stock')
+  Future<HistoryStockResponse> historyStock();
+
+  /* End History Stock */
 }
