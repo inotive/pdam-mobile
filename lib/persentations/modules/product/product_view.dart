@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pdam_inventory/app/di.dart';
+import 'package:pdam_inventory/domain/model/product_model.dart';
 import 'package:pdam_inventory/persentations/modules/product/viewmodel/product_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/product/widgets/product_card.dart';
+import 'package:pdam_inventory/persentations/modules/product/widgets/product_chart_skeleton.dart';
 import 'package:pdam_inventory/persentations/modules/product/widgets/product_skeleton.dart';
 import 'package:pdam_inventory/persentations/packages/state_renderer/state_renderer_impl.dart';
 import 'package:pdam_inventory/persentations/resources/asset_app.dart';
@@ -24,18 +26,6 @@ class ProductView extends StatefulWidget {
 
 class _ProductViewState extends State<ProductView> {
   final ProductViewmodel _productViewmodel = instance<ProductViewmodel>();
-
-  final dataMap = {
-    "467 - IN HAND": 467.0,
-    "56 - OUT": 56.0,
-    "523 - IN": 523.0,
-  };
-
-  final colors = [
-    const Color(0xFF33BFA3),
-    const Color(0xFFF2DD21),
-    const Color(0xFF23B9FF),
-  ];
 
   _bind() {
     _productViewmodel.start();
@@ -105,95 +95,115 @@ class _ProductViewState extends State<ProductView> {
     );
   }
 
-  Container _chart() {
-    return Container(
-      padding: const EdgeInsets.all(24),
-      decoration: const BoxDecoration(
-        border: Border(
-          bottom: BorderSide(width: 1, color: ColorApp.border),
-        ),
-      ),
-      child: Column(
-        children: [
-          PieChart(
-            dataMap: dataMap,
-            colorList: colors,
-            chartType: ChartType.ring,
-            chartRadius: 100,
-            ringStrokeWidth: 24,
-            chartValuesOptions: const ChartValuesOptions(
-              showChartValueBackground: false,
-              showChartValuesInPercentage: false,
-              showChartValues: false,
-            ),
-            legendOptions: LegendOptions(
-              legendShape: BoxShape.rectangle,
-              legendTextStyle: StyleApp.textSm.copyWith(
-                color: ColorApp.greyText,
+  StreamBuilder _chart() {
+    return StreamBuilder<ProductSummaryData>(
+        stream: _productViewmodel.outputProductSummary,
+        builder: (context, snapshot) {
+          if (ConnectionState.waiting == snapshot.connectionState) {
+            return const ProductChartSkeleton();
+          }
+
+          final dataMap = {
+            "${snapshot.data?.chart?.inHand} - IN HAND": double.parse(snapshot.data?.chart?.inHand.toString() ?? '0.0'),
+            "${snapshot.data?.chart?.outStock} - OUT": double.parse(snapshot.data?.chart?.outStock.toString() ?? '0.0'),
+            "${snapshot.data?.chart?.inStock} - IN": double.parse(snapshot.data?.chart?.inStock.toString() ?? '0.0'),
+          };
+
+          final colors = [
+            const Color(0xFF33BFA3),
+            const Color(0xFFF2DD21),
+            const Color(0xFF23B9FF),
+          ];
+
+          return Container(
+            padding: const EdgeInsets.all(24),
+            decoration: const BoxDecoration(
+              border: Border(
+                bottom: BorderSide(width: 1, color: ColorApp.border),
               ),
             ),
-          ),
-          const SpacerHeight(16),
-          Container(
-            height: 67,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: ColorApp.grey,
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            child: Column(
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      '12',
-                      style: StyleApp.textXl.copyWith(
-                        color: ColorApp.black,
-                      ),
+                PieChart(
+                  dataMap: dataMap,
+                  colorList: colors,
+                  chartType: ChartType.ring,
+                  chartRadius: 100,
+                  ringStrokeWidth: 24,
+                  chartValuesOptions: const ChartValuesOptions(
+                    showChartValueBackground: false,
+                    showChartValuesInPercentage: false,
+                    showChartValues: false,
+                  ),
+                  legendOptions: LegendOptions(
+                    legendShape: BoxShape.rectangle,
+                    legendTextStyle: StyleApp.textSm.copyWith(
+                      color: ColorApp.greyText,
                     ),
-                    const SpacerHeight(4),
-                    Text(
-                      StringApp.totalProduct,
-                      style: StyleApp.textNormal.copyWith(
-                        color: ColorApp.greyText,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
+                const SpacerHeight(16),
                 Container(
-                  height: 43,
-                  width: 1,
-                  color: ColorApp.border,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      '2',
-                      style: StyleApp.textXl.copyWith(
-                        color: ColorApp.black,
+                  height: 67,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: ColorApp.grey,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            snapshot.data?.totalProduct.toString() ?? '0',
+                            style: StyleApp.textXl.copyWith(
+                              color: ColorApp.black,
+                            ),
+                          ),
+                          const SpacerHeight(4),
+                          Text(
+                            StringApp.totalProduct,
+                            style: StyleApp.textNormal.copyWith(
+                              color: ColorApp.greyText,
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    const SpacerHeight(4),
-                    Text(
-                      StringApp.lowStock,
-                      style: StyleApp.textNormal.copyWith(
-                        color: ColorApp.greyText,
+                      Container(
+                        height: 43,
+                        width: 1,
+                        color: ColorApp.border,
                       ),
-                    ),
-                  ],
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            snapshot.data?.lowStock.toString() ?? '0',
+                            style: StyleApp.textXl.copyWith(
+                              color: ColorApp.black,
+                            ),
+                          ),
+                          const SpacerHeight(4),
+                          Text(
+                            StringApp.lowStock,
+                            style: StyleApp.textNormal.copyWith(
+                              color: ColorApp.greyText,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
-          ),
-        ],
-      ),
-    );
+          );
+        });
   }
 
   AppBar _appBar() {

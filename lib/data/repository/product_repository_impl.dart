@@ -65,4 +65,28 @@ class ProductRepositoryImpl implements ProductRepository {
       return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, ProductSummary>> productSummary() async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final response = await _productDataSource.productSummary();
+
+        if (response.meta?.code == ResponseCode.SUCCESS) {
+          return Right(response.toDomain());
+        } else {
+          return Left(
+            Failure(
+              response.meta?.code ?? ResponseCode.DEFAULT,
+              response.meta?.message ?? ResponseMessage.DEFAULT,
+            ),
+          );
+        }
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+    }
+  }
 }
