@@ -1,3 +1,4 @@
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
@@ -28,48 +29,39 @@ class InputDropdown extends StatelessWidget {
           style: StyleApp.textNormal.copyWith(),
         ),
         const SpacerHeight(8),
-        DropdownButtonFormField<String>(
-          isExpanded: true,
-          value: value,
-          items: items
-              .map(
-                (item) => DropdownMenuItem<String>(
-                  value: item,
-                  child: Text(item),
+        DropdownSearch<String>(
+          popupProps: const PopupProps.menu(
+            showSelectedItems: false,
+            showSearchBox: true,
+            menuProps: MenuProps(
+              backgroundColor: ColorApp.white,
+            ),
+          ),
+          items: items,
+          dropdownDecoratorProps: DropDownDecoratorProps(
+            dropdownSearchDecoration: InputDecoration(
+              hintText: hint,
+              hintStyle: StyleApp.textNormal.copyWith(
+                color: ColorApp.greyText,
+              ),
+              fillColor: ColorApp.white,
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: const BorderSide(
+                  width: 1,
+                  color: ColorApp.border,
                 ),
-              )
-              .toList(),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: const BorderSide(
+                  width: 1,
+                  color: ColorApp.border,
+                ),
+              ),
+            ),
+          ),
           onChanged: onChanged,
-          icon: const Icon(
-            Icons.keyboard_arrow_down,
-          ),
-          dropdownColor: ColorApp.white,
-          hint: Text(
-            hint,
-            style: StyleApp.textNormal.copyWith(
-              color: ColorApp.greyText,
-            ),
-          ),
-          decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(
-              vertical: 12,
-              horizontal: 16,
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: const BorderSide(
-                width: 1,
-                color: ColorApp.border,
-              ),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: const BorderSide(
-                width: 1,
-                color: ColorApp.border,
-              ),
-            ),
-          ),
         ),
       ],
     );
