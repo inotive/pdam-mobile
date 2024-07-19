@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:pdam_inventory/data/data_source/authentication_data_source.dart';
+import 'package:pdam_inventory/data/data_source/history_stock_data_source.dart';
 import 'package:pdam_inventory/data/data_source/product_data_source.dart';
 import 'package:pdam_inventory/data/data_source/purchase_request_data_source.dart';
 import 'package:pdam_inventory/data/data_source/receive_order_data_source.dart';
@@ -9,15 +10,18 @@ import 'package:pdam_inventory/data/networks/app_api.dart';
 import 'package:pdam_inventory/data/networks/dio_factory.dart';
 import 'package:pdam_inventory/data/networks/network_info.dart';
 import 'package:pdam_inventory/data/repository/authentication_repository_impl.dart';
+import 'package:pdam_inventory/data/repository/history_stock_repository_impl.dart';
 import 'package:pdam_inventory/data/repository/product_repository_impl.dart';
 import 'package:pdam_inventory/data/repository/purchase_request_repository_impl.dart';
 import 'package:pdam_inventory/data/repository/receive_order_repository_impl.dart';
 import 'package:pdam_inventory/domain/repository/authentication_repository.dart';
+import 'package:pdam_inventory/domain/repository/history_stock_repository.dart';
 import 'package:pdam_inventory/domain/repository/product_repository.dart';
 import 'package:pdam_inventory/domain/repository/purchase_request_repository.dart';
 import 'package:pdam_inventory/domain/repository/receive_order_repository.dart';
 import 'package:pdam_inventory/domain/usecase/authentication/login_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/authentication/logout_usecase.dart';
+import 'package:pdam_inventory/domain/usecase/history_stock/history_stock_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/products/product_detail_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/products/product_summary_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/products/product_usecase.dart';
@@ -29,6 +33,7 @@ import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_usecas
 import 'package:pdam_inventory/persentations/modules/accepted_item/viewmodel/receive_order_detail_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/accepted_item/viewmodel/receive_order_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/auth/login/viewmodel/login_viewmodel.dart';
+import 'package:pdam_inventory/persentations/modules/history_stock/viewmodel/history_stock_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/product/viewmodel/product_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/profile/viewmodel/profile_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/requested_item/viewmodel/requested_detail_viewmodel.dart';
@@ -60,6 +65,7 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<AuthenticationDataSource>(() => AuthenticationDataSourceImpl(instance()));
   instance.registerLazySingleton<ProductDataSource>(() => ProductDataSourceImpl(instance()));
   instance.registerLazySingleton<ReceiveOrderDataSource>(() => ReceiveOrderDataSourceImpl(instance()));
+  instance.registerLazySingleton<HistoryStockDataSource>(() => HistoryStockDataSourceImpl(instance()));
 
   // repository
   instance
@@ -68,6 +74,7 @@ Future<void> initAppModule() async {
       () => AuthenticationRepositoryImpl(instance(), instance(), instance()));
   instance.registerLazySingleton<ProductRepository>(() => ProductRepositoryImpl(instance(), instance()));
   instance.registerLazySingleton<ReceiveOrderRepository>(() => ReceiveOrderRepositoryImpl(instance(), instance()));
+  instance.registerLazySingleton<HistoryStockRepository>(() => HistoryStockRepositoryImpl(instance(), instance()));
 
 // initAppModule
   initLoginModule();
@@ -129,6 +136,13 @@ initReceiveOrderDetailModule() {
   }
 }
 
+initHistoryStockModule() {
+  if (!GetIt.I.isRegistered<HistoryStockUsecase>()) {
+    instance.registerFactory<HistoryStockUsecase>(() => HistoryStockUsecase(instance()));
+    instance.registerFactory<HistoryStockViewmodel>(() => HistoryStockViewmodel(instance()));
+  }
+}
+
 resetModules() {
   instance.reset(dispose: false);
   initAppModule();
@@ -138,4 +152,5 @@ resetModules() {
   initProfiileModule();
   initProductModule();
   initReceiveOrderModule();
+  initHistoryStockModule();
 }

@@ -114,4 +114,6 @@ class StringApp {
   static const String noContact = 'Nomor Kontak';
   static const String role = 'Jabatan';
   static const String editData = 'Ubah Data';
+
+  static const String historyStockNotYet = 'Belum ada data history stock';
 }

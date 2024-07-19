@@ -37,6 +37,7 @@ class RouterGenerator {
       case Routes.notification:
         return MaterialPageRoute(builder: (_) => const NotificationView());
       case Routes.historyStock:
+        initHistoryStockModule();
         return MaterialPageRoute(builder: (_) => const HistoryStockView());
       case Routes.purchaseItem:
         return MaterialPageRoute(builder: (_) => const PurchaseItemView());

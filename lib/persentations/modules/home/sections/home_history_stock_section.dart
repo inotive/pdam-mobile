@@ -61,13 +61,13 @@ class _HomeHistoryStockSectionState extends State<HomeHistoryStockSection> {
             ],
           ),
         ),
-        Column(
-          children: productsItems
-              .map(
-                (item) => StockCard(item),
-              )
-              .toList(),
-        ),
+        // Column(
+        //   children: productsItems
+        //       .map(
+        //         (item) => StockCard(item),
+        //       )
+        //       .toList(),
+        // ),
         CustomOutlineButton(
           margin: const EdgeInsets.all(16.0),
           text: StringApp.seeMore,

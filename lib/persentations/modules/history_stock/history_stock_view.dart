@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:pdam_inventory/app/di.dart';
+import 'package:pdam_inventory/domain/model/history_stock_model.dart';
 import 'package:pdam_inventory/dummy/dummy_data.dart';
 import 'package:pdam_inventory/dummy/dummy_model.dart';
+import 'package:pdam_inventory/persentations/modules/history_stock/viewmodel/history_stock_viewmodel.dart';
+import 'package:pdam_inventory/persentations/modules/history_stock/widgets/history_stock_skeleton.dart';
 import 'package:pdam_inventory/persentations/modules/history_stock/widgets/status_card.dart';
 import 'package:pdam_inventory/persentations/modules/history_stock/widgets/stock_card.dart';
+import 'package:pdam_inventory/persentations/packages/state_renderer/state_renderer_impl.dart';
 import 'package:pdam_inventory/persentations/resources/asset_app.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
+import 'package:pdam_inventory/persentations/widgets/card/empty_card.dart';
 import 'package:pdam_inventory/persentations/widgets/forms/search_input_field.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
@@ -18,6 +24,8 @@ class HistoryStockView extends StatefulWidget {
 }
 
 class _HistoryStockViewState extends State<HistoryStockView> {
+  final HistoryStockViewmodel _historyStockViewmodel = instance<HistoryStockViewmodel>();
+
   int statusIndex = 1;
 
   List<ProductModel> productsItems = [];
@@ -41,9 +49,14 @@ class _HistoryStockViewState extends State<HistoryStockView> {
     });
   }
 
+  _bind() {
+    _historyStockViewmodel.start();
+  }
+
   @override
   void initState() {
     onStatusTapped(statusIndex);
+    _bind();
     super.initState();
   }
 
@@ -51,20 +64,27 @@ class _HistoryStockViewState extends State<HistoryStockView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appBar(),
-      body: Column(
-        children: [
-          _status(),
-          Expanded(
-            child: SingleChildScrollView(
-                child: Column(
-                    children: productsItems
-                        .map(
-                          (item) => StockCard(item),
-                        )
-                        .toList())),
-          )
-        ],
-      ),
+      body: StreamBuilder<FlowState>(
+          stream: _historyStockViewmodel.outputState,
+          builder: (context, snapshot) {
+            return snapshot.data?.getScreenWidget(context, _getContentWidgets(), () {
+                  _bind();
+                }) ??
+                _getContentWidgets();
+          }),
+    );
+  }
+
+  Column _getContentWidgets() {
+    return Column(
+      children: [
+        _status(),
+        Expanded(
+          child: SingleChildScrollView(
+            child: _content(),
+          ),
+        )
+      ],
     );
   }
 
@@ -90,6 +110,88 @@ class _HistoryStockViewState extends State<HistoryStockView> {
             .toList(),
       ),
     );
+  }
+
+  Widget _content() {
+    switch (statusIndex) {
+      case 1:
+        return StreamBuilder<List<HistoryStockData>>(
+          stream: _historyStockViewmodel.outputAllHistoryStock,
+          builder: (context, snapshot) {
+            List<HistoryStockData> data = snapshot.data ?? List.empty();
+
+            if (ConnectionState.waiting == snapshot.connectionState) {
+              return const Column(
+                children: [
+                  HistoryStockSkeleton(),
+                  HistoryStockSkeleton(),
+                  HistoryStockSkeleton(),
+                ],
+              );
+            }
+
+            if (data.isEmpty) {
+              return const EmptyCard(message: StringApp.historyStockNotYet);
+            }
+
+            return Column(
+              children: data.map((item) => StockCard(item)).toList(),
+            );
+          },
+        );
+      case 2:
+        return StreamBuilder<List<HistoryStockData>>(
+          stream: _historyStockViewmodel.outputInHistoryStock,
+          builder: (context, snapshot) {
+            List<HistoryStockData> data = snapshot.data ?? List.empty();
+
+            if (ConnectionState.waiting == snapshot.connectionState) {
+              return const Column(
+                children: [
+                  HistoryStockSkeleton(),
+                  HistoryStockSkeleton(),
+                  HistoryStockSkeleton(),
+                ],
+              );
+            }
+
+            if (data.isEmpty) {
+              return const EmptyCard(message: StringApp.historyStockNotYet);
+            }
+
+            return Column(
+              children: data.map((item) => StockCard(item)).toList(),
+            );
+          },
+        );
+      case 3:
+        return StreamBuilder<List<HistoryStockData>>(
+          stream: _historyStockViewmodel.outputOutHistoryStock,
+          builder: (context, snapshot) {
+            List<HistoryStockData> data = snapshot.data ?? List.empty();
+
+            if (ConnectionState.waiting == snapshot.connectionState) {
+              return const Column(
+                children: [
+                  HistoryStockSkeleton(),
+                  HistoryStockSkeleton(),
+                  HistoryStockSkeleton(),
+                ],
+              );
+            }
+
+            if (data.isEmpty) {
+              return const EmptyCard(message: StringApp.historyStockNotYet);
+            }
+
+            return Column(
+              children: data.map((item) => StockCard(item)).toList(),
+            );
+          },
+        );
+      default:
+        return Container();
+    }
   }
 
   AppBar _appBar() {
