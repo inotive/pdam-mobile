@@ -16,10 +16,12 @@ class ImageApp {
   static const String requestItem = "$IMAGE_APP/requsted-item.png";
   static const String stockOpname = "$IMAGE_APP/stock-opname.png";
   static const String acceptedItem = "$IMAGE_APP/accepted-item.png";
+  static const String user = "$IMAGE_APP/user.png";
 
   // Vector
   static const String vector1 = "$IMAGE_APP/vector-1.png";
   static const String vector2 = "$IMAGE_APP/vector-2.png";
+  static const String vector3 = "$IMAGE_APP/vector-3.png";
 
   // Dummy Image
   static const String profile = "$IMAGE_APP/dm-profile.png";
@@ -34,6 +36,7 @@ class IconApp {
   static const String box2 = "$ICON_APP/ic-box@2.svg";
   static const String home = "$ICON_APP/ic-home.svg";
   static const String profile = "$ICON_APP/ic-profile.svg";
+  static const String settings = "$ICON_APP/ic-settings.svg";
 }
 
 class AnimationApp {

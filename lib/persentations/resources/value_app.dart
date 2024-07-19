@@ -1,4 +1,5 @@
 class FontSizeApp {
+  static const double xss = 10.0;
   static const double xs = 11.0;
   static const double sm = 12.0;
   static const double normal = 14.0;

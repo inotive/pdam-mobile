@@ -41,7 +41,6 @@ class RouterGenerator {
       case Routes.purchaseItem:
         return MaterialPageRoute(builder: (_) => const PurchaseItemView());
       case Routes.product:
-        initProductModule();
         return MaterialPageRoute(builder: (_) => const ProductView());
       case Routes.requestedItem:
         initPurchaseRequestModule();
@@ -53,6 +52,7 @@ class RouterGenerator {
       case Routes.receivedItem:
         return MaterialPageRoute(builder: (_) => const ReceivedItemView());
       case Routes.mainMenu:
+        initProductModule();
         return MaterialPageRoute(builder: (_) => const MainMenuView());
       case Routes.login:
         return MaterialPageRoute(builder: (_) => const LoginView());

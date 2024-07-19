@@ -80,7 +80,7 @@ class StringApp {
   static const String requestedItemNotYet = 'Belum ada permintaann barang';
   static const String productNotYet = 'Belum ada produk';
 
-  static const String nameUser = 'Nama user';
+  static const String nameUser = 'Nama User';
   static const String nameUserValidation = 'Nama user harus diisi';
   static const String username = 'Username';
   static const String password = 'Kata Sandi';
@@ -107,4 +107,11 @@ class StringApp {
   static const String referenceHint = 'Pilih nomor referensi';
 
   static const String acceptedItemNotYet = 'Belum ada penerimaan barang';
+
+  static const String detailProfile = 'Detail Profil';
+  static const String fullname = 'Nama Lengkap';
+  static const String email = 'Email';
+  static const String noContact = 'Nomor Kontak';
+  static const String role = 'Jabatan';
+  static const String editData = 'Ubah Data';
 }

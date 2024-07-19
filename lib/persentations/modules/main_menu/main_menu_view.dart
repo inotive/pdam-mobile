@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pdam_inventory/persentations/modules/home/home_view.dart';
+import 'package:pdam_inventory/persentations/modules/product/product_view.dart';
 import 'package:pdam_inventory/persentations/modules/profile/profile_view.dart';
 import 'package:pdam_inventory/persentations/resources/asset_app.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
@@ -21,9 +22,7 @@ class _MainMenuViewState extends State<MainMenuView> {
 
   List<Widget> listPage = [
     const HomeView(),
-    const Center(
-      child: Text("Barang/Produk"),
-    ),
+    const ProductView(),
     const ProfileView(),
   ];
 

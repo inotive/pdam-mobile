@@ -29,6 +29,9 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
         if (response.meta?.code == ResponseCode.SUCCESS) {
           _appPreference.setUserToken("${response.token?.tokenType} ${response.token?.accessToken}");
           _appPreference.setString(PREFS_KEY_NAME, response.data?.name ?? EMPTY);
+          _appPreference.setString(PREFS_KEY_EMAIL, response.data?.email ?? EMPTY);
+          _appPreference.setString(PREFS_KEY_USERNAME, response.data?.username ?? EMPTY);
+          _appPreference.setString(PREFS_KEY_ROLE_NAME, response.data?.role?.name ?? EMPTY);
           return const Right(true);
         } else {
           return Left(

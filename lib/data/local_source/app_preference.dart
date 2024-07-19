@@ -5,6 +5,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 const String PREFS_KEY_IS_USER_LOGGED_IN = "PREFS_KEY_IS_USER_LOGGED_IN";
 const String PREFS_KEY_TOKEN = "PREFS_KEY_TOKEN";
 const String PREFS_KEY_NAME = "PREFS_KEY_NAME";
+const String PREFS_KEY_EMAIL = "PREFS_KEY_EMAIL";
+const String PREFS_KEY_ROLE_NAME = "PREFS_KEY_ROLE_NAME";
+const String PREFS_KEY_USERNAME = "PREFS_KEY_USERNAME";
 
 class AppPreference {
   final SharedPreferences _sharedPreferences;

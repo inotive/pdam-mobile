@@ -10,6 +10,9 @@ class CustomOutlineButton extends StatelessWidget {
     this.margin = EdgeInsets.zero,
     required this.text,
     required this.onPressed,
+    this.textColor,
+    this.borderColor,
+    this.backgroundColor,
   });
 
   final double height;
@@ -17,6 +20,9 @@ class CustomOutlineButton extends StatelessWidget {
   final double width;
   final EdgeInsets margin;
   final Function() onPressed;
+  final Color? textColor;
+  final Color? borderColor;
+  final Color? backgroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +32,10 @@ class CustomOutlineButton extends StatelessWidget {
       margin: margin,
       child: OutlinedButton(
         style: OutlinedButton.styleFrom(
-          side: const BorderSide(
+          backgroundColor: backgroundColor ?? ColorApp.white,
+          side: BorderSide(
             width: 1,
-            color: ColorApp.primary,
+            color: borderColor ?? ColorApp.primary,
           ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
@@ -38,7 +45,7 @@ class CustomOutlineButton extends StatelessWidget {
         child: Text(
           text,
           style: StyleApp.textLg.copyWith(
-            color: ColorApp.primary,
+            color: textColor ?? ColorApp.primary,
             fontWeight: FontWeight.w500,
           ),
         ),
