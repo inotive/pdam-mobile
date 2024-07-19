@@ -48,13 +48,13 @@ class ProductRepositoryImpl implements ProductRepository {
       try {
         final response = await _productDataSource.productDetail(id);
 
-        if (response.meta?.code == ResponseCode.SUCCESS) {
+        if (response.status?.code == ResponseCode.SUCCESS) {
           return Right(response.toDomain());
         } else {
           return Left(
             Failure(
-              response.meta?.code ?? ResponseCode.DEFAULT,
-              response.meta?.message ?? ResponseMessage.DEFAULT,
+              response.status?.code ?? ResponseCode.DEFAULT,
+              response.status?.message ?? ResponseMessage.DEFAULT,
             ),
           );
         }

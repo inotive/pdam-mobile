@@ -16,35 +16,12 @@ extension ProductDataResponseMapper on ProductDataResponse? {
   ProductData toDomain() {
     return ProductData(
       this?.id.orZero() ?? ZERO,
-      this?.unit?.toDomain(),
-      this?.category?.toDomain(),
       this?.name.orEmpty() ?? EMPTY,
       this?.code.orEmpty() ?? EMPTY,
-      this?.min.orEmpty() ?? EMPTY,
-      this?.max.orEmpty() ?? EMPTY,
-      this?.stock.orZero() ?? ZERO,
-      this?.createdAt.orEmpty() ?? EMPTY,
-      this?.updatedAt.orEmpty() ?? EMPTY,
-    );
-  }
-}
-
-extension CategoryDataResponseMapper on CategoryDataResponse? {
-  CategoryData toDomain() {
-    return CategoryData(
-      this?.id.orZero() ?? ZERO,
-      this?.name.orEmpty() ?? EMPTY,
-      this?.createdAt.orEmpty() ?? EMPTY,
-      this?.updatedAt.orEmpty() ?? EMPTY,
-    );
-  }
-}
-
-extension UnitDataResponseMapper on UnitDataResponse? {
-  UnitData toDomain() {
-    return UnitData(
-      this?.id.orZero() ?? ZERO,
-      this?.name.orEmpty() ?? EMPTY,
+      this?.currentStock.orZero() ?? ZERO,
+      this?.stockIn.orZero() ?? ZERO,
+      this?.stockOut.orZero() ?? ZERO,
+      this?.image.orEmpty() ?? EMPTY,
       this?.createdAt.orEmpty() ?? EMPTY,
       this?.updatedAt.orEmpty() ?? EMPTY,
     );
@@ -55,14 +32,14 @@ extension ProductDetailDataResponseMapper on ProductDetailDataResponse? {
   ProductDetailData toDomain() {
     return ProductDetailData(
       this?.id.orZero() ?? ZERO,
-      this?.code.orEmpty() ?? EMPTY,
-      this?.productCategoryId.orEmpty() ?? EMPTY,
       this?.name.orEmpty() ?? EMPTY,
-      this?.min.orEmpty() ?? EMPTY,
-      this?.max.orEmpty() ?? EMPTY,
+      this?.code.orEmpty() ?? EMPTY,
+      this?.currentStock.orZero() ?? ZERO,
+      this?.stockIn.orZero() ?? ZERO,
+      this?.stockOut.orZero() ?? ZERO,
+      this?.image.orEmpty() ?? EMPTY,
       this?.createdAt.orEmpty() ?? EMPTY,
       this?.updatedAt.orEmpty() ?? EMPTY,
-      this?.category.toDomain(),
     );
   }
 }

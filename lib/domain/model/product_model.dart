@@ -7,53 +7,23 @@ class Product {
 class ProductData {
   ProductData(
     this.id,
-    this.unit,
-    this.category,
     this.name,
     this.code,
-    this.min,
-    this.max,
-    this.stock,
+    this.currentStock,
+    this.stockIn,
+    this.stockOut,
+    this.image,
     this.createdAt,
     this.updatedAt,
   );
 
   int id;
-  UnitData? unit;
-  CategoryData? category;
   String name;
   String code;
-  String min;
-  String max;
-  int stock;
-  String createdAt;
-  String updatedAt;
-}
-
-class CategoryData {
-  CategoryData(
-    this.id,
-    this.name,
-    this.createdAt,
-    this.updatedAt,
-  );
-
-  int id;
-  String name;
-  String createdAt;
-  String updatedAt;
-}
-
-class UnitData {
-  UnitData(
-    this.id,
-    this.name,
-    this.createdAt,
-    this.updatedAt,
-  );
-
-  int id;
-  String name;
+  int currentStock;
+  int stockIn;
+  int stockOut;
+  String image;
   String createdAt;
   String updatedAt;
 }
@@ -67,25 +37,25 @@ class ProductDetail {
 class ProductDetailData {
   ProductDetailData(
     this.id,
-    this.code,
-    this.productCategoryId,
     this.name,
-    this.min,
-    this.max,
+    this.code,
+    this.currentStock,
+    this.stockIn,
+    this.stockOut,
+    this.image,
     this.createdAt,
     this.updatedAt,
-    this.category,
   );
 
   int id;
-  String code;
-  String productCategoryId;
   String name;
-  String min;
-  String max;
+  String code;
+  int currentStock;
+  int stockIn;
+  int stockOut;
+  String image;
   String createdAt;
   String updatedAt;
-  CategoryData? category;
 }
 
 class ProductSummaryChart {

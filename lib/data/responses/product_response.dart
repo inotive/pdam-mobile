@@ -20,33 +20,30 @@ class ProductResponse extends BaseStatusResponse {
 class ProductDataResponse {
   ProductDataResponse(
     this.id,
-    this.unit,
-    this.category,
     this.name,
     this.code,
-    this.min,
-    this.max,
-    this.stock,
+    this.currentStock,
+    this.stockIn,
+    this.stockOut,
+    this.image,
     this.createdAt,
     this.updatedAt,
   );
 
   @JsonKey(name: "id")
   int? id;
-  @JsonKey(name: "unit")
-  UnitDataResponse? unit;
-  @JsonKey(name: "category")
-  CategoryDataResponse? category;
   @JsonKey(name: "name")
   String? name;
   @JsonKey(name: "code")
   String? code;
-  @JsonKey(name: "min")
-  String? min;
-  @JsonKey(name: "max")
-  String? max;
-  @JsonKey(name: "stock")
-  int? stock;
+  @JsonKey(name: "current_stock")
+  int? currentStock;
+  @JsonKey(name: "stock_in")
+  int? stockIn;
+  @JsonKey(name: "stock_out")
+  int? stockOut;
+  @JsonKey(name: "image")
+  String? image;
   @JsonKey(name: "created_at")
   String? createdAt;
   @JsonKey(name: "updated_at")
@@ -58,53 +55,7 @@ class ProductDataResponse {
 }
 
 @JsonSerializable()
-class CategoryDataResponse {
-  CategoryDataResponse(
-    this.id,
-    this.name,
-    this.createdAt,
-    this.updatedAt,
-  );
-
-  @JsonKey(name: "id")
-  int? id;
-  @JsonKey(name: "name")
-  String? name;
-  @JsonKey(name: "created_at")
-  String? createdAt;
-  @JsonKey(name: "updated_at")
-  String? updatedAt;
-
-  factory CategoryDataResponse.fromJson(Map<String, dynamic> json) => _$CategoryDataResponseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$CategoryDataResponseToJson(this);
-}
-
-@JsonSerializable()
-class UnitDataResponse {
-  UnitDataResponse(
-    this.id,
-    this.name,
-    this.createdAt,
-    this.updatedAt,
-  );
-
-  @JsonKey(name: "id")
-  int? id;
-  @JsonKey(name: "name")
-  String? name;
-  @JsonKey(name: "created_at")
-  String? createdAt;
-  @JsonKey(name: "updated_at")
-  String? updatedAt;
-
-  factory UnitDataResponse.fromJson(Map<String, dynamic> json) => _$UnitDataResponseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$UnitDataResponseToJson(this);
-}
-
-@JsonSerializable()
-class ProductDetailResponse extends BaseResponse {
+class ProductDetailResponse extends BaseStatusResponse {
   ProductDetailResponse(this.data);
 
   @JsonKey(name: 'data')
@@ -119,34 +70,34 @@ class ProductDetailResponse extends BaseResponse {
 class ProductDetailDataResponse {
   ProductDetailDataResponse(
     this.id,
-    this.code,
-    this.productCategoryId,
     this.name,
-    this.min,
-    this.max,
+    this.code,
+    this.currentStock,
+    this.stockIn,
+    this.stockOut,
+    this.image,
     this.createdAt,
     this.updatedAt,
-    this.category,
   );
 
   @JsonKey(name: "id")
   int? id;
-  @JsonKey(name: "code")
-  String? code;
-  @JsonKey(name: "product_category_id")
-  String? productCategoryId;
   @JsonKey(name: "name")
   String? name;
-  @JsonKey(name: "min")
-  String? min;
-  @JsonKey(name: "max")
-  String? max;
+  @JsonKey(name: "code")
+  String? code;
+  @JsonKey(name: "current_stock")
+  int? currentStock;
+  @JsonKey(name: "stock_in")
+  int? stockIn;
+  @JsonKey(name: "stock_out")
+  int? stockOut;
+  @JsonKey(name: "image")
+  String? image;
   @JsonKey(name: "created_at")
   String? createdAt;
   @JsonKey(name: "updated_at")
   String? updatedAt;
-  @JsonKey(name: "product_category")
-  CategoryDataResponse? category;
 
   factory ProductDetailDataResponse.fromJson(Map<String, dynamic> json) => _$ProductDetailDataResponseFromJson(json);
 

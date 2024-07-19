@@ -21,7 +21,7 @@ class ProductDetailView extends StatefulWidget {
 }
 
 class _ProductDetailViewState extends State<ProductDetailView> with TickerProviderStateMixin {
-  ProductViewmodel _productViewmodel = instance<ProductViewmodel>();
+  final ProductViewmodel _productViewmodel = instance<ProductViewmodel>();
 
   late TabController _tabController;
 
@@ -140,7 +140,7 @@ class _ProductDetailViewState extends State<ProductDetailView> with TickerProvid
                         ),
                         const SpacerHeight(6),
                         Text(
-                          detail?.max ?? '-',
+                          detail?.stockIn.toString() ?? '-',
                           style: StyleApp.textLg.copyWith(
                             color: ColorApp.blackText,
                             fontWeight: FontWeight.w700,
@@ -183,7 +183,7 @@ class _ProductDetailViewState extends State<ProductDetailView> with TickerProvid
                         ),
                         const SpacerHeight(6),
                         Text(
-                          detail?.min ?? '-',
+                          detail?.stockOut.toString() ?? '-',
                           style: StyleApp.textLg.copyWith(
                             color: ColorApp.blackText,
                             fontWeight: FontWeight.w700,
@@ -210,11 +210,10 @@ class _ProductDetailViewState extends State<ProductDetailView> with TickerProvid
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const CustomNetworkImage(
+          CustomNetworkImage(
             height: 56,
             width: 56,
-            url:
-                'https://s3-alpha-sig.figma.com/img/5fd9/329c/e57c8cd2f9f43cfbe953c40b4918e1dd?Expires=1721001600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=py~Lx2eiRv-lxA0QIudhUAYglg8of2PNz4sxgj8w09YGCLT2VfoWvcJWP6I3XdIdkCr76v4stUBDa~ZUSxN90DHZazjPPgm137YSgZUzMepNaDgfcbgq~Oj5N4HUPwdd17TFHsOaIR-PQprYQOsf2RrDhq7~eFXzCEMsHDGv9UdLQabeluMR27eomvBXKCUNy-63q2yL3F074H04lShdzQqrBMPBqhDlQ9tc5q8c87v8bO3-x8CU3dpvkI2pkYpZ~kcYEdwshCQTsP-4M0k21gA6hxUXXQ9D12Gmq2-kL0FpFlbq4ZaPBXrOkUDZllyruEDCMnzavLYXY7p9fnJdIw__',
+            url: detail?.image,
           ),
           const SpacerWidth(12),
           Expanded(
@@ -246,7 +245,7 @@ class _ProductDetailViewState extends State<ProductDetailView> with TickerProvid
                     ),
                     const SpacerWidth(6),
                     Text(
-                      '2415',
+                      detail?.currentStock.toString() ?? '-',
                       style: StyleApp.textNormal.copyWith(
                         color: ColorApp.blackText,
                         fontWeight: FontWeight.w700,

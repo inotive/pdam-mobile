@@ -39,13 +39,13 @@ abstract class AppServiceClient {
   /* End Authentication */
 
   /* Products */
-  @GET('/web/master/product')
+  @GET('/mobile/product')
   Future<ProductResponse> products();
 
   @GET('/mobile/product/summary')
   Future<ProductSummaryResponse> productSummary();
 
-  @GET('/web/master/product/{id}/show')
+  @GET('/mobile/product/{id}/show')
   Future<ProductDetailResponse> productDetail(@Path() int id);
   /* End Products */
 
