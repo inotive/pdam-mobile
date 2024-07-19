@@ -73,7 +73,7 @@ class _HomeViewState extends State<HomeView> {
               ),
               const SpacerWidth(12),
               Flexible(
-                child: FeatureCard(features[2]),
+                child: FeatureCard(features[3]),
               ),
             ],
           ),
@@ -84,16 +84,27 @@ class _HomeViewState extends State<HomeView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Flexible(
-                child: FeatureCard(features[3]),
-              ),
-              const SpacerWidth(12),
-              Flexible(
-                child: FeatureCard(features[4]),
-              ),
-              const SpacerWidth(12),
+              // Flexible(
+              //   child: FeatureCard(features[3]),
+              // ),
+              // const SpacerWidth(12),
+              // Flexible(
+              //   child: FeatureCard(features[4]),
+              // ),
               Flexible(
                 child: FeatureCard(features[5]),
+              ),
+              const SpacerWidth(12),
+              const Flexible(
+                child: SizedBox(
+                  width: double.infinity,
+                ),
+              ),
+              const SpacerWidth(12),
+              const Flexible(
+                child: SizedBox(
+                  width: double.infinity,
+                ),
               ),
             ],
           ),

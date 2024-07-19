@@ -37,7 +37,6 @@ class RouterGenerator {
       case Routes.notification:
         return MaterialPageRoute(builder: (_) => const NotificationView());
       case Routes.historyStock:
-        initHistoryStockModule();
         return MaterialPageRoute(builder: (_) => const HistoryStockView());
       case Routes.purchaseItem:
         return MaterialPageRoute(builder: (_) => const PurchaseItemView());
@@ -54,6 +53,7 @@ class RouterGenerator {
         return MaterialPageRoute(builder: (_) => const ReceivedItemView());
       case Routes.mainMenu:
         initProductModule();
+        initHistoryStockModule();
         return MaterialPageRoute(builder: (_) => const MainMenuView());
       case Routes.login:
         return MaterialPageRoute(builder: (_) => const LoginView());

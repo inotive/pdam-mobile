@@ -33,13 +33,6 @@ class _HistoryStockViewState extends State<HistoryStockView> {
   onStatusTapped(int id) {
     setState(() {
       statusIndex = id;
-      if (statusIndex == 3) {
-        productsItems = products.where((element) => element.status == 'Barang Keluar').toList();
-      } else if (statusIndex == 2) {
-        productsItems = products.where((element) => element.status == 'Barang Masuk').toList();
-      } else {
-        productsItems = products;
-      }
     });
   }
 
@@ -67,10 +60,7 @@ class _HistoryStockViewState extends State<HistoryStockView> {
       body: StreamBuilder<FlowState>(
           stream: _historyStockViewmodel.outputState,
           builder: (context, snapshot) {
-            return snapshot.data?.getScreenWidget(context, _getContentWidgets(), () {
-                  _bind();
-                }) ??
-                _getContentWidgets();
+            return snapshot.data?.getScreenWidget(context, _getContentWidgets(), () => _bind()) ?? _getContentWidgets();
           }),
     );
   }
