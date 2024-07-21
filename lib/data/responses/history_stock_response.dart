@@ -21,10 +21,11 @@ class HistoryStockDataResponse {
     this.lastStock,
     this.qty,
     this.currentStock,
+    this.productName,
   );
 
   @JsonKey(name: 'id')
-  int? id;
+  String? id;
   @JsonKey(name: 'purchase_request_id')
   String? purchaseRequestId;
   @JsonKey(name: 'purchase_order_id')
@@ -51,6 +52,8 @@ class HistoryStockDataResponse {
   String? qty;
   @JsonKey(name: 'current_stock')
   String? currentStock;
+  @JsonKey(name: 'product_name')
+  String? productName;
 
   factory HistoryStockDataResponse.fromJson(Map<String, dynamic> json) => _$HistoryStockDataResponseFromJson(json);
 

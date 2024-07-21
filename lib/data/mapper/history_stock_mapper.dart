@@ -6,7 +6,7 @@ import 'package:pdam_inventory/persentations/resources/string_app.dart';
 extension HistoryStockDataResponseMapper on HistoryStockDataResponse? {
   HistoryStockData toDomain() {
     return HistoryStockData(
-      this?.id.orZero() ?? ZERO,
+      this?.id.orEmpty() ?? EMPTY,
       this?.purchaseRequestId.orEmpty() ?? EMPTY,
       this?.purchaseOrderId.orEmpty() ?? EMPTY,
       this?.type.orEmpty() ?? EMPTY,
@@ -20,6 +20,7 @@ extension HistoryStockDataResponseMapper on HistoryStockDataResponse? {
       this?.lastStock.orEmpty() ?? EMPTY,
       this?.qty.orEmpty() ?? EMPTY,
       this?.currentStock.orEmpty() ?? EMPTY,
+      this?.productName.orEmpty() ?? EMPTY,
     );
   }
 }

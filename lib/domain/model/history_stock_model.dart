@@ -14,9 +14,10 @@ class HistoryStockData {
     this.lastStock,
     this.qty,
     this.currentStock,
+    this.productName,
   );
 
-  int id;
+  String id;
   String purchaseRequestId;
   String purchaseOrderId;
   String type;
@@ -30,6 +31,7 @@ class HistoryStockData {
   String lastStock;
   String qty;
   String currentStock;
+  String productName;
 }
 
 class HistoryStock {
