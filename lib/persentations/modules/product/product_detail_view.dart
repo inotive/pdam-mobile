@@ -3,7 +3,7 @@ import 'package:pdam_inventory/app/di.dart';
 import 'package:pdam_inventory/domain/model/product_model.dart';
 import 'package:pdam_inventory/persentations/modules/product/tabs/product_history_stock_tab.dart';
 import 'package:pdam_inventory/persentations/modules/product/tabs/product_warehouse_stock_tab.dart';
-import 'package:pdam_inventory/persentations/modules/product/viewmodel/product_viewmodel.dart';
+import 'package:pdam_inventory/persentations/modules/product/viewmodel/product_detail_viewmodel.dart';
 import 'package:pdam_inventory/persentations/packages/state_renderer/state_renderer_impl.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
@@ -21,12 +21,13 @@ class ProductDetailView extends StatefulWidget {
 }
 
 class _ProductDetailViewState extends State<ProductDetailView> with TickerProviderStateMixin {
-  final ProductViewmodel _productViewmodel = instance<ProductViewmodel>();
+  final ProductDetailViewmodel _productDetailViewmodel = instance<ProductDetailViewmodel>();
 
   late TabController _tabController;
 
   _bind() {
-    _productViewmodel.productDetail(widget.id);
+    _productDetailViewmodel.productDetail(widget.id);
+    _productDetailViewmodel.productWarehouse(widget.id);
   }
 
   @override
@@ -44,7 +45,7 @@ class _ProductDetailViewState extends State<ProductDetailView> with TickerProvid
         title: const Text(StringApp.detailProduct),
       ),
       body: StreamBuilder<FlowState>(
-          stream: _productViewmodel.outputState,
+          stream: _productDetailViewmodel.outputState,
           builder: (context, snapshot) {
             return snapshot.data?.getScreenWidget(context, _getContentWidget(), () {
                   _bind();
@@ -56,7 +57,7 @@ class _ProductDetailViewState extends State<ProductDetailView> with TickerProvid
 
   Widget _getContentWidget() {
     return StreamBuilder<ProductDetailData>(
-        stream: _productViewmodel.outputProductDetail,
+        stream: _productDetailViewmodel.outputProductDetail,
         builder: (context, snapshot) {
           return Column(
             children: [
@@ -67,9 +68,9 @@ class _ProductDetailViewState extends State<ProductDetailView> with TickerProvid
               Expanded(
                 child: TabBarView(
                   controller: _tabController,
-                  children: const [
+                  children: [
                     ProductHistoryStockTab(),
-                    ProductWarehouseStockTab(),
+                    ProductWarehouseStockTab(_productDetailViewmodel),
                   ],
                 ),
               ),
@@ -263,7 +264,7 @@ class _ProductDetailViewState extends State<ProductDetailView> with TickerProvid
 
   @override
   void dispose() {
-    _productViewmodel.dispose();
+    _productDetailViewmodel.dispose();
     super.dispose();
   }
 }

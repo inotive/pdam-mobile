@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:pdam_inventory/domain/model/product_model.dart';
+import 'package:pdam_inventory/persentations/modules/product/viewmodel/product_detail_viewmodel.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
+import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
+import 'package:pdam_inventory/persentations/widgets/card/empty_card.dart';
+import 'package:pdam_inventory/persentations/widgets/shimmer/shimmer_widget.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
 class ProductWarehouseStockTab extends StatefulWidget {
-  const ProductWarehouseStockTab({super.key});
+  final ProductDetailViewmodel productDetailViewmodel;
+  const ProductWarehouseStockTab(this.productDetailViewmodel, {super.key});
 
   @override
   State<ProductWarehouseStockTab> createState() => _ProductWarehouseStockTabState();
@@ -31,13 +37,44 @@ class _ProductWarehouseStockTabState extends State<ProductWarehouseStockTab> {
               color: ColorApp.white,
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Column(
-              children: [
-                ...List.generate(100, (index) {
-                  return _item('Gudang IPA Kudungga Sangatta Utara', '5 Buah');
-                })
-              ],
-            ),
+            child: StreamBuilder<List<ProductWarehouseData>>(
+                stream: widget.productDetailViewmodel.outputProductWarehouse,
+                builder: (context, snapshot) {
+                  List<ProductWarehouseData> data = snapshot.data ?? List<ProductWarehouseData>.empty();
+
+                  if (ConnectionState.waiting == snapshot.connectionState) {
+                    return Column(
+                      children: [
+                        ...List.generate(3, (idx) {
+                          return const Padding(
+                            padding: EdgeInsets.only(bottom: 16.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                ShimmerWidget(
+                                  width: 180,
+                                  height: 14,
+                                ),
+                                ShimmerWidget(
+                                  width: 40,
+                                  height: 14,
+                                ),
+                              ],
+                            ),
+                          );
+                        })
+                      ],
+                    );
+                  }
+
+                  if (data.isEmpty) {
+                    return const EmptyCard(message: StringApp.warehouseStockNotYet);
+                  }
+
+                  return Column(
+                    children: data.map((item) => _item(item.name, item.currentStock)).toList(),
+                  );
+                }),
           ),
         ),
       ),
@@ -59,7 +96,7 @@ class _ProductWarehouseStockTabState extends State<ProductWarehouseStockTab> {
           ),
           const SpacerWidth(8),
           Text(
-            value,
+            value == EMPTY ? "0" : value,
             style: StyleApp.textNormal.copyWith(
               color: ColorApp.blackText,
               fontWeight: FontWeight.w600,

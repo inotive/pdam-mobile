@@ -25,6 +25,7 @@ import 'package:pdam_inventory/domain/usecase/history_stock/history_stock_usecas
 import 'package:pdam_inventory/domain/usecase/products/product_detail_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/products/product_summary_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/products/product_usecase.dart';
+import 'package:pdam_inventory/domain/usecase/products/product_warehouse_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/purchase_request_detail_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/purchase_request_summary_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/purchase_request_usecase.dart';
@@ -34,6 +35,7 @@ import 'package:pdam_inventory/persentations/modules/accepted_item/viewmodel/rec
 import 'package:pdam_inventory/persentations/modules/accepted_item/viewmodel/receive_order_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/auth/login/viewmodel/login_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/history_stock/viewmodel/history_stock_viewmodel.dart';
+import 'package:pdam_inventory/persentations/modules/product/viewmodel/product_detail_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/product/viewmodel/product_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/profile/viewmodel/profile_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/requested_item/viewmodel/requested_detail_viewmodel.dart';
@@ -82,6 +84,7 @@ Future<void> initAppModule() async {
   initProfiileModule();
   initReceiveOrderModule();
   initReceiveOrderDetailModule();
+  initProductDetailModule();
 }
 
 initLoginModule() {
@@ -117,8 +120,7 @@ initProductModule() {
   if (!GetIt.I.isRegistered<ProductUsecase>()) {
     instance.registerFactory<ProductUsecase>(() => ProductUsecase(instance()));
     instance.registerFactory<ProductSummaryUsecase>(() => ProductSummaryUsecase(instance()));
-    instance.registerFactory<ProductDetailUsecase>(() => ProductDetailUsecase(instance()));
-    instance.registerFactory<ProductViewmodel>(() => ProductViewmodel(instance(), instance(), instance()));
+    instance.registerFactory<ProductViewmodel>(() => ProductViewmodel(instance(), instance()));
   }
 }
 
@@ -143,6 +145,14 @@ initHistoryStockModule() {
   }
 }
 
+initProductDetailModule() {
+  if (!GetIt.I.isRegistered<ProductDetailUsecase>()) {
+    instance.registerFactory<ProductDetailUsecase>(() => ProductDetailUsecase(instance()));
+    instance.registerFactory<ProductWarehouseUsecase>(() => ProductWarehouseUsecase(instance()));
+    instance.registerFactory<ProductDetailViewmodel>(() => ProductDetailViewmodel(instance(), instance()));
+  }
+}
+
 resetModules() {
   instance.reset(dispose: false);
   initAppModule();
@@ -153,4 +163,5 @@ resetModules() {
   initProductModule();
   initReceiveOrderModule();
   initHistoryStockModule();
+  initProductDetailModule();
 }

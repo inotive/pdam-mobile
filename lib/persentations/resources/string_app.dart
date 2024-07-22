@@ -116,4 +116,5 @@ class StringApp {
   static const String editData = 'Ubah Data';
 
   static const String historyStockNotYet = 'Belum ada data history stock';
+  static const String warehouseStockNotYet = 'Belum ada data stock gudang';
 }

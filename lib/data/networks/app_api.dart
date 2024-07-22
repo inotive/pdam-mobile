@@ -48,6 +48,9 @@ abstract class AppServiceClient {
 
   @GET('/mobile/product/{id}/show')
   Future<ProductDetailResponse> productDetail(@Path() int id);
+
+  @GET('/mobile/product/{id}/stock-warehouse')
+  Future<ProductWarehouseResponse> productWarehouse(@Path() int id);
   /* End Products */
 
   /* Receive Order */

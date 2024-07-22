@@ -5,6 +5,7 @@ abstract class ProductDataSource {
   Future<ProductResponse> products();
   Future<ProductSummaryResponse> productSummary();
   Future<ProductDetailResponse> productDetail(int id);
+  Future<ProductWarehouseResponse> productWarehouse(int id);
 }
 
 class ProductDataSourceImpl extends ProductDataSource {
@@ -24,5 +25,10 @@ class ProductDataSourceImpl extends ProductDataSource {
   @override
   Future<ProductSummaryResponse> productSummary() async {
     return await _appServiceClient.productSummary();
+  }
+
+  @override
+  Future<ProductWarehouseResponse> productWarehouse(int id) async {
+    return await _appServiceClient.productWarehouse(id);
   }
 }
