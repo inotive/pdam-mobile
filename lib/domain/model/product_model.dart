@@ -99,3 +99,27 @@ class ProductWarehouse {
 
   List<ProductWarehouseData> data;
 }
+
+class ProductStockHistoryData {
+  ProductStockHistoryData(
+    this.lastStock,
+    this.qty,
+    this.currentStock,
+    this.createdAt,
+    this.type,
+    this.date,
+  );
+
+  String lastStock;
+  String qty;
+  String currentStock;
+  String createdAt;
+  String type;
+  String date;
+}
+
+class ProductStockHistory {
+  ProductStockHistory(this.data);
+
+  List<ProductStockHistoryData> data;
+}

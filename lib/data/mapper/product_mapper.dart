@@ -93,3 +93,25 @@ extension ProductWarehouseResponseMapper on ProductWarehouseResponse? {
     return ProductWarehouse(products);
   }
 }
+
+extension ProductStockHistoryDataResponseMapper on ProductStockHistoryDataResponse? {
+  ProductStockHistoryData toDomain() {
+    return ProductStockHistoryData(
+      this?.lastStock.orEmpty() ?? EMPTY,
+      this?.qty.orEmpty() ?? EMPTY,
+      this?.currentStock.orEmpty() ?? EMPTY,
+      this?.createdAt.orEmpty() ?? EMPTY,
+      this?.type.orEmpty() ?? EMPTY,
+      this?.date.orEmpty() ?? EMPTY,
+    );
+  }
+}
+
+extension ProductStockHistoryResponseMapper on ProductStockHistoryResponse? {
+  ProductStockHistory toDomain() {
+    List<ProductStockHistoryData> products =
+        (this?.data?.map((item) => item.toDomain()) ?? const Iterable.empty()).cast<ProductStockHistoryData>().toList();
+
+    return ProductStockHistory(products);
+  }
+}

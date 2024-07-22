@@ -179,3 +179,46 @@ class ProductWarehouseResponse extends BaseResponse {
 
   Map<String, dynamic> toJson() => _$ProductWarehouseResponseToJson(this);
 }
+
+@JsonSerializable()
+class ProductStockHistoryDataResponse {
+  ProductStockHistoryDataResponse(
+    this.lastStock,
+    this.qty,
+    this.currentStock,
+    this.createdAt,
+    this.type,
+    this.date,
+  );
+
+  @JsonKey(name: 'last_stock')
+  String? lastStock;
+  @JsonKey(name: 'qty')
+  String? qty;
+  @JsonKey(name: 'current_stock')
+  String? currentStock;
+  @JsonKey(name: 'created_at')
+  String? createdAt;
+  @JsonKey(name: 'type')
+  String? type;
+  @JsonKey(name: 'date')
+  String? date;
+
+  factory ProductStockHistoryDataResponse.fromJson(Map<String, dynamic> json) =>
+      _$ProductStockHistoryDataResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ProductStockHistoryDataResponseToJson(this);
+}
+
+@JsonSerializable()
+class ProductStockHistoryResponse extends BaseResponse {
+  ProductStockHistoryResponse(this.data);
+
+  @JsonKey(name: 'data')
+  List<ProductStockHistoryDataResponse>? data;
+
+  factory ProductStockHistoryResponse.fromJson(Map<String, dynamic> json) =>
+      _$ProductStockHistoryResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ProductStockHistoryResponseToJson(this);
+}

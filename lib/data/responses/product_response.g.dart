@@ -178,3 +178,43 @@ Map<String, dynamic> _$ProductWarehouseResponseToJson(
       'meta': instance.meta,
       'data': instance.data,
     };
+
+ProductStockHistoryDataResponse _$ProductStockHistoryDataResponseFromJson(
+        Map<String, dynamic> json) =>
+    ProductStockHistoryDataResponse(
+      json['last_stock'] as String?,
+      json['qty'] as String?,
+      json['current_stock'] as String?,
+      json['created_at'] as String?,
+      json['type'] as String?,
+      json['date'] as String?,
+    );
+
+Map<String, dynamic> _$ProductStockHistoryDataResponseToJson(
+        ProductStockHistoryDataResponse instance) =>
+    <String, dynamic>{
+      'last_stock': instance.lastStock,
+      'qty': instance.qty,
+      'current_stock': instance.currentStock,
+      'created_at': instance.createdAt,
+      'type': instance.type,
+      'date': instance.date,
+    };
+
+ProductStockHistoryResponse _$ProductStockHistoryResponseFromJson(
+        Map<String, dynamic> json) =>
+    ProductStockHistoryResponse(
+      (json['data'] as List<dynamic>?)
+          ?.map((e) => ProductStockHistoryDataResponse.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+    )..meta = json['meta'] == null
+        ? null
+        : MetaResponse.fromJson(json['meta'] as Map<String, dynamic>);
+
+Map<String, dynamic> _$ProductStockHistoryResponseToJson(
+        ProductStockHistoryResponse instance) =>
+    <String, dynamic>{
+      'meta': instance.meta,
+      'data': instance.data,
+    };
