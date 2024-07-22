@@ -152,3 +152,30 @@ class ProductSummaryResponse extends BaseResponse {
 
   Map<String, dynamic> toJson() => _$ProductSummaryResponseToJson(this);
 }
+
+@JsonSerializable()
+class ProductWarehouseDataResponse {
+  ProductWarehouseDataResponse(this.name, this.currentStock);
+
+  @JsonKey(name: "name")
+  String? name;
+  @JsonKey(name: "current_stock")
+  String? currentStock;
+
+  factory ProductWarehouseDataResponse.fromJson(Map<String, dynamic> json) =>
+      _$ProductWarehouseDataResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ProductWarehouseDataResponseToJson(this);
+}
+
+@JsonSerializable()
+class ProductWarehouseResponse extends BaseResponse {
+  ProductWarehouseResponse(this.data);
+
+  @JsonKey(name: 'data')
+  List<ProductWarehouseDataResponse>? data;
+
+  factory ProductWarehouseResponse.fromJson(Map<String, dynamic> json) => _$ProductWarehouseResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ProductWarehouseResponseToJson(this);
+}

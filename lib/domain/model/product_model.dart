@@ -83,3 +83,19 @@ class ProductSummary {
 
   ProductSummaryData? data;
 }
+
+class ProductWarehouseData {
+  ProductWarehouseData(
+    this.name,
+    this.currentStock,
+  );
+
+  String name;
+  String currentStock;
+}
+
+class ProductWarehouse {
+  ProductWarehouse(this.data);
+
+  List<ProductWarehouseData> data;
+}

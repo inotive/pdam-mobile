@@ -75,3 +75,21 @@ extension ProductSummaryResponseMapper on ProductSummaryResponse? {
     return ProductSummary(this?.data?.toDomain());
   }
 }
+
+extension ProductWarehouseDataResponseMapper on ProductWarehouseDataResponse? {
+  ProductWarehouseData toDomain() {
+    return ProductWarehouseData(
+      this?.name.orEmpty() ?? EMPTY,
+      this?.currentStock.orEmpty() ?? EMPTY,
+    );
+  }
+}
+
+extension ProductWarehouseResponseMapper on ProductWarehouseResponse? {
+  ProductWarehouse toDomain() {
+    List<ProductWarehouseData> products =
+        (this?.data?.map((item) => item.toDomain()) ?? const Iterable.empty()).cast<ProductWarehouseData>().toList();
+
+    return ProductWarehouse(products);
+  }
+}

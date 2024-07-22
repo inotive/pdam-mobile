@@ -146,3 +146,35 @@ Map<String, dynamic> _$ProductSummaryResponseToJson(
       'meta': instance.meta,
       'data': instance.data,
     };
+
+ProductWarehouseDataResponse _$ProductWarehouseDataResponseFromJson(
+        Map<String, dynamic> json) =>
+    ProductWarehouseDataResponse(
+      json['name'] as String?,
+      json['current_stock'] as String?,
+    );
+
+Map<String, dynamic> _$ProductWarehouseDataResponseToJson(
+        ProductWarehouseDataResponse instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'current_stock': instance.currentStock,
+    };
+
+ProductWarehouseResponse _$ProductWarehouseResponseFromJson(
+        Map<String, dynamic> json) =>
+    ProductWarehouseResponse(
+      (json['data'] as List<dynamic>?)
+          ?.map((e) =>
+              ProductWarehouseDataResponse.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    )..meta = json['meta'] == null
+        ? null
+        : MetaResponse.fromJson(json['meta'] as Map<String, dynamic>);
+
+Map<String, dynamic> _$ProductWarehouseResponseToJson(
+        ProductWarehouseResponse instance) =>
+    <String, dynamic>{
+      'meta': instance.meta,
+      'data': instance.data,
+    };
