@@ -53,7 +53,7 @@ class _ReceiptItemViewState extends State<ReceiptItemView> with SingleTickerProv
             controller: _tabController,
             children: [
               ReceiptItemManualInputTab(_receiptViewmodel),
-              ReceiptItemByReferenceTab(),
+              ReceiptItemByReferenceTab(_receiptViewmodel),
             ],
           ),
         ),

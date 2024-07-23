@@ -108,4 +108,28 @@ class ReceiveOrderRepositoryImpl implements ReceiveOrderRepository {
       return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, ReceiveOrderReference>> receiveOrderReference(Map<String, dynamic> queries) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final response = await _receiveOrderDataSource.receiveOrderReference(queries);
+
+        if (response.status?.code == ResponseCode.SUCCESS) {
+          return Right(response.toDomain());
+        } else {
+          return Left(
+            Failure(
+              response.status?.code ?? ResponseCode.DEFAULT,
+              response.status?.message ?? ResponseMessage.DEFAULT,
+            ),
+          );
+        }
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+    }
+  }
 }

@@ -67,6 +67,9 @@ abstract class AppServiceClient {
   @GET('/mobile/receive-order/list-warehouse')
   Future<ReceiveOrderWarehouseResponse> receiveOrderWarehouse(@Queries() Map<String, dynamic> queries);
 
+  @GET('/mobile/receive-order/list-reference')
+  Future<ReceiveOrderReferenceResponse> receiveOrderReference(@Queries() Map<String, dynamic> queries);
+
   @POST('/mobile/receive-order')
   Future<MessageResponse> createReceiveOrder(
     @Field('refference_number') String refferenceNumber,

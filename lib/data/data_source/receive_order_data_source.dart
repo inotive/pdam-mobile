@@ -7,6 +7,7 @@ abstract class ReceiveOrderDataSource {
   Future<ReceiveOrderPaginationResponse> receiveOrders();
   Future<ReceiveOrderDetailResponse> receiveOrderDetail(int id);
   Future<ReceiveOrderWarehouseResponse> receiveOrderWarehouse(Map<String, dynamic> queries);
+  Future<ReceiveOrderReferenceResponse> receiveOrderReference(Map<String, dynamic> queries);
   Future<MessageResponse> createReceiveOrderMap(ReceiveOrderRequest request);
 }
 
@@ -37,5 +38,10 @@ class ReceiveOrderDataSourceImpl implements ReceiveOrderDataSource {
       request.note,
       request.productList,
     );
+  }
+
+  @override
+  Future<ReceiveOrderReferenceResponse> receiveOrderReference(Map<String, dynamic> queries) async {
+    return await _appServiceClient.receiveOrderReference(queries);
   }
 }

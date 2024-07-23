@@ -35,6 +35,7 @@ import 'package:pdam_inventory/domain/usecase/purchase_request_summary_usecase.d
 import 'package:pdam_inventory/domain/usecase/purchase_request_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_create_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_detail_usecase.dart';
+import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_reference_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_warehouse_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/stock_opname/stock_opname_usecase.dart';
@@ -176,7 +177,8 @@ initReceiptItemModule() {
   if (!GetIt.I.isRegistered<ReceiveOrderWarehouseUsecase>()) {
     instance.registerFactory<ReceiveOrderWarehouseUsecase>(() => ReceiveOrderWarehouseUsecase(instance()));
     instance.registerFactory<ReceiveOrderCreateUsecase>(() => ReceiveOrderCreateUsecase(instance()));
-    instance.registerFactory<ReceiptViewmodel>(() => ReceiptViewmodel(instance(), instance(), instance()));
+    instance.registerFactory<ReceiveOrderReferenceUsecase>(() => ReceiveOrderReferenceUsecase(instance()));
+    instance.registerFactory<ReceiptViewmodel>(() => ReceiptViewmodel(instance(), instance(), instance(), instance()));
   }
 }
 
