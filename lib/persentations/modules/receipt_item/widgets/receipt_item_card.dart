@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pdam_inventory/domain/model/product_model.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
@@ -9,9 +8,17 @@ import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
 class ReceiptItemCard extends StatelessWidget {
   const ReceiptItemCard(
-      {super.key, required this.product, required this.onAdd, required this.onRemove, required this.qty});
+      {super.key,
+      required this.onAdd,
+      required this.onRemove,
+      required this.qty,
+      required this.name,
+      required this.image,
+      required this.code});
 
-  final ProductData product;
+  final String name;
+  final String image;
+  final String code;
   final Function() onAdd;
   final Function() onRemove;
   final String qty;
@@ -35,7 +42,7 @@ class ReceiptItemCard extends StatelessWidget {
             height: 44,
             width: 44,
             borderRadius: 4,
-            url: product.image,
+            url: image,
           ),
           const SpacerWidth(12),
           Expanded(
@@ -43,14 +50,14 @@ class ReceiptItemCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  product.name,
+                  name,
                   style: StyleApp.textLg.copyWith(
                     fontWeight: FontWeight.w700,
                   ),
                 ),
                 const SpacerHeight(6),
                 Text(
-                  product.code,
+                  code,
                   style: StyleApp.textSm.copyWith(
                     color: ColorApp.greyText,
                   ),

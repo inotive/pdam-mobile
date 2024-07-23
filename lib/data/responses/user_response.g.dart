@@ -19,6 +19,7 @@ UserDataResponse _$UserDataResponseFromJson(Map<String, dynamic> json) =>
       json['role'] == null
           ? null
           : RoleDataResponse.fromJson(json['role'] as Map<String, dynamic>),
+      json['image'] as String?,
     );
 
 Map<String, dynamic> _$UserDataResponseToJson(UserDataResponse instance) =>
@@ -32,6 +33,7 @@ Map<String, dynamic> _$UserDataResponseToJson(UserDataResponse instance) =>
       'role_id': instance.roleId,
       'username': instance.username,
       'role': instance.role,
+      'image': instance.image,
     };
 
 RoleDataResponse _$RoleDataResponseFromJson(Map<String, dynamic> json) =>

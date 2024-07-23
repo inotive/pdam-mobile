@@ -7,7 +7,7 @@ extension TokenResponseMapper on TokenResponse? {
   TokenData toDomain() {
     return TokenData(
       this?.expiresIn.orZero() ?? ZERO,
-      this?.accessToken.orEmpty() ?? EMPTY,
+      this?.accessToken ?? true,
       this?.tokenType.orEmpty() ?? EMPTY,
     );
   }

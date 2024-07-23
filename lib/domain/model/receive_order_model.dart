@@ -140,3 +140,9 @@ class ReceiveOrderReference {
 
   List<PurchaseRequest> data;
 }
+
+class ReceiveOrderReferenceDetail {
+  ReceiveOrderReferenceDetail(this.data);
+
+  PurchaseRequestDetailData? data;
+}

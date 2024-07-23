@@ -101,7 +101,9 @@ class _ReceiptItemManualInputTabState extends State<ReceiptItemManualInputTab> {
                     valueListenable: productItem[index].qty,
                     builder: (context, value, child) {
                       return ReceiptItemCard(
-                        product: productItem[index],
+                        name: productItem[index].name,
+                        image: productItem[index].image,
+                        code: productItem[index].code,
                         onAdd: () {
                           productItem[index].qty.value++;
                           onUpdateQuantity(ReceiptProductParam(productItem[index].id, productItem[index].qty.value));

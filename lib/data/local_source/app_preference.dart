@@ -8,6 +8,7 @@ const String PREFS_KEY_NAME = "PREFS_KEY_NAME";
 const String PREFS_KEY_EMAIL = "PREFS_KEY_EMAIL";
 const String PREFS_KEY_ROLE_NAME = "PREFS_KEY_ROLE_NAME";
 const String PREFS_KEY_USERNAME = "PREFS_KEY_USERNAME";
+const String PREFS_KEY_IMAGE = "PREFS_KEY_IMAGE";
 
 class AppPreference {
   final SharedPreferences _sharedPreferences;

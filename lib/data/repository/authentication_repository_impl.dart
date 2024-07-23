@@ -1,5 +1,7 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:pdam_inventory/data/data_source/authentication_data_source.dart';
 import 'package:pdam_inventory/data/local_source/app_preference.dart';
@@ -31,6 +33,7 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
           _appPreference.setString(PREFS_KEY_NAME, response.data?.name ?? EMPTY);
           _appPreference.setString(PREFS_KEY_EMAIL, response.data?.email ?? EMPTY);
           _appPreference.setString(PREFS_KEY_USERNAME, response.data?.username ?? EMPTY);
+          _appPreference.setString(PREFS_KEY_IMAGE, response.data?.image ?? EMPTY);
           _appPreference.setString(PREFS_KEY_ROLE_NAME, response.data?.role?.name ?? EMPTY);
           return const Right(true);
         } else {
@@ -42,6 +45,7 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
           );
         }
       } catch (error) {
+        log(error.toString());
         return Left(ErrorHandler.handle(error).failure);
       }
     } else {

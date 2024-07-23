@@ -127,3 +127,9 @@ extension ReceiveOrderReferenceResponseMapper on ReceiveOrderReferenceResponse? 
     return ReceiveOrderReference(refs);
   }
 }
+
+extension ReceiveOrderReferenceDetailResponseMapper on ReceiveOrderReferenceDetailResponse? {
+  ReceiveOrderReferenceDetail toDomain() {
+    return ReceiveOrderReferenceDetail(this?.data.toDomain());
+  }
+}

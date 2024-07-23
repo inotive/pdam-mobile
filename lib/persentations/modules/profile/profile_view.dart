@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:pdam_inventory/app/di.dart';
+import 'package:pdam_inventory/data/local_source/app_preference.dart';
 import 'package:pdam_inventory/persentations/modules/profile/viewmodel/profile_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/profile/widgets/profile_card.dart';
 import 'package:pdam_inventory/persentations/modules/profile/widgets/profile_form.dart';
@@ -19,6 +20,7 @@ class ProfileView extends StatefulWidget {
 
 class _ProfileViewState extends State<ProfileView> {
   final ProfileViewModel _profileViewModel = instance<ProfileViewModel>();
+  final AppPreference _appPreference = instance<AppPreference>();
 
   _bind() {
     _profileViewModel.start();
@@ -49,11 +51,11 @@ class _ProfileViewState extends State<ProfileView> {
               padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
               child: CustomOutlineButton(
                 onPressed: () {
-                  // _appPreference.removeString(PREFS_KEY_TOKEN);
-                  // _appPreference.removeString(PREFS_KEY_IS_USER_LOGGED_IN);
-                  // _appPreference.removeString(PREFS_KEY_NAME);
-                  _profileViewModel.logout();
-                  // Navigator.pushReplacementNamed(context, Routes.login);
+                  _appPreference.removeString(PREFS_KEY_TOKEN);
+                  _appPreference.removeString(PREFS_KEY_IS_USER_LOGGED_IN);
+                  _appPreference.removeString(PREFS_KEY_NAME);
+                  // _profileViewModel.logout();
+                  Navigator.pushReplacementNamed(context, Routes.login);
                 },
                 text: StringApp.logout,
                 textColor: ColorApp.red,

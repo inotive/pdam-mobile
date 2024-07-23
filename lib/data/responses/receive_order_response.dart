@@ -249,3 +249,16 @@ class ReceiveOrderReferenceResponse extends PaginationBaseResponse {
 
   Map<String, dynamic> toJson() => _$ReceiveOrderReferenceResponseToJson(this);
 }
+
+@JsonSerializable()
+class ReceiveOrderReferenceDetailResponse extends BaseResponse {
+  ReceiveOrderReferenceDetailResponse(this.data);
+
+  @JsonKey(name: 'data')
+  PurchaseRequestDetailDataResponse? data;
+
+  factory ReceiveOrderReferenceDetailResponse.fromJson(Map<String, dynamic> json) =>
+      _$ReceiveOrderReferenceDetailResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ReceiveOrderReferenceDetailResponseToJson(this);
+}

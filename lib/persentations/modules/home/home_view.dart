@@ -19,11 +19,23 @@ class _HomeViewState extends State<HomeView> {
   final AppPreference _appPreference = instance<AppPreference>();
 
   String _name = EMPTY;
+  String _image = EMPTY;
+  String _role = EMPTY;
 
   _bind() {
     _appPreference.getString(PREFS_KEY_NAME).then((name) {
       setState(() {
         _name = name;
+      });
+    });
+    _appPreference.getString(PREFS_KEY_IMAGE).then((image) {
+      setState(() {
+        _image = image;
+      });
+    });
+    _appPreference.getString(PREFS_KEY_ROLE_NAME).then((role) {
+      setState(() {
+        _role = role;
       });
     });
   }
@@ -41,6 +53,8 @@ class _HomeViewState extends State<HomeView> {
         children: [
           HeaderHomeCard(
             name: _name,
+            image: _image,
+            role: _role,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(

@@ -9,6 +9,7 @@ class UserData {
     this.roleId,
     this.username,
     this.role,
+    this.image,
   );
 
   int id;
@@ -20,6 +21,7 @@ class UserData {
   String roleId;
   String username;
   RoleData? role;
+  String image;
 }
 
 class RoleData {

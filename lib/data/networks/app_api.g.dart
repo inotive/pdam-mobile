@@ -411,6 +411,34 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
+  Future<ReceiveOrderReferenceDetailResponse> receiveOrderReferenceDetail(
+      int id) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ReceiveOrderReferenceDetailResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/mobile/receive-order/list-reference/${id}/show',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final _value = ReceiveOrderReferenceDetailResponse.fromJson(_result.data!);
+    return _value;
+  }
+
+  @override
   Future<MessageResponse> createReceiveOrder(
     String refferenceNumber,
     String warehouseId,

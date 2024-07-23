@@ -9,5 +9,6 @@ abstract class ReceiveOrderRepository {
   Future<Either<Failure, ReceiveOrderDetail>> receiveOrderDetail(int id);
   Future<Either<Failure, ReceiveOrderWarehouse>> receiveOrderWarehouse(Map<String, dynamic> queries);
   Future<Either<Failure, ReceiveOrderReference>> receiveOrderReference(Map<String, dynamic> queries);
+  Future<Either<Failure, ReceiveOrderReferenceDetail>> receiveOrderReferenceDetail(int id);
   Future<Either<Failure, bool>> createReceiveOrder(ReceiveOrderRequest request);
 }

@@ -264,3 +264,21 @@ Map<String, dynamic> _$ReceiveOrderReferenceResponseToJson(
       'meta': instance.meta,
       'data': instance.data,
     };
+
+ReceiveOrderReferenceDetailResponse
+    _$ReceiveOrderReferenceDetailResponseFromJson(Map<String, dynamic> json) =>
+        ReceiveOrderReferenceDetailResponse(
+          json['data'] == null
+              ? null
+              : PurchaseRequestDetailDataResponse.fromJson(
+                  json['data'] as Map<String, dynamic>),
+        )..meta = json['meta'] == null
+            ? null
+            : MetaResponse.fromJson(json['meta'] as Map<String, dynamic>);
+
+Map<String, dynamic> _$ReceiveOrderReferenceDetailResponseToJson(
+        ReceiveOrderReferenceDetailResponse instance) =>
+    <String, dynamic>{
+      'meta': instance.meta,
+      'data': instance.data,
+    };

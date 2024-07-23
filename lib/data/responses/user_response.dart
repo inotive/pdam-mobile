@@ -15,6 +15,7 @@ class UserDataResponse {
     this.roleId,
     this.username,
     this.role,
+    this.image,
   );
 
   @JsonKey(name: "id")
@@ -35,6 +36,8 @@ class UserDataResponse {
   String? username;
   @JsonKey(name: "role")
   RoleDataResponse? role;
+  @JsonKey(name: "image")
+  String? image;
 
   factory UserDataResponse.fromJson(Map<String, dynamic> json) => _$UserDataResponseFromJson(json);
 

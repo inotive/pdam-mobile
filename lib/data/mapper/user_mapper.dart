@@ -6,15 +6,17 @@ import 'package:pdam_inventory/persentations/resources/string_app.dart';
 extension UserDataResponseMapper on UserDataResponse? {
   UserData toDomain() {
     return UserData(
-        this?.id.orZero() ?? ZERO,
-        this?.name.orEmpty() ?? EMPTY,
-        this?.email.orEmpty() ?? EMPTY,
-        this?.emailVerifiedAt.orEmpty() ?? EMPTY,
-        this?.createdAt.orEmpty() ?? EMPTY,
-        this?.updatedAt.orEmpty() ?? EMPTY,
-        this?.roleId.orEmpty() ?? EMPTY,
-        this?.username.orEmpty() ?? EMPTY,
-        this?.role.toDomain());
+      this?.id.orZero() ?? ZERO,
+      this?.name.orEmpty() ?? EMPTY,
+      this?.email.orEmpty() ?? EMPTY,
+      this?.emailVerifiedAt.orEmpty() ?? EMPTY,
+      this?.createdAt.orEmpty() ?? EMPTY,
+      this?.updatedAt.orEmpty() ?? EMPTY,
+      this?.roleId.orEmpty() ?? EMPTY,
+      this?.username.orEmpty() ?? EMPTY,
+      this?.role.toDomain(),
+      this?.image.orEmpty() ?? EMPTY,
+    );
   }
 }
 

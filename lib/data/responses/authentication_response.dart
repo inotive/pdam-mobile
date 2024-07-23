@@ -26,7 +26,7 @@ class TokenResponse {
   @JsonKey(name: "expires_in")
   int? expiresIn;
   @JsonKey(name: "access_token")
-  String? accessToken;
+  bool? accessToken;
   @JsonKey(name: "token_type")
   String? tokenType;
 
