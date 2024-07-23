@@ -4,6 +4,7 @@ import 'dart:async';
 
 import 'package:pdam_inventory/domain/model/product_model.dart';
 import 'package:pdam_inventory/domain/usecase/products/product_detail_usecase.dart';
+import 'package:pdam_inventory/domain/usecase/products/product_stock_history_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/products/product_warehouse_usecase.dart';
 import 'package:pdam_inventory/persentations/base/base_viewmodel.dart';
 import 'package:pdam_inventory/persentations/packages/state_renderer/state_renderer.dart';
@@ -14,10 +15,12 @@ class ProductDetailViewmodel extends BaseViewModel
     implements ProductDetailViewmodelInputs, ProductDetailViewmodelOutputs {
   final ProductDetailUsecase _productDetailUsecase;
   final ProductWarehouseUsecase _productWarehouseUsecase;
-  ProductDetailViewmodel(this._productDetailUsecase, this._productWarehouseUsecase);
+  final ProductStockHistoryUsecase _productStockHistoryUsecase;
+  ProductDetailViewmodel(this._productDetailUsecase, this._productWarehouseUsecase, this._productStockHistoryUsecase);
 
   final StreamController _productDetailStreamController = BehaviorSubject<ProductDetailData>();
   final StreamController _productWarehouseStreamController = BehaviorSubject<List<ProductWarehouseData>>();
+  final StreamController _productStockHistoryStreamController = BehaviorSubject<List<ProductStockHistoryData>>();
 
   @override
   void start() {
@@ -44,6 +47,15 @@ class ProductDetailViewmodel extends BaseViewModel
     });
   }
 
+  productStockHistory(int id) async {
+    (await _productStockHistoryUsecase.execute(id)).fold((failure) {
+      inputState.add(ErrorState(StateRendererType.SNACKBAR_ERROR_STATE, failure.message));
+    }, (data) {
+      inputState.add(ContentState());
+      inputProductStockHistory.add(data.data);
+    });
+  }
+
   @override
   Sink get inputProductDetail => _productDetailStreamController.sink;
 
@@ -56,14 +68,23 @@ class ProductDetailViewmodel extends BaseViewModel
   @override
   Stream<List<ProductWarehouseData>> get outputProductWarehouse =>
       _productWarehouseStreamController.stream.map((item) => item);
+
+  @override
+  Sink get inputProductStockHistory => _productStockHistoryStreamController.sink;
+
+  @override
+  Stream<List<ProductStockHistoryData>> get outputProductStockHistory =>
+      _productStockHistoryStreamController.stream.map((item) => item);
 }
 
 abstract class ProductDetailViewmodelInputs {
   Sink get inputProductDetail;
   Sink get inputProductWarehouse;
+  Sink get inputProductStockHistory;
 }
 
 abstract class ProductDetailViewmodelOutputs {
   Stream<ProductDetailData> get outputProductDetail;
   Stream<List<ProductWarehouseData>> get outputProductWarehouse;
+  Stream<List<ProductStockHistoryData>> get outputProductStockHistory;
 }

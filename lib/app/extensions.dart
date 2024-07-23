@@ -33,3 +33,8 @@ extension StringCasingExtension on String {
   String toTitleCase() => replaceAll(RegExp(' +'), ' ').split(' ').map((str) => str.toCapitalized()).join(' ');
   String getInitials() => trim().split(RegExp(' +')).map((s) => s[0]).take(1).join();
 }
+
+extension Iterables<E> on Iterable<E> {
+  Map<K, List<E>> groupBy<K>(K Function(E) keyFunction) => fold(<K, List<E>>{},
+      (Map<K, List<E>> map, E element) => map..putIfAbsent(keyFunction(element), () => <E>[]).add(element));
+}

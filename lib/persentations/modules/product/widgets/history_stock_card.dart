@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:mobkit_dashed_border/mobkit_dashed_border.dart';
+import 'package:pdam_inventory/domain/model/product_model.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
 import 'package:pdam_inventory/persentations/widgets/custom_badge.dart';
 
 class HistoryStockCard extends StatelessWidget {
-  const HistoryStockCard({super.key});
+  const HistoryStockCard(this.data, {super.key});
+
+  final ProductStockHistoryData data;
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +43,7 @@ class HistoryStockCard extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                const CustomBadge(
-                  text: '+ 200 Stock',
-                ),
+                status(),
               ],
             ),
           ),
@@ -52,7 +53,7 @@ class HistoryStockCard extends StatelessWidget {
               horizontal: 16,
             ),
             child: Text(
-              '${StringApp.totalInventory}: 2415',
+              '${StringApp.totalInventory}: ${data.currentStock}',
               style: StyleApp.textNormal.copyWith(
                 color: ColorApp.greyText,
               ),
@@ -61,5 +62,21 @@ class HistoryStockCard extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Widget status() {
+    switch (data.type) {
+      case 'Masuk':
+        return CustomBadge(text: '+ ${data.qty} Stock');
+      case 'Keluar':
+        return CustomBadge(
+          text: '- ${data.qty} Stock',
+          backgroundColor: ColorApp.redBg,
+          textColor: ColorApp.red,
+        );
+
+      default:
+        return Container();
+    }
   }
 }

@@ -23,6 +23,7 @@ import 'package:pdam_inventory/domain/usecase/authentication/login_usecase.dart'
 import 'package:pdam_inventory/domain/usecase/authentication/logout_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/history_stock/history_stock_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/products/product_detail_usecase.dart';
+import 'package:pdam_inventory/domain/usecase/products/product_stock_history_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/products/product_summary_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/products/product_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/products/product_warehouse_usecase.dart';
@@ -149,7 +150,8 @@ initProductDetailModule() {
   if (!GetIt.I.isRegistered<ProductDetailUsecase>()) {
     instance.registerFactory<ProductDetailUsecase>(() => ProductDetailUsecase(instance()));
     instance.registerFactory<ProductWarehouseUsecase>(() => ProductWarehouseUsecase(instance()));
-    instance.registerFactory<ProductDetailViewmodel>(() => ProductDetailViewmodel(instance(), instance()));
+    instance.registerFactory<ProductStockHistoryUsecase>(() => ProductStockHistoryUsecase(instance()));
+    instance.registerFactory<ProductDetailViewmodel>(() => ProductDetailViewmodel(instance(), instance(), instance()));
   }
 }
 

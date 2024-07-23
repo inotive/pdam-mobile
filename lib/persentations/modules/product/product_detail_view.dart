@@ -28,6 +28,7 @@ class _ProductDetailViewState extends State<ProductDetailView> with TickerProvid
   _bind() {
     _productDetailViewmodel.productDetail(widget.id);
     _productDetailViewmodel.productWarehouse(widget.id);
+    _productDetailViewmodel.productStockHistory(widget.id);
   }
 
   @override
@@ -69,7 +70,7 @@ class _ProductDetailViewState extends State<ProductDetailView> with TickerProvid
                 child: TabBarView(
                   controller: _tabController,
                   children: [
-                    ProductHistoryStockTab(),
+                    ProductHistoryStockTab(_productDetailViewmodel),
                     ProductWarehouseStockTab(_productDetailViewmodel),
                   ],
                 ),

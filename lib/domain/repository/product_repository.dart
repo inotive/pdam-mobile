@@ -9,4 +9,5 @@ abstract class ProductRepository {
   Future<Either<Failure, ProductSummary>> productSummary();
   Future<Either<Failure, ProductDetail>> productDetail(int id);
   Future<Either<Failure, ProductWarehouse>> productWarehouse(int id);
+  Future<Either<Failure, ProductStockHistory>> productStockHistory(int id);
 }
