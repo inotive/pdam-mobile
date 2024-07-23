@@ -1,5 +1,5 @@
-class ReceiptProdutParam {
-  ReceiptProdutParam(this.id, this.qty);
+class ReceiptProductParam {
+  ReceiptProductParam(this.id, this.qty);
 
   int id;
   int qty;

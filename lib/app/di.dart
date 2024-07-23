@@ -33,6 +33,7 @@ import 'package:pdam_inventory/domain/usecase/products/product_warehouse_usecase
 import 'package:pdam_inventory/domain/usecase/purchase_request_detail_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/purchase_request_summary_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/purchase_request_usecase.dart';
+import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_create_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_detail_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_warehouse_usecase.dart';
@@ -174,7 +175,8 @@ initStockOpnameModule() {
 initReceiptItemModule() {
   if (!GetIt.I.isRegistered<ReceiveOrderWarehouseUsecase>()) {
     instance.registerFactory<ReceiveOrderWarehouseUsecase>(() => ReceiveOrderWarehouseUsecase(instance()));
-    instance.registerFactory<ReceiptViewmodel>(() => ReceiptViewmodel(instance(), instance()));
+    instance.registerFactory<ReceiveOrderCreateUsecase>(() => ReceiveOrderCreateUsecase(instance()));
+    instance.registerFactory<ReceiptViewmodel>(() => ReceiptViewmodel(instance(), instance(), instance()));
   }
 }
 

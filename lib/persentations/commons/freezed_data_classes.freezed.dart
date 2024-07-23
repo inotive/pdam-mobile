@@ -149,3 +149,193 @@ abstract class _LoginObject implements LoginObject {
   _$$LoginObjectImplCopyWith<_$LoginObjectImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$ReceiveOrderObject {
+  String get refferenceNumber => throw _privateConstructorUsedError;
+  String get warehouseId => throw _privateConstructorUsedError;
+  String get note => throw _privateConstructorUsedError;
+  List<ReceiptProductParam> get productList =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $ReceiveOrderObjectCopyWith<ReceiveOrderObject> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ReceiveOrderObjectCopyWith<$Res> {
+  factory $ReceiveOrderObjectCopyWith(
+          ReceiveOrderObject value, $Res Function(ReceiveOrderObject) then) =
+      _$ReceiveOrderObjectCopyWithImpl<$Res, ReceiveOrderObject>;
+  @useResult
+  $Res call(
+      {String refferenceNumber,
+      String warehouseId,
+      String note,
+      List<ReceiptProductParam> productList});
+}
+
+/// @nodoc
+class _$ReceiveOrderObjectCopyWithImpl<$Res, $Val extends ReceiveOrderObject>
+    implements $ReceiveOrderObjectCopyWith<$Res> {
+  _$ReceiveOrderObjectCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? refferenceNumber = null,
+    Object? warehouseId = null,
+    Object? note = null,
+    Object? productList = null,
+  }) {
+    return _then(_value.copyWith(
+      refferenceNumber: null == refferenceNumber
+          ? _value.refferenceNumber
+          : refferenceNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      warehouseId: null == warehouseId
+          ? _value.warehouseId
+          : warehouseId // ignore: cast_nullable_to_non_nullable
+              as String,
+      note: null == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String,
+      productList: null == productList
+          ? _value.productList
+          : productList // ignore: cast_nullable_to_non_nullable
+              as List<ReceiptProductParam>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ReceiveOrderObjectImplCopyWith<$Res>
+    implements $ReceiveOrderObjectCopyWith<$Res> {
+  factory _$$ReceiveOrderObjectImplCopyWith(_$ReceiveOrderObjectImpl value,
+          $Res Function(_$ReceiveOrderObjectImpl) then) =
+      __$$ReceiveOrderObjectImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String refferenceNumber,
+      String warehouseId,
+      String note,
+      List<ReceiptProductParam> productList});
+}
+
+/// @nodoc
+class __$$ReceiveOrderObjectImplCopyWithImpl<$Res>
+    extends _$ReceiveOrderObjectCopyWithImpl<$Res, _$ReceiveOrderObjectImpl>
+    implements _$$ReceiveOrderObjectImplCopyWith<$Res> {
+  __$$ReceiveOrderObjectImplCopyWithImpl(_$ReceiveOrderObjectImpl _value,
+      $Res Function(_$ReceiveOrderObjectImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? refferenceNumber = null,
+    Object? warehouseId = null,
+    Object? note = null,
+    Object? productList = null,
+  }) {
+    return _then(_$ReceiveOrderObjectImpl(
+      null == refferenceNumber
+          ? _value.refferenceNumber
+          : refferenceNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == warehouseId
+          ? _value.warehouseId
+          : warehouseId // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == note
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == productList
+          ? _value._productList
+          : productList // ignore: cast_nullable_to_non_nullable
+              as List<ReceiptProductParam>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ReceiveOrderObjectImpl implements _ReceiveOrderObject {
+  _$ReceiveOrderObjectImpl(this.refferenceNumber, this.warehouseId, this.note,
+      final List<ReceiptProductParam> productList)
+      : _productList = productList;
+
+  @override
+  final String refferenceNumber;
+  @override
+  final String warehouseId;
+  @override
+  final String note;
+  final List<ReceiptProductParam> _productList;
+  @override
+  List<ReceiptProductParam> get productList {
+    if (_productList is EqualUnmodifiableListView) return _productList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_productList);
+  }
+
+  @override
+  String toString() {
+    return 'ReceiveOrderObject(refferenceNumber: $refferenceNumber, warehouseId: $warehouseId, note: $note, productList: $productList)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ReceiveOrderObjectImpl &&
+            (identical(other.refferenceNumber, refferenceNumber) ||
+                other.refferenceNumber == refferenceNumber) &&
+            (identical(other.warehouseId, warehouseId) ||
+                other.warehouseId == warehouseId) &&
+            (identical(other.note, note) || other.note == note) &&
+            const DeepCollectionEquality()
+                .equals(other._productList, _productList));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, refferenceNumber, warehouseId,
+      note, const DeepCollectionEquality().hash(_productList));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ReceiveOrderObjectImplCopyWith<_$ReceiveOrderObjectImpl> get copyWith =>
+      __$$ReceiveOrderObjectImplCopyWithImpl<_$ReceiveOrderObjectImpl>(
+          this, _$identity);
+}
+
+abstract class _ReceiveOrderObject implements ReceiveOrderObject {
+  factory _ReceiveOrderObject(
+      final String refferenceNumber,
+      final String warehouseId,
+      final String note,
+      final List<ReceiptProductParam> productList) = _$ReceiveOrderObjectImpl;
+
+  @override
+  String get refferenceNumber;
+  @override
+  String get warehouseId;
+  @override
+  String get note;
+  @override
+  List<ReceiptProductParam> get productList;
+  @override
+  @JsonKey(ignore: true)
+  _$$ReceiveOrderObjectImplCopyWith<_$ReceiveOrderObjectImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

@@ -1,10 +1,13 @@
 // ignore: depend_on_referenced_packages
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:pdam_inventory/data/data_source/receive_order_data_source.dart';
 import 'package:pdam_inventory/data/mapper/receive_order_mapper.dart';
 import 'package:pdam_inventory/data/networks/error_handler.dart';
 import 'package:pdam_inventory/data/networks/failure.dart';
 import 'package:pdam_inventory/data/networks/network_info.dart';
+import 'package:pdam_inventory/data/requests/receive_order_request.dart';
 import 'package:pdam_inventory/domain/model/receive_order_model.dart';
 import 'package:pdam_inventory/domain/repository/receive_order_repository.dart';
 
@@ -74,6 +77,31 @@ class ReceiveOrderRepositoryImpl implements ReceiveOrderRepository {
           );
         }
       } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> createReceiveOrder(ReceiveOrderRequest request) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final response = await _receiveOrderDataSource.createReceiveOrderMap(request);
+
+        if (response.meta?.code == ResponseCode.SUCCESS) {
+          return const Right(true);
+        } else {
+          return Left(
+            Failure(
+              response.meta?.code ?? ResponseCode.DEFAULT,
+              response.meta?.message ?? ResponseMessage.DEFAULT,
+            ),
+          );
+        }
+      } catch (error) {
+        log(error.toString());
         return Left(ErrorHandler.handle(error).failure);
       }
     } else {

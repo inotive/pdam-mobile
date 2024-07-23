@@ -10,10 +10,12 @@ import 'package:pdam_inventory/persentations/modules/receipt_item/widgets/input_
 import 'package:pdam_inventory/persentations/modules/receipt_item/widgets/input_dropdown_warehouse.dart';
 import 'package:pdam_inventory/persentations/modules/receipt_item/widgets/receipt_item_card.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
+import 'package:pdam_inventory/persentations/resources/route_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
 import 'package:pdam_inventory/persentations/widgets/button/custom_outline_button.dart';
 import 'package:pdam_inventory/persentations/widgets/forms/input_field.dart';
+import 'package:pdam_inventory/persentations/widgets/snackbar_app.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
 class ReceiptItemManualInputTab extends StatefulWidget {
@@ -28,12 +30,17 @@ class ReceiptItemManualInputTab extends StatefulWidget {
 class _ReceiptItemManualInputTabState extends State<ReceiptItemManualInputTab> {
   ValueNotifier<int> qty = ValueNotifier<int>(0);
   List<ProductData> productItem = [];
-  List<ReceiptProdutParam> productParam = [];
+  List<ReceiptProductParam> productParam = [];
+  String? warehouse;
+  bool isEnable = false;
+
+  TextEditingController referenceController = TextEditingController();
+  TextEditingController noteController = TextEditingController();
 
   onAddProduct(ProductData data) {
     productItem.add(data);
-    productParam.add(ReceiptProdutParam(data.id, 1));
-
+    productParam.add(ReceiptProductParam(data.id, 1));
+    widget._receiptViewmodel.setProductList(productParam);
     log("On Add Product ===> $productParam");
     setState(() {});
   }
@@ -45,12 +52,40 @@ class _ReceiptItemManualInputTabState extends State<ReceiptItemManualInputTab> {
     setState(() {});
   }
 
-  onUpdateQuantity(ReceiptProdutParam param) {
+  onUpdateQuantity(ReceiptProductParam param) {
     if (productParam.isNotEmpty) {
       int index = productParam.indexWhere((item) => item.id.toString().contains(param.id.toString()));
       productParam.update(index, param);
+      widget._receiptViewmodel.setProductList(productParam);
       log("On Update Quantity ===> $productParam");
     }
+  }
+
+  _bind() {
+    referenceController.addListener(() => widget._receiptViewmodel.setRefferenceNumber(referenceController.text));
+    noteController.addListener(() => widget._receiptViewmodel.setNote(noteController.text));
+    widget._receiptViewmodel.isCreateSuccesfully.stream.listen((isSuccess) {
+      if (isSuccess) {
+        WidgetsBinding.instance.addPostFrameCallback((isNext) {
+          SnackbarApp.topSnackbarSucces('Terima Barang berhasil disimpan', context);
+          Navigator.pushReplacementNamed(context, Routes.acceptedItem);
+        });
+      }
+    });
+  }
+
+  bool onEnable() {
+    if (referenceController.text != '' && warehouse != null && productParam.isNotEmpty && noteController.text != '') {
+      isEnable = true;
+    }
+    setState(() {});
+    return isEnable;
+  }
+
+  @override
+  void initState() {
+    _bind();
+    super.initState();
   }
 
   @override
@@ -69,12 +104,12 @@ class _ReceiptItemManualInputTabState extends State<ReceiptItemManualInputTab> {
                         product: productItem[index],
                         onAdd: () {
                           productItem[index].qty.value++;
-                          onUpdateQuantity(ReceiptProdutParam(productItem[index].id, productItem[index].qty.value));
+                          onUpdateQuantity(ReceiptProductParam(productItem[index].id, productItem[index].qty.value));
                         },
                         onRemove: () {
                           if (productItem[index].qty.value > 1) {
                             productItem[index].qty.value--;
-                            onUpdateQuantity(ReceiptProdutParam(productItem[index].id, productItem[index].qty.value));
+                            onUpdateQuantity(ReceiptProductParam(productItem[index].id, productItem[index].qty.value));
                           } else {
                             onRemove(productItem[index]);
                           }
@@ -95,7 +130,14 @@ class _ReceiptItemManualInputTabState extends State<ReceiptItemManualInputTab> {
           ),
           child: CustomOutlineButton(
             text: StringApp.save,
-            onPressed: () {},
+            backgroundColor: isEnable ? ColorApp.white : ColorApp.border,
+            textColor: isEnable ? ColorApp.primary : ColorApp.greyText,
+            borderColor: isEnable ? ColorApp.primary : ColorApp.borderB3,
+            onPressed: () {
+              if (isEnable) {
+                widget._receiptViewmodel.create();
+              }
+            },
           ),
         )
       ],
@@ -126,6 +168,10 @@ class _ReceiptItemManualInputTabState extends State<ReceiptItemManualInputTab> {
             text: StringApp.reference,
             hint: StringApp.reference,
             textStyle: StyleApp.textNormal.copyWith(),
+            controller: referenceController,
+            onChanged: (String? value) {
+              onEnable();
+            },
           ),
           const SpacerHeight(12),
           StreamBuilder<List<ReceiveOrderWarehouseData>>(
@@ -135,7 +181,11 @@ class _ReceiptItemManualInputTabState extends State<ReceiptItemManualInputTab> {
                 return InputDropdownWarehouse(
                   items: data,
                   text: StringApp.warehouse,
-                  onChanged: (ReceiveOrderWarehouseData? value) {},
+                  onChanged: (ReceiveOrderWarehouseData? value) {
+                    warehouse = value?.id.toString() ?? '0';
+                    onEnable();
+                    widget._receiptViewmodel.setWarehouseId(value?.id.toString() ?? '0');
+                  },
                   hint: StringApp.searchWarehouse,
                 );
               }),
@@ -149,10 +199,21 @@ class _ReceiptItemManualInputTabState extends State<ReceiptItemManualInputTab> {
                   text: StringApp.itemName,
                   onChanged: (ProductData? value) {
                     onAddProduct(value!);
+                    onEnable();
                   },
                   hint: StringApp.searchItem,
                 );
               }),
+          const SpacerHeight(12),
+          InputField(
+            text: StringApp.note,
+            hint: StringApp.note,
+            textStyle: StyleApp.textNormal.copyWith(),
+            controller: noteController,
+            onChanged: (String? value) {
+              onEnable();
+            },
+          ),
         ],
       ),
     );

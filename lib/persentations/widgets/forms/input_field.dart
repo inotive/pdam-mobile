@@ -14,6 +14,7 @@ class InputField extends StatelessWidget {
     this.readOnly = false,
     this.textStyle,
     this.borderColor,
+    this.onChanged,
   });
 
   final String text;
@@ -24,6 +25,7 @@ class InputField extends StatelessWidget {
   final bool readOnly;
   final TextStyle? textStyle;
   final Color? borderColor;
+  final Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +49,7 @@ class InputField extends StatelessWidget {
             keyboardType: keyboardType,
             controller: controller,
             readOnly: readOnly,
+            onChanged: onChanged,
             decoration: InputDecoration(
               hintText: hint,
               filled: true,

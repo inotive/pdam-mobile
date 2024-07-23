@@ -382,6 +382,45 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
+  Future<MessageResponse> createReceiveOrder(
+    String refferenceNumber,
+    String warehouseId,
+    String? note,
+    List<ReceiptProductParam> productList,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    final _data = {
+      'refference_number': refferenceNumber,
+      'warehouse_id': warehouseId,
+      'note': note,
+      'product_list': productList,
+    };
+    _data.removeWhere((k, v) => v == null);
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<MessageResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/mobile/receive-order',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final _value = MessageResponse.fromJson(_result.data!);
+    return _value;
+  }
+
+  @override
   Future<HistoryStockResponse> historyStock() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

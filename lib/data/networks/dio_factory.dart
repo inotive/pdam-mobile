@@ -32,6 +32,7 @@ class DioFactory {
         baseUrl: ConfigApp.baseUrl,
         connectTimeout: Duration(seconds: timeOut),
         receiveTimeout: Duration(seconds: timeOut),
+        validateStatus: (status) => true,
         headers: headers);
 
     if (kReleaseMode) {

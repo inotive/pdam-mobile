@@ -1,7 +1,7 @@
 // ignore_for_file: depend_on_referenced_packages
-
 import 'package:dio/dio.dart';
 import 'package:pdam_inventory/app/config_app.dart';
+import 'package:pdam_inventory/data/params/receipt_produt_param.dart';
 import 'package:pdam_inventory/data/responses/authentication_response.dart';
 import 'package:pdam_inventory/data/responses/base_response.dart';
 import 'package:pdam_inventory/data/responses/history_stock_response.dart';
@@ -66,6 +66,15 @@ abstract class AppServiceClient {
 
   @GET('/mobile/receive-order/list-warehouse')
   Future<ReceiveOrderWarehouseResponse> receiveOrderWarehouse(@Queries() Map<String, dynamic> queries);
+
+  @POST('/mobile/receive-order')
+  Future<MessageResponse> createReceiveOrder(
+    @Field('refference_number') String refferenceNumber,
+    @Field('warehouse_id') String warehouseId,
+    @Field('note') String? note,
+    @Field('product_list') List<ReceiptProductParam> productList,
+  );
+
   /* End Receive Order */
 
   /* History Stock */
