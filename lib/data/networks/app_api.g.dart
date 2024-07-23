@@ -353,6 +353,35 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
+  Future<ReceiveOrderWarehouseResponse> receiveOrderWarehouse(
+      Map<String, dynamic> queries) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.addAll(queries);
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ReceiveOrderWarehouseResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/mobile/receive-order/list-warehouse',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final _value = ReceiveOrderWarehouseResponse.fromJson(_result.data!);
+    return _value;
+  }
+
+  @override
   Future<HistoryStockResponse> historyStock() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
