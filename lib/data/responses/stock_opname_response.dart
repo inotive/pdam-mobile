@@ -47,7 +47,7 @@ class StockOpnameDataResponse {
   @JsonKey(name: 'status')
   String? status;
   @JsonKey(name: 'product_count')
-  String? productCount;
+  int? productCount;
   @JsonKey(name: 'created_by')
   String? createdBy;
   @JsonKey(name: 'updated_by')

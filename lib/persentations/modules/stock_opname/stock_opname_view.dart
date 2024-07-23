@@ -1,12 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:pdam_inventory/app/di.dart';
+import 'package:pdam_inventory/domain/model/stock_opname_model.dart';
 import 'package:pdam_inventory/dummy/dummy_data.dart';
+import 'package:pdam_inventory/persentations/modules/stock_opname/viewmodel/stock_opname_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/stock_opname/widgets/stock_opname_card.dart';
+import 'package:pdam_inventory/persentations/modules/stock_opname/widgets/stock_opname_skeleton.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
+import 'package:pdam_inventory/persentations/widgets/card/empty_card.dart';
 import 'package:pdam_inventory/persentations/widgets/forms/input_dropdown.dart';
 
-class StockOpnameView extends StatelessWidget {
+class StockOpnameView extends StatefulWidget {
   const StockOpnameView({super.key});
+
+  @override
+  State<StockOpnameView> createState() => _StockOpnameViewState();
+}
+
+class _StockOpnameViewState extends State<StockOpnameView> {
+  final StockOpnameViewmodel _stockOpnameViewmodel = instance<StockOpnameViewmodel>();
+
+  _bind() {
+    _stockOpnameViewmodel.start();
+  }
+
+  @override
+  void initState() {
+    _bind();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +43,29 @@ class StockOpnameView extends StatelessWidget {
             child: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  children: [
-                    StockOpnameCard(),
-                    StockOpnameCard(),
-                    StockOpnameCard(),
-                  ],
-                ),
+                child: StreamBuilder<List<StockOpnameData>>(
+                    stream: _stockOpnameViewmodel.outputStockOpname,
+                    builder: (context, snapshot) {
+                      List<StockOpnameData> data = snapshot.data ?? List.empty();
+
+                      if (ConnectionState.waiting == snapshot.connectionState) {
+                        return const Column(
+                          children: [
+                            StockOpnameSkeleton(),
+                            StockOpnameSkeleton(),
+                            StockOpnameSkeleton(),
+                          ],
+                        );
+                      }
+
+                      if (data.isEmpty) {
+                        return const EmptyCard(message: StringApp.stockOpnameNotYet);
+                      }
+
+                      return Column(
+                        children: data.map((item) => StockOpnameCard(item)).toList(),
+                      );
+                    }),
               ),
             ),
           ),
@@ -65,5 +103,11 @@ class StockOpnameView extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _stockOpnameViewmodel.dispose();
+    super.dispose();
   }
 }

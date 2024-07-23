@@ -8,6 +8,7 @@ import 'package:pdam_inventory/data/responses/history_stock_response.dart';
 import 'package:pdam_inventory/data/responses/product_response.dart';
 import 'package:pdam_inventory/data/responses/purchase_request_response.dart';
 import 'package:pdam_inventory/data/responses/receive_order_response.dart';
+import 'package:pdam_inventory/data/responses/stock_opname_response.dart';
 import 'package:retrofit/retrofit.dart';
 part 'app_api.g.dart';
 
@@ -70,4 +71,11 @@ abstract class AppServiceClient {
   Future<HistoryStockResponse> historyStock();
 
   /* End History Stock */
+
+  /* Stock Opname */
+  @GET('/mobile/stock-opname')
+  Future<StockOpnameResponse> stockOpname(
+    @Queries() Map<String, dynamic> queries,
+  );
+  /* End Stock Opname */
 }

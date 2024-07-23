@@ -20,7 +20,7 @@ extension StockOpnameDataResponseMapper on StockOpnameDataResponse? {
       this?.date.orEmpty() ?? EMPTY,
       this?.description.orEmpty() ?? EMPTY,
       this?.status.orEmpty() ?? EMPTY,
-      this?.productCount.orEmpty() ?? EMPTY,
+      this?.productCount.orZero() ?? ZERO,
       this?.createdBy.orEmpty() ?? EMPTY,
       this?.updatedBy.orEmpty() ?? EMPTY,
       this?.deletedBy.orEmpty() ?? EMPTY,

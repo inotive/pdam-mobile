@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pdam_inventory/app/extensions.dart';
+import 'package:pdam_inventory/domain/model/stock_opname_model.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
@@ -6,7 +8,9 @@ import 'package:pdam_inventory/persentations/widgets/custom_badge.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
 class StockOpnameDetailView extends StatelessWidget {
-  const StockOpnameDetailView({super.key});
+  const StockOpnameDetailView(this.data, {super.key});
+
+  final StockOpnameData data;
 
   @override
   Widget build(BuildContext context) {
@@ -38,24 +42,24 @@ class StockOpnameDetailView extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        'OPO-0013210',
+                        data.opnameNumber,
                         style: StyleApp.textXl.copyWith(
                           fontWeight: FontWeight.w700,
                         ),
                       ),
                     ),
                     const SpacerWidth(6),
-                    const CustomBadge(text: 'Selesai'),
+                    CustomBadge(text: data.status.toCapitalized()),
                   ],
                 ),
                 const SpacerHeight(16),
-                _item(StringApp.timeBy, '20 Nov 2023 12:00:01'),
+                _item(StringApp.timeBy, data.createdAt),
                 const SpacerHeight(8),
-                _item(StringApp.pic, 'Jonathan Doe'),
+                _item(StringApp.pic, data.createdBy),
                 const SpacerHeight(8),
-                _item(StringApp.productHasOpname, '150 produk'),
+                _item(StringApp.productHasOpname, '${data.productCount} produk'),
                 const SpacerHeight(8),
-                _item(StringApp.timeDone, '20 Nov 2023 17:10:01'),
+                _item(StringApp.timeDone, data.finishedDate),
               ],
             ),
           ),

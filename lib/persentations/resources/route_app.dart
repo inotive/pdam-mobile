@@ -46,6 +46,7 @@ class RouterGenerator {
         initPurchaseRequestModule();
         return MaterialPageRoute(builder: (_) => const RequestedItemView());
       case Routes.stockOpname:
+        initStockOpnameModule();
         return MaterialPageRoute(builder: (_) => const StockOpnameView());
       case Routes.acceptedItem:
         return MaterialPageRoute(builder: (_) => const AcceptedItemView());

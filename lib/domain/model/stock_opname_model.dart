@@ -22,18 +22,18 @@ class StockOpnameData {
     this.finishedDate,
   );
 
-  int? id;
-  String? warehouseId;
-  String? opnameNumber;
-  String? date;
-  String? description;
-  String? status;
-  String? productCount;
-  String? createdBy;
-  String? updatedBy;
-  String? deletedBy;
-  String? createdAt;
-  String? updatedAt;
-  String? deletedAt;
-  String? finishedDate;
+  int id;
+  String warehouseId;
+  String opnameNumber;
+  String date;
+  String description;
+  String status;
+  int productCount;
+  String createdBy;
+  String updatedBy;
+  String deletedBy;
+  String createdAt;
+  String updatedAt;
+  String deletedAt;
+  String finishedDate;
 }

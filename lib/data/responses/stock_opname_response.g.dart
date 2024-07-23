@@ -43,7 +43,7 @@ StockOpnameDataResponse _$StockOpnameDataResponseFromJson(
       json['date'] as String?,
       json['description'] as String?,
       json['status'] as String?,
-      json['product_count'] as String?,
+      (json['product_count'] as num?)?.toInt(),
       json['created_by'] as String?,
       json['updated_by'] as String?,
       json['deleted_by'] as String?,
