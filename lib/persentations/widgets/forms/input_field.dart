@@ -12,6 +12,8 @@ class InputField extends StatelessWidget {
     this.controller,
     this.keyboardType = TextInputType.text,
     this.readOnly = false,
+    this.textStyle,
+    this.borderColor,
   });
 
   final String text;
@@ -20,6 +22,8 @@ class InputField extends StatelessWidget {
   final TextEditingController? controller;
   final TextInputType keyboardType;
   final bool readOnly;
+  final TextStyle? textStyle;
+  final Color? borderColor;
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +34,11 @@ class InputField extends StatelessWidget {
         children: [
           Text(
             text,
-            style: StyleApp.textSm.copyWith(
-              fontWeight: FontWeight.w600,
-              color: ColorApp.greyTextA5,
-            ),
+            style: textStyle ??
+                StyleApp.textSm.copyWith(
+                  fontWeight: FontWeight.w600,
+                  color: ColorApp.greyTextA5,
+                ),
           ),
           const SpacerHeight(6),
           TextFormField(
@@ -52,8 +57,8 @@ class InputField extends StatelessWidget {
               contentPadding: const EdgeInsets.all(12),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
-                borderSide: const BorderSide(
-                  color: ColorApp.greyTextA5,
+                borderSide: BorderSide(
+                  color: borderColor ?? ColorApp.greyTextA5,
                   width: 1,
                 ),
               ),
@@ -66,8 +71,8 @@ class InputField extends StatelessWidget {
               ),
               disabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
-                borderSide: const BorderSide(
-                  color: ColorApp.greyTextA5,
+                borderSide: BorderSide(
+                  color: borderColor ?? ColorApp.greyTextA5,
                   width: 1,
                 ),
               ),

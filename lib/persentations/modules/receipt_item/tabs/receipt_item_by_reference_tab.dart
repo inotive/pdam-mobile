@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:pdam_inventory/dummy/dummy_data.dart';
-import 'package:pdam_inventory/persentations/modules/received_item/widgets/received_item_card.dart';
+import 'package:pdam_inventory/persentations/modules/receipt_item/widgets/receipt_item_card.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/widgets/button/custom_outline_button.dart';
 import 'package:pdam_inventory/persentations/widgets/forms/input_dropdown.dart';
 
-class ReceivedItemByReferenceTab extends StatelessWidget {
-  const ReceivedItemByReferenceTab({super.key});
+class ReceiptItemByReferenceTab extends StatelessWidget {
+  const ReceiptItemByReferenceTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -45,11 +45,11 @@ class ReceivedItemByReferenceTab extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                ReceivedItemCard(),
-                ReceivedItemCard(),
-                ReceivedItemCard(),
-                ReceivedItemCard(),
-                ReceivedItemCard(),
+                // ReceiptItemCard(),
+                // ReceiptItemCard(),
+                // ReceiptItemCard(),
+                // ReceiptItemCard(),
+                // ReceiptItemCard(),
               ],
             ),
           ),

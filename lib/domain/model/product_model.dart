@@ -1,3 +1,6 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
 class Product {
   Product(this.data);
 
@@ -15,6 +18,7 @@ class ProductData {
     this.image,
     this.createdAt,
     this.updatedAt,
+    this.qty,
   );
 
   int id;
@@ -26,6 +30,7 @@ class ProductData {
   String image;
   String createdAt;
   String updatedAt;
+  ValueNotifier<int> qty;
 }
 
 class ProductDetail {

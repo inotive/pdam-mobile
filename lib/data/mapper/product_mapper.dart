@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:pdam_inventory/app/extensions.dart';
 import 'package:pdam_inventory/data/responses/product_response.dart';
 import 'package:pdam_inventory/domain/model/product_model.dart';
@@ -14,6 +15,7 @@ extension ProductResponseMapper on ProductResponse? {
 
 extension ProductDataResponseMapper on ProductDataResponse? {
   ProductData toDomain() {
+    ValueNotifier<int> qty = ValueNotifier<int>(1);
     return ProductData(
       this?.id.orZero() ?? ZERO,
       this?.name.orEmpty() ?? EMPTY,
@@ -24,6 +26,7 @@ extension ProductDataResponseMapper on ProductDataResponse? {
       this?.image.orEmpty() ?? EMPTY,
       this?.createdAt.orEmpty() ?? EMPTY,
       this?.updatedAt.orEmpty() ?? EMPTY,
+      qty,
     );
   }
 }

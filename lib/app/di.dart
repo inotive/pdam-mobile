@@ -35,6 +35,7 @@ import 'package:pdam_inventory/domain/usecase/purchase_request_summary_usecase.d
 import 'package:pdam_inventory/domain/usecase/purchase_request_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_detail_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_usecase.dart';
+import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_warehouse_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/stock_opname/stock_opname_usecase.dart';
 import 'package:pdam_inventory/persentations/modules/accepted_item/viewmodel/receive_order_detail_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/accepted_item/viewmodel/receive_order_viewmodel.dart';
@@ -43,6 +44,7 @@ import 'package:pdam_inventory/persentations/modules/history_stock/viewmodel/his
 import 'package:pdam_inventory/persentations/modules/product/viewmodel/product_detail_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/product/viewmodel/product_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/profile/viewmodel/profile_viewmodel.dart';
+import 'package:pdam_inventory/persentations/modules/receipt_item/viewmodel/receipt_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/requested_item/viewmodel/requested_detail_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/requested_item/viewmodel/requested_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/stock_opname/viewmodel/stock_opname_viewmodel.dart';
@@ -169,6 +171,13 @@ initStockOpnameModule() {
   }
 }
 
+initReceiptItemModule() {
+  if (!GetIt.I.isRegistered<ReceiveOrderWarehouseUsecase>()) {
+    instance.registerFactory<ReceiveOrderWarehouseUsecase>(() => ReceiveOrderWarehouseUsecase(instance()));
+    instance.registerFactory<ReceiptViewmodel>(() => ReceiptViewmodel(instance(), instance()));
+  }
+}
+
 resetModules() {
   instance.reset(dispose: false);
   initAppModule();
@@ -181,4 +190,5 @@ resetModules() {
   initHistoryStockModule();
   initProductDetailModule();
   initStockOpnameModule();
+  initReceiptItemModule();
 }

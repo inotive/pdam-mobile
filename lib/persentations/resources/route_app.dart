@@ -8,7 +8,7 @@ import 'package:pdam_inventory/persentations/modules/notification/notification_v
 import 'package:pdam_inventory/persentations/modules/product/product_view.dart';
 import 'package:pdam_inventory/persentations/modules/product/search_product_view.dart';
 import 'package:pdam_inventory/persentations/modules/purchase_item/purchase_item_view.dart';
-import 'package:pdam_inventory/persentations/modules/received_item/received_item_view.dart';
+import 'package:pdam_inventory/persentations/modules/receipt_item/receipt_item_view.dart';
 import 'package:pdam_inventory/persentations/modules/requested_item/requested_item_view.dart';
 import 'package:pdam_inventory/persentations/modules/splash/splash_view.dart';
 import 'package:pdam_inventory/persentations/modules/stock_opname/stock_opname_view.dart';
@@ -51,7 +51,8 @@ class RouterGenerator {
       case Routes.acceptedItem:
         return MaterialPageRoute(builder: (_) => const AcceptedItemView());
       case Routes.receivedItem:
-        return MaterialPageRoute(builder: (_) => const ReceivedItemView());
+        initReceiptItemModule();
+        return MaterialPageRoute(builder: (_) => const ReceiptItemView());
       case Routes.mainMenu:
         initProductModule();
         initHistoryStockModule();

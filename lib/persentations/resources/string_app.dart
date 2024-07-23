@@ -118,4 +118,7 @@ class StringApp {
   static const String historyStockNotYet = 'Belum ada data history stock';
   static const String warehouseStockNotYet = 'Belum ada data stock gudang';
   static const String stockOpnameNotYet = 'Belum ada data stock opname';
+
+  static const String warehouse = 'Gudang';
+  static const String searchWarehouse = 'Cari Gudang';
 }
