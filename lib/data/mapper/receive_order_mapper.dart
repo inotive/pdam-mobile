@@ -1,5 +1,7 @@
 import 'package:pdam_inventory/app/extensions.dart';
+import 'package:pdam_inventory/data/mapper/purchase_request_mapper.dart';
 import 'package:pdam_inventory/data/responses/receive_order_response.dart';
+import 'package:pdam_inventory/domain/model/purchase_request_model.dart';
 import 'package:pdam_inventory/domain/model/receive_order_model.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 
@@ -114,5 +116,14 @@ extension ReceiveOrderWarehouseResponseMapper on ReceiveOrderWarehouseResponse? 
         .toList();
 
     return ReceiveOrderWarehouse(data);
+  }
+}
+
+extension ReceiveOrderReferenceResponseMapper on ReceiveOrderReferenceResponse? {
+  ReceiveOrderReference toDomain() {
+    List<PurchaseRequest> refs =
+        (this?.data.map((item) => item.toDomain()) ?? const Iterable.empty()).cast<PurchaseRequest>().toList();
+
+    return ReceiveOrderReference(refs);
   }
 }

@@ -1,3 +1,5 @@
+import 'package:pdam_inventory/domain/model/purchase_request_model.dart';
+
 class ReceiveOrder {
   ReceiveOrder(
     this.id,
@@ -131,4 +133,10 @@ class ReceiveOrderWarehouse {
   ReceiveOrderWarehouse(this.data);
 
   List<ReceiveOrderWarehouseData> data;
+}
+
+class ReceiveOrderReference {
+  ReceiveOrderReference(this.data);
+
+  List<PurchaseRequest> data;
 }

@@ -3,6 +3,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:pdam_inventory/data/responses/base_response.dart';
 import 'package:pdam_inventory/data/responses/pagination_base_response.dart';
+import 'package:pdam_inventory/data/responses/purchase_request_response.dart';
 part 'receive_order_response.g.dart';
 
 @JsonSerializable()
@@ -234,4 +235,12 @@ class ReceiveOrderWarehouseResponse extends PaginationBaseResponse {
       _$ReceiveOrderWarehouseResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ReceiveOrderWarehouseResponseToJson(this);
+}
+
+@JsonSerializable()
+class ReceiveOrderReferenceResponse {
+  ReceiveOrderReferenceResponse(this.data);
+
+  @JsonKey(name: 'data')
+  List<PurchaseRequestResponse> data;
 }

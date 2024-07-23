@@ -235,3 +235,18 @@ Map<String, dynamic> _$ReceiveOrderWarehouseResponseToJson(
       'meta': instance.meta,
       'data': instance.data,
     };
+
+ReceiveOrderReferenceResponse _$ReceiveOrderReferenceResponseFromJson(
+        Map<String, dynamic> json) =>
+    ReceiveOrderReferenceResponse(
+      (json['data'] as List<dynamic>)
+          .map((e) =>
+              PurchaseRequestResponse.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$ReceiveOrderReferenceResponseToJson(
+        ReceiveOrderReferenceResponse instance) =>
+    <String, dynamic>{
+      'data': instance.data,
+    };
