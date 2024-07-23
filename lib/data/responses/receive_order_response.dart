@@ -189,3 +189,49 @@ class ReceiveOrderDetailResponse extends BaseResponse {
 
   Map<String, dynamic> toJson() => _$ReceiveOrderDetailResponseToJson(this);
 }
+
+@JsonSerializable()
+class ReceiveOrderWarehouseDataResponse {
+  ReceiveOrderWarehouseDataResponse(
+    this.id,
+    this.name,
+    this.pic,
+    this.description,
+    this.address,
+    this.createdAt,
+    this.updatedAt,
+  );
+
+  @JsonKey(name: "id")
+  int? id;
+  @JsonKey(name: "name")
+  String? name;
+  @JsonKey(name: "pic")
+  String? pic;
+  @JsonKey(name: "description")
+  String? description;
+  @JsonKey(name: "address")
+  String? address;
+  @JsonKey(name: "created_at")
+  String? createdAt;
+  @JsonKey(name: "updated_at")
+  String? updatedAt;
+
+  factory ReceiveOrderWarehouseDataResponse.fromJson(Map<String, dynamic> json) =>
+      _$ReceiveOrderWarehouseDataResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ReceiveOrderWarehouseDataResponseToJson(this);
+}
+
+@JsonSerializable()
+class ReceiveOrderWarehouseResponse extends PaginationBaseResponse {
+  ReceiveOrderWarehouseResponse(this.data);
+
+  @JsonKey(name: 'data')
+  List<ReceiveOrderWarehouseDataResponse> data;
+
+  factory ReceiveOrderWarehouseResponse.fromJson(Map<String, dynamic> json) =>
+      _$ReceiveOrderWarehouseResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ReceiveOrderWarehouseResponseToJson(this);
+}

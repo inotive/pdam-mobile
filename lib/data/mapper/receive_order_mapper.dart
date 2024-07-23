@@ -92,3 +92,27 @@ extension ReceiveOrderDetailRessponseMapper on ReceiveOrderDetailResponse? {
     return ReceiveOrderDetail(this?.data.toDomain());
   }
 }
+
+extension ReceiveOrderWarehouseDataResponseMapper on ReceiveOrderWarehouseDataResponse? {
+  ReceiveOrderWarehouseData toDomain() {
+    return ReceiveOrderWarehouseData(
+      this?.id.orZero() ?? ZERO,
+      this?.name.orEmpty() ?? EMPTY,
+      this?.pic.orEmpty() ?? EMPTY,
+      this?.description.orEmpty() ?? EMPTY,
+      this?.address.orEmpty() ?? EMPTY,
+      this?.createdAt.orEmpty() ?? EMPTY,
+      this?.updatedAt.orEmpty() ?? EMPTY,
+    );
+  }
+}
+
+extension ReceiveOrderWarehouseResponseMapper on ReceiveOrderWarehouseResponse? {
+  ReceiveOrderWarehouse toDomain() {
+    List<ReceiveOrderWarehouseData> data = (this?.data.map((item) => item.toDomain()) ?? const Iterable.empty())
+        .cast<ReceiveOrderWarehouseData>()
+        .toList();
+
+    return ReceiveOrderWarehouse(data);
+  }
+}

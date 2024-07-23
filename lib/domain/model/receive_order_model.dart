@@ -106,3 +106,29 @@ class ReceiveOrderDetail {
 
   ReceiveOrderDetailData? data;
 }
+
+class ReceiveOrderWarehouseData {
+  ReceiveOrderWarehouseData(
+    this.id,
+    this.name,
+    this.pic,
+    this.description,
+    this.address,
+    this.createdAt,
+    this.updatedAt,
+  );
+
+  int id;
+  String name;
+  String pic;
+  String description;
+  String address;
+  String createdAt;
+  String updatedAt;
+}
+
+class ReceiveOrderWarehouse {
+  ReceiveOrderWarehouse(this.data);
+
+  List<ReceiveOrderWarehouseData> data;
+}

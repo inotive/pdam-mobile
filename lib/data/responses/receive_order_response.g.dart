@@ -182,3 +182,56 @@ Map<String, dynamic> _$ReceiveOrderDetailResponseToJson(
       'meta': instance.meta,
       'data': instance.data,
     };
+
+ReceiveOrderWarehouseDataResponse _$ReceiveOrderWarehouseDataResponseFromJson(
+        Map<String, dynamic> json) =>
+    ReceiveOrderWarehouseDataResponse(
+      (json['id'] as num?)?.toInt(),
+      json['name'] as String?,
+      json['pic'] as String?,
+      json['description'] as String?,
+      json['address'] as String?,
+      json['created_at'] as String?,
+      json['updated_at'] as String?,
+    );
+
+Map<String, dynamic> _$ReceiveOrderWarehouseDataResponseToJson(
+        ReceiveOrderWarehouseDataResponse instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'pic': instance.pic,
+      'description': instance.description,
+      'address': instance.address,
+      'created_at': instance.createdAt,
+      'updated_at': instance.updatedAt,
+    };
+
+ReceiveOrderWarehouseResponse _$ReceiveOrderWarehouseResponseFromJson(
+        Map<String, dynamic> json) =>
+    ReceiveOrderWarehouseResponse(
+      (json['data'] as List<dynamic>)
+          .map((e) => ReceiveOrderWarehouseDataResponse.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+    )
+      ..links = json['links'] == null
+          ? null
+          : LinksResponse.fromJson(json['links'] as Map<String, dynamic>)
+      ..status = json['status'] == null
+          ? null
+          : StatusPaginationResponse.fromJson(
+              json['status'] as Map<String, dynamic>)
+      ..meta = json['meta'] == null
+          ? null
+          : MetaPaginationResponse.fromJson(
+              json['meta'] as Map<String, dynamic>);
+
+Map<String, dynamic> _$ReceiveOrderWarehouseResponseToJson(
+        ReceiveOrderWarehouseResponse instance) =>
+    <String, dynamic>{
+      'links': instance.links,
+      'status': instance.status,
+      'meta': instance.meta,
+      'data': instance.data,
+    };
