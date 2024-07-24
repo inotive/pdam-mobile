@@ -33,7 +33,7 @@ class _ReceiptItemByReferenceTabState extends State<ReceiptItemByReferenceTab> {
   String? warehouse;
   String? reference;
 
-  late Timer _timer;
+  Timer? _timer;
 
   TextEditingController noteController = TextEditingController();
 
@@ -44,8 +44,7 @@ class _ReceiptItemByReferenceTabState extends State<ReceiptItemByReferenceTab> {
       productItem = widget.receiptViewmodel.refProducts;
       productParam = widget.receiptViewmodel.refProductsParams;
       widget.receiptViewmodel.setProductList(productParam);
-      // /setState(() {
-      // });
+
       setState(() {});
     });
   }
@@ -80,22 +79,12 @@ class _ReceiptItemByReferenceTabState extends State<ReceiptItemByReferenceTab> {
 
   _bind() {
     noteController.addListener(() => widget.receiptViewmodel.setNote(noteController.text));
-    // widget.receiptViewmodel.isCreateSuccesfully.stream.listen((isSuccess) {
-    //   if (isSuccess) {
-    //     WidgetsBinding.instance.addPostFrameCallback((isNext) {
-    //       SnackbarApp.topSnackbarSucces('Terima Barang berhasil disimpan', context);
-    //       Navigator.pushNamed(context, Routes.acceptedItem);
-    //     });
-    //   }
-    // });
   }
 
   @override
   void initState() {
     _bind();
-    if (mounted) {
-      super.initState();
-    }
+    super.initState();
   }
 
   @override
@@ -152,8 +141,8 @@ class _ReceiptItemByReferenceTabState extends State<ReceiptItemByReferenceTab> {
             borderColor: isEnable ? ColorApp.primary : ColorApp.borderB3,
             onPressed: () {
               if (isEnable) {
-                _timer.cancel();
-                widget.receiptViewmodel.create();
+                _timer?.cancel();
+                widget.receiptViewmodel.create(context);
               }
             },
           ),
@@ -231,7 +220,8 @@ class _ReceiptItemByReferenceTabState extends State<ReceiptItemByReferenceTab> {
 
   @override
   void dispose() {
-    _timer.cancel();
+    _timer?.cancel();
+    // widget.receiptViewmodel.dispose();
     super.dispose();
   }
 }

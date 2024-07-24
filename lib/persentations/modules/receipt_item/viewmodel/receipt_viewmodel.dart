@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:ffi';
 
+import 'package:flutter/material.dart';
 import 'package:pdam_inventory/data/params/receipt_produt_param.dart';
 import 'package:pdam_inventory/domain/model/product_model.dart';
 import 'package:pdam_inventory/domain/model/purchase_request_model.dart';
@@ -15,7 +16,9 @@ import 'package:pdam_inventory/persentations/base/base_viewmodel.dart';
 import 'package:pdam_inventory/persentations/commons/freezed_data_classes.dart';
 import 'package:pdam_inventory/persentations/packages/state_renderer/state_renderer.dart';
 import 'package:pdam_inventory/persentations/packages/state_renderer/state_renderer_impl.dart';
+import 'package:pdam_inventory/persentations/resources/route_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
+import 'package:pdam_inventory/persentations/widgets/snackbar_app.dart';
 // ignore: depend_on_referenced_packages
 import 'package:rxdart/rxdart.dart';
 
@@ -94,7 +97,7 @@ class ReceiptViewmodel extends BaseViewModel implements ReceiptItemViewInputs, R
   }
 
   @override
-  create() async {
+  create(BuildContext context) async {
     inputState.add(LoadingState(stateRendererType: StateRendererType.POPUP_LOADING_STATE));
     (await _receiveOrderCreateUsecase.execute(
       ReceiveOrderInput(
@@ -107,9 +110,13 @@ class ReceiptViewmodel extends BaseViewModel implements ReceiptItemViewInputs, R
         .fold((failure) {
       inputState.add(ErrorState(StateRendererType.SNACKBAR_ERROR_STATE, failure.message));
     }, (data) {
-      inputState.add(ContentState());
-      isCreateSuccesfully.add(true);
+      inputState.add(ContentWithoutDimissState());
+      SnackbarApp.topSnackbarSucces('Terima Barang berhasil disimpan', context);
+
+      Navigator.pushNamed(context, Routes.acceptedItem);
     });
+    // inputState.add(ContentState());
+    // isCreateSuccesfully.add(true);
   }
 
   @override
@@ -117,6 +124,7 @@ class ReceiptViewmodel extends BaseViewModel implements ReceiptItemViewInputs, R
     (await _receiveOrderReferenceDetailUsecase.execute(id)).fold((failure) {
       inputState.add(ErrorState(StateRendererType.SNACKBAR_ERROR_STATE, failure.message));
     }, (data) {
+      inputState.add(ContentWithoutDimissState());
       inputReferenceDetail.add(data.data);
       refProducts = data.data?.products ?? List.empty();
       refProductsParams =
@@ -177,7 +185,7 @@ abstract class ReceiptItemViewInputs {
   Sink get inputReceiveOrderWarehouse;
   Sink get inputReference;
   Sink get inputReferenceDetail;
-  create();
+  create(BuildContext context);
   referenceDetail(int id);
   setRefferenceNumber(String refferenceNumber);
   setWarehouseId(String warehouseId);

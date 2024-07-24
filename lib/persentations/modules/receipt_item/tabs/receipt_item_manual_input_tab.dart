@@ -10,12 +10,10 @@ import 'package:pdam_inventory/persentations/modules/receipt_item/widgets/input_
 import 'package:pdam_inventory/persentations/modules/receipt_item/widgets/input_dropdown_warehouse.dart';
 import 'package:pdam_inventory/persentations/modules/receipt_item/widgets/receipt_item_card.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
-import 'package:pdam_inventory/persentations/resources/route_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
 import 'package:pdam_inventory/persentations/widgets/button/custom_outline_button.dart';
 import 'package:pdam_inventory/persentations/widgets/forms/input_field.dart';
-import 'package:pdam_inventory/persentations/widgets/snackbar_app.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
 class ReceiptItemManualInputTab extends StatefulWidget {
@@ -64,14 +62,6 @@ class _ReceiptItemManualInputTabState extends State<ReceiptItemManualInputTab> {
   _bind() {
     referenceController.addListener(() => widget._receiptViewmodel.setRefferenceNumber(referenceController.text));
     noteController.addListener(() => widget._receiptViewmodel.setNote(noteController.text));
-    widget._receiptViewmodel.isCreateSuccesfully.stream.listen((isSuccess) {
-      if (isSuccess) {
-        WidgetsBinding.instance.addPostFrameCallback((isNext) {
-          SnackbarApp.topSnackbarSucces('Terima Barang berhasil disimpan', context);
-          Navigator.pushReplacementNamed(context, Routes.acceptedItem);
-        });
-      }
-    });
   }
 
   bool onEnable() {
@@ -137,7 +127,7 @@ class _ReceiptItemManualInputTabState extends State<ReceiptItemManualInputTab> {
             borderColor: isEnable ? ColorApp.primary : ColorApp.borderB3,
             onPressed: () {
               if (isEnable) {
-                widget._receiptViewmodel.create();
+                widget._receiptViewmodel.create(context);
               }
             },
           ),

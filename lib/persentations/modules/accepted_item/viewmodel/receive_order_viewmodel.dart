@@ -16,6 +16,7 @@ class ReceiveOrderViewmodel extends BaseViewModel implements ReceiveOrderViewmod
 
   @override
   void start() async {
+    inputState.add(ContentWithoutDimissState());
     _receiveOrder();
   }
 

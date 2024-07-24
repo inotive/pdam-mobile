@@ -5,6 +5,7 @@ import 'package:pdam_inventory/persentations/packages/state_renderer/state_rende
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
+import 'package:pdam_inventory/persentations/widgets/snackbar_app.dart';
 
 abstract class FlowState {
   StateRendererType getStateRendererType();
@@ -163,25 +164,9 @@ extension FlowStateExtension on FlowState {
       case const (SuccessState):
         {
           dismissDialog(context);
-          WidgetsBinding.instance.addPostFrameCallback(
-            (_) => context.showFlash<bool>(
-              barrierDismissible: true,
-              duration: const Duration(seconds: 3),
-              builder: (context, controller) => FlashBar(
-                controller: controller,
-                position: FlashPosition.top,
-                backgroundColor: ColorApp.green,
-                content: Text(
-                  getMessage().toString(),
-                  style: StyleApp.textNormal.copyWith(
-                    color: ColorApp.white,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                elevation: 0,
-              ),
-            ),
-          );
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            SnackbarApp.topSnackbarSucces(getMessage(), context);
+          });
           // return content ui of the screen
           return contentScreenWidget;
         }
