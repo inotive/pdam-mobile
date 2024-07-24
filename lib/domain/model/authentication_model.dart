@@ -15,6 +15,6 @@ class TokenData {
   );
 
   int expiresIn;
-  bool accessToken;
+  String accessToken;
   String tokenType;
 }

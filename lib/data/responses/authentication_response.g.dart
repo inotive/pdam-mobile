@@ -27,7 +27,7 @@ Map<String, dynamic> _$LoginResponseToJson(LoginResponse instance) =>
 
 TokenResponse _$TokenResponseFromJson(Map<String, dynamic> json) =>
     TokenResponse(
-      json['access_token'] as bool?,
+      json['access_token'] as String?,
       (json['expires_in'] as num?)?.toInt(),
       json['token_type'] as String?,
     );
