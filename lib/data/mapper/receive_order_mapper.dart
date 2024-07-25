@@ -133,3 +133,27 @@ extension ReceiveOrderReferenceDetailResponseMapper on ReceiveOrderReferenceDeta
     return ReceiveOrderReferenceDetail(this?.data.toDomain());
   }
 }
+
+extension ReceiveOrderSupplierDataMapper on ReceiveOrderSupplierDataResponse? {
+  ReceiveOrderSupplierData toDomain() {
+    return ReceiveOrderSupplierData(
+      this?.id.orZero() ?? ZERO,
+      this?.name.orEmpty() ?? EMPTY,
+      this?.createdAt.orEmpty() ?? EMPTY,
+      this?.updatedAt.orEmpty() ?? EMPTY,
+      this?.createdBy.orEmpty() ?? EMPTY,
+      this?.updatedBy.orEmpty() ?? EMPTY,
+      this?.deletedBy.orEmpty() ?? EMPTY,
+      this?.createdAt.orEmpty() ?? EMPTY,
+    );
+  }
+}
+
+extension ReceiveOrderSupplierResponseMapper on ReceiveOrderSupplierResponse? {
+  ReceiveOrderSupplier toDomain() {
+    List<ReceiveOrderSupplierData> data =
+        (this?.data.map((item) => item.toDomain()) ?? const Iterable.empty()).cast<ReceiveOrderSupplierData>().toList();
+
+    return ReceiveOrderSupplier(data);
+  }
+}

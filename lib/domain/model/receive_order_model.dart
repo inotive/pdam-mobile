@@ -146,3 +146,31 @@ class ReceiveOrderReferenceDetail {
 
   PurchaseRequestDetailData? data;
 }
+
+class ReceiveOrderSupplierData {
+  ReceiveOrderSupplierData(
+    this.id,
+    this.name,
+    this.createdAt,
+    this.updatedAt,
+    this.createdBy,
+    this.updatedBy,
+    this.deletedBy,
+    this.deletedAt,
+  );
+
+  int id;
+  String name;
+  String createdAt;
+  String updatedAt;
+  String createdBy;
+  String updatedBy;
+  String deletedBy;
+  String deletedAt;
+}
+
+class ReceiveOrderSupplier {
+  ReceiveOrderSupplier(this.data);
+
+  List<ReceiveOrderSupplierData> data;
+}

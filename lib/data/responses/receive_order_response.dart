@@ -262,3 +262,52 @@ class ReceiveOrderReferenceDetailResponse extends BaseResponse {
 
   Map<String, dynamic> toJson() => _$ReceiveOrderReferenceDetailResponseToJson(this);
 }
+
+@JsonSerializable()
+class ReceiveOrderSupplierDataResponse {
+  ReceiveOrderSupplierDataResponse(
+    this.id,
+    this.name,
+    this.createdAt,
+    this.updatedAt,
+    this.createdBy,
+    this.updatedBy,
+    this.deletedBy,
+    this.deletedAt,
+  );
+
+  @JsonKey(name: 'id')
+  int? id;
+  @JsonKey(name: 'name')
+  String? name;
+  @JsonKey(name: 'created_at')
+  String? createdAt;
+  @JsonKey(name: 'update_at')
+  String? updatedAt;
+  @JsonKey(name: 'created_by')
+  String? createdBy;
+  @JsonKey(name: 'updated_by')
+  String? updatedBy;
+  @JsonKey(name: 'deleted_by')
+  String? deletedBy;
+  @JsonKey(name: 'deleted_at')
+  String? deletedAt;
+
+  factory ReceiveOrderSupplierDataResponse.fromJson(Map<String, dynamic> json) =>
+      _$ReceiveOrderSupplierDataResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ReceiveOrderSupplierDataResponseToJson(this);
+}
+
+@JsonSerializable()
+class ReceiveOrderSupplierResponse extends PaginationBaseResponse {
+  ReceiveOrderSupplierResponse(this.data);
+
+  @JsonKey(name: 'data')
+  List<ReceiveOrderSupplierDataResponse> data;
+
+  factory ReceiveOrderSupplierResponse.fromJson(Map<String, dynamic> json) =>
+      _$ReceiveOrderSupplierResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ReceiveOrderSupplierResponseToJson(this);
+}

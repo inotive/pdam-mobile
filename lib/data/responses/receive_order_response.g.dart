@@ -282,3 +282,58 @@ Map<String, dynamic> _$ReceiveOrderReferenceDetailResponseToJson(
       'meta': instance.meta,
       'data': instance.data,
     };
+
+ReceiveOrderSupplierDataResponse _$ReceiveOrderSupplierDataResponseFromJson(
+        Map<String, dynamic> json) =>
+    ReceiveOrderSupplierDataResponse(
+      (json['id'] as num?)?.toInt(),
+      json['name'] as String?,
+      json['created_at'] as String?,
+      json['update_at'] as String?,
+      json['created_by'] as String?,
+      json['updated_by'] as String?,
+      json['deleted_by'] as String?,
+      json['deleted_at'] as String?,
+    );
+
+Map<String, dynamic> _$ReceiveOrderSupplierDataResponseToJson(
+        ReceiveOrderSupplierDataResponse instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'created_at': instance.createdAt,
+      'update_at': instance.updatedAt,
+      'created_by': instance.createdBy,
+      'updated_by': instance.updatedBy,
+      'deleted_by': instance.deletedBy,
+      'deleted_at': instance.deletedAt,
+    };
+
+ReceiveOrderSupplierResponse _$ReceiveOrderSupplierResponseFromJson(
+        Map<String, dynamic> json) =>
+    ReceiveOrderSupplierResponse(
+      (json['data'] as List<dynamic>)
+          .map((e) => ReceiveOrderSupplierDataResponse.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+    )
+      ..links = json['links'] == null
+          ? null
+          : LinksResponse.fromJson(json['links'] as Map<String, dynamic>)
+      ..status = json['status'] == null
+          ? null
+          : StatusPaginationResponse.fromJson(
+              json['status'] as Map<String, dynamic>)
+      ..meta = json['meta'] == null
+          ? null
+          : MetaPaginationResponse.fromJson(
+              json['meta'] as Map<String, dynamic>);
+
+Map<String, dynamic> _$ReceiveOrderSupplierResponseToJson(
+        ReceiveOrderSupplierResponse instance) =>
+    <String, dynamic>{
+      'links': instance.links,
+      'status': instance.status,
+      'meta': instance.meta,
+      'data': instance.data,
+    };
