@@ -25,6 +25,7 @@ import 'package:pdam_inventory/domain/repository/stock_opname_repository.dart';
 import 'package:pdam_inventory/domain/usecase/authentication/login_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/authentication/logout_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/history_stock/history_stock_usecase.dart';
+import 'package:pdam_inventory/domain/usecase/products/product_by_warehouse_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/products/product_detail_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/products/product_stock_history_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/products/product_summary_usecase.dart';
@@ -37,6 +38,7 @@ import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_create
 import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_detail_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_reference_detail_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_reference_usecase.dart';
+import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_supplier_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_warehouse_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/stock_opname/stock_opname_usecase.dart';
@@ -180,7 +182,10 @@ initReceiptItemModule() {
     instance.registerFactory<ReceiveOrderCreateUsecase>(() => ReceiveOrderCreateUsecase(instance()));
     instance.registerFactory<ReceiveOrderReferenceUsecase>(() => ReceiveOrderReferenceUsecase(instance()));
     instance.registerFactory<ReceiveOrderReferenceDetailUsecase>(() => ReceiveOrderReferenceDetailUsecase(instance()));
+    instance.registerFactory<ReceiveOrderSupplierUsecase>(() => ReceiveOrderSupplierUsecase(instance()));
+    instance.registerFactory<ProductByWarehouseUsecase>(() => ProductByWarehouseUsecase(instance()));
     instance.registerFactory<ReceiptViewmodel>(() => ReceiptViewmodel(
+          instance(),
           instance(),
           instance(),
           instance(),

@@ -299,6 +299,33 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
+  Future<ProductByWarehouseResponse> productByWarehouse(int warehouseId) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ProductByWarehouseResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/mobile/product/get-by-warehouse/${warehouseId}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final _value = ProductByWarehouseResponse.fromJson(_result.data!);
+    return _value;
+  }
+
+  @override
   Future<ReceiveOrderPaginationResponse> receiveOrders() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -470,21 +497,21 @@ class _AppServiceClient implements AppServiceClient {
   @override
   Future<MessageResponse> createReceiveOrder(
     String refferenceNumber,
+    String supplierId,
     String warehouseId,
-    String? note,
+    String note,
     List<ReceiptProductParam> productList,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = {
       'refference_number': refferenceNumber,
+      'supplier_id': supplierId,
       'warehouse_id': warehouseId,
       'note': note,
       'product_list': productList,
     };
-    _data.removeWhere((k, v) => v == null);
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<MessageResponse>(Options(
       method: 'POST',

@@ -1,4 +1,8 @@
 // ignore_for_file: depend_on_referenced_packages
+import 'dart:convert';
+import 'dart:ffi';
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:pdam_inventory/app/config_app.dart';
 import 'package:pdam_inventory/data/params/receipt_produt_param.dart';
@@ -55,6 +59,9 @@ abstract class AppServiceClient {
 
   @GET('/mobile/product/{id}/stock-history')
   Future<ProductStockHistoryResponse> productStockHistory(@Path() int id);
+
+  @GET('/mobile/product/get-by-warehouse/{warehouseId}')
+  Future<ProductByWarehouseResponse> productByWarehouse(@Path() int warehouseId);
   /* End Products */
 
   /* Receive Order */
@@ -79,8 +86,10 @@ abstract class AppServiceClient {
   @POST('/mobile/receive-order')
   Future<MessageResponse> createReceiveOrder(
     @Field('refference_number') String refferenceNumber,
+    @Field('supplier_id') String supplierId,
     @Field('warehouse_id') String warehouseId,
-    @Field('note') String? note,
+    @Field('note') String note,
+    // @Field( 'file') File file,
     @Field('product_list') List<ReceiptProductParam> productList,
   );
 

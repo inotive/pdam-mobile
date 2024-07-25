@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
+import 'package:pdam_inventory/persentations/resources/value_app.dart';
 import 'package:pdam_inventory/persentations/widgets/custom_cached_network_image.dart';
-import 'package:pdam_inventory/persentations/widgets/forms/search_input_field.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
 class ReceiptItemCard extends StatelessWidget {
@@ -26,40 +26,47 @@ class ReceiptItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: const BoxDecoration(
-        border: Border(
-          bottom: BorderSide(
-            color: ColorApp.border,
-            width: 1,
+      padding: const EdgeInsets.all(16.0),
+      margin: const EdgeInsets.only(bottom: 16.0),
+      decoration: BoxDecoration(
+        color: ColorApp.white,
+        borderRadius: BorderRadius.circular(8.0),
+        boxShadow: [
+          BoxShadow(
+            offset: const Offset(0, 1),
+            blurRadius: 6,
+            color: ColorApp.black.withOpacity(0.08),
           ),
-        ),
+        ],
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CustomNetworkImage(
-            height: 44,
-            width: 44,
-            borderRadius: 4,
-            url: image,
-          ),
-          const SpacerWidth(12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                CustomNetworkImage(
+                  height: 44,
+                  width: 44,
+                  borderRadius: 4,
+                  url: image,
+                ),
+                const SpacerHeight(8),
                 Text(
                   name,
-                  style: StyleApp.textLg.copyWith(
-                    fontWeight: FontWeight.w700,
+                  style: StyleApp.textSm.copyWith(
+                    fontWeight: FontWeight.w600,
+                    fontFamily: FontFamilyApp.inter,
                   ),
                 ),
-                const SpacerHeight(6),
+                const SpacerHeight(2),
                 Text(
                   code,
-                  style: StyleApp.textSm.copyWith(
+                  style: StyleApp.textXs.copyWith(
                     color: ColorApp.greyText,
+                    fontSize: FontSizeApp.xss,
+                    fontFamily: FontFamilyApp.inter,
                   ),
                 )
               ],
@@ -67,25 +74,34 @@ class ReceiptItemCard extends StatelessWidget {
           ),
           const SpacerWidth(12),
           Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
                 StringApp.qty,
-                style: StyleApp.textSm.copyWith(
+                style: StyleApp.textXs.copyWith(
                   color: ColorApp.greyText,
+                  fontSize: FontSizeApp.xss,
+                  fontFamily: FontFamilyApp.inter,
                 ),
               ),
-              const SpacerHeight(4),
-              SizedBox(
-                width: 72,
-                height: 40,
-                child: SearchInputField(
-                  controller: TextEditingController(text: qty),
-                  readOnly: true,
-                  hint: '1',
-                  textAlign: TextAlign.center,
+              const SpacerHeight(8),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 8,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: ColorApp.backgroundF1,
+                ),
+                child: Text(
+                  qty,
+                  style: StyleApp.textNormal.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
-              const SpacerHeight(12),
+              const SpacerHeight(8),
               Row(
                 children: [
                   QtyButton(

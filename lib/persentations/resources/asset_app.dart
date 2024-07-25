@@ -37,6 +37,7 @@ class IconApp {
   static const String home = "$ICON_APP/ic-home.svg";
   static const String profile = "$ICON_APP/ic-profile.svg";
   static const String settings = "$ICON_APP/ic-settings.svg";
+  static const String upload = "$ICON_APP/ic-upload.svg";
 }
 
 class AnimationApp {

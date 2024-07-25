@@ -1,18 +1,18 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
-import 'package:pdam_inventory/domain/model/purchase_request_model.dart';
+import 'package:pdam_inventory/domain/model/receive_order_model.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
 import 'package:pdam_inventory/persentations/resources/value_app.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
-class InputDropdownProduct extends StatelessWidget {
-  final List<PurchaseRequestProduct> items;
+class InputDropdownSupplier extends StatelessWidget {
+  final List<ReceiveOrderSupplierData> items;
   final String text;
-  final Function(PurchaseRequestProduct?) onChanged;
+  final Function(ReceiveOrderSupplierData?) onChanged;
   final String hint;
-  final String? value;
-  const InputDropdownProduct({
+  final ReceiveOrderSupplierData? value;
+  const InputDropdownSupplier({
     super.key,
     required this.items,
     required this.text,
@@ -35,8 +35,9 @@ class InputDropdownProduct extends StatelessWidget {
           ),
         ),
         const SpacerHeight(8),
-        DropdownSearch<PurchaseRequestProduct>(
-          itemAsString: (PurchaseRequestProduct data) => data.name,
+        DropdownSearch<ReceiveOrderSupplierData>(
+          itemAsString: (ReceiveOrderSupplierData data) => data.name,
+          selectedItem: value,
           popupProps: const PopupProps.menu(
             showSelectedItems: false,
             showSearchBox: true,

@@ -100,6 +100,8 @@ class StringApp {
 
   static const String manualInput = 'MANUAL INPUT';
   static const String byReference = 'DENGAN REFERENSI';
+  static const String withoutReference = 'TANPA REFERENSI';
+  static const String detail = 'RINCIAN';
   static const String qty = 'Qty';
   static const String save = 'Simpan';
 
@@ -121,4 +123,9 @@ class StringApp {
 
   static const String warehouse = 'Gudang';
   static const String searchWarehouse = 'Cari Gudang';
+  static const String searchSupplier = 'Cari Supplier';
+  static const String uploadFile = 'Unggah File';
+  static const String uploadFileDesc = 'Klik disini untuk mengunggah file';
+  static const String saveData = 'Simpan Data';
+  static const String listItem = 'List Barang';
 }

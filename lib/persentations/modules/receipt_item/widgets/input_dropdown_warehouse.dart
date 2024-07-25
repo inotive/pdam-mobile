@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pdam_inventory/domain/model/receive_order_model.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
+import 'package:pdam_inventory/persentations/resources/value_app.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
 class InputDropdownWarehouse extends StatelessWidget {
@@ -10,7 +11,7 @@ class InputDropdownWarehouse extends StatelessWidget {
   final String text;
   final Function(ReceiveOrderWarehouseData?) onChanged;
   final String hint;
-  final String? value;
+  final ReceiveOrderWarehouseData? value;
   const InputDropdownWarehouse({
     super.key,
     required this.items,
@@ -27,11 +28,16 @@ class InputDropdownWarehouse extends StatelessWidget {
       children: [
         Text(
           text,
-          style: StyleApp.textNormal.copyWith(),
+          style: StyleApp.textSm.copyWith(
+            fontWeight: FontWeight.w600,
+            color: ColorApp.greyTextA5,
+            fontFamily: FontFamilyApp.inter,
+          ),
         ),
         const SpacerHeight(8),
         DropdownSearch<ReceiveOrderWarehouseData>(
           itemAsString: (ReceiveOrderWarehouseData data) => data.name,
+          selectedItem: value,
           popupProps: const PopupProps.menu(
             showSelectedItems: false,
             showSearchBox: true,
@@ -44,7 +50,8 @@ class InputDropdownWarehouse extends StatelessWidget {
             dropdownSearchDecoration: InputDecoration(
               hintText: hint,
               hintStyle: StyleApp.textNormal.copyWith(
-                color: ColorApp.greyText,
+                color: ColorApp.greyText98,
+                fontFamily: FontFamilyApp.inter,
               ),
               fillColor: ColorApp.white,
               enabledBorder: OutlineInputBorder(

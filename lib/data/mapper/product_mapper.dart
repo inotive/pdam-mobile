@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pdam_inventory/app/extensions.dart';
+import 'package:pdam_inventory/data/mapper/purchase_request_mapper.dart';
 import 'package:pdam_inventory/data/responses/product_response.dart';
 import 'package:pdam_inventory/domain/model/product_model.dart';
+import 'package:pdam_inventory/domain/model/purchase_request_model.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 
 extension ProductResponseMapper on ProductResponse? {
@@ -116,5 +118,14 @@ extension ProductStockHistoryResponseMapper on ProductStockHistoryResponse? {
         (this?.data?.map((item) => item.toDomain()) ?? const Iterable.empty()).cast<ProductStockHistoryData>().toList();
 
     return ProductStockHistory(products);
+  }
+}
+
+extension ProductByWarehouseResponseMapper on ProductByWarehouseResponse? {
+  ProductByWarehouse toDomain() {
+    List<PurchaseRequestProduct> products =
+        (this?.data.map((item) => item.toDomain()) ?? const Iterable.empty()).cast<PurchaseRequestProduct>().toList();
+
+    return ProductByWarehouse(products);
   }
 }

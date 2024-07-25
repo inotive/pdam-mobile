@@ -153,8 +153,10 @@ abstract class _LoginObject implements LoginObject {
 /// @nodoc
 mixin _$ReceiveOrderObject {
   String get refferenceNumber => throw _privateConstructorUsedError;
+  String get supplierId => throw _privateConstructorUsedError;
   String get warehouseId => throw _privateConstructorUsedError;
   String get note => throw _privateConstructorUsedError;
+  File get file => throw _privateConstructorUsedError;
   List<ReceiptProductParam> get productList =>
       throw _privateConstructorUsedError;
 
@@ -171,8 +173,10 @@ abstract class $ReceiveOrderObjectCopyWith<$Res> {
   @useResult
   $Res call(
       {String refferenceNumber,
+      String supplierId,
       String warehouseId,
       String note,
+      File file,
       List<ReceiptProductParam> productList});
 }
 
@@ -190,14 +194,20 @@ class _$ReceiveOrderObjectCopyWithImpl<$Res, $Val extends ReceiveOrderObject>
   @override
   $Res call({
     Object? refferenceNumber = null,
+    Object? supplierId = null,
     Object? warehouseId = null,
     Object? note = null,
+    Object? file = null,
     Object? productList = null,
   }) {
     return _then(_value.copyWith(
       refferenceNumber: null == refferenceNumber
           ? _value.refferenceNumber
           : refferenceNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      supplierId: null == supplierId
+          ? _value.supplierId
+          : supplierId // ignore: cast_nullable_to_non_nullable
               as String,
       warehouseId: null == warehouseId
           ? _value.warehouseId
@@ -207,6 +217,10 @@ class _$ReceiveOrderObjectCopyWithImpl<$Res, $Val extends ReceiveOrderObject>
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
               as String,
+      file: null == file
+          ? _value.file
+          : file // ignore: cast_nullable_to_non_nullable
+              as File,
       productList: null == productList
           ? _value.productList
           : productList // ignore: cast_nullable_to_non_nullable
@@ -225,8 +239,10 @@ abstract class _$$ReceiveOrderObjectImplCopyWith<$Res>
   @useResult
   $Res call(
       {String refferenceNumber,
+      String supplierId,
       String warehouseId,
       String note,
+      File file,
       List<ReceiptProductParam> productList});
 }
 
@@ -242,14 +258,20 @@ class __$$ReceiveOrderObjectImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? refferenceNumber = null,
+    Object? supplierId = null,
     Object? warehouseId = null,
     Object? note = null,
+    Object? file = null,
     Object? productList = null,
   }) {
     return _then(_$ReceiveOrderObjectImpl(
       null == refferenceNumber
           ? _value.refferenceNumber
           : refferenceNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == supplierId
+          ? _value.supplierId
+          : supplierId // ignore: cast_nullable_to_non_nullable
               as String,
       null == warehouseId
           ? _value.warehouseId
@@ -259,6 +281,10 @@ class __$$ReceiveOrderObjectImplCopyWithImpl<$Res>
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
               as String,
+      null == file
+          ? _value.file
+          : file // ignore: cast_nullable_to_non_nullable
+              as File,
       null == productList
           ? _value._productList
           : productList // ignore: cast_nullable_to_non_nullable
@@ -270,16 +296,25 @@ class __$$ReceiveOrderObjectImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ReceiveOrderObjectImpl implements _ReceiveOrderObject {
-  _$ReceiveOrderObjectImpl(this.refferenceNumber, this.warehouseId, this.note,
+  _$ReceiveOrderObjectImpl(
+      this.refferenceNumber,
+      this.supplierId,
+      this.warehouseId,
+      this.note,
+      this.file,
       final List<ReceiptProductParam> productList)
       : _productList = productList;
 
   @override
   final String refferenceNumber;
   @override
+  final String supplierId;
+  @override
   final String warehouseId;
   @override
   final String note;
+  @override
+  final File file;
   final List<ReceiptProductParam> _productList;
   @override
   List<ReceiptProductParam> get productList {
@@ -290,7 +325,7 @@ class _$ReceiveOrderObjectImpl implements _ReceiveOrderObject {
 
   @override
   String toString() {
-    return 'ReceiveOrderObject(refferenceNumber: $refferenceNumber, warehouseId: $warehouseId, note: $note, productList: $productList)';
+    return 'ReceiveOrderObject(refferenceNumber: $refferenceNumber, supplierId: $supplierId, warehouseId: $warehouseId, note: $note, file: $file, productList: $productList)';
   }
 
   @override
@@ -300,16 +335,25 @@ class _$ReceiveOrderObjectImpl implements _ReceiveOrderObject {
             other is _$ReceiveOrderObjectImpl &&
             (identical(other.refferenceNumber, refferenceNumber) ||
                 other.refferenceNumber == refferenceNumber) &&
+            (identical(other.supplierId, supplierId) ||
+                other.supplierId == supplierId) &&
             (identical(other.warehouseId, warehouseId) ||
                 other.warehouseId == warehouseId) &&
             (identical(other.note, note) || other.note == note) &&
+            (identical(other.file, file) || other.file == file) &&
             const DeepCollectionEquality()
                 .equals(other._productList, _productList));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, refferenceNumber, warehouseId,
-      note, const DeepCollectionEquality().hash(_productList));
+  int get hashCode => Object.hash(
+      runtimeType,
+      refferenceNumber,
+      supplierId,
+      warehouseId,
+      note,
+      file,
+      const DeepCollectionEquality().hash(_productList));
 
   @JsonKey(ignore: true)
   @override
@@ -322,16 +366,22 @@ class _$ReceiveOrderObjectImpl implements _ReceiveOrderObject {
 abstract class _ReceiveOrderObject implements ReceiveOrderObject {
   factory _ReceiveOrderObject(
       final String refferenceNumber,
+      final String supplierId,
       final String warehouseId,
       final String note,
+      final File file,
       final List<ReceiptProductParam> productList) = _$ReceiveOrderObjectImpl;
 
   @override
   String get refferenceNumber;
   @override
+  String get supplierId;
+  @override
   String get warehouseId;
   @override
   String get note;
+  @override
+  File get file;
   @override
   List<ReceiptProductParam> get productList;
   @override

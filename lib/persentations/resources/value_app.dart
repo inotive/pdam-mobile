@@ -8,3 +8,9 @@ class FontSizeApp {
   static const double xxl = 20.0;
   static const double xl3 = 24.0;
 }
+
+class FontFamilyApp {
+  static const String inter = 'Inter';
+  static const String prompt = 'Prompt';
+  static const String mulish = 'Mulish';
+}

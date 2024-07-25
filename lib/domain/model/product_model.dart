@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:pdam_inventory/domain/model/purchase_request_model.dart';
 
 class Product {
   Product(this.data);
@@ -127,4 +128,10 @@ class ProductStockHistory {
   ProductStockHistory(this.data);
 
   List<ProductStockHistoryData> data;
+}
+
+class ProductByWarehouse {
+  ProductByWarehouse(this.data);
+
+  List<PurchaseRequestProduct> data;
 }

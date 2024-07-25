@@ -36,8 +36,10 @@ class ReceiveOrderDataSourceImpl implements ReceiveOrderDataSource {
   Future<MessageResponse> createReceiveOrderMap(ReceiveOrderRequest request) async {
     return await _appServiceClient.createReceiveOrder(
       request.refferenceNumber,
+      request.supplierId,
       request.warehouseId,
       request.note,
+      // request.file,
       request.productList,
     );
   }

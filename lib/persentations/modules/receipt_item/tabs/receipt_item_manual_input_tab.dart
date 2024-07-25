@@ -182,20 +182,20 @@ class _ReceiptItemManualInputTabState extends State<ReceiptItemManualInputTab> {
                 );
               }),
           const SpacerHeight(12),
-          StreamBuilder<List<ProductData>>(
-              stream: widget._receiptViewmodel.outputProduct,
-              builder: (context, snapshot) {
-                List<ProductData> data = snapshot.data ?? List.empty();
-                return InputDropdownProduct(
-                  items: data,
-                  text: StringApp.itemName,
-                  onChanged: (ProductData? value) {
-                    onAddProduct(value!);
-                    onEnable();
-                  },
-                  hint: StringApp.searchItem,
-                );
-              }),
+          // StreamBuilder<List<ProductData>>(
+          //     stream: widget._receiptViewmodel.outputProduct,
+          //     builder: (context, snapshot) {
+          //       List<ProductData> data = snapshot.data ?? List.empty();
+          //       return InputDropdownProduct(
+          //         items: data,
+          //         text: StringApp.itemName,
+          //         onChanged: (ProductData? value) {
+          //           onAddProduct(value!);
+          //           onEnable();
+          //         },
+          //         hint: StringApp.searchItem,
+          //       );
+          //     }),
           const SpacerHeight(12),
           InputField(
             text: StringApp.note,

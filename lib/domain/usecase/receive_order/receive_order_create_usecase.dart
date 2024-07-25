@@ -14,8 +14,10 @@ class ReceiveOrderCreateUsecase implements BaseUsecase<ReceiveOrderInput, bool> 
     return _receiveOrderRepository.createReceiveOrder(
       ReceiveOrderRequest(
         input.refferenceNumber,
+        input.supplierId,
         input.warehouseId,
         input.note,
+        input.file,
         input.productList,
       ),
     );

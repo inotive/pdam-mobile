@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
+import 'package:pdam_inventory/persentations/resources/value_app.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
 class InputField extends StatelessWidget {
@@ -15,6 +16,7 @@ class InputField extends StatelessWidget {
     this.textStyle,
     this.borderColor,
     this.onChanged,
+    this.maxLines = 1,
   });
 
   final String text;
@@ -26,6 +28,7 @@ class InputField extends StatelessWidget {
   final TextStyle? textStyle;
   final Color? borderColor;
   final Function(String)? onChanged;
+  final int maxLines;
 
   @override
   Widget build(BuildContext context) {
@@ -40,11 +43,15 @@ class InputField extends StatelessWidget {
                 StyleApp.textSm.copyWith(
                   fontWeight: FontWeight.w600,
                   color: ColorApp.greyTextA5,
+                  fontFamily: FontFamilyApp.inter,
                 ),
           ),
           const SpacerHeight(6),
           TextFormField(
-            style: StyleApp.textNormal,
+            style: StyleApp.textNormal.copyWith(
+              fontFamily: FontFamilyApp.inter,
+            ),
+            maxLines: maxLines,
             cursorColor: ColorApp.primary,
             keyboardType: keyboardType,
             controller: controller,
@@ -56,6 +63,7 @@ class InputField extends StatelessWidget {
               fillColor: readOnly ? ColorApp.greyF4 : ColorApp.white,
               hintStyle: StyleApp.textNormal.copyWith(
                 color: ColorApp.greyText98,
+                fontFamily: FontFamilyApp.inter,
               ),
               contentPadding: const EdgeInsets.all(12),
               enabledBorder: OutlineInputBorder(

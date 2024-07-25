@@ -218,3 +218,32 @@ Map<String, dynamic> _$ProductStockHistoryResponseToJson(
       'meta': instance.meta,
       'data': instance.data,
     };
+
+ProductByWarehouseResponse _$ProductByWarehouseResponseFromJson(
+        Map<String, dynamic> json) =>
+    ProductByWarehouseResponse(
+      (json['data'] as List<dynamic>)
+          .map((e) => PurchaseRequestProductResponse.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+    )
+      ..links = json['links'] == null
+          ? null
+          : LinksResponse.fromJson(json['links'] as Map<String, dynamic>)
+      ..status = json['status'] == null
+          ? null
+          : StatusPaginationResponse.fromJson(
+              json['status'] as Map<String, dynamic>)
+      ..meta = json['meta'] == null
+          ? null
+          : MetaPaginationResponse.fromJson(
+              json['meta'] as Map<String, dynamic>);
+
+Map<String, dynamic> _$ProductByWarehouseResponseToJson(
+        ProductByWarehouseResponse instance) =>
+    <String, dynamic>{
+      'links': instance.links,
+      'status': instance.status,
+      'meta': instance.meta,
+      'data': instance.data,
+    };

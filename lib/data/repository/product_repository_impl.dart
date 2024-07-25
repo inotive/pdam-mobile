@@ -137,4 +137,28 @@ class ProductRepositoryImpl implements ProductRepository {
       return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, ProductByWarehouse>> productByWarehouse(int warehouseId) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final response = await _productDataSource.productByWarehouse(warehouseId);
+
+        if (response.status?.code == ResponseCode.SUCCESS) {
+          return Right(response.toDomain());
+        } else {
+          return Left(
+            Failure(
+              response.status?.code ?? ResponseCode.DEFAULT,
+              response.status?.message ?? ResponseMessage.DEFAULT,
+            ),
+          );
+        }
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+    }
+  }
 }
