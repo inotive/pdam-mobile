@@ -46,7 +46,9 @@ abstract class AppServiceClient {
 
   /* Products */
   @GET('/mobile/product')
-  Future<ProductResponse> products();
+  Future<ProductResponse> products(
+    @Queries() Map<String, dynamic> queries,
+  );
 
   @GET('/mobile/product/summary')
   Future<ProductSummaryResponse> productSummary();

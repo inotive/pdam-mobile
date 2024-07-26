@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pdam_inventory/app/helpers/helpers.dart';
 import 'package:pdam_inventory/domain/model/product_model.dart';
 import 'package:pdam_inventory/persentations/modules/product/product_detail_view.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
@@ -34,7 +35,7 @@ class ProductCard extends StatelessWidget {
               height: 40,
               width: 40,
               borderRadius: 4,
-              url: data.image,
+              url: HelperApp.getUrlImage(data.image),
             ),
             const SpacerWidth(12),
             Expanded(

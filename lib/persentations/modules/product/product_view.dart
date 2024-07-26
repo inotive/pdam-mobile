@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pdam_inventory/app/di.dart';
 import 'package:pdam_inventory/domain/model/product_model.dart';
@@ -26,9 +27,21 @@ class ProductView extends StatefulWidget {
 
 class _ProductViewState extends State<ProductView> {
   final ProductViewmodel _productViewmodel = instance<ProductViewmodel>();
+  final ScrollController _scrollController = ScrollController();
+  bool isLoading = false;
 
   _bind() {
     _productViewmodel.start();
+    _productViewmodel.products();
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
+        setState(() {
+          isLoading = true;
+        });
+        _productViewmodel.updateLimit();
+        _productViewmodel.products();
+      }
+    });
   }
 
   @override
@@ -58,6 +71,7 @@ class _ProductViewState extends State<ProductView> {
 
   ListView _getContentWidget() {
     return ListView(
+      controller: _scrollController,
       children: [
         _chart(),
         StreamBuilder(
@@ -91,6 +105,15 @@ class _ProductViewState extends State<ProductView> {
                     .toList());
           },
         ),
+        if (isLoading)
+          const Center(
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 16.0),
+              child: SpinKitCircle(
+                color: ColorApp.primary,
+              ),
+            ),
+          ),
       ],
     );
   }

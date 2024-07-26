@@ -6,7 +6,6 @@ import 'package:pdam_inventory/data/params/receipt_produt_param.dart';
 import 'package:pdam_inventory/domain/model/product_model.dart';
 import 'package:pdam_inventory/domain/model/receive_order_model.dart';
 import 'package:pdam_inventory/persentations/modules/receipt_item/viewmodel/receipt_viewmodel.dart';
-import 'package:pdam_inventory/persentations/modules/receipt_item/widgets/input_dropdown_product.dart';
 import 'package:pdam_inventory/persentations/modules/receipt_item/widgets/input_dropdown_warehouse.dart';
 import 'package:pdam_inventory/persentations/modules/receipt_item/widgets/receipt_item_card.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';

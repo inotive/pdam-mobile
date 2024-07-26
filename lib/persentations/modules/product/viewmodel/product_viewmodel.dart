@@ -19,19 +19,26 @@ class ProductViewmodel extends BaseViewModel implements ProductViewmodelInputs, 
   final StreamController _productStreamController = BehaviorSubject<List<ProductData>>();
   final StreamController _productSearchStreamController = BehaviorSubject<List<ProductData>>();
   final StreamController _productSummaryStreamController = BehaviorSubject<ProductSummaryData>();
+
+  int limit = 10;
+
   @override
   void start() {
     inputState.add(ContentWithoutDimissState());
-    _products();
+
     _productSummary();
   }
 
-  _products() async {
+  @override
+  products() async {
+    Map<String, dynamic> query = {
+      'limit': limit,
+    };
     // ignore: void_checks
-    (await _productUsecase.execute(Void)).fold((failure) {
+    (await _productUsecase.execute(query)).fold((failure) {
       inputState.add(ErrorState(StateRendererType.SNACKBAR_ERROR_STATE, failure.message));
     }, (data) {
-      inputState.add(ContentWithoutDimissState());
+      // inputState.add(ContentWithoutDimissState());
       inputProducts.add(data.data);
     });
   }
@@ -49,7 +56,8 @@ class ProductViewmodel extends BaseViewModel implements ProductViewmodelInputs, 
   @override
   search(String query) async {
     // ignore: void_checks
-    (await _productUsecase.execute(Void)).fold((failure) {
+    Map<String, dynamic> queries = {};
+    (await _productUsecase.execute(queries)).fold((failure) {
       inputState.add(ErrorState(StateRendererType.SNACKBAR_ERROR_STATE, failure.message));
     }, (data) {
       inputState.add(ContentWithoutDimissState());
@@ -57,6 +65,11 @@ class ProductViewmodel extends BaseViewModel implements ProductViewmodelInputs, 
         data.data.where((item) => item.name.toString().toLowerCase().contains(query.toLowerCase())).toList(),
       );
     });
+  }
+
+  @override
+  updateLimit() {
+    limit += 10;
   }
 
   @override
@@ -80,6 +93,8 @@ class ProductViewmodel extends BaseViewModel implements ProductViewmodelInputs, 
 
 abstract class ProductViewmodelInputs {
   search(String query);
+  products();
+  updateLimit();
 
   Sink get inputProducts;
   Sink get inputProductsSearch;

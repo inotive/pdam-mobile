@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:pdam_inventory/app/config_app.dart';
+
 class HelperApp {
   static String generateRandomString(int length) {
     const String charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#\$%^&*()_+';
@@ -13,5 +15,13 @@ class HelperApp {
     }
 
     return text;
+  }
+
+  static String getUrlImage(String url) {
+    if (url.startsWith("https://")) {
+      return url;
+    } else {
+      return "${ConfigApp.imageUrl}$url";
+    }
   }
 }

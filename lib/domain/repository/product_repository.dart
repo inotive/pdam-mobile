@@ -5,7 +5,7 @@ import 'package:pdam_inventory/data/networks/failure.dart';
 import 'package:pdam_inventory/domain/model/product_model.dart';
 
 abstract class ProductRepository {
-  Future<Either<Failure, Product>> products();
+  Future<Either<Failure, Product>> products(Map<String, dynamic> queries);
   Future<Either<Failure, ProductSummary>> productSummary();
   Future<Either<Failure, ProductDetail>> productDetail(int id);
   Future<Either<Failure, ProductWarehouse>> productWarehouse(int id);

@@ -19,10 +19,10 @@ class ProductRepositoryImpl implements ProductRepository {
   );
 
   @override
-  Future<Either<Failure, Product>> products() async {
+  Future<Either<Failure, Product>> products(Map<String, dynamic> queries) async {
     if (await _networkInfo.isConnected) {
       try {
-        final response = await _productDataSource.products();
+        final response = await _productDataSource.products(queries);
 
         if (response.status?.code == ResponseCode.SUCCESS) {
           return Right(response.toDomain());

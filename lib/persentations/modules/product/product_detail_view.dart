@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pdam_inventory/app/di.dart';
+import 'package:pdam_inventory/app/helpers/helpers.dart';
 import 'package:pdam_inventory/domain/model/product_model.dart';
 import 'package:pdam_inventory/persentations/modules/product/tabs/product_history_stock_tab.dart';
 import 'package:pdam_inventory/persentations/modules/product/tabs/product_warehouse_stock_tab.dart';
@@ -215,7 +216,7 @@ class _ProductDetailViewState extends State<ProductDetailView> with TickerProvid
           CustomNetworkImage(
             height: 56,
             width: 56,
-            url: detail?.image,
+            url: HelperApp.getUrlImage(detail?.image ?? "EMPTY"),
           ),
           const SpacerWidth(12),
           Expanded(

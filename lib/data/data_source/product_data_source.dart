@@ -2,7 +2,7 @@ import 'package:pdam_inventory/data/networks/app_api.dart';
 import 'package:pdam_inventory/data/responses/product_response.dart';
 
 abstract class ProductDataSource {
-  Future<ProductResponse> products();
+  Future<ProductResponse> products(Map<String, dynamic> queries);
   Future<ProductSummaryResponse> productSummary();
   Future<ProductDetailResponse> productDetail(int id);
   Future<ProductWarehouseResponse> productWarehouse(int id);
@@ -15,8 +15,8 @@ class ProductDataSourceImpl extends ProductDataSource {
   ProductDataSourceImpl(this._appServiceClient);
 
   @override
-  Future<ProductResponse> products() async {
-    return await _appServiceClient.products();
+  Future<ProductResponse> products(Map<String, dynamic> queries) async {
+    return await _appServiceClient.products(queries);
   }
 
   @override
