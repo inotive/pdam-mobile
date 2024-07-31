@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pdam_inventory/app/helpers/date_formatter.dart';
 import 'package:pdam_inventory/domain/model/notification_model.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
@@ -47,7 +48,7 @@ class NotificationCard extends StatelessWidget {
           ),
           const SpacerHeight(11),
           Text(
-            data.createdAt,
+            DateFormatterApp.formatIndoDateTime(data.createdAt),
             style: StyleApp.textNormal.copyWith(
               color: ColorApp.greyText,
             ),

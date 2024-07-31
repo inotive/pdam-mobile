@@ -30,6 +30,7 @@ import 'package:pdam_inventory/domain/usecase/authentication/logout_usecase.dart
 import 'package:pdam_inventory/domain/usecase/history_stock/history_stock_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/notification/notification_count_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/notification/notification_usecase.dart';
+import 'package:pdam_inventory/domain/usecase/notification/read_notification_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/products/product_by_warehouse_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/products/product_detail_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/products/product_stock_history_usecase.dart';
@@ -215,7 +216,8 @@ initHomeModule() {
 initNotificationModule() {
   if (!GetIt.I.isRegistered<NotificationUsecase>()) {
     instance.registerFactory<NotificationUsecase>(() => NotificationUsecase(instance()));
-    instance.registerFactory<NotificationViewmodel>(() => NotificationViewmodel(instance()));
+    instance.registerFactory<ReadNotificationUsecase>(() => ReadNotificationUsecase(instance()));
+    instance.registerFactory<NotificationViewmodel>(() => NotificationViewmodel(instance(), instance()));
   }
 }
 

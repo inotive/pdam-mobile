@@ -61,4 +61,27 @@ class NotificationRepositoryImpl implements NotificationRepository {
       return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> readNotification(String id) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final response = await _notificationDataSource.readNotification(id);
+        if (response.meta?.code == ResponseCode.SUCCESS) {
+          return const Right(true);
+        } else {
+          return Left(
+            Failure(
+              response.meta?.code ?? ResponseCode.DEFAULT,
+              response.meta?.message ?? ResponseMessage.DEFAULT,
+            ),
+          );
+        }
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+    }
+  }
 }

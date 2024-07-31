@@ -55,7 +55,11 @@ class _NotificationViewState extends State<NotificationView> {
               if (snapshot.hasData) {
                 return Column(
                   children: data.map((item) {
-                    return NotificationCard(item);
+                    return GestureDetector(
+                        onTap: () {
+                          _notificationViewmodel.read(item.id);
+                        },
+                        child: NotificationCard(item));
                   }).toList(),
                 );
               } else {

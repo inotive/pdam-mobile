@@ -120,5 +120,11 @@ abstract class AppServiceClient {
   Future<NotificationCountResponse> notificationCount(
     @Header(AUTHORIZATION) String token,
   );
+
+  @POST('/mobile/notification')
+  Future<MessageResponse> readNotification(
+    @Header(AUTHORIZATION) String token,
+    @Field('id') String id,
+  );
   /* End Notification */
 }

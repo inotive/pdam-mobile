@@ -1,10 +1,12 @@
 import 'package:pdam_inventory/data/local_source/app_preference.dart';
 import 'package:pdam_inventory/data/networks/app_api.dart';
+import 'package:pdam_inventory/data/responses/base_response.dart';
 import 'package:pdam_inventory/data/responses/notification_response.dart';
 
 abstract class NotificationDataSource {
   Future<NotificationCountResponse> notificationCount();
   Future<NotificationResponse> notifications();
+  Future<MessageResponse> readNotification(String id);
 }
 
 class NotificationDataSourceImpl implements NotificationDataSource {
@@ -25,5 +27,12 @@ class NotificationDataSourceImpl implements NotificationDataSource {
     final token = await _appPreference.getUserToken();
 
     return await _appServiceClient.notifications(token);
+  }
+
+  @override
+  Future<MessageResponse> readNotification(String id) async {
+    final token = await _appPreference.getUserToken();
+
+    return await _appServiceClient.readNotification(token, id);
   }
 }
