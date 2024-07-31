@@ -9,6 +9,7 @@ const String PREFS_KEY_EMAIL = "PREFS_KEY_EMAIL";
 const String PREFS_KEY_ROLE_NAME = "PREFS_KEY_ROLE_NAME";
 const String PREFS_KEY_USERNAME = "PREFS_KEY_USERNAME";
 const String PREFS_KEY_IMAGE = "PREFS_KEY_IMAGE";
+const String PREFS_KEY_NOTIFICATION_COUNT = "PREFS_KEY_NOTIFICATION_COUNT";
 
 class AppPreference {
   final SharedPreferences _sharedPreferences;
@@ -34,8 +35,16 @@ class AppPreference {
     _sharedPreferences.setString(key, value);
   }
 
+  Future<void> setInt(String key, int value) async {
+    _sharedPreferences.setInt(key, value);
+  }
+
   Future<String> getString(String key) async {
     return _sharedPreferences.getString(key) ?? "";
+  }
+
+  Future<int> getInt(String key) async {
+    return _sharedPreferences.getInt(key) ?? 0;
   }
 
   Future<void> removeString(String key) async {

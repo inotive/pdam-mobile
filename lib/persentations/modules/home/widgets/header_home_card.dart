@@ -14,11 +14,13 @@ class HeaderHomeCard extends StatelessWidget {
     required this.name,
     required this.image,
     required this.role,
+    required this.count,
   });
 
   final String name;
   final String image;
   final String role;
+  final String count;
 
   @override
   Widget build(BuildContext context) {
@@ -67,12 +69,38 @@ class HeaderHomeCard extends StatelessWidget {
             ),
           ),
           const SpacerWidth(8),
-          IconCircleButton(
-            onTap: () {
-              Navigator.pushNamed(context, Routes.notification);
-            },
-            isSvg: true,
-            svg: IconApp.notification,
+          Stack(
+            clipBehavior: Clip.none,
+            children: [
+              IconCircleButton(
+                onTap: () {
+                  Navigator.pushNamed(context, Routes.notification);
+                },
+                isSvg: true,
+                svg: IconApp.notification,
+              ),
+              Positioned(
+                right: -2,
+                child: Container(
+                  height: 14,
+                  width: 14,
+                  alignment: Alignment.center,
+                  decoration: const BoxDecoration(
+                    color: ColorApp.red,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Text(
+                    count,
+                    style: StyleApp.textXs.copyWith(
+                      color: ColorApp.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 10,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),

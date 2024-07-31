@@ -2,10 +2,12 @@
 
 import 'package:dio/dio.dart';
 import 'package:pdam_inventory/app/config_app.dart';
+import 'package:pdam_inventory/data/networks/dio_factory.dart';
 import 'package:pdam_inventory/data/params/receipt_produt_param.dart';
 import 'package:pdam_inventory/data/responses/authentication_response.dart';
 import 'package:pdam_inventory/data/responses/base_response.dart';
 import 'package:pdam_inventory/data/responses/history_stock_response.dart';
+import 'package:pdam_inventory/data/responses/notification_response.dart';
 import 'package:pdam_inventory/data/responses/product_response.dart';
 import 'package:pdam_inventory/data/responses/purchase_request_response.dart';
 import 'package:pdam_inventory/data/responses/receive_order_response.dart';
@@ -107,4 +109,11 @@ abstract class AppServiceClient {
     @Queries() Map<String, dynamic> queries,
   );
   /* End Stock Opname */
+
+  /* Notification */
+  @GET('/mobile/notification/count')
+  Future<NotificationCountResponse> notificationCount(
+    @Header(AUTHORIZATION) String token,
+  );
+  /* End Notification */
 }

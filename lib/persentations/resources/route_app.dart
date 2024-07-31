@@ -54,6 +54,7 @@ class RouterGenerator {
         initReceiptItemModule();
         return MaterialPageRoute(builder: (_) => const ReceiptItemView());
       case Routes.mainMenu:
+        initHomeModule();
         initProductModule();
         initHistoryStockModule();
         return MaterialPageRoute(builder: (_) => const MainMenuView());

@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:pdam_inventory/data/data_source/authentication_data_source.dart';
 import 'package:pdam_inventory/data/data_source/history_stock_data_source.dart';
+import 'package:pdam_inventory/data/data_source/notification_data_source.dart';
 import 'package:pdam_inventory/data/data_source/product_data_source.dart';
 import 'package:pdam_inventory/data/data_source/purchase_request_data_source.dart';
 import 'package:pdam_inventory/data/data_source/receive_order_data_source.dart';
@@ -12,12 +13,14 @@ import 'package:pdam_inventory/data/networks/dio_factory.dart';
 import 'package:pdam_inventory/data/networks/network_info.dart';
 import 'package:pdam_inventory/data/repository/authentication_repository_impl.dart';
 import 'package:pdam_inventory/data/repository/history_stock_repository_impl.dart';
+import 'package:pdam_inventory/data/repository/notification_repository_impl.dart';
 import 'package:pdam_inventory/data/repository/product_repository_impl.dart';
 import 'package:pdam_inventory/data/repository/purchase_request_repository_impl.dart';
 import 'package:pdam_inventory/data/repository/receive_order_repository_impl.dart';
 import 'package:pdam_inventory/data/repository/stock_opname_repository_impl.dart';
 import 'package:pdam_inventory/domain/repository/authentication_repository.dart';
 import 'package:pdam_inventory/domain/repository/history_stock_repository.dart';
+import 'package:pdam_inventory/domain/repository/notification_repository.dart';
 import 'package:pdam_inventory/domain/repository/product_repository.dart';
 import 'package:pdam_inventory/domain/repository/purchase_request_repository.dart';
 import 'package:pdam_inventory/domain/repository/receive_order_repository.dart';
@@ -25,6 +28,7 @@ import 'package:pdam_inventory/domain/repository/stock_opname_repository.dart';
 import 'package:pdam_inventory/domain/usecase/authentication/login_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/authentication/logout_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/history_stock/history_stock_usecase.dart';
+import 'package:pdam_inventory/domain/usecase/notification/notification_count_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/products/product_by_warehouse_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/products/product_detail_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/products/product_stock_history_usecase.dart';
@@ -46,6 +50,7 @@ import 'package:pdam_inventory/persentations/modules/accepted_item/viewmodel/rec
 import 'package:pdam_inventory/persentations/modules/accepted_item/viewmodel/receive_order_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/auth/login/viewmodel/login_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/history_stock/viewmodel/history_stock_viewmodel.dart';
+import 'package:pdam_inventory/persentations/modules/home/viewmodel/home_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/product/viewmodel/product_detail_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/product/viewmodel/product_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/profile/viewmodel/profile_viewmodel.dart';
@@ -82,6 +87,7 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<ReceiveOrderDataSource>(() => ReceiveOrderDataSourceImpl(instance()));
   instance.registerLazySingleton<HistoryStockDataSource>(() => HistoryStockDataSourceImpl(instance()));
   instance.registerLazySingleton<StockOpnameDataSource>(() => StockOpnameDataSourceImpl(instance()));
+  instance.registerLazySingleton<NotificationDataSource>(() => NotificationDataSourceImpl(instance(), instance()));
 
   // repository
   instance
@@ -92,6 +98,8 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<ReceiveOrderRepository>(() => ReceiveOrderRepositoryImpl(instance(), instance()));
   instance.registerLazySingleton<HistoryStockRepository>(() => HistoryStockRepositoryImpl(instance(), instance()));
   instance.registerLazySingleton<StockOpnameRepository>(() => StockOpnameRepositoryImpl(instance(), instance()));
+  instance.registerLazySingleton<NotificationRepository>(
+      () => NotificationRepositoryImpl(instance(), instance(), instance()));
 
 // initAppModule
   initLoginModule();
@@ -195,6 +203,13 @@ initReceiptItemModule() {
   }
 }
 
+initHomeModule() {
+  if (!GetIt.I.isRegistered<NotificationCountUsecase>()) {
+    instance.registerFactory<NotificationCountUsecase>(() => NotificationCountUsecase(instance()));
+    instance.registerFactory<HomeViewmodel>(() => HomeViewmodel(instance()));
+  }
+}
+
 resetModules() {
   instance.reset(dispose: false);
   initAppModule();
@@ -208,4 +223,5 @@ resetModules() {
   initProductDetailModule();
   initStockOpnameModule();
   initReceiptItemModule();
+  initHomeModule();
 }
