@@ -48,7 +48,6 @@ class ProductViewmodel extends BaseViewModel implements ProductViewmodelInputs, 
     (await _productSummaryUsecase.execute(Void)).fold((failure) {
       inputState.add(ErrorState(StateRendererType.SNACKBAR_ERROR_STATE, failure.message));
     }, (data) {
-      inputState.add(ContentWithoutDimissState());
       inputProductSummary.add(data.data);
     });
   }
@@ -56,14 +55,12 @@ class ProductViewmodel extends BaseViewModel implements ProductViewmodelInputs, 
   @override
   search(String query) async {
     // ignore: void_checks
-    Map<String, dynamic> queries = {};
+    Map<String, dynamic> queries = {'limit': limit, 'search': query};
     (await _productUsecase.execute(queries)).fold((failure) {
       inputState.add(ErrorState(StateRendererType.SNACKBAR_ERROR_STATE, failure.message));
     }, (data) {
       inputState.add(ContentWithoutDimissState());
-      _productSearchStreamController.add(
-        data.data.where((item) => item.name.toString().toLowerCase().contains(query.toLowerCase())).toList(),
-      );
+      inputProductsSearch.add(data.data);
     });
   }
 

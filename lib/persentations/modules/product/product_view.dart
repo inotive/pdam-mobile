@@ -38,8 +38,10 @@ class _ProductViewState extends State<ProductView> {
         setState(() {
           isLoading = true;
         });
-        _productViewmodel.updateLimit();
-        _productViewmodel.products();
+        Future.delayed(const Duration(seconds: 1), () {
+          _productViewmodel.updateLimit();
+          _productViewmodel.products();
+        });
       }
     });
   }

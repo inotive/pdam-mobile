@@ -11,7 +11,6 @@ import 'package:pdam_inventory/data/local_source/app_preference.dart';
 import 'package:pdam_inventory/data/params/receipt_produt_param.dart';
 import 'package:pdam_inventory/domain/model/purchase_request_model.dart';
 import 'package:pdam_inventory/domain/model/receive_order_model.dart';
-import 'package:pdam_inventory/persentations/modules/receipt_item/tabs/receipt_item_by_reference_tab.dart';
 import 'package:pdam_inventory/persentations/modules/receipt_item/viewmodel/receipt_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/receipt_item/widgets/input_dropdown_product.dart';
 import 'package:pdam_inventory/persentations/modules/receipt_item/widgets/input_dropdown_reference.dart';
