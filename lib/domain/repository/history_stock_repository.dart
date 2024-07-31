@@ -6,5 +6,5 @@ import 'package:pdam_inventory/data/networks/failure.dart';
 import 'package:pdam_inventory/domain/model/history_stock_model.dart';
 
 abstract class HistoryStockRepository {
-  Future<Either<Failure, HistoryStock>> historyStock();
+  Future<Either<Failure, HistoryStock>> historyStock(Map<String, dynamic> queries);
 }

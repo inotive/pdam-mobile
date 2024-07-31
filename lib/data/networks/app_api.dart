@@ -99,7 +99,9 @@ abstract class AppServiceClient {
   /* History Stock */
 
   @GET('/mobile/product-stock')
-  Future<HistoryStockResponse> historyStock();
+  Future<HistoryStockResponse> historyStock(
+    @Queries() Map<String, dynamic> queries,
+  );
 
   /* End History Stock */
 

@@ -16,10 +16,10 @@ class HistoryStockRepositoryImpl implements HistoryStockRepository {
   HistoryStockRepositoryImpl(this._networkInfo, this._historyStockDataSource);
 
   @override
-  Future<Either<Failure, HistoryStock>> historyStock() async {
+  Future<Either<Failure, HistoryStock>> historyStock(Map<String, dynamic> queries) async {
     if (await _networkInfo.isConnected) {
       try {
-        final response = await _historyStockDataSource.historyStock();
+        final response = await _historyStockDataSource.historyStock(queries);
 
         if (response.status?.code == ResponseCode.SUCCESS) {
           return Right(response.toDomain());

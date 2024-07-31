@@ -3,6 +3,7 @@ import 'package:pdam_inventory/app/di.dart';
 import 'package:pdam_inventory/persentations/modules/accepted_item/accepted_item_view.dart';
 import 'package:pdam_inventory/persentations/modules/auth/login/login_view.dart';
 import 'package:pdam_inventory/persentations/modules/history_stock/history_stock_view.dart';
+import 'package:pdam_inventory/persentations/modules/history_stock/search_history_stock_view.dart';
 import 'package:pdam_inventory/persentations/modules/main_menu/main_menu_view.dart';
 import 'package:pdam_inventory/persentations/modules/notification/notification_view.dart';
 import 'package:pdam_inventory/persentations/modules/product/product_view.dart';
@@ -18,6 +19,7 @@ class Routes {
   static const String splash = '/';
   static const String notification = '/notification';
   static const String historyStock = '/history-stock';
+  static const String searchHistoryStock = '/search-history-stock';
   static const String purchaseItem = '/purchase-item';
   static const String product = '/product';
   static const String requestedItem = '/requested-item';
@@ -39,6 +41,8 @@ class RouterGenerator {
         return MaterialPageRoute(builder: (_) => const NotificationView());
       case Routes.historyStock:
         return MaterialPageRoute(builder: (_) => const HistoryStockView());
+      case Routes.searchHistoryStock:
+        return MaterialPageRoute(builder: (_) => const SearchHistoryStockView());
       case Routes.purchaseItem:
         return MaterialPageRoute(builder: (_) => const PurchaseItemView());
       case Routes.product:

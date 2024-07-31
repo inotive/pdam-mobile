@@ -535,9 +535,11 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
-  Future<HistoryStockResponse> historyStock() async {
+  Future<HistoryStockResponse> historyStock(
+      Map<String, dynamic> queries) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.addAll(queries);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(

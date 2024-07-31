@@ -11,6 +11,7 @@ import 'package:pdam_inventory/persentations/modules/history_stock/widgets/stock
 import 'package:pdam_inventory/persentations/packages/state_renderer/state_renderer_impl.dart';
 import 'package:pdam_inventory/persentations/resources/asset_app.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
+import 'package:pdam_inventory/persentations/resources/route_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/widgets/card/empty_card.dart';
 import 'package:pdam_inventory/persentations/widgets/forms/search_input_field.dart';
@@ -33,12 +34,6 @@ class _HistoryStockViewState extends State<HistoryStockView> {
   onStatusTapped(int id) {
     setState(() {
       statusIndex = id;
-    });
-  }
-
-  filterSearch(String query) {
-    setState(() {
-      productsItems = products.where((element) => element.name.toLowerCase().contains(query.toLowerCase())).toList();
     });
   }
 
@@ -202,9 +197,8 @@ class _HistoryStockViewState extends State<HistoryStockView> {
           padding: const EdgeInsets.all(16),
           child: SearchInputField(
             hint: StringApp.searchItem,
-            onChanged: (String val) {
-              filterSearch(val);
-            },
+            readOnly: true,
+            onTap: () => Navigator.pushNamed(context, Routes.searchHistoryStock),
             suffixIcon: const Icon(
               Icons.search,
               color: ColorApp.black,

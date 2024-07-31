@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ffi';
 
 import 'package:pdam_inventory/domain/model/history_stock_model.dart';
 import 'package:pdam_inventory/domain/usecase/history_stock/history_stock_usecase.dart';
@@ -15,6 +14,7 @@ class HistoryStockViewmodel extends BaseViewModel implements HistoryStockViewmod
   HistoryStockViewmodel(this._historyStockUsecase);
 
   final StreamController _allHistoryStockStreamController = BehaviorSubject<List<HistoryStockData>>();
+  final StreamController _searchStreamController = BehaviorSubject<List<HistoryStockData>>();
   final StreamController _inHistoryStockStreamController = BehaviorSubject<List<HistoryStockData>>();
   final StreamController _outHistoryStockStreamController = BehaviorSubject<List<HistoryStockData>>();
 
@@ -24,14 +24,27 @@ class HistoryStockViewmodel extends BaseViewModel implements HistoryStockViewmod
   }
 
   _historyStock() async {
+    Map<String, dynamic> queries = {};
     // ignore: void_checks
-    (await _historyStockUsecase.execute(Void)).fold((failure) {
+    (await _historyStockUsecase.execute(queries)).fold((failure) {
       inputState.add(ErrorState(StateRendererType.SNACKBAR_ERROR_STATE, failure.message));
     }, (data) {
       inputState.add(ContentWithoutDimissState());
       inputAllHistoryStock.add(data.data);
       inputInHistoryStock.add(data.data.where((item) => item.type == "Masuk").toList());
       inputOutHistoryStock.add(data.data.where((item) => item.type == "Keluar").toList());
+    });
+  }
+
+  @override
+  search(String query) async {
+    Map<String, dynamic> queries = {};
+    // ignore: void_checks
+    (await _historyStockUsecase.execute(queries)).fold((failure) {
+      inputState.add(ErrorState(StateRendererType.SNACKBAR_ERROR_STATE, failure.message));
+    }, (data) {
+      inputState.add(ContentWithoutDimissState());
+      inputSearch.add(data.data);
     });
   }
 
@@ -54,16 +67,25 @@ class HistoryStockViewmodel extends BaseViewModel implements HistoryStockViewmod
   @override
   Stream<List<HistoryStockData>> get outputOutHistoryStock =>
       _outHistoryStockStreamController.stream.map((item) => item);
+
+  @override
+  Sink get inputSearch => _searchStreamController.sink;
+
+  @override
+  Stream<List<HistoryStockData>> get outputSearch => _searchStreamController.stream.map((item) => item);
 }
 
 abstract class HistoryStockViewmodelInputs {
+  search(String query);
   Sink get inputAllHistoryStock;
+  Sink get inputSearch;
   Sink get inputInHistoryStock;
   Sink get inputOutHistoryStock;
 }
 
 abstract class HistoryStockViewmodelOutputs {
   Stream<List<HistoryStockData>> get outputAllHistoryStock;
+  Stream<List<HistoryStockData>> get outputSearch;
   Stream<List<HistoryStockData>> get outputInHistoryStock;
   Stream<List<HistoryStockData>> get outputOutHistoryStock;
 }
