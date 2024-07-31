@@ -20,7 +20,7 @@ class _SearchProductViewState extends State<SearchProductView> {
   final ProductViewmodel _productViewmodel = instance<ProductViewmodel>();
   String value = '';
   bool isLoading = false;
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
   _bind() {
     _scrollController.addListener(() {

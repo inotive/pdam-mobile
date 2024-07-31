@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:pdam_inventory/app/di.dart';
 import 'package:pdam_inventory/domain/model/product_model.dart';
 import 'package:pdam_inventory/persentations/modules/product/viewmodel/product_viewmodel.dart';
@@ -8,7 +7,6 @@ import 'package:pdam_inventory/persentations/modules/product/widgets/product_car
 import 'package:pdam_inventory/persentations/modules/product/widgets/product_chart_skeleton.dart';
 import 'package:pdam_inventory/persentations/modules/product/widgets/product_skeleton.dart';
 import 'package:pdam_inventory/persentations/packages/state_renderer/state_renderer_impl.dart';
-import 'package:pdam_inventory/persentations/resources/asset_app.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/route_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
@@ -234,15 +232,6 @@ class _ProductViewState extends State<ProductView> {
   AppBar _appBar() {
     return AppBar(
       title: const Text(StringApp.product),
-      actions: [
-        GestureDetector(
-          onTap: () {},
-          child: SvgPicture.asset(
-            IconApp.filter,
-          ),
-        ),
-        const SpacerWidth(16),
-      ],
       bottom: PreferredSize(
         preferredSize: const Size.fromHeight(64),
         child: Container(
