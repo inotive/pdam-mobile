@@ -140,7 +140,7 @@ class _RequestedDetailItemViewState extends State<RequestedDetailItemView> {
                 padding: const EdgeInsets.fromLTRB(8, 1.5, 8, 2.5),
                 decoration: const BoxDecoration(color: ColorApp.primary, shape: BoxShape.circle),
                 child: Text(
-                  purchase?.createdBy.getInitials() ?? EMPTY,
+                  purchase?.requestName.getInitials() ?? EMPTY,
                   style: StyleApp.textNormal.copyWith(
                     fontWeight: FontWeight.w600,
                     color: ColorApp.white,
@@ -149,7 +149,7 @@ class _RequestedDetailItemViewState extends State<RequestedDetailItemView> {
               ),
               const SpacerWidth(8),
               Text(
-                purchase?.createdBy ?? EMPTY,
+                purchase?.requestName ?? EMPTY,
                 style: StyleApp.textNormal.copyWith(
                   fontWeight: FontWeight.w600,
                 ),
