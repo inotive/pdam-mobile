@@ -25,7 +25,6 @@ class _HomeViewState extends State<HomeView> {
   String _name = EMPTY;
   String _image = EMPTY;
   String _role = EMPTY;
-  String _count = EMPTY;
 
   _bind() {
     _homeViewModel.start();
@@ -44,11 +43,6 @@ class _HomeViewState extends State<HomeView> {
         _role = role;
       });
     });
-    _appPreference.getInt(PREFS_KEY_NOTIFICATION_COUNT).then((count) {
-      setState(() {
-        _count = count.toString();
-      });
-    });
   }
 
   @override
@@ -65,11 +59,16 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
       body: ListView(
         children: [
-          HeaderHomeCard(
-            name: _name,
-            image: _image,
-            role: _role,
-            count: _count,
+          StreamBuilder<int>(
+            stream: _homeViewModel.outputCount,
+            builder: (context, snapshot) {
+              return HeaderHomeCard(
+                name: _name,
+                image: _image,
+                role: _role,
+                count: snapshot.data == null ? '0' : snapshot.data.toString(),
+              );
+            },
           ),
           Padding(
             padding: const EdgeInsets.symmetric(
