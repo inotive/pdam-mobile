@@ -35,6 +35,7 @@ class RouterGenerator {
       case Routes.splash:
         return MaterialPageRoute(builder: (_) => const SplashView());
       case Routes.notification:
+        initNotificationModule();
         return MaterialPageRoute(builder: (_) => const NotificationView());
       case Routes.historyStock:
         return MaterialPageRoute(builder: (_) => const HistoryStockView());

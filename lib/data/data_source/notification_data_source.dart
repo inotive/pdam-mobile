@@ -4,6 +4,7 @@ import 'package:pdam_inventory/data/responses/notification_response.dart';
 
 abstract class NotificationDataSource {
   Future<NotificationCountResponse> notificationCount();
+  Future<NotificationResponse> notifications();
 }
 
 class NotificationDataSourceImpl implements NotificationDataSource {
@@ -17,5 +18,12 @@ class NotificationDataSourceImpl implements NotificationDataSource {
     final token = await _appPreference.getUserToken();
 
     return await _appServiceClient.notificationCount(token);
+  }
+
+  @override
+  Future<NotificationResponse> notifications() async {
+    final token = await _appPreference.getUserToken();
+
+    return await _appServiceClient.notifications(token);
   }
 }

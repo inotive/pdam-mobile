@@ -590,6 +590,34 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
+  Future<NotificationResponse> notifications(String token) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<NotificationResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/mobile/notification',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final _value = NotificationResponse.fromJson(_result.data!);
+    return _value;
+  }
+
+  @override
   Future<NotificationCountResponse> notificationCount(String token) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

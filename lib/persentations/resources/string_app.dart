@@ -128,4 +128,6 @@ class StringApp {
   static const String uploadFileDesc = 'Klik disini untuk mengunggah file';
   static const String saveData = 'Simpan Data';
   static const String listItem = 'List Barang';
+
+  static const String notificationDataNotYet = 'Belum ada data notifikasi';
 }

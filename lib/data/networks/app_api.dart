@@ -111,6 +111,11 @@ abstract class AppServiceClient {
   /* End Stock Opname */
 
   /* Notification */
+  @GET('/mobile/notification')
+  Future<NotificationResponse> notifications(
+    @Header(AUTHORIZATION) String token,
+  );
+
   @GET('/mobile/notification/count')
   Future<NotificationCountResponse> notificationCount(
     @Header(AUTHORIZATION) String token,

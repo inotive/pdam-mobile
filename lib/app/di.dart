@@ -29,6 +29,7 @@ import 'package:pdam_inventory/domain/usecase/authentication/login_usecase.dart'
 import 'package:pdam_inventory/domain/usecase/authentication/logout_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/history_stock/history_stock_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/notification/notification_count_usecase.dart';
+import 'package:pdam_inventory/domain/usecase/notification/notification_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/products/product_by_warehouse_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/products/product_detail_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/products/product_stock_history_usecase.dart';
@@ -51,6 +52,7 @@ import 'package:pdam_inventory/persentations/modules/accepted_item/viewmodel/rec
 import 'package:pdam_inventory/persentations/modules/auth/login/viewmodel/login_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/history_stock/viewmodel/history_stock_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/home/viewmodel/home_viewmodel.dart';
+import 'package:pdam_inventory/persentations/modules/notification/viewmodel/notification_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/product/viewmodel/product_detail_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/product/viewmodel/product_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/profile/viewmodel/profile_viewmodel.dart';
@@ -210,6 +212,13 @@ initHomeModule() {
   }
 }
 
+initNotificationModule() {
+  if (!GetIt.I.isRegistered<NotificationUsecase>()) {
+    instance.registerFactory<NotificationUsecase>(() => NotificationUsecase(instance()));
+    instance.registerFactory<NotificationViewmodel>(() => NotificationViewmodel(instance()));
+  }
+}
+
 resetModules() {
   instance.reset(dispose: false);
   initAppModule();
@@ -224,4 +233,5 @@ resetModules() {
   initStockOpnameModule();
   initReceiptItemModule();
   initHomeModule();
+  initNotificationModule();
 }
