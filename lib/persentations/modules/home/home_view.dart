@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:pdam_inventory/app/di.dart';
 import 'package:pdam_inventory/data/local_source/app_preference.dart';
 import 'package:pdam_inventory/dummy/dummy_data.dart';
 import 'package:pdam_inventory/persentations/modules/home/sections/home_history_stock_section.dart';
 import 'package:pdam_inventory/persentations/modules/home/widgets/feature_card.dart';
 import 'package:pdam_inventory/persentations/modules/home/widgets/header_home_card.dart';
+import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
@@ -48,6 +50,9 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: ColorApp.primary,
+    ));
     return Scaffold(
       body: ListView(
         children: [
