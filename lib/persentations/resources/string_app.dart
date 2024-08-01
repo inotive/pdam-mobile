@@ -130,4 +130,5 @@ class StringApp {
   static const String listItem = 'List Barang';
 
   static const String notificationDataNotYet = 'Belum ada data notifikasi';
+  static const String purchaseItemDataNotYet = 'Belum ada data pembelian barang';
 }

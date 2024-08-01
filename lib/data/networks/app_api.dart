@@ -9,6 +9,7 @@ import 'package:pdam_inventory/data/responses/base_response.dart';
 import 'package:pdam_inventory/data/responses/history_stock_response.dart';
 import 'package:pdam_inventory/data/responses/notification_response.dart';
 import 'package:pdam_inventory/data/responses/product_response.dart';
+import 'package:pdam_inventory/data/responses/purchase_order_response.dart';
 import 'package:pdam_inventory/data/responses/purchase_request_response.dart';
 import 'package:pdam_inventory/data/responses/receive_order_response.dart';
 import 'package:pdam_inventory/data/responses/stock_opname_response.dart';
@@ -129,4 +130,11 @@ abstract class AppServiceClient {
     @Field('id') String id,
   );
   /* End Notification */
+
+  /* Purchase Order */
+  @GET('/mobile/purchase-order')
+  Future<PurchaseOrderResponse> purchaseOrder(
+    @Header(AUTHORIZATION) String token,
+  );
+  /* End Purchase Order */
 }

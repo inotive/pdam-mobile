@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:mobkit_dashed_border/mobkit_dashed_border.dart';
+import 'package:pdam_inventory/app/extensions.dart';
+import 'package:pdam_inventory/domain/model/purchase_order_model.dart';
 import 'package:pdam_inventory/persentations/modules/purchase_item/purchase_item_detail_view.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
 class PurchaseItemCard extends StatelessWidget {
-  const PurchaseItemCard({super.key});
+  const PurchaseItemCard(this.data, {super.key});
+
+  final PurchaseOrderData data;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +50,7 @@ class PurchaseItemCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'PO-000001',
+                        data.requestNumber,
                         style: StyleApp.textNormal.copyWith(
                           color: ColorApp.blackText,
                           fontWeight: FontWeight.w700,
@@ -61,7 +65,7 @@ class PurchaseItemCard extends StatelessWidget {
                   ),
                   const SpacerHeight(6),
                   Text(
-                    'Equal Tee Coupler hdpe 75mm,  Reducing Coupler hdpe 63mm, Reducing Coupler hdpe 110mm-9..',
+                    data.requestDescription,
                     style: StyleApp.textNormal.copyWith(
                       color: ColorApp.greyText,
                     ),
@@ -85,7 +89,7 @@ class PurchaseItemCard extends StatelessWidget {
                     padding: const EdgeInsets.fromLTRB(8, 1.5, 8, 2.5),
                     decoration: const BoxDecoration(color: ColorApp.primary, shape: BoxShape.circle),
                     child: Text(
-                      'J',
+                      data.requestName.getInitials(),
                       style: StyleApp.textNormal.copyWith(
                         fontWeight: FontWeight.w600,
                         color: ColorApp.white,
@@ -94,7 +98,7 @@ class PurchaseItemCard extends StatelessWidget {
                   ),
                   const SpacerWidth(8),
                   Text(
-                    'John Doe',
+                    data.requestName,
                     style: StyleApp.textNormal.copyWith(
                       fontWeight: FontWeight.w600,
                     ),

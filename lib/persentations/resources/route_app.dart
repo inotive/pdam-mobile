@@ -44,6 +44,7 @@ class RouterGenerator {
       case Routes.searchHistoryStock:
         return MaterialPageRoute(builder: (_) => const SearchHistoryStockView());
       case Routes.purchaseItem:
+        initPurchaseOrderModule();
         return MaterialPageRoute(builder: (_) => const PurchaseItemView());
       case Routes.product:
         return MaterialPageRoute(builder: (_) => const ProductView());

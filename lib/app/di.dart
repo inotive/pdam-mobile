@@ -4,6 +4,7 @@ import 'package:pdam_inventory/data/data_source/authentication_data_source.dart'
 import 'package:pdam_inventory/data/data_source/history_stock_data_source.dart';
 import 'package:pdam_inventory/data/data_source/notification_data_source.dart';
 import 'package:pdam_inventory/data/data_source/product_data_source.dart';
+import 'package:pdam_inventory/data/data_source/purchase_order_data_source.dart';
 import 'package:pdam_inventory/data/data_source/purchase_request_data_source.dart';
 import 'package:pdam_inventory/data/data_source/receive_order_data_source.dart';
 import 'package:pdam_inventory/data/data_source/stock_opname_data_source.dart';
@@ -15,6 +16,7 @@ import 'package:pdam_inventory/data/repository/authentication_repository_impl.da
 import 'package:pdam_inventory/data/repository/history_stock_repository_impl.dart';
 import 'package:pdam_inventory/data/repository/notification_repository_impl.dart';
 import 'package:pdam_inventory/data/repository/product_repository_impl.dart';
+import 'package:pdam_inventory/data/repository/purchase_order_repository_impl.dart';
 import 'package:pdam_inventory/data/repository/purchase_request_repository_impl.dart';
 import 'package:pdam_inventory/data/repository/receive_order_repository_impl.dart';
 import 'package:pdam_inventory/data/repository/stock_opname_repository_impl.dart';
@@ -22,6 +24,7 @@ import 'package:pdam_inventory/domain/repository/authentication_repository.dart'
 import 'package:pdam_inventory/domain/repository/history_stock_repository.dart';
 import 'package:pdam_inventory/domain/repository/notification_repository.dart';
 import 'package:pdam_inventory/domain/repository/product_repository.dart';
+import 'package:pdam_inventory/domain/repository/purchase_order_repository.dart';
 import 'package:pdam_inventory/domain/repository/purchase_request_repository.dart';
 import 'package:pdam_inventory/domain/repository/receive_order_repository.dart';
 import 'package:pdam_inventory/domain/repository/stock_opname_repository.dart';
@@ -37,6 +40,7 @@ import 'package:pdam_inventory/domain/usecase/products/product_stock_history_use
 import 'package:pdam_inventory/domain/usecase/products/product_summary_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/products/product_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/products/product_warehouse_usecase.dart';
+import 'package:pdam_inventory/domain/usecase/purchase_order/purchase_order_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/purchase_request_detail_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/purchase_request_summary_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/purchase_request_usecase.dart';
@@ -57,6 +61,7 @@ import 'package:pdam_inventory/persentations/modules/notification/viewmodel/noti
 import 'package:pdam_inventory/persentations/modules/product/viewmodel/product_detail_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/product/viewmodel/product_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/profile/viewmodel/profile_viewmodel.dart';
+import 'package:pdam_inventory/persentations/modules/purchase_item/viewmodel/purchase_order_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/receipt_item/viewmodel/receipt_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/requested_item/viewmodel/requested_detail_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/requested_item/viewmodel/requested_viewmodel.dart';
@@ -91,6 +96,7 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<HistoryStockDataSource>(() => HistoryStockDataSourceImpl(instance()));
   instance.registerLazySingleton<StockOpnameDataSource>(() => StockOpnameDataSourceImpl(instance()));
   instance.registerLazySingleton<NotificationDataSource>(() => NotificationDataSourceImpl(instance(), instance()));
+  instance.registerLazySingleton<PurchaseOrderDataSource>(() => PurchaseOrderDataSourceImpl(instance(), instance()));
 
   // repository
   instance
@@ -103,6 +109,7 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<StockOpnameRepository>(() => StockOpnameRepositoryImpl(instance(), instance()));
   instance.registerLazySingleton<NotificationRepository>(
       () => NotificationRepositoryImpl(instance(), instance(), instance()));
+  instance.registerLazySingleton<PurchaseOrderRepository>(() => PurchaseOrderRepositoryImpl(instance(), instance()));
 
 // initAppModule
   initLoginModule();
@@ -221,6 +228,13 @@ initNotificationModule() {
   }
 }
 
+initPurchaseOrderModule() {
+  if (!GetIt.I.isRegistered<PurchaseOrderUsecase>()) {
+    instance.registerFactory<PurchaseOrderUsecase>(() => PurchaseOrderUsecase(instance()));
+    instance.registerFactory<PurchaseOrderViewmodel>(() => PurchaseOrderViewmodel(instance()));
+  }
+}
+
 resetModules() {
   instance.reset(dispose: false);
   initAppModule();
@@ -236,4 +250,5 @@ resetModules() {
   initReceiptItemModule();
   initHomeModule();
   initNotificationModule();
+  initPurchaseOrderModule();
 }
