@@ -44,6 +44,15 @@ class StockCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
+                  data.referenceNumber,
+                  style: StyleApp.textNormal.copyWith(
+                    color: ColorApp.blackText,
+                    fontWeight: FontWeight.w700,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Text(
                   data.productName,
                   style: StyleApp.textLg.copyWith(
                     color: ColorApp.blackText,
