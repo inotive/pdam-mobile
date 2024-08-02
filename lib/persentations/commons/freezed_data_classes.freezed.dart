@@ -389,3 +389,171 @@ abstract class _ReceiveOrderObject implements ReceiveOrderObject {
   _$$ReceiveOrderObjectImplCopyWith<_$ReceiveOrderObjectImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$UpdateUserObject {
+  String get name => throw _privateConstructorUsedError;
+  String? get password => throw _privateConstructorUsedError;
+  String get noTelp => throw _privateConstructorUsedError;
+  File get file => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $UpdateUserObjectCopyWith<UpdateUserObject> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UpdateUserObjectCopyWith<$Res> {
+  factory $UpdateUserObjectCopyWith(
+          UpdateUserObject value, $Res Function(UpdateUserObject) then) =
+      _$UpdateUserObjectCopyWithImpl<$Res, UpdateUserObject>;
+  @useResult
+  $Res call({String name, String? password, String noTelp, File file});
+}
+
+/// @nodoc
+class _$UpdateUserObjectCopyWithImpl<$Res, $Val extends UpdateUserObject>
+    implements $UpdateUserObjectCopyWith<$Res> {
+  _$UpdateUserObjectCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? password = freezed,
+    Object? noTelp = null,
+    Object? file = null,
+  }) {
+    return _then(_value.copyWith(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: freezed == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String?,
+      noTelp: null == noTelp
+          ? _value.noTelp
+          : noTelp // ignore: cast_nullable_to_non_nullable
+              as String,
+      file: null == file
+          ? _value.file
+          : file // ignore: cast_nullable_to_non_nullable
+              as File,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$UpdateUserObjectImplCopyWith<$Res>
+    implements $UpdateUserObjectCopyWith<$Res> {
+  factory _$$UpdateUserObjectImplCopyWith(_$UpdateUserObjectImpl value,
+          $Res Function(_$UpdateUserObjectImpl) then) =
+      __$$UpdateUserObjectImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String name, String? password, String noTelp, File file});
+}
+
+/// @nodoc
+class __$$UpdateUserObjectImplCopyWithImpl<$Res>
+    extends _$UpdateUserObjectCopyWithImpl<$Res, _$UpdateUserObjectImpl>
+    implements _$$UpdateUserObjectImplCopyWith<$Res> {
+  __$$UpdateUserObjectImplCopyWithImpl(_$UpdateUserObjectImpl _value,
+      $Res Function(_$UpdateUserObjectImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? password = freezed,
+    Object? noTelp = null,
+    Object? file = null,
+  }) {
+    return _then(_$UpdateUserObjectImpl(
+      null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      freezed == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String?,
+      null == noTelp
+          ? _value.noTelp
+          : noTelp // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == file
+          ? _value.file
+          : file // ignore: cast_nullable_to_non_nullable
+              as File,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateUserObjectImpl implements _UpdateUserObject {
+  _$UpdateUserObjectImpl(this.name, this.password, this.noTelp, this.file);
+
+  @override
+  final String name;
+  @override
+  final String? password;
+  @override
+  final String noTelp;
+  @override
+  final File file;
+
+  @override
+  String toString() {
+    return 'UpdateUserObject(name: $name, password: $password, noTelp: $noTelp, file: $file)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateUserObjectImpl &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
+            (identical(other.noTelp, noTelp) || other.noTelp == noTelp) &&
+            (identical(other.file, file) || other.file == file));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, name, password, noTelp, file);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateUserObjectImplCopyWith<_$UpdateUserObjectImpl> get copyWith =>
+      __$$UpdateUserObjectImplCopyWithImpl<_$UpdateUserObjectImpl>(
+          this, _$identity);
+}
+
+abstract class _UpdateUserObject implements UpdateUserObject {
+  factory _UpdateUserObject(final String name, final String? password,
+      final String noTelp, final File file) = _$UpdateUserObjectImpl;
+
+  @override
+  String get name;
+  @override
+  String? get password;
+  @override
+  String get noTelp;
+  @override
+  File get file;
+  @override
+  @JsonKey(ignore: true)
+  _$$UpdateUserObjectImplCopyWith<_$UpdateUserObjectImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

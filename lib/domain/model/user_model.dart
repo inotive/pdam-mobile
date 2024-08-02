@@ -8,6 +8,7 @@ class UserData {
     this.updatedAt,
     this.roleId,
     this.username,
+    this.noTelp,
     this.role,
     this.image,
   );
@@ -20,6 +21,7 @@ class UserData {
   String updatedAt;
   String roleId;
   String username;
+  String noTelp;
   RoleData? role;
   String image;
 }

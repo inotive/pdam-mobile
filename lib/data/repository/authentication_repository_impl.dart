@@ -9,6 +9,7 @@ import 'package:pdam_inventory/data/networks/error_handler.dart';
 import 'package:pdam_inventory/data/networks/failure.dart';
 import 'package:pdam_inventory/data/networks/network_info.dart';
 import 'package:pdam_inventory/data/requests/login_request.dart';
+import 'package:pdam_inventory/data/requests/update_user_request.dart';
 import 'package:pdam_inventory/domain/repository/authentication_repository.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 
@@ -35,6 +36,7 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
           _appPreference.setString(PREFS_KEY_USERNAME, response.data?.username ?? EMPTY);
           _appPreference.setString(PREFS_KEY_IMAGE, response.data?.image ?? EMPTY);
           _appPreference.setString(PREFS_KEY_ROLE_NAME, response.data?.role?.name ?? EMPTY);
+          _appPreference.setString(PREFS_KEY_NO_TELP, response.data?.noTelp ?? EMPTY);
           return const Right(true);
         } else {
           return Left(
@@ -72,6 +74,33 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
           );
         }
       } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> updateUser(UpdateUserRequest request) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final response = await _authenticationDataSource.update(request);
+        if (response.meta?.code == ResponseCode.SUCCESS) {
+          _appPreference.setString(PREFS_KEY_NAME, response.data?.name ?? EMPTY);
+          _appPreference.setString(PREFS_KEY_IMAGE, response.data?.image ?? EMPTY);
+          _appPreference.setString(PREFS_KEY_NO_TELP, response.data?.noTelp ?? EMPTY);
+          return const Right(true);
+        } else {
+          return Left(
+            Failure(
+              response.meta?.code ?? ResponseCode.DEFAULT,
+              response.meta?.message ?? ResponseMessage.DEFAULT,
+            ),
+          );
+        }
+      } catch (error) {
+        log(error.toString());
         return Left(ErrorHandler.handle(error).failure);
       }
     } else {

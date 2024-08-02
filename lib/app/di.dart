@@ -30,6 +30,7 @@ import 'package:pdam_inventory/domain/repository/receive_order_repository.dart';
 import 'package:pdam_inventory/domain/repository/stock_opname_repository.dart';
 import 'package:pdam_inventory/domain/usecase/authentication/login_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/authentication/logout_usecase.dart';
+import 'package:pdam_inventory/domain/usecase/authentication/update_user_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/history_stock/history_stock_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/notification/notification_count_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/notification/notification_usecase.dart';
@@ -90,7 +91,7 @@ Future<void> initAppModule() async {
 
   // data source
   instance.registerLazySingleton<PurchaseRequestDataSource>(() => PurchaseRequestDataSourceImpl(instance()));
-  instance.registerLazySingleton<AuthenticationDataSource>(() => AuthenticationDataSourceImpl(instance()));
+  instance.registerLazySingleton<AuthenticationDataSource>(() => AuthenticationDataSourceImpl(instance(), instance()));
   instance.registerLazySingleton<ProductDataSource>(() => ProductDataSourceImpl(instance()));
   instance.registerLazySingleton<ReceiveOrderDataSource>(() => ReceiveOrderDataSourceImpl(instance()));
   instance.registerLazySingleton<HistoryStockDataSource>(() => HistoryStockDataSourceImpl(instance()));
@@ -130,7 +131,8 @@ initLoginModule() {
 initProfiileModule() {
   if (!GetIt.I.isRegistered<LogoutUsecase>()) {
     instance.registerFactory<LogoutUsecase>(() => LogoutUsecase(instance()));
-    instance.registerFactory<ProfileViewModel>(() => ProfileViewModel(instance()));
+    instance.registerFactory<UpdateUserUsecase>(() => UpdateUserUsecase(instance()));
+    instance.registerFactory<ProfileViewModel>(() => ProfileViewModel(instance(), instance()));
   }
 }
 

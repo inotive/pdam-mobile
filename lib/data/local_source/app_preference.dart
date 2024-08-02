@@ -10,6 +10,7 @@ const String PREFS_KEY_ROLE_NAME = "PREFS_KEY_ROLE_NAME";
 const String PREFS_KEY_USERNAME = "PREFS_KEY_USERNAME";
 const String PREFS_KEY_IMAGE = "PREFS_KEY_IMAGE";
 const String PREFS_KEY_NOTIFICATION_COUNT = "PREFS_KEY_NOTIFICATION_COUNT";
+const String PREFS_KEY_NO_TELP = "PREFS_KEY_NO_TELP";
 
 class AppPreference {
   final SharedPreferences _sharedPreferences;

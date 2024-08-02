@@ -14,6 +14,7 @@ extension UserDataResponseMapper on UserDataResponse? {
       this?.updatedAt.orEmpty() ?? EMPTY,
       this?.roleId.orEmpty() ?? EMPTY,
       this?.username.orEmpty() ?? EMPTY,
+      this?.noTelp.orEmpty() ?? EMPTY,
       this?.role.toDomain(),
       this?.image.orEmpty() ?? EMPTY,
     );

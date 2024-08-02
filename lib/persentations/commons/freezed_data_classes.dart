@@ -22,3 +22,8 @@ class ReceiveOrderObject with _$ReceiveOrderObject {
     List<ReceiptProductParam> productList,
   ) = _ReceiveOrderObject;
 }
+
+@freezed
+class UpdateUserObject with _$UpdateUserObject {
+  factory UpdateUserObject(String name, String? password, String noTelp, File file) = _UpdateUserObject;
+}

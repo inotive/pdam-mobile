@@ -14,6 +14,7 @@ class UserDataResponse {
     this.updatedAt,
     this.roleId,
     this.username,
+    this.noTelp,
     this.role,
     this.image,
   );
@@ -34,6 +35,8 @@ class UserDataResponse {
   String? roleId;
   @JsonKey(name: "username")
   String? username;
+  @JsonKey(name: "no_telp")
+  String? noTelp;
   @JsonKey(name: "role")
   RoleDataResponse? role;
   @JsonKey(name: "image")

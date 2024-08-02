@@ -5,6 +5,7 @@ import 'package:pdam_inventory/data/local_source/app_preference.dart';
 import 'package:pdam_inventory/persentations/modules/profile/viewmodel/profile_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/profile/widgets/profile_card.dart';
 import 'package:pdam_inventory/persentations/modules/profile/widgets/profile_form.dart';
+import 'package:pdam_inventory/persentations/packages/state_renderer/state_renderer_impl.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/route_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
@@ -42,29 +43,38 @@ class _ProfileViewState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: ListView(
-          children: [
-            const ProfileCard(),
-            const ProfileForm(),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-              child: CustomOutlineButton(
-                onPressed: () {
-                  _appPreference.removeString(PREFS_KEY_TOKEN);
-                  _appPreference.removeString(PREFS_KEY_IS_USER_LOGGED_IN);
-                  _appPreference.removeString(PREFS_KEY_NAME);
-                  // _profileViewModel.logout();
-                  Navigator.pushReplacementNamed(context, Routes.login);
-                },
-                text: StringApp.logout,
-                textColor: ColorApp.red,
-                borderColor: ColorApp.red,
-                backgroundColor: ColorApp.redBg,
-              ),
+      body: StreamBuilder<FlowState>(
+          stream: _profileViewModel.outputState,
+          builder: (context, snapshot) {
+            return snapshot.data?.getScreenWidget(context, _getContentWidgets(context), () {}) ??
+                _getContentWidgets(context);
+          }),
+    );
+  }
+
+  SafeArea _getContentWidgets(BuildContext context) {
+    return SafeArea(
+      child: ListView(
+        children: [
+          const ProfileCard(),
+          const ProfileForm(),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+            child: CustomOutlineButton(
+              onPressed: () {
+                _appPreference.removeString(PREFS_KEY_TOKEN);
+                _appPreference.removeString(PREFS_KEY_IS_USER_LOGGED_IN);
+                _appPreference.removeString(PREFS_KEY_NAME);
+                // _profileViewModel.logout();
+                Navigator.pushReplacementNamed(context, Routes.login);
+              },
+              text: StringApp.logout,
+              textColor: ColorApp.red,
+              borderColor: ColorApp.red,
+              backgroundColor: ColorApp.redBg,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

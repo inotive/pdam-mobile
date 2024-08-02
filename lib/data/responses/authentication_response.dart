@@ -34,3 +34,15 @@ class TokenResponse {
 
   Map<String, dynamic> toJson() => _$TokenResponseToJson(this);
 }
+
+@JsonSerializable()
+class UpdateUserResponse extends BaseResponse {
+  UpdateUserResponse(this.data);
+
+  @JsonKey(name: 'data')
+  UserDataResponse? data;
+
+  factory UpdateUserResponse.fromJson(Map<String, dynamic> json) => _$UpdateUserResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UpdateUserResponseToJson(this);
+}

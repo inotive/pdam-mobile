@@ -38,3 +38,18 @@ Map<String, dynamic> _$TokenResponseToJson(TokenResponse instance) =>
       'access_token': instance.accessToken,
       'token_type': instance.tokenType,
     };
+
+UpdateUserResponse _$UpdateUserResponseFromJson(Map<String, dynamic> json) =>
+    UpdateUserResponse(
+      json['data'] == null
+          ? null
+          : UserDataResponse.fromJson(json['data'] as Map<String, dynamic>),
+    )..meta = json['meta'] == null
+        ? null
+        : MetaResponse.fromJson(json['meta'] as Map<String, dynamic>);
+
+Map<String, dynamic> _$UpdateUserResponseToJson(UpdateUserResponse instance) =>
+    <String, dynamic>{
+      'meta': instance.meta,
+      'data': instance.data,
+    };
