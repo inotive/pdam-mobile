@@ -59,6 +59,11 @@ class ProfileViewModel extends BaseViewModel implements ProfileViewModelInputs, 
   }
 
   @override
+  setFile(File file) {
+    _updateUserObject = _updateUserObject.copyWith(file: file);
+  }
+
+  @override
   update() async {
     inputState.add(LoadingState(stateRendererType: StateRendererType.POPUP_LOADING_STATE));
     (await _updateUserUsecase.execute(
@@ -83,6 +88,7 @@ abstract class ProfileViewModelInputs {
   setName(String name);
   setPassword(String password);
   setNoTelp(String noTelp);
+  setFile(File file);
 }
 
 abstract class ProfileViewModelOutput {}
