@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobkit_dashed_border/mobkit_dashed_border.dart';
-import 'package:pdam_inventory/persentations/modules/purchase_item/widgets/purchase_detail_text_item.dart';
+import 'package:pdam_inventory/persentations/modules/purchase_item/purchase/widgets/purchase_detail_text_item.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';

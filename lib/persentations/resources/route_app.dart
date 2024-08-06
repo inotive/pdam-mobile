@@ -8,7 +8,7 @@ import 'package:pdam_inventory/persentations/modules/main_menu/main_menu_view.da
 import 'package:pdam_inventory/persentations/modules/notification/notification_view.dart';
 import 'package:pdam_inventory/persentations/modules/product/product_view.dart';
 import 'package:pdam_inventory/persentations/modules/product/search_product_view.dart';
-import 'package:pdam_inventory/persentations/modules/purchase_item/purchase_item_view.dart';
+import 'package:pdam_inventory/persentations/modules/purchase_item/purchase/purchase_item_view.dart';
 import 'package:pdam_inventory/persentations/modules/receipt_item/receipt_item_view.dart';
 import 'package:pdam_inventory/persentations/modules/requested_item/requested_item_view.dart';
 import 'package:pdam_inventory/persentations/modules/splash/splash_view.dart';

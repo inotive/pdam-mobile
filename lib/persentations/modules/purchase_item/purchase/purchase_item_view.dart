@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pdam_inventory/app/di.dart';
 import 'package:pdam_inventory/domain/model/purchase_order_model.dart';
-import 'package:pdam_inventory/persentations/modules/purchase_item/viewmodel/purchase_order_viewmodel.dart';
-import 'package:pdam_inventory/persentations/modules/purchase_item/widgets/purchase_item_by_date_card.dart';
-import 'package:pdam_inventory/persentations/modules/purchase_item/widgets/purchase_item_skeleton.dart';
+import 'package:pdam_inventory/persentations/modules/purchase_item/purchase/viewmodel/purchase_order_viewmodel.dart';
+import 'package:pdam_inventory/persentations/modules/purchase_item/purchase/widgets/purchase_item_by_date_card.dart';
+import 'package:pdam_inventory/persentations/modules/purchase_item/purchase/widgets/purchase_item_skeleton.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/widgets/card/empty_card.dart';

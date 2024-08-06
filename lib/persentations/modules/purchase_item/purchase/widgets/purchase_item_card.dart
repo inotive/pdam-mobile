@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobkit_dashed_border/mobkit_dashed_border.dart';
 import 'package:pdam_inventory/app/extensions.dart';
 import 'package:pdam_inventory/domain/model/purchase_order_model.dart';
-import 'package:pdam_inventory/persentations/modules/purchase_item/purchase_item_detail_view.dart';
+import 'package:pdam_inventory/persentations/modules/purchase_item/purchase/purchase_item_detail_view.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';

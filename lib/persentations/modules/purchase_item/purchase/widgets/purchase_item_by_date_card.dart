@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pdam_inventory/app/helpers/date_formatter.dart';
 import 'package:pdam_inventory/domain/model/purchase_order_model.dart';
-import 'package:pdam_inventory/persentations/modules/purchase_item/widgets/purchase_item_card.dart';
+import 'package:pdam_inventory/persentations/modules/purchase_item/purchase/widgets/purchase_item_card.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
 
