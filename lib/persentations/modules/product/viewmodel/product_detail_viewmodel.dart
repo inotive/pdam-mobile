@@ -27,7 +27,7 @@ class ProductDetailViewmodel extends BaseViewModel
     inputState.add(ContentWithoutDimissState());
   }
 
-  productDetail(int id) async {
+  productDetail(String id) async {
     inputState.add(LoadingState(stateRendererType: StateRendererType.POPUP_LOADING_STATE));
     // ignore: void_checks
     (await _productDetailUsecase.execute(id)).fold((failure) {
@@ -38,7 +38,7 @@ class ProductDetailViewmodel extends BaseViewModel
     });
   }
 
-  productWarehouse(int id) async {
+  productWarehouse(String id) async {
     (await _productWarehouseUsecase.execute(id)).fold((failure) {
       inputState.add(ErrorState(StateRendererType.SNACKBAR_ERROR_STATE, failure.message));
     }, (data) {
@@ -47,7 +47,7 @@ class ProductDetailViewmodel extends BaseViewModel
     });
   }
 
-  productStockHistory(int id) async {
+  productStockHistory(String id) async {
     (await _productStockHistoryUsecase.execute(id)).fold((failure) {
       inputState.add(ErrorState(StateRendererType.SNACKBAR_ERROR_STATE, failure.message));
     }, (data) {

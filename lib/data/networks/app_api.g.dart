@@ -275,7 +275,7 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
-  Future<ProductDetailResponse> productDetail(int id) async {
+  Future<ProductDetailResponse> productDetail(String id) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -302,7 +302,7 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
-  Future<ProductWarehouseResponse> productWarehouse(int id) async {
+  Future<ProductWarehouseResponse> productWarehouse(String id) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -329,7 +329,7 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
-  Future<ProductStockHistoryResponse> productStockHistory(int id) async {
+  Future<ProductStockHistoryResponse> productStockHistory(String id) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};

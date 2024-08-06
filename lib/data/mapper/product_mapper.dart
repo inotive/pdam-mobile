@@ -19,12 +19,12 @@ extension ProductDataResponseMapper on ProductDataResponse? {
   ProductData toDomain() {
     ValueNotifier<int> qty = ValueNotifier<int>(1);
     return ProductData(
-      this?.id.orZero() ?? ZERO,
+      this?.id.orEmpty() ?? EMPTY,
       this?.name.orEmpty() ?? EMPTY,
       this?.code.orEmpty() ?? EMPTY,
-      this?.currentStock.orZero() ?? ZERO,
-      this?.stockIn.orZero() ?? ZERO,
-      this?.stockOut.orZero() ?? ZERO,
+      this?.currentStock,
+      this?.stockIn,
+      this?.stockOut,
       this?.image.orEmpty() ?? EMPTY,
       this?.createdAt.orEmpty() ?? EMPTY,
       this?.updatedAt.orEmpty() ?? EMPTY,
@@ -36,12 +36,12 @@ extension ProductDataResponseMapper on ProductDataResponse? {
 extension ProductDetailDataResponseMapper on ProductDetailDataResponse? {
   ProductDetailData toDomain() {
     return ProductDetailData(
-      this?.id.orZero() ?? ZERO,
+      this?.id.orEmpty() ?? EMPTY,
       this?.name.orEmpty() ?? EMPTY,
       this?.code.orEmpty() ?? EMPTY,
-      this?.currentStock.orZero() ?? ZERO,
-      this?.stockIn.orZero() ?? ZERO,
-      this?.stockOut.orZero() ?? ZERO,
+      this?.currentStock,
+      this?.stockIn,
+      this?.stockOut,
       this?.image.orEmpty() ?? EMPTY,
       this?.createdAt.orEmpty() ?? EMPTY,
       this?.updatedAt.orEmpty() ?? EMPTY,

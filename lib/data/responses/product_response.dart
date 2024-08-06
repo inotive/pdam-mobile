@@ -33,17 +33,17 @@ class ProductDataResponse {
   );
 
   @JsonKey(name: "id")
-  int? id;
+  String? id;
   @JsonKey(name: "name")
   String? name;
   @JsonKey(name: "code")
   String? code;
   @JsonKey(name: "current_stock")
-  int? currentStock;
+  dynamic currentStock;
   @JsonKey(name: "stock_in")
-  int? stockIn;
+  dynamic stockIn;
   @JsonKey(name: "stock_out")
-  int? stockOut;
+  dynamic stockOut;
   @JsonKey(name: "image")
   String? image;
   @JsonKey(name: "created_at")
@@ -83,17 +83,17 @@ class ProductDetailDataResponse {
   );
 
   @JsonKey(name: "id")
-  int? id;
+  String? id;
   @JsonKey(name: "name")
   String? name;
   @JsonKey(name: "code")
   String? code;
   @JsonKey(name: "current_stock")
-  int? currentStock;
+  dynamic currentStock;
   @JsonKey(name: "stock_in")
-  int? stockIn;
+  dynamic stockIn;
   @JsonKey(name: "stock_out")
-  int? stockOut;
+  dynamic stockOut;
   @JsonKey(name: "image")
   String? image;
   @JsonKey(name: "created_at")

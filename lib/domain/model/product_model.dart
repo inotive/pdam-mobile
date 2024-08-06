@@ -22,12 +22,12 @@ class ProductData {
     this.qty,
   );
 
-  int id;
+  String id;
   String name;
   String code;
-  int currentStock;
-  int stockIn;
-  int stockOut;
+  dynamic currentStock;
+  dynamic stockIn;
+  dynamic stockOut;
   String image;
   String createdAt;
   String updatedAt;
@@ -53,12 +53,12 @@ class ProductDetailData {
     this.updatedAt,
   );
 
-  int id;
+  String id;
   String name;
   String code;
-  int currentStock;
-  int stockIn;
-  int stockOut;
+  dynamic currentStock;
+  dynamic stockIn;
+  dynamic stockOut;
   String image;
   String createdAt;
   String updatedAt;

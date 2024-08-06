@@ -1,5 +1,7 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:pdam_inventory/data/data_source/product_data_source.dart';
 import 'package:pdam_inventory/data/mapper/product_mapper.dart';
@@ -35,6 +37,7 @@ class ProductRepositoryImpl implements ProductRepository {
           );
         }
       } catch (error) {
+        log(error.toString());
         return Left(ErrorHandler.handle(error).failure);
       }
     } else {
@@ -43,7 +46,7 @@ class ProductRepositoryImpl implements ProductRepository {
   }
 
   @override
-  Future<Either<Failure, ProductDetail>> productDetail(int id) async {
+  Future<Either<Failure, ProductDetail>> productDetail(String id) async {
     if (await _networkInfo.isConnected) {
       try {
         final response = await _productDataSource.productDetail(id);
@@ -59,6 +62,7 @@ class ProductRepositoryImpl implements ProductRepository {
           );
         }
       } catch (error) {
+        log(error.toString());
         return Left(ErrorHandler.handle(error).failure);
       }
     } else {
@@ -91,7 +95,7 @@ class ProductRepositoryImpl implements ProductRepository {
   }
 
   @override
-  Future<Either<Failure, ProductWarehouse>> productWarehouse(int id) async {
+  Future<Either<Failure, ProductWarehouse>> productWarehouse(String id) async {
     if (await _networkInfo.isConnected) {
       try {
         final response = await _productDataSource.productWarehouse(id);
@@ -115,7 +119,7 @@ class ProductRepositoryImpl implements ProductRepository {
   }
 
   @override
-  Future<Either<Failure, ProductStockHistory>> productStockHistory(int id) async {
+  Future<Either<Failure, ProductStockHistory>> productStockHistory(String id) async {
     if (await _networkInfo.isConnected) {
       try {
         final response = await _productDataSource.productStockHistory(id);

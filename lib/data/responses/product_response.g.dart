@@ -23,12 +23,12 @@ Map<String, dynamic> _$ProductResponseToJson(ProductResponse instance) =>
 
 ProductDataResponse _$ProductDataResponseFromJson(Map<String, dynamic> json) =>
     ProductDataResponse(
-      (json['id'] as num?)?.toInt(),
+      json['id'] as String?,
       json['name'] as String?,
       json['code'] as String?,
-      (json['current_stock'] as num?)?.toInt(),
-      (json['stock_in'] as num?)?.toInt(),
-      (json['stock_out'] as num?)?.toInt(),
+      json['current_stock'],
+      json['stock_in'],
+      json['stock_out'],
       json['image'] as String?,
       json['created_at'] as String?,
       json['updated_at'] as String?,
@@ -69,12 +69,12 @@ Map<String, dynamic> _$ProductDetailResponseToJson(
 ProductDetailDataResponse _$ProductDetailDataResponseFromJson(
         Map<String, dynamic> json) =>
     ProductDetailDataResponse(
-      (json['id'] as num?)?.toInt(),
+      json['id'] as String?,
       json['name'] as String?,
       json['code'] as String?,
-      (json['current_stock'] as num?)?.toInt(),
-      (json['stock_in'] as num?)?.toInt(),
-      (json['stock_out'] as num?)?.toInt(),
+      json['current_stock'],
+      json['stock_in'],
+      json['stock_out'],
       json['image'] as String?,
       json['created_at'] as String?,
       json['updated_at'] as String?,

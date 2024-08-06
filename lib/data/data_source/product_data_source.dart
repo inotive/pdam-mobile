@@ -4,9 +4,9 @@ import 'package:pdam_inventory/data/responses/product_response.dart';
 abstract class ProductDataSource {
   Future<ProductResponse> products(Map<String, dynamic> queries);
   Future<ProductSummaryResponse> productSummary();
-  Future<ProductDetailResponse> productDetail(int id);
-  Future<ProductWarehouseResponse> productWarehouse(int id);
-  Future<ProductStockHistoryResponse> productStockHistory(int id);
+  Future<ProductDetailResponse> productDetail(String id);
+  Future<ProductWarehouseResponse> productWarehouse(String id);
+  Future<ProductStockHistoryResponse> productStockHistory(String id);
   Future<ProductByWarehouseResponse> productByWarehouse(int warehouseId);
 }
 
@@ -20,7 +20,7 @@ class ProductDataSourceImpl extends ProductDataSource {
   }
 
   @override
-  Future<ProductDetailResponse> productDetail(int id) async {
+  Future<ProductDetailResponse> productDetail(String id) async {
     return await _appServiceClient.productDetail(id);
   }
 
@@ -30,12 +30,12 @@ class ProductDataSourceImpl extends ProductDataSource {
   }
 
   @override
-  Future<ProductWarehouseResponse> productWarehouse(int id) async {
+  Future<ProductWarehouseResponse> productWarehouse(String id) async {
     return await _appServiceClient.productWarehouse(id);
   }
 
   @override
-  Future<ProductStockHistoryResponse> productStockHistory(int id) async {
+  Future<ProductStockHistoryResponse> productStockHistory(String id) async {
     return await _appServiceClient.productStockHistory(id);
   }
 

@@ -7,8 +7,8 @@ import 'package:pdam_inventory/domain/model/product_model.dart';
 abstract class ProductRepository {
   Future<Either<Failure, Product>> products(Map<String, dynamic> queries);
   Future<Either<Failure, ProductSummary>> productSummary();
-  Future<Either<Failure, ProductDetail>> productDetail(int id);
-  Future<Either<Failure, ProductWarehouse>> productWarehouse(int id);
-  Future<Either<Failure, ProductStockHistory>> productStockHistory(int id);
+  Future<Either<Failure, ProductDetail>> productDetail(String id);
+  Future<Either<Failure, ProductWarehouse>> productWarehouse(String id);
+  Future<Either<Failure, ProductStockHistory>> productStockHistory(String id);
   Future<Either<Failure, ProductByWarehouse>> productByWarehouse(int warehouseId);
 }

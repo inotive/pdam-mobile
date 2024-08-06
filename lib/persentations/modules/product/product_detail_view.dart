@@ -15,7 +15,7 @@ import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 class ProductDetailView extends StatefulWidget {
   const ProductDetailView({super.key, required this.id});
 
-  final int id;
+  final String id;
 
   @override
   State<ProductDetailView> createState() => _ProductDetailViewState();

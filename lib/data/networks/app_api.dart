@@ -66,13 +66,13 @@ abstract class AppServiceClient {
   Future<ProductSummaryResponse> productSummary();
 
   @GET('/mobile/product/{id}/show')
-  Future<ProductDetailResponse> productDetail(@Path() int id);
+  Future<ProductDetailResponse> productDetail(@Path() String id);
 
   @GET('/mobile/product/{id}/stock-warehouse')
-  Future<ProductWarehouseResponse> productWarehouse(@Path() int id);
+  Future<ProductWarehouseResponse> productWarehouse(@Path() String id);
 
   @GET('/mobile/product/{id}/stock-history')
-  Future<ProductStockHistoryResponse> productStockHistory(@Path() int id);
+  Future<ProductStockHistoryResponse> productStockHistory(@Path() String id);
 
   @GET('/mobile/product/get-by-warehouse/{warehouseId}')
   Future<ProductByWarehouseResponse> productByWarehouse(@Path() int warehouseId);
