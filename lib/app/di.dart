@@ -8,6 +8,7 @@ import 'package:pdam_inventory/data/data_source/purchase_order_data_source.dart'
 import 'package:pdam_inventory/data/data_source/purchase_request_data_source.dart';
 import 'package:pdam_inventory/data/data_source/receive_order_data_source.dart';
 import 'package:pdam_inventory/data/data_source/stock_opname_data_source.dart';
+import 'package:pdam_inventory/data/data_source/vendor_data_source.dart';
 import 'package:pdam_inventory/data/local_source/app_preference.dart';
 import 'package:pdam_inventory/data/networks/app_api.dart';
 import 'package:pdam_inventory/data/networks/dio_factory.dart';
@@ -20,6 +21,7 @@ import 'package:pdam_inventory/data/repository/purchase_order_repository_impl.da
 import 'package:pdam_inventory/data/repository/purchase_request_repository_impl.dart';
 import 'package:pdam_inventory/data/repository/receive_order_repository_impl.dart';
 import 'package:pdam_inventory/data/repository/stock_opname_repository_impl.dart';
+import 'package:pdam_inventory/data/repository/vendor_repository_impl.dart';
 import 'package:pdam_inventory/domain/repository/authentication_repository.dart';
 import 'package:pdam_inventory/domain/repository/history_stock_repository.dart';
 import 'package:pdam_inventory/domain/repository/notification_repository.dart';
@@ -28,6 +30,7 @@ import 'package:pdam_inventory/domain/repository/purchase_order_repository.dart'
 import 'package:pdam_inventory/domain/repository/purchase_request_repository.dart';
 import 'package:pdam_inventory/domain/repository/receive_order_repository.dart';
 import 'package:pdam_inventory/domain/repository/stock_opname_repository.dart';
+import 'package:pdam_inventory/domain/repository/vendor_repository.dart';
 import 'package:pdam_inventory/domain/usecase/authentication/login_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/authentication/logout_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/authentication/update_user_usecase.dart';
@@ -53,6 +56,7 @@ import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_suppli
 import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_warehouse_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/stock_opname/stock_opname_usecase.dart';
+import 'package:pdam_inventory/domain/usecase/vendor/vendor_usecase.dart';
 import 'package:pdam_inventory/persentations/modules/accepted_item/viewmodel/receive_order_detail_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/accepted_item/viewmodel/receive_order_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/auth/login/viewmodel/login_viewmodel.dart';
@@ -98,6 +102,7 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<StockOpnameDataSource>(() => StockOpnameDataSourceImpl(instance()));
   instance.registerLazySingleton<NotificationDataSource>(() => NotificationDataSourceImpl(instance(), instance()));
   instance.registerLazySingleton<PurchaseOrderDataSource>(() => PurchaseOrderDataSourceImpl(instance(), instance()));
+  instance.registerLazySingleton<VendorDataSource>(() => VendorDataSourceImpl(instance(), instance()));
 
   // repository
   instance
@@ -111,6 +116,7 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<NotificationRepository>(
       () => NotificationRepositoryImpl(instance(), instance(), instance()));
   instance.registerLazySingleton<PurchaseOrderRepository>(() => PurchaseOrderRepositoryImpl(instance(), instance()));
+  instance.registerLazySingleton<VendorRepository>(() => VendorRepositoryImpl(instance(), instance()));
 
 // initAppModule
   initLoginModule();
@@ -204,7 +210,9 @@ initReceiptItemModule() {
     instance.registerFactory<ReceiveOrderReferenceDetailUsecase>(() => ReceiveOrderReferenceDetailUsecase(instance()));
     instance.registerFactory<ReceiveOrderSupplierUsecase>(() => ReceiveOrderSupplierUsecase(instance()));
     instance.registerFactory<ProductByWarehouseUsecase>(() => ProductByWarehouseUsecase(instance()));
+    instance.registerFactory<VendorUsecase>(() => VendorUsecase(instance()));
     instance.registerFactory<ReceiptViewmodel>(() => ReceiptViewmodel(
+          instance(),
           instance(),
           instance(),
           instance(),

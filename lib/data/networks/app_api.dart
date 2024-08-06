@@ -15,7 +15,7 @@ import 'package:pdam_inventory/data/responses/purchase_order_response.dart';
 import 'package:pdam_inventory/data/responses/purchase_request_response.dart';
 import 'package:pdam_inventory/data/responses/receive_order_response.dart';
 import 'package:pdam_inventory/data/responses/stock_opname_response.dart';
-import 'package:pdam_inventory/persentations/resources/string_app.dart';
+import 'package:pdam_inventory/data/responses/vendor_response.dart';
 import 'package:retrofit/retrofit.dart';
 part 'app_api.g.dart';
 
@@ -149,4 +149,12 @@ abstract class AppServiceClient {
     @Header(AUTHORIZATION) String token,
   );
   /* End Purchase Order */
+
+  /* Vendor */
+  @GET('/web/master/vendor')
+  Future<VendorResponse> vendors(
+    @Header(AUTHORIZATION) String token,
+    @Queries() Map<String, dynamic> queries,
+  );
+  /* End Vendor */
 }

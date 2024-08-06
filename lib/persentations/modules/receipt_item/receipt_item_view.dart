@@ -11,10 +11,11 @@ import 'package:pdam_inventory/data/local_source/app_preference.dart';
 import 'package:pdam_inventory/data/params/receipt_produt_param.dart';
 import 'package:pdam_inventory/domain/model/purchase_request_model.dart';
 import 'package:pdam_inventory/domain/model/receive_order_model.dart';
+import 'package:pdam_inventory/domain/model/vendor_model.dart';
 import 'package:pdam_inventory/persentations/modules/receipt_item/viewmodel/receipt_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/receipt_item/widgets/input_dropdown_product.dart';
 import 'package:pdam_inventory/persentations/modules/receipt_item/widgets/input_dropdown_reference.dart';
-import 'package:pdam_inventory/persentations/modules/receipt_item/widgets/input_dropdown_supplier.dart';
+import 'package:pdam_inventory/persentations/modules/receipt_item/widgets/input_dropdown_vendor.dart';
 import 'package:pdam_inventory/persentations/modules/receipt_item/widgets/input_dropdown_warehouse.dart';
 import 'package:pdam_inventory/persentations/modules/receipt_item/widgets/receipt_item_card.dart';
 import 'package:pdam_inventory/persentations/packages/state_renderer/state_renderer_impl.dart';
@@ -49,7 +50,8 @@ class _ReceiptItemViewState extends State<ReceiptItemView> with SingleTickerProv
   File? file;
 
   ReceiveOrderWarehouseData? warehouse;
-  ReceiveOrderSupplierData? supplier;
+  // ReceiveOrderSupplierData? supplier;
+  VendorDataModel? supplier;
 
   TextEditingController referenceController = TextEditingController();
   TextEditingController createdByController = TextEditingController();
@@ -384,15 +386,31 @@ class _ReceiptItemViewState extends State<ReceiptItemView> with SingleTickerProv
               },
             ),
             const SpacerHeight(12),
-            StreamBuilder<List<ReceiveOrderSupplierData>>(
-                stream: _receiptViewmodel.outputSupplier,
+            // StreamBuilder<List<ReceiveOrderSupplierData>>(
+            //     stream: _receiptViewmodel.outputSupplier,
+            //     builder: (context, snapshot) {
+            //       List<ReceiveOrderSupplierData> data = snapshot.data ?? List.empty();
+            //       return InputDropdownSupplier(
+            //         items: data,
+            //         text: StringApp.supplier,
+            //         value: supplier,
+            //         onChanged: (ReceiveOrderSupplierData? value) {
+            //           supplier = value;
+            //           onEnable();
+            //           _receiptViewmodel.setSupplierId(value?.id.toString() ?? '0');
+            //         },
+            //         hint: StringApp.searchSupplier,
+            //       );
+            //     }),
+            StreamBuilder<List<VendorDataModel>>(
+                stream: _receiptViewmodel.outputVendor,
                 builder: (context, snapshot) {
-                  List<ReceiveOrderSupplierData> data = snapshot.data ?? List.empty();
-                  return InputDropdownSupplier(
+                  List<VendorDataModel> data = snapshot.data ?? List.empty();
+                  return InputDropdownVendor(
                     items: data,
                     text: StringApp.supplier,
                     value: supplier,
-                    onChanged: (ReceiveOrderSupplierData? value) {
+                    onChanged: (VendorDataModel? value) {
                       supplier = value;
                       onEnable();
                       _receiptViewmodel.setSupplierId(value?.id.toString() ?? '0');

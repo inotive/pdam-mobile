@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:pdam_inventory/data/params/receipt_produt_param.dart';
 import 'package:pdam_inventory/domain/model/purchase_request_model.dart';
 import 'package:pdam_inventory/domain/model/receive_order_model.dart';
+import 'package:pdam_inventory/domain/model/vendor_model.dart';
 import 'package:pdam_inventory/domain/usecase/inputs/receive_order_input.dart';
 import 'package:pdam_inventory/domain/usecase/products/product_by_warehouse_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_create_usecase.dart';
@@ -12,6 +13,7 @@ import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_refere
 import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_reference_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_supplier_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_warehouse_usecase.dart';
+import 'package:pdam_inventory/domain/usecase/vendor/vendor_usecase.dart';
 import 'package:pdam_inventory/persentations/base/base_viewmodel.dart';
 import 'package:pdam_inventory/persentations/commons/freezed_data_classes.dart';
 import 'package:pdam_inventory/persentations/packages/state_renderer/state_renderer.dart';
@@ -29,6 +31,7 @@ class ReceiptViewmodel extends BaseViewModel implements ReceiptItemViewInputs, R
   final ReceiveOrderReferenceUsecase _receiveOrderReferenceUsecase;
   final ReceiveOrderReferenceDetailUsecase _receiveOrderReferenceDetailUsecase;
   final ReceiveOrderSupplierUsecase _receiveOrderSupplierUsecase;
+  final VendorUsecase _vendorUsecase;
   ReceiptViewmodel(
     this._productByWarehouseUsecase,
     this._receiveOrderWarehouseUsecase,
@@ -36,6 +39,7 @@ class ReceiptViewmodel extends BaseViewModel implements ReceiptItemViewInputs, R
     this._receiveOrderReferenceUsecase,
     this._receiveOrderReferenceDetailUsecase,
     this._receiveOrderSupplierUsecase,
+    this._vendorUsecase,
   );
 
   final StreamController _productStreamController = BehaviorSubject<List<PurchaseRequestProduct>>();
@@ -44,6 +48,7 @@ class ReceiptViewmodel extends BaseViewModel implements ReceiptItemViewInputs, R
   final StreamController _receiveOrderReferenceDetailStreamController = BehaviorSubject<PurchaseRequestDetailData>();
   final StreamController _receiveOrderReferenceSupplierStreamController =
       BehaviorSubject<List<ReceiveOrderSupplierData>>();
+  final StreamController _vendorStreamController = BehaviorSubject<List<VendorDataModel>>();
   final StreamController isCreateSuccesfully = BehaviorSubject<bool>();
   List<PurchaseRequestProduct> refProducts = [];
   List<ReceiptProductParam> refProductsParams = [];
@@ -62,6 +67,7 @@ class ReceiptViewmodel extends BaseViewModel implements ReceiptItemViewInputs, R
     _warehouse();
     _reference();
     _supplier();
+    _vendor();
   }
 
   @override
@@ -110,6 +116,16 @@ class ReceiptViewmodel extends BaseViewModel implements ReceiptItemViewInputs, R
     }, (data) {
       inputState.add(ContentWithoutDimissState());
       inputSupplier.add(data.data);
+    });
+  }
+
+  _vendor() async {
+    Map<String, dynamic> queries = {};
+    (await _vendorUsecase.execute(queries)).fold((failure) {
+      inputState.add(ErrorState(StateRendererType.SNACKBAR_ERROR_STATE, failure.message));
+    }, (data) {
+      inputState.add(ContentWithoutDimissState());
+      inputVendor.add(data.data);
     });
   }
 
@@ -214,6 +230,12 @@ class ReceiptViewmodel extends BaseViewModel implements ReceiptItemViewInputs, R
   @override
   Stream<List<ReceiveOrderSupplierData>> get outputSupplier =>
       _receiveOrderReferenceSupplierStreamController.stream.map((sup) => sup);
+
+  @override
+  Sink get inputVendor => _vendorStreamController.sink;
+
+  @override
+  Stream<List<VendorDataModel>> get outputVendor => _vendorStreamController.stream.map((item) => item);
 }
 
 abstract class ReceiptItemViewInputs {
@@ -222,6 +244,7 @@ abstract class ReceiptItemViewInputs {
   Sink get inputReference;
   Sink get inputReferenceDetail;
   Sink get inputSupplier;
+  Sink get inputVendor;
   create(BuildContext context);
   referenceDetail(int id);
   products(int warehouseId);
@@ -239,4 +262,5 @@ abstract class ReceiptItemViewOutputs {
   Stream<List<PurchaseRequest>> get outputReference;
   Stream<PurchaseRequestDetailData> get outputReferenceDetail;
   Stream<List<ReceiveOrderSupplierData>> get outputSupplier;
+  Stream<List<VendorDataModel>> get outputVendor;
 }
