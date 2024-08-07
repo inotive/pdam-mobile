@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:pdam_inventory/app/di.dart';
 import 'package:pdam_inventory/domain/model/purchase_request_model.dart';
-import 'package:pdam_inventory/persentations/modules/requested_item/viewmodel/requested_viewmodel.dart';
-import 'package:pdam_inventory/persentations/modules/requested_item/widgets/requested_item_date_card.dart';
-import 'package:pdam_inventory/persentations/modules/requested_item/widgets/requested_item_skeleton.dart';
+import 'package:pdam_inventory/persentations/modules/requested_item/request_item/viewmodel/requested_viewmodel.dart';
+import 'package:pdam_inventory/persentations/modules/requested_item/request_item/widgets/requested_item_date_card.dart';
+import 'package:pdam_inventory/persentations/modules/requested_item/request_item/widgets/requested_item_skeleton.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
+import 'package:pdam_inventory/persentations/resources/route_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
 import 'package:pdam_inventory/persentations/widgets/card/empty_card.dart';
@@ -38,6 +39,17 @@ class _RequestedItemViewState extends State<RequestedItemView> {
       appBar: AppBar(
         title: const Text(
           StringApp.requestedItem,
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: ColorApp.blue,
+        onPressed: () => Navigator.pushNamed(context, Routes.createRequestItem),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: const Icon(
+          Icons.add,
+          color: ColorApp.white,
         ),
       ),
       body: _getContentWidget(),

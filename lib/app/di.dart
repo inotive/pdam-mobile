@@ -68,8 +68,8 @@ import 'package:pdam_inventory/persentations/modules/product/viewmodel/product_v
 import 'package:pdam_inventory/persentations/modules/profile/viewmodel/profile_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/purchase_item/purchase/viewmodel/purchase_order_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/receipt_item/viewmodel/receipt_viewmodel.dart';
-import 'package:pdam_inventory/persentations/modules/requested_item/viewmodel/requested_detail_viewmodel.dart';
-import 'package:pdam_inventory/persentations/modules/requested_item/viewmodel/requested_viewmodel.dart';
+import 'package:pdam_inventory/persentations/modules/requested_item/request_item/viewmodel/requested_detail_viewmodel.dart';
+import 'package:pdam_inventory/persentations/modules/requested_item/request_item/viewmodel/requested_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/stock_opname/viewmodel/stock_opname_viewmodel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

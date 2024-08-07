@@ -6,8 +6,8 @@ import 'package:pdam_inventory/persentations/resources/value_app.dart';
 import 'package:pdam_inventory/persentations/widgets/custom_badge.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
-class PurchaseProductCard extends StatelessWidget {
-  const PurchaseProductCard(
+class RequestProductCard extends StatelessWidget {
+  const RequestProductCard(
       {super.key, required this.name, required this.amount, required this.unit, required this.onDelete});
 
   final String name;

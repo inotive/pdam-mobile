@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pdam_inventory/domain/model/purchase_request_model.dart';
-import 'package:pdam_inventory/persentations/modules/requested_item/widgets/requested_item_card.dart';
+import 'package:pdam_inventory/persentations/modules/requested_item/request_item/widgets/requested_item_card.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';

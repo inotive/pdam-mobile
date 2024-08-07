@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobkit_dashed_border/mobkit_dashed_border.dart';
 import 'package:pdam_inventory/app/extensions.dart';
 import 'package:pdam_inventory/domain/model/purchase_request_model.dart';
-import 'package:pdam_inventory/persentations/modules/requested_item/requested_detail_item_view.dart';
+import 'package:pdam_inventory/persentations/modules/requested_item/request_item/requested_detail_item_view.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
 import 'package:pdam_inventory/persentations/widgets/custom_badge.dart';

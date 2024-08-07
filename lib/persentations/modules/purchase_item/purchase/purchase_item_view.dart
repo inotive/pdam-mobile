@@ -5,7 +5,6 @@ import 'package:pdam_inventory/persentations/modules/purchase_item/purchase/view
 import 'package:pdam_inventory/persentations/modules/purchase_item/purchase/widgets/purchase_item_by_date_card.dart';
 import 'package:pdam_inventory/persentations/modules/purchase_item/purchase/widgets/purchase_item_skeleton.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
-import 'package:pdam_inventory/persentations/resources/route_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/widgets/card/empty_card.dart';
 
@@ -33,17 +32,6 @@ class _PurchaseItemViewState extends State<PurchaseItemView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorApp.grey,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: ColorApp.blue,
-        onPressed: () => Navigator.pushNamed(context, Routes.createPurchase),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: const Icon(
-          Icons.add,
-          color: ColorApp.white,
-        ),
-      ),
       appBar: AppBar(
         title: const Text(StringApp.purchaseItem),
       ),

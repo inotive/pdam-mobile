@@ -8,10 +8,10 @@ import 'package:pdam_inventory/persentations/modules/main_menu/main_menu_view.da
 import 'package:pdam_inventory/persentations/modules/notification/notification_view.dart';
 import 'package:pdam_inventory/persentations/modules/product/product_view.dart';
 import 'package:pdam_inventory/persentations/modules/product/search_product_view.dart';
-import 'package:pdam_inventory/persentations/modules/purchase_item/create_purchase/create_purchase_view.dart';
+import 'package:pdam_inventory/persentations/modules/requested_item/request_item/create_request_item/create_request_item_view.dart';
 import 'package:pdam_inventory/persentations/modules/purchase_item/purchase/purchase_item_view.dart';
 import 'package:pdam_inventory/persentations/modules/receipt_item/receipt_item_view.dart';
-import 'package:pdam_inventory/persentations/modules/requested_item/requested_item_view.dart';
+import 'package:pdam_inventory/persentations/modules/requested_item/request_item/requested_item_view.dart';
 import 'package:pdam_inventory/persentations/modules/splash/splash_view.dart';
 import 'package:pdam_inventory/persentations/modules/stock_opname/stock_opname_view.dart';
 import 'package:pdam_inventory/persentations/modules/undefined/undefined_view.dart';
@@ -30,7 +30,7 @@ class Routes {
   static const String mainMenu = '/main-menu';
   static const String login = '/login';
   static const String searchProduct = '/search-product';
-  static const String createPurchase = '/create-purchase';
+  static const String createRequestItem = '/create-request-item';
 }
 
 class RouterGenerator {
@@ -70,8 +70,8 @@ class RouterGenerator {
         return MaterialPageRoute(builder: (_) => const LoginView());
       case Routes.searchProduct:
         return MaterialPageRoute(builder: (_) => const SearchProductView());
-      case Routes.createPurchase:
-        return MaterialPageRoute(builder: (_) => const CreatePurchaseView());
+      case Routes.createRequestItem:
+        return MaterialPageRoute(builder: (_) => const CreateRequestItemView());
       default:
         return MaterialPageRoute(builder: (_) => const UndefinedView());
     }

@@ -2,9 +2,9 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:pdam_inventory/app/di.dart';
 import 'package:pdam_inventory/data/local_source/app_preference.dart';
-import 'package:pdam_inventory/data/params/purchase_product_param.dart';
+import 'package:pdam_inventory/data/params/request_product_param.dart';
 import 'package:pdam_inventory/domain/model/product_model.dart';
-import 'package:pdam_inventory/persentations/modules/purchase_item/create_purchase/widgets/purchase_product_card.dart';
+import 'package:pdam_inventory/persentations/modules/requested_item/request_item/create_request_item/widgets/request_product_card.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/widgets/button/custom_button.dart';
@@ -15,14 +15,14 @@ import 'package:pdam_inventory/persentations/widgets/forms/input_field.dart';
 import 'package:pdam_inventory/persentations/widgets/snackbar_app.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
-class CreatePurchaseView extends StatefulWidget {
-  const CreatePurchaseView({super.key});
+class CreateRequestItemView extends StatefulWidget {
+  const CreateRequestItemView({super.key});
 
   @override
-  State<CreatePurchaseView> createState() => _CreatePurchaseViewState();
+  State<CreateRequestItemView> createState() => _CreateRequestItemViewState();
 }
 
-class _CreatePurchaseViewState extends State<CreatePurchaseView> {
+class _CreateRequestItemViewState extends State<CreateRequestItemView> {
   final AppPreference _appPreference = instance<AppPreference>();
 
   final TextEditingController _requestedByController = TextEditingController();
@@ -44,7 +44,7 @@ class _CreatePurchaseViewState extends State<CreatePurchaseView> {
 
   bool enableButton = false;
 
-  List<PurchaseProductParam> products = [];
+  List<RequestProductParam> products = [];
 
   setup() {
     _appPreference.getString(PREFS_KEY_NAME).then((value) {
@@ -82,7 +82,7 @@ class _CreatePurchaseViewState extends State<CreatePurchaseView> {
     });
   }
 
-  onAddProduct(PurchaseProductParam param) {
+  onAddProduct(RequestProductParam param) {
     if (products.isEmpty) {
       products.add(param);
       _pageController.jumpToPage(1);
@@ -196,7 +196,7 @@ class _CreatePurchaseViewState extends State<CreatePurchaseView> {
           : ListView.builder(
               itemCount: products.length,
               itemBuilder: (context, idx) {
-                return PurchaseProductCard(
+                return RequestProductCard(
                   name: products[idx].name,
                   unit: products[idx].unit,
                   amount: products[idx].qty.toString(),
@@ -271,7 +271,7 @@ class _CreatePurchaseViewState extends State<CreatePurchaseView> {
         onPressed: () {
           if (productFormKey.currentState!.validate()) {
             onAddProduct(
-              PurchaseProductParam(
+              RequestProductParam(
                 productId,
                 productName,
                 int.parse(_qtyController.text),
