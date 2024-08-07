@@ -3,6 +3,12 @@ import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/value_app.dart';
 
 class StyleApp {
+  static const TextStyle textXss = TextStyle(
+    fontSize: FontSizeApp.xss,
+    fontWeight: FontWeight.w400,
+    color: ColorApp.blackText,
+  );
+
   static const TextStyle textXs = TextStyle(
     fontSize: FontSizeApp.xs,
     fontWeight: FontWeight.w400,

@@ -30,9 +30,9 @@ class ProductViewmodel extends BaseViewModel implements ProductViewmodelInputs, 
   }
 
   @override
-  products() async {
+  products(int perPage) async {
     Map<String, dynamic> query = {
-      'limit': limit,
+      'limit': perPage,
     };
     // ignore: void_checks
     (await _productUsecase.execute(query)).fold((failure) {
@@ -90,7 +90,7 @@ class ProductViewmodel extends BaseViewModel implements ProductViewmodelInputs, 
 
 abstract class ProductViewmodelInputs {
   search(String query);
-  products();
+  products(int perPage);
   updateLimit();
 
   Sink get inputProducts;

@@ -131,4 +131,19 @@ class StringApp {
 
   static const String notificationDataNotYet = 'Belum ada data notifikasi';
   static const String purchaseItemDataNotYet = 'Belum ada data pembelian barang';
+  static const String addData = 'Tambah Data';
+
+  static const String requestDate = 'Tanggal Permintaan';
+  static const String chooseRequestDate = 'Pilih Tanggal Permintaan';
+  static const String requestBy = 'Permintaan Oleh';
+  static const String continueText = 'Selanjutnya';
+  static const String add = 'Tambah';
+  static const String back = 'Kembali';
+  static const String cancelled = 'Batalkan';
+  static const String newItem = 'Barang Baru';
+  static const String youNotAddedProduct = 'Anda belum menambahkan produk';
+  static const String barang = 'Barang';
+  static const String amount = 'Jumlah';
+  static const String unit = 'Satuan';
+  static const String delete = 'Hapus';
 }

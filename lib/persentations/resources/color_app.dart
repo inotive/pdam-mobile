@@ -20,6 +20,7 @@ class ColorApp {
   static const Color greyFA = Color(0xFFFAFAFA);
   static const Color grey99A = Color(0xFF99A1BC);
   static const Color greyD9 = Color(0xFFD9D9D9);
+  static const Color greyBD = Color(0xFFBDBDBD);
 
   static const Color greyText = Color(0xFF757575);
   static const Color greyText76 = Color(0xFF767676);
@@ -38,12 +39,17 @@ class ColorApp {
   static const Color borderEB = Color(0xFFEBEBEB);
 
   static const Color yellow = Color(0xfff8e153);
+
   static const Color green = Color(0xff00863F);
   static const Color greenBg = Color(0xffE1F5EA);
+
   static const Color red = Color(0xffEC221F);
   static const Color redBg = Color(0xffFEE9E7);
+  static const Color redBorder = Color(0xffFF4949);
+
   static const Color brown = Color(0xffBF6A02);
   static const Color brownBg = Color(0xffFFF5E9);
+
   static const Color track = Color(0xffDADADA);
 
   static Color shimmerBase = Colors.grey.shade100;

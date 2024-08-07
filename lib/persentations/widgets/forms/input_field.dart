@@ -17,6 +17,9 @@ class InputField extends StatelessWidget {
     this.borderColor,
     this.onChanged,
     this.maxLines = 1,
+    this.suffixIcon,
+    this.enabled = true,
+    this.validator,
   });
 
   final String text;
@@ -29,6 +32,9 @@ class InputField extends StatelessWidget {
   final Color? borderColor;
   final Function(String)? onChanged;
   final int maxLines;
+  final Widget? suffixIcon;
+  final bool enabled;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -57,10 +63,13 @@ class InputField extends StatelessWidget {
             controller: controller,
             readOnly: readOnly,
             onChanged: onChanged,
+            enabled: enabled,
+            validator: validator,
             decoration: InputDecoration(
               hintText: hint,
               filled: true,
-              fillColor: readOnly ? ColorApp.greyF4 : ColorApp.white,
+              fillColor: enabled ? ColorApp.white : ColorApp.greyF4,
+              suffixIcon: suffixIcon,
               hintStyle: StyleApp.textNormal.copyWith(
                 color: ColorApp.greyText98,
                 fontFamily: FontFamilyApp.inter,
@@ -77,6 +86,13 @@ class InputField extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
                 borderSide: const BorderSide(
                   color: ColorApp.primary,
+                  width: 1,
+                ),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: const BorderSide(
+                  color: ColorApp.red,
                   width: 1,
                 ),
               ),

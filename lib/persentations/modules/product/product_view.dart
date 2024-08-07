@@ -30,7 +30,7 @@ class _ProductViewState extends State<ProductView> {
 
   _bind() {
     _productViewmodel.start();
-    _productViewmodel.products();
+    _productViewmodel.products(10);
     _scrollController.addListener(() {
       if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
         setState(() {
@@ -38,7 +38,7 @@ class _ProductViewState extends State<ProductView> {
         });
         Future.delayed(const Duration(seconds: 1), () {
           _productViewmodel.updateLimit();
-          _productViewmodel.products();
+          _productViewmodel.products(10);
         });
       }
     });
