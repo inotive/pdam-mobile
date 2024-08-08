@@ -45,6 +45,7 @@ import 'package:pdam_inventory/domain/usecase/products/product_summary_usecase.d
 import 'package:pdam_inventory/domain/usecase/products/product_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/products/product_warehouse_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/purchase_order/purchase_order_usecase.dart';
+import 'package:pdam_inventory/domain/usecase/purchase_request/create_purchase_request_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/purchase_request_detail_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/purchase_request_summary_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/purchase_request_usecase.dart';
@@ -68,6 +69,7 @@ import 'package:pdam_inventory/persentations/modules/product/viewmodel/product_v
 import 'package:pdam_inventory/persentations/modules/profile/viewmodel/profile_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/purchase_item/purchase/viewmodel/purchase_order_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/receipt_item/viewmodel/receipt_viewmodel.dart';
+import 'package:pdam_inventory/persentations/modules/requested_item/create_request_item/viewmodel/create_request_item_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/requested_item/request_item/viewmodel/requested_detail_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/requested_item/request_item/viewmodel/requested_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/stock_opname/viewmodel/stock_opname_viewmodel.dart';
@@ -94,7 +96,8 @@ Future<void> initAppModule() async {
   instance.registerLazySingleton<AppServiceClient>(() => AppServiceClient(dio));
 
   // data source
-  instance.registerLazySingleton<PurchaseRequestDataSource>(() => PurchaseRequestDataSourceImpl(instance()));
+  instance
+      .registerLazySingleton<PurchaseRequestDataSource>(() => PurchaseRequestDataSourceImpl(instance(), instance()));
   instance.registerLazySingleton<AuthenticationDataSource>(() => AuthenticationDataSourceImpl(instance(), instance()));
   instance.registerLazySingleton<ProductDataSource>(() => ProductDataSourceImpl(instance()));
   instance.registerLazySingleton<ReceiveOrderDataSource>(() => ReceiveOrderDataSourceImpl(instance()));
@@ -245,6 +248,13 @@ initPurchaseOrderModule() {
   }
 }
 
+initCreatePurchaseRequestModule() {
+  if (!GetIt.I.isRegistered<CreatePurchaseRequestUsecase>()) {
+    instance.registerFactory<CreatePurchaseRequestUsecase>(() => CreatePurchaseRequestUsecase(instance()));
+    instance.registerFactory<CreateRequestItemViewmodel>(() => CreateRequestItemViewmodel(instance()));
+  }
+}
+
 resetModules() {
   instance.reset(dispose: false);
   initAppModule();
@@ -261,4 +271,5 @@ resetModules() {
   initHomeModule();
   initNotificationModule();
   initPurchaseOrderModule();
+  initCreatePurchaseRequestModule();
 }

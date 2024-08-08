@@ -3,6 +3,7 @@ class ReceiptProductParam {
 
   int id;
   int qty;
+
   Map<String, dynamic> toJson() {
     return {
       'id': id,

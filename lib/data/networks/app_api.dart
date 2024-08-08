@@ -6,6 +6,7 @@ import 'package:dio/dio.dart';
 import 'package:pdam_inventory/app/config_app.dart';
 import 'package:pdam_inventory/data/networks/dio_factory.dart';
 import 'package:pdam_inventory/data/params/receipt_produt_param.dart';
+import 'package:pdam_inventory/data/params/request_product_param.dart';
 import 'package:pdam_inventory/data/responses/authentication_response.dart';
 import 'package:pdam_inventory/data/responses/base_response.dart';
 import 'package:pdam_inventory/data/responses/history_stock_response.dart';
@@ -27,6 +28,17 @@ abstract class AppServiceClient {
   @GET('/mobile/purchase-request')
   Future<PurchaseRequestPaginationResponse> purchaseRequest(
     @Queries() Map<String, dynamic> queries,
+  );
+
+  @POST('/web/purchase-request')
+  Future<MessageResponse> createPurchaseRequest(
+    @Header(AUTHORIZATION) String token,
+    @Field('request_number') String requestNumber,
+    @Field('department_name') String departmentName,
+    @Field('request_date') String requestDate,
+    @Field('request_name') String requestName,
+    @Field('request_description') String requestDescription,
+    @Field('product_list') List<RequestProductParam> productList,
   );
 
   @GET('/mobile/purchase-request/summary')
@@ -110,12 +122,10 @@ abstract class AppServiceClient {
   /* End Receive Order */
 
   /* History Stock */
-
   @GET('/mobile/product-stock')
   Future<HistoryStockResponse> historyStock(
     @Queries() Map<String, dynamic> queries,
   );
-
   /* End History Stock */
 
   /* Stock Opname */

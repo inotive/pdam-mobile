@@ -20,6 +20,7 @@ class InputField extends StatelessWidget {
     this.suffixIcon,
     this.enabled = true,
     this.validator,
+    this.onTap,
   });
 
   final String text;
@@ -35,6 +36,7 @@ class InputField extends StatelessWidget {
   final Widget? suffixIcon;
   final bool enabled;
   final String? Function(String?)? validator;
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -65,6 +67,7 @@ class InputField extends StatelessWidget {
             onChanged: onChanged,
             enabled: enabled,
             validator: validator,
+            onTap: onTap,
             decoration: InputDecoration(
               hintText: hint,
               filled: true,

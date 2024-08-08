@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:pdam_inventory/data/params/receipt_produt_param.dart';
+import 'package:pdam_inventory/data/params/request_product_param.dart';
 part 'freezed_data_classes.freezed.dart';
 
 @freezed
@@ -26,4 +27,16 @@ class ReceiveOrderObject with _$ReceiveOrderObject {
 @freezed
 class UpdateUserObject with _$UpdateUserObject {
   factory UpdateUserObject(String name, String? password, String noTelp, File file) = _UpdateUserObject;
+}
+
+@freezed
+class CreatePurchaseRequestObject with _$CreatePurchaseRequestObject {
+  factory CreatePurchaseRequestObject(
+    String requestNumber,
+    String departmentName,
+    String requestDate,
+    String requestName,
+    String requestDescription,
+    List<RequestProductParam> productList,
+  ) = _CreatePurchaseRequestObject;
 }

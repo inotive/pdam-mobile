@@ -1,19 +1,28 @@
+import 'dart:developer';
+
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:pdam_inventory/app/di.dart';
+import 'package:pdam_inventory/app/helpers/code_formatter.dart';
+import 'package:pdam_inventory/app/helpers/date_formatter.dart';
 import 'package:pdam_inventory/data/local_source/app_preference.dart';
 import 'package:pdam_inventory/data/params/request_product_param.dart';
 import 'package:pdam_inventory/domain/model/product_model.dart';
-import 'package:pdam_inventory/persentations/modules/requested_item/request_item/create_request_item/widgets/request_product_card.dart';
+import 'package:pdam_inventory/persentations/modules/requested_item/create_request_item/viewmodel/create_request_item_viewmodel.dart';
+import 'package:pdam_inventory/persentations/modules/requested_item/create_request_item/widgets/request_product_card.dart';
+import 'package:pdam_inventory/persentations/packages/state_renderer/state_renderer_impl.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/widgets/button/custom_button.dart';
 import 'package:pdam_inventory/persentations/widgets/button/custom_outline_button.dart';
 import 'package:pdam_inventory/persentations/widgets/card/empty_card.dart';
 import 'package:pdam_inventory/persentations/widgets/forms/dropdown_product.dart';
+import 'package:pdam_inventory/persentations/widgets/forms/input_dropdown.dart';
 import 'package:pdam_inventory/persentations/widgets/forms/input_field.dart';
+import 'package:pdam_inventory/persentations/widgets/picker/date_picker.dart';
 import 'package:pdam_inventory/persentations/widgets/snackbar_app.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class CreateRequestItemView extends StatefulWidget {
   const CreateRequestItemView({super.key});
@@ -24,6 +33,7 @@ class CreateRequestItemView extends StatefulWidget {
 
 class _CreateRequestItemViewState extends State<CreateRequestItemView> {
   final AppPreference _appPreference = instance<AppPreference>();
+  final CreateRequestItemViewmodel _createRequestItemViewmodel = instance<CreateRequestItemViewmodel>();
 
   final TextEditingController _requestedByController = TextEditingController();
   final TextEditingController _requestedDateController = TextEditingController();
@@ -36,20 +46,27 @@ class _CreateRequestItemViewState extends State<CreateRequestItemView> {
 
   String productId = EMPTY;
   String productName = EMPTY;
+  String? division;
   ProductData? selectedProduct;
+  DateTime selectedDate = DateTime.now();
 
   late PageController _pageController;
 
   int initialIndex = 0;
 
-  bool enableButton = false;
-
   List<RequestProductParam> products = [];
+  List<String> divisions = [
+    'Divisi A',
+    'Divisi B',
+    'Divisi C',
+    'Divisi d',
+  ];
 
   setup() {
     _appPreference.getString(PREFS_KEY_NAME).then((value) {
       setState(() {
         _requestedByController.text = value;
+        _createRequestItemViewmodel.setRequestName(value);
       });
     });
     setState(() {
@@ -57,9 +74,30 @@ class _CreateRequestItemViewState extends State<CreateRequestItemView> {
     });
   }
 
+  _bind() {
+    _createRequestItemViewmodel.setRequestNumber(CodeFormatterApp.requestItem());
+    _noteController.addListener(() => _createRequestItemViewmodel.setRequestDescription(_noteController.text));
+  }
+
+  bool onEnable() {
+    bool value = false;
+    log(value.toString());
+    if (_requestedDateController.text != EMPTY &&
+        division != null &&
+        _noteController.text != EMPTY &&
+        products.isNotEmpty) {
+      log(value.toString());
+      value = true;
+
+      return value;
+    }
+    return value;
+  }
+
   @override
   void initState() {
     setup();
+    _bind();
     _pageController = PageController(initialPage: initialIndex);
 
     super.initState();
@@ -96,15 +134,25 @@ class _CreateRequestItemViewState extends State<CreateRequestItemView> {
         onReset();
       }
     }
+    onEnable();
   }
 
   onRemove(String id) {
     products.removeWhere((item) => item.id.toString().contains(id.toString()));
+    onEnable();
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
+    return StreamBuilder<FlowState>(
+        stream: _createRequestItemViewmodel.outputState,
+        builder: (context, snapshot) {
+          return snapshot.data?.getScreenWidget(context, _getContentWidgets(), () {}) ?? _getContentWidgets();
+        });
+  }
+
+  Scaffold _getContentWidgets() {
     return Scaffold(
       backgroundColor: ColorApp.white,
       appBar: _appBar(),
@@ -217,9 +265,41 @@ class _CreateRequestItemViewState extends State<CreateRequestItemView> {
           text: StringApp.requestDate,
           hint: StringApp.chooseRequestDate,
           controller: _requestedDateController,
+          readOnly: true,
+          onTap: () {
+            DatePickerApp().showDateRangePicker(
+              context,
+              initialSelectedDate: selectedDate,
+              onSelectionChanged: (DateRangePickerSelectionChangedArgs args) {
+                if (args.value is DateTime) {
+                  setState(() {
+                    selectedDate = args.value;
+                    _requestedDateController.text = DateFormatterApp.defaultDate(args.value.toString());
+                    _createRequestItemViewmodel.setRequestDate(DateFormatterApp.defaultDate(args.value.toString()));
+                    onEnable();
+                  });
+                }
+              },
+            );
+          },
           suffixIcon: const Icon(
             Icons.calendar_month_outlined,
             color: ColorApp.greyText98,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 12),
+          child: InputDropdown(
+            items: divisions,
+            text: StringApp.division,
+            onChanged: (String? value) {
+              setState(() {
+                division = value;
+                _createRequestItemViewmodel.setDepartmentName(division.toString());
+                onEnable();
+              });
+            },
+            hint: StringApp.division,
           ),
         ),
         InputField(
@@ -228,6 +308,9 @@ class _CreateRequestItemViewState extends State<CreateRequestItemView> {
           text: StringApp.requestBy,
           hint: StringApp.requestBy,
           enabled: false,
+          onChanged: (String value) {
+            onEnable();
+          },
         ),
         InputField(
           padding: const EdgeInsets.only(top: 12),
@@ -235,6 +318,9 @@ class _CreateRequestItemViewState extends State<CreateRequestItemView> {
           hint: StringApp.note,
           controller: _noteController,
           maxLines: 5,
+          onChanged: (String value) {
+            onEnable();
+          },
         ),
       ],
     );
@@ -259,8 +345,13 @@ class _CreateRequestItemViewState extends State<CreateRequestItemView> {
     Widget buttonSave = Flexible(
       child: CustomButton(
         text: StringApp.save,
-        backgroundColor: enableButton ? ColorApp.blue : ColorApp.greyBD,
-        onPressed: () {},
+        backgroundColor: onEnable() ? ColorApp.blue : ColorApp.greyBD,
+        onPressed: () {
+          if (onEnable()) {
+            _createRequestItemViewmodel.setProductList(products);
+            _createRequestItemViewmodel.create(context);
+          }
+        },
       ),
     );
 
@@ -297,7 +388,7 @@ class _CreateRequestItemViewState extends State<CreateRequestItemView> {
 
   AppBar _appBar() {
     return AppBar(
-      title: Text(initialIndex == 2 ? StringApp.newItem : StringApp.addData),
+      title: Text(initialIndex == 2 ? StringApp.newRequest : StringApp.itemSubmitted),
       leading: IconButton(
         onPressed: () {
           if (initialIndex == 2) {

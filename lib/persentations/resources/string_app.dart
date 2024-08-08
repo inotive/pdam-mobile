@@ -146,4 +146,12 @@ class StringApp {
   static const String amount = 'Jumlah';
   static const String unit = 'Satuan';
   static const String delete = 'Hapus';
+  static const String requestedItemSuccess = 'Permintaan barang berhasil diajukan';
+  static const String newRequest = 'Permintaan Baru';
+  static const String itemSubmitted = 'Barang yang diajukan';
+  static const String division = 'Divisi';
+  static const String yes = 'Ya';
+  static const String cancel = 'Batal';
+  static const String chooseDate = 'Pilih Tanggal';
+  static const String date = 'Tanggal';
 }

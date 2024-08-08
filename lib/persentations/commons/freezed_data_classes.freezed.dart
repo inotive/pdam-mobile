@@ -557,3 +557,254 @@ abstract class _UpdateUserObject implements UpdateUserObject {
   _$$UpdateUserObjectImplCopyWith<_$UpdateUserObjectImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$CreatePurchaseRequestObject {
+  String get requestNumber => throw _privateConstructorUsedError;
+  String get departmentName => throw _privateConstructorUsedError;
+  String get requestDate => throw _privateConstructorUsedError;
+  String get requestName => throw _privateConstructorUsedError;
+  String get requestDescription => throw _privateConstructorUsedError;
+  List<RequestProductParam> get productList =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $CreatePurchaseRequestObjectCopyWith<CreatePurchaseRequestObject>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CreatePurchaseRequestObjectCopyWith<$Res> {
+  factory $CreatePurchaseRequestObjectCopyWith(
+          CreatePurchaseRequestObject value,
+          $Res Function(CreatePurchaseRequestObject) then) =
+      _$CreatePurchaseRequestObjectCopyWithImpl<$Res,
+          CreatePurchaseRequestObject>;
+  @useResult
+  $Res call(
+      {String requestNumber,
+      String departmentName,
+      String requestDate,
+      String requestName,
+      String requestDescription,
+      List<RequestProductParam> productList});
+}
+
+/// @nodoc
+class _$CreatePurchaseRequestObjectCopyWithImpl<$Res,
+        $Val extends CreatePurchaseRequestObject>
+    implements $CreatePurchaseRequestObjectCopyWith<$Res> {
+  _$CreatePurchaseRequestObjectCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? requestNumber = null,
+    Object? departmentName = null,
+    Object? requestDate = null,
+    Object? requestName = null,
+    Object? requestDescription = null,
+    Object? productList = null,
+  }) {
+    return _then(_value.copyWith(
+      requestNumber: null == requestNumber
+          ? _value.requestNumber
+          : requestNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      departmentName: null == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String,
+      requestDate: null == requestDate
+          ? _value.requestDate
+          : requestDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      requestName: null == requestName
+          ? _value.requestName
+          : requestName // ignore: cast_nullable_to_non_nullable
+              as String,
+      requestDescription: null == requestDescription
+          ? _value.requestDescription
+          : requestDescription // ignore: cast_nullable_to_non_nullable
+              as String,
+      productList: null == productList
+          ? _value.productList
+          : productList // ignore: cast_nullable_to_non_nullable
+              as List<RequestProductParam>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$CreatePurchaseRequestObjectImplCopyWith<$Res>
+    implements $CreatePurchaseRequestObjectCopyWith<$Res> {
+  factory _$$CreatePurchaseRequestObjectImplCopyWith(
+          _$CreatePurchaseRequestObjectImpl value,
+          $Res Function(_$CreatePurchaseRequestObjectImpl) then) =
+      __$$CreatePurchaseRequestObjectImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String requestNumber,
+      String departmentName,
+      String requestDate,
+      String requestName,
+      String requestDescription,
+      List<RequestProductParam> productList});
+}
+
+/// @nodoc
+class __$$CreatePurchaseRequestObjectImplCopyWithImpl<$Res>
+    extends _$CreatePurchaseRequestObjectCopyWithImpl<$Res,
+        _$CreatePurchaseRequestObjectImpl>
+    implements _$$CreatePurchaseRequestObjectImplCopyWith<$Res> {
+  __$$CreatePurchaseRequestObjectImplCopyWithImpl(
+      _$CreatePurchaseRequestObjectImpl _value,
+      $Res Function(_$CreatePurchaseRequestObjectImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? requestNumber = null,
+    Object? departmentName = null,
+    Object? requestDate = null,
+    Object? requestName = null,
+    Object? requestDescription = null,
+    Object? productList = null,
+  }) {
+    return _then(_$CreatePurchaseRequestObjectImpl(
+      null == requestNumber
+          ? _value.requestNumber
+          : requestNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == departmentName
+          ? _value.departmentName
+          : departmentName // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == requestDate
+          ? _value.requestDate
+          : requestDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == requestName
+          ? _value.requestName
+          : requestName // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == requestDescription
+          ? _value.requestDescription
+          : requestDescription // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == productList
+          ? _value._productList
+          : productList // ignore: cast_nullable_to_non_nullable
+              as List<RequestProductParam>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CreatePurchaseRequestObjectImpl
+    implements _CreatePurchaseRequestObject {
+  _$CreatePurchaseRequestObjectImpl(
+      this.requestNumber,
+      this.departmentName,
+      this.requestDate,
+      this.requestName,
+      this.requestDescription,
+      final List<RequestProductParam> productList)
+      : _productList = productList;
+
+  @override
+  final String requestNumber;
+  @override
+  final String departmentName;
+  @override
+  final String requestDate;
+  @override
+  final String requestName;
+  @override
+  final String requestDescription;
+  final List<RequestProductParam> _productList;
+  @override
+  List<RequestProductParam> get productList {
+    if (_productList is EqualUnmodifiableListView) return _productList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_productList);
+  }
+
+  @override
+  String toString() {
+    return 'CreatePurchaseRequestObject(requestNumber: $requestNumber, departmentName: $departmentName, requestDate: $requestDate, requestName: $requestName, requestDescription: $requestDescription, productList: $productList)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CreatePurchaseRequestObjectImpl &&
+            (identical(other.requestNumber, requestNumber) ||
+                other.requestNumber == requestNumber) &&
+            (identical(other.departmentName, departmentName) ||
+                other.departmentName == departmentName) &&
+            (identical(other.requestDate, requestDate) ||
+                other.requestDate == requestDate) &&
+            (identical(other.requestName, requestName) ||
+                other.requestName == requestName) &&
+            (identical(other.requestDescription, requestDescription) ||
+                other.requestDescription == requestDescription) &&
+            const DeepCollectionEquality()
+                .equals(other._productList, _productList));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      requestNumber,
+      departmentName,
+      requestDate,
+      requestName,
+      requestDescription,
+      const DeepCollectionEquality().hash(_productList));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CreatePurchaseRequestObjectImplCopyWith<_$CreatePurchaseRequestObjectImpl>
+      get copyWith => __$$CreatePurchaseRequestObjectImplCopyWithImpl<
+          _$CreatePurchaseRequestObjectImpl>(this, _$identity);
+}
+
+abstract class _CreatePurchaseRequestObject
+    implements CreatePurchaseRequestObject {
+  factory _CreatePurchaseRequestObject(
+          final String requestNumber,
+          final String departmentName,
+          final String requestDate,
+          final String requestName,
+          final String requestDescription,
+          final List<RequestProductParam> productList) =
+      _$CreatePurchaseRequestObjectImpl;
+
+  @override
+  String get requestNumber;
+  @override
+  String get departmentName;
+  @override
+  String get requestDate;
+  @override
+  String get requestName;
+  @override
+  String get requestDescription;
+  @override
+  List<RequestProductParam> get productList;
+  @override
+  @JsonKey(ignore: true)
+  _$$CreatePurchaseRequestObjectImplCopyWith<_$CreatePurchaseRequestObjectImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}

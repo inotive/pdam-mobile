@@ -50,6 +50,49 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
+  Future<MessageResponse> createPurchaseRequest(
+    String token,
+    String requestNumber,
+    String departmentName,
+    String requestDate,
+    String requestName,
+    String requestDescription,
+    List<RequestProductParam> productList,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    final _data = {
+      'request_number': requestNumber,
+      'department_name': departmentName,
+      'request_date': requestDate,
+      'request_name': requestName,
+      'request_description': requestDescription,
+      'product_list': productList,
+    };
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<MessageResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/web/purchase-request',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final _value = MessageResponse.fromJson(_result.data!);
+    return _value;
+  }
+
+  @override
   Future<PurchaseRequestSummaryResponse> purchaseRequestSummary() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

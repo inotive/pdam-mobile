@@ -4,7 +4,7 @@ import 'package:pdam_inventory/app/config_app.dart';
 
 class HelperApp {
   static String generateRandomString(int length) {
-    const String charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#\$%^&*()_+';
+    const String charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
     Random random = Random();
     String text = '';
