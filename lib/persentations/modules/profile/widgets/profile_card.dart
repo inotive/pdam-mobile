@@ -43,8 +43,10 @@ class _ProfileCardState extends State<ProfileCard> {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
 
     if (result != null) {
-      file = File(result.files.single.path!);
-      _profileViewModel.setFile(file!);
+      setState(() {
+        file = File(result.files.single.path!);
+        _profileViewModel.setFile(file!);
+      });
     } else {
       // User canceled the picker
       // ignore: use_build_context_synchronously
@@ -100,7 +102,10 @@ class _ProfileCardState extends State<ProfileCard> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
                           ),
-                          child: Image.file(file!),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Image.file(file!, fit: BoxFit.cover),
+                          ),
                         ),
                 ),
                 const SpacerHeight(16),

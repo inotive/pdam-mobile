@@ -207,62 +207,6 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
-  Future<UpdateUserResponse> update(
-    String token,
-    String name,
-    String? password,
-    String phone,
-    File file,
-  ) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{r'authorization': token};
-    _headers.removeWhere((k, v) => v == null);
-    final _data = FormData();
-    _data.fields.add(MapEntry(
-      'name',
-      name,
-    ));
-    if (password != null) {
-      _data.fields.add(MapEntry(
-        'password',
-        password,
-      ));
-    }
-    _data.fields.add(MapEntry(
-      'phone',
-      phone,
-    ));
-    _data.files.add(MapEntry(
-      'file',
-      MultipartFile.fromFileSync(
-        file.path,
-        filename: file.path.split(Platform.pathSeparator).last,
-      ),
-    ));
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<UpdateUserResponse>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/auth/update',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final _value = UpdateUserResponse.fromJson(_result.data!);
-    return _value;
-  }
-
-  @override
   Future<ProductResponse> products(Map<String, dynamic> queries) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

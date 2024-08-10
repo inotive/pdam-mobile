@@ -11,6 +11,7 @@ import 'package:pdam_inventory/data/data_source/stock_opname_data_source.dart';
 import 'package:pdam_inventory/data/data_source/vendor_data_source.dart';
 import 'package:pdam_inventory/data/local_source/app_preference.dart';
 import 'package:pdam_inventory/data/networks/app_api.dart';
+import 'package:pdam_inventory/data/networks/app_api_other.dart';
 import 'package:pdam_inventory/data/networks/dio_factory.dart';
 import 'package:pdam_inventory/data/networks/network_info.dart';
 import 'package:pdam_inventory/data/repository/authentication_repository_impl.dart';
@@ -94,11 +95,13 @@ Future<void> initAppModule() async {
 
   final dio = await instance<DioFactory>().getDio();
   instance.registerLazySingleton<AppServiceClient>(() => AppServiceClient(dio));
+  instance.registerLazySingleton<AppServiceClientOther>(() => AppServiceClientOther(dio));
 
   // data source
   instance
       .registerLazySingleton<PurchaseRequestDataSource>(() => PurchaseRequestDataSourceImpl(instance(), instance()));
-  instance.registerLazySingleton<AuthenticationDataSource>(() => AuthenticationDataSourceImpl(instance(), instance()));
+  instance.registerLazySingleton<AuthenticationDataSource>(
+      () => AuthenticationDataSourceImpl(instance(), instance(), instance()));
   instance.registerLazySingleton<ProductDataSource>(() => ProductDataSourceImpl(instance()));
   instance.registerLazySingleton<ReceiveOrderDataSource>(() => ReceiveOrderDataSourceImpl(instance()));
   instance.registerLazySingleton<HistoryStockDataSource>(() => HistoryStockDataSourceImpl(instance()));

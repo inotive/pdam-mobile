@@ -26,7 +26,7 @@ class _ProfileFormState extends State<ProfileForm> {
   TextEditingController _roleController = TextEditingController();
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _phoneController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   setup() async {
     String name = await _appPreference.getString(PREFS_KEY_NAME);
@@ -94,7 +94,7 @@ class _ProfileFormState extends State<ProfileForm> {
             hint: StringApp.email,
             controller: _emailController,
             padding: const EdgeInsets.only(top: 16.0),
-            readOnly: true,
+            enabled: false,
           ),
           InputField(
               text: StringApp.noContact,
@@ -106,14 +106,14 @@ class _ProfileFormState extends State<ProfileForm> {
             hint: StringApp.role,
             controller: _roleController,
             padding: const EdgeInsets.only(top: 16.0),
-            readOnly: true,
+            enabled: false,
           ),
           InputField(
             text: StringApp.nameUser,
             hint: StringApp.nameUser,
             controller: _usernameController,
             padding: const EdgeInsets.only(top: 16.0),
-            readOnly: true,
+            enabled: false,
           ),
           InputField(
             text: StringApp.password,

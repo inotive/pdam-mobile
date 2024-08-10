@@ -1,7 +1,5 @@
 // ignore_for_file: depend_on_referenced_packages, deprecated_member_use
 
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:pdam_inventory/app/config_app.dart';
 import 'package:pdam_inventory/data/networks/dio_factory.dart';
@@ -58,14 +56,6 @@ abstract class AppServiceClient {
   @POST('/auth/logout')
   Future<MessageResponse> logout();
 
-  @POST('/auth/update')
-  Future<UpdateUserResponse> update(
-    @Header(AUTHORIZATION) String token,
-    @Part(value: 'name') String name,
-    @Part(value: 'password') String? password,
-    @Part(value: 'phone') String phone,
-    @Part(value: 'file') File file,
-  );
   /* End Authentication */
 
   /* Products */
