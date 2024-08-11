@@ -154,4 +154,9 @@ class StringApp {
   static const String cancel = 'Batal';
   static const String chooseDate = 'Pilih Tanggal';
   static const String date = 'Tanggal';
+  static const String addItem = 'Tambah Barang';
+  static const String chooseItemValidation = 'Pilih Barang Terlebih dahulu';
+  static const String requestDateValidation = 'Tanggal permintaan harus dipilih';
+  static const String divisionValidation = 'Divisi harus dipilih';
+  static const String noteValidation = 'Catatan wajib diisi';
 }

@@ -47,6 +47,7 @@ class InputDropdown extends StatelessWidget {
           ),
           items: items,
           validator: validator,
+          selectedItem: value,
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
               hintText: hint,

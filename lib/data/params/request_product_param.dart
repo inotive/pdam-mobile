@@ -1,10 +1,12 @@
 class RequestProductParam {
-  RequestProductParam(this.id, this.name, this.qty, this.unit);
+  RequestProductParam(this.id, this.name, this.qty, this.unit, this.code, this.image);
 
   String id;
   String name;
   int qty;
   String unit;
+  String code;
+  String image;
 
   Map<String, dynamic> toJson() {
     return {
@@ -12,11 +14,13 @@ class RequestProductParam {
       'name': name,
       'qty': qty,
       'unit': unit,
+      'code': code,
+      'image': image,
     };
   }
 
   @override
   String toString() {
-    return '''\n    {\n 'id': $id,\n'name': $name,\n'qty': $qty,\n'unit': $unit,\n}''';
+    return '''\n    {\n 'id': $id,\n'name': $name,\n'qty': $qty,\n'unit': $unit,\n'code': $code,\n}''';
   }
 }

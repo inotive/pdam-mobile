@@ -1,20 +1,22 @@
 import 'dart:developer';
 
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:pdam_inventory/app/di.dart';
+import 'package:pdam_inventory/app/extensions.dart';
 import 'package:pdam_inventory/app/helpers/code_formatter.dart';
 import 'package:pdam_inventory/app/helpers/date_formatter.dart';
+import 'package:pdam_inventory/app/helpers/helpers.dart';
 import 'package:pdam_inventory/data/local_source/app_preference.dart';
 import 'package:pdam_inventory/data/params/request_product_param.dart';
 import 'package:pdam_inventory/domain/model/product_model.dart';
+import 'package:pdam_inventory/persentations/modules/receipt_item/widgets/receipt_item_card.dart';
 import 'package:pdam_inventory/persentations/modules/requested_item/create_request_item/viewmodel/create_request_item_viewmodel.dart';
-import 'package:pdam_inventory/persentations/modules/requested_item/create_request_item/widgets/request_product_card.dart';
 import 'package:pdam_inventory/persentations/packages/state_renderer/state_renderer_impl.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
+import 'package:pdam_inventory/persentations/resources/style_app.dart';
+import 'package:pdam_inventory/persentations/resources/value_app.dart';
 import 'package:pdam_inventory/persentations/widgets/button/custom_button.dart';
-import 'package:pdam_inventory/persentations/widgets/button/custom_outline_button.dart';
 import 'package:pdam_inventory/persentations/widgets/card/empty_card.dart';
 import 'package:pdam_inventory/persentations/widgets/forms/dropdown_product.dart';
 import 'package:pdam_inventory/persentations/widgets/forms/input_dropdown.dart';
@@ -31,26 +33,23 @@ class CreateRequestItemView extends StatefulWidget {
   State<CreateRequestItemView> createState() => _CreateRequestItemViewState();
 }
 
-class _CreateRequestItemViewState extends State<CreateRequestItemView> {
+class _CreateRequestItemViewState extends State<CreateRequestItemView> with TickerProviderStateMixin {
   final AppPreference _appPreference = instance<AppPreference>();
   final CreateRequestItemViewmodel _createRequestItemViewmodel = instance<CreateRequestItemViewmodel>();
+
+  late TabController _tabController;
 
   final TextEditingController _requestedByController = TextEditingController();
   final TextEditingController _requestedDateController = TextEditingController();
   final TextEditingController _noteController = TextEditingController();
 
-  final TextEditingController _qtyController = TextEditingController();
-  final TextEditingController _unitController = TextEditingController();
-
-  final productFormKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
   String productId = EMPTY;
   String productName = EMPTY;
   String? division;
   ProductData? selectedProduct;
   DateTime selectedDate = DateTime.now();
-
-  late PageController _pageController;
 
   int initialIndex = 0;
 
@@ -62,15 +61,34 @@ class _CreateRequestItemViewState extends State<CreateRequestItemView> {
     'Divisi d',
   ];
 
+  onAddProduct(RequestProductParam data) {
+    products.add(data);
+    log("On Add Product ===> $products");
+    setState(() {});
+  }
+
+  onUpdateQuantity(RequestProductParam param) {
+    if (products.isNotEmpty) {
+      int index = products.indexWhere((item) => item.id.toString().contains(param.id.toString()));
+      products.update(index, param);
+      log("On Update Quantity ===> $products");
+    }
+  }
+
+  onRemove(RequestProductParam data) {
+    products.removeWhere((item) => item.id.toString().contains(data.id.toString()));
+    log("On Remove ===> $products");
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
   setup() {
     _appPreference.getString(PREFS_KEY_NAME).then((value) {
       setState(() {
         _requestedByController.text = value;
         _createRequestItemViewmodel.setRequestName(value);
       });
-    });
-    setState(() {
-      _unitController.text = 'pcs';
     });
   }
 
@@ -79,326 +97,326 @@ class _CreateRequestItemViewState extends State<CreateRequestItemView> {
     _noteController.addListener(() => _createRequestItemViewmodel.setRequestDescription(_noteController.text));
   }
 
-  bool onEnable() {
-    bool value = false;
-    log(value.toString());
-    if (_requestedDateController.text != EMPTY &&
-        division != null &&
-        _noteController.text != EMPTY &&
-        products.isNotEmpty) {
-      log(value.toString());
-      value = true;
-
-      return value;
-    }
-    return value;
-  }
-
   @override
   void initState() {
+    _tabController = TabController(length: 2, vsync: this, initialIndex: initialIndex);
     setup();
     _bind();
-    _pageController = PageController(initialPage: initialIndex);
-
     super.initState();
   }
 
   onContinue() {
-    if (initialIndex == 1) {
-      _pageController.jumpToPage(0);
-    } else {
-      _pageController.jumpToPage(1);
-    }
-  }
-
-  onReset() {
-    setState(() {
-      productId = EMPTY;
-      productName = EMPTY;
-      _qtyController.text = "";
-      selectedProduct = null;
-    });
-  }
-
-  onAddProduct(RequestProductParam param) {
-    if (products.isEmpty) {
-      products.add(param);
-      _pageController.jumpToPage(1);
-      onReset();
-    } else {
-      if ((products.firstWhereOrNull((item) => item.id == param.id)) != null) {
-        SnackbarApp.topSnackbarError('Produk sudah ditambahkan. Ganti dengan produk yang lain', context);
+    if (formKey.currentState!.validate()) {
+      if (division == null) {
+        SnackbarApp.topSnackbarError(StringApp.divisionValidation, context);
       } else {
-        products.add(param);
-        _pageController.jumpToPage(1);
-        onReset();
+        setState(() {
+          _tabController.animateTo(1);
+          initialIndex = 1;
+        });
       }
     }
-    onEnable();
   }
 
-  onRemove(String id) {
-    products.removeWhere((item) => item.id.toString().contains(id.toString()));
-    onEnable();
-    setState(() {});
+  onSubmit() {
+    if (products.isEmpty) {
+      SnackbarApp.topSnackbarError(StringApp.youNotAddedProduct, context);
+    } else {
+      _createRequestItemViewmodel.setProductList(products);
+      _createRequestItemViewmodel.create(context);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<FlowState>(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(StringApp.newRequest),
+      ),
+      body: StreamBuilder<FlowState>(
         stream: _createRequestItemViewmodel.outputState,
         builder: (context, snapshot) {
-          return snapshot.data?.getScreenWidget(context, _getContentWidgets(), () {}) ?? _getContentWidgets();
-        });
-  }
-
-  Scaffold _getContentWidgets() {
-    return Scaffold(
-      backgroundColor: ColorApp.white,
-      appBar: _appBar(),
-      bottomNavigationBar: _bottomNavbar(),
-      floatingActionButton: initialIndex == 1
-          ? FloatingActionButton(
-              backgroundColor: ColorApp.blue,
-              onPressed: () {
-                _pageController.jumpToPage(2);
-              },
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-              child: const Icon(
-                Icons.add,
-                color: ColorApp.white,
-              ),
-            )
-          : null,
-      body: PageView(
-        controller: _pageController,
-        onPageChanged: (int index) {
-          setState(() {
-            initialIndex = index;
-          });
+          return snapshot.data?.getScreenWidget(context, _getContentWidgets(), () => _bind()) ?? _getContentWidgets();
         },
-        children: [
-          _form(),
-          _productList(),
-          _addProduct(),
-        ],
       ),
-    );
-  }
-
-  Form _addProduct() {
-    return Form(
-      key: productFormKey,
-      child: ListView(
+      bottomNavigationBar: Container(
         padding: const EdgeInsets.all(16),
-        children: [
-          DropdownProduct(
-            selectedValue: selectedProduct,
-            onChanged: (ProductData? value) {
-              setState(() {
-                selectedProduct = value;
-                productId = value?.id ?? EMPTY;
-                productName = value?.name ?? EMPTY;
-              });
-            },
-            validator: (ProductData? value) {
-              if (value == null) {
-                return 'Produk harus dipilih';
-              }
-              return null;
-            },
-          ),
-          InputField(
-            padding: const EdgeInsets.only(top: 12),
-            controller: _qtyController,
-            text: StringApp.amount,
-            hint: StringApp.amount,
-            keyboardType: TextInputType.number,
-            validator: (String? value) {
-              if (value!.isEmpty) {
-                return 'Jumlah harus diisi dan lebih dari 0';
-              }
-              return null;
-            },
-          ),
-          InputField(
-            padding: const EdgeInsets.only(top: 12),
-            controller: _unitController,
-            text: StringApp.unit,
-            hint: StringApp.unit,
-            enabled: false,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _productList() {
-    return Container(
-      color: ColorApp.primary.withOpacity(0.05),
-      padding: const EdgeInsets.all(16),
-      child: products.isEmpty
-          ? const Center(
-              child: EmptyCard(message: StringApp.youNotAddedProduct),
-            )
-          : ListView.builder(
-              itemCount: products.length,
-              itemBuilder: (context, idx) {
-                return RequestProductCard(
-                  name: products[idx].name,
-                  unit: products[idx].unit,
-                  amount: products[idx].qty.toString(),
-                  onDelete: () {
-                    onRemove(products[idx].id);
-                  },
-                );
-              },
-            ),
-    );
-  }
-
-  ListView _form() {
-    return ListView(
-      padding: const EdgeInsets.all(16),
-      children: [
-        InputField(
-          text: StringApp.requestDate,
-          hint: StringApp.chooseRequestDate,
-          controller: _requestedDateController,
-          readOnly: true,
-          onTap: () {
-            DatePickerApp().showDateRangePicker(
-              context,
-              initialSelectedDate: selectedDate,
-              onSelectionChanged: (DateRangePickerSelectionChangedArgs args) {
-                if (args.value is DateTime) {
-                  setState(() {
-                    selectedDate = args.value;
-                    _requestedDateController.text = DateFormatterApp.defaultDate(args.value.toString());
-                    _createRequestItemViewmodel.setRequestDate(DateFormatterApp.defaultDate(args.value.toString()));
-                    onEnable();
-                  });
+        decoration: const BoxDecoration(
+          color: ColorApp.white,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            CustomButton(
+              text: initialIndex == 0 ? StringApp.continueText : StringApp.save,
+              onPressed: () {
+                if (initialIndex == 0) {
+                  onContinue();
+                } else {
+                  onSubmit();
                 }
               },
-            );
-          },
-          suffixIcon: const Icon(
-            Icons.calendar_month_outlined,
-            color: ColorApp.greyText98,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Column _getContentWidgets() {
+    return Column(
+      children: [
+        _tabbar(),
+        Expanded(
+          child: TabBarView(
+            controller: _tabController,
+            physics: const NeverScrollableScrollPhysics(),
+            children: [
+              _form(),
+              _products(),
+            ],
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 12),
-          child: InputDropdown(
-            items: divisions,
-            text: StringApp.division,
-            onChanged: (String? value) {
-              setState(() {
-                division = value;
-                _createRequestItemViewmodel.setDepartmentName(division.toString());
-                onEnable();
-              });
-            },
-            hint: StringApp.division,
-          ),
-        ),
-        InputField(
-          padding: const EdgeInsets.only(top: 12),
-          controller: _requestedByController,
-          text: StringApp.requestBy,
-          hint: StringApp.requestBy,
-          enabled: false,
-          onChanged: (String value) {
-            onEnable();
-          },
-        ),
-        InputField(
-          padding: const EdgeInsets.only(top: 12),
-          text: StringApp.note,
-          hint: StringApp.note,
-          controller: _noteController,
-          maxLines: 5,
-          onChanged: (String value) {
-            onEnable();
-          },
         ),
       ],
     );
   }
 
-  Container _bottomNavbar() {
-    Widget buttonContinue = Flexible(
-      child: CustomOutlineButton(
-        text: initialIndex == 0
-            ? StringApp.continueText
-            : initialIndex == 1
-                ? StringApp.back
-                : StringApp.cancelled,
-        onPressed: () {
-          onContinue();
-        },
-        textColor: initialIndex == 2 ? ColorApp.redBorder : ColorApp.blue,
-        borderColor: initialIndex == 2 ? ColorApp.redBorder : ColorApp.blue,
-      ),
-    );
-
-    Widget buttonSave = Flexible(
-      child: CustomButton(
-        text: StringApp.save,
-        backgroundColor: onEnable() ? ColorApp.blue : ColorApp.greyBD,
-        onPressed: () {
-          if (onEnable()) {
-            _createRequestItemViewmodel.setProductList(products);
-            _createRequestItemViewmodel.create(context);
-          }
-        },
-      ),
-    );
-
-    Widget buttonAdd = Flexible(
-      child: CustomButton(
-        text: StringApp.add,
-        backgroundColor: ColorApp.blue,
-        onPressed: () {
-          if (productFormKey.currentState!.validate()) {
-            onAddProduct(
-              RequestProductParam(
-                productId,
-                productName,
-                int.parse(_qtyController.text),
-                _unitController.text,
-              ),
-            );
-          }
-        },
-      ),
-    );
-
+  Container _products() {
     return Container(
-      padding: const EdgeInsets.all(16),
-      child: Row(
+      decoration: const BoxDecoration(
+        color: ColorApp.background,
+      ),
+      child: Column(
         children: [
-          buttonContinue,
-          const SpacerWidth(10),
-          initialIndex == 2 ? buttonAdd : buttonSave,
+          Container(
+            padding: const EdgeInsets.symmetric(
+              vertical: 24,
+              horizontal: 16,
+            ),
+            decoration: BoxDecoration(
+              color: ColorApp.white,
+              boxShadow: [
+                BoxShadow(
+                  offset: const Offset(0, 1),
+                  blurRadius: 6,
+                  color: ColorApp.black.withOpacity(0.08),
+                ),
+              ],
+            ),
+            child: Column(
+              children: [
+                DropdownProduct(
+                  selectedValue: selectedProduct,
+                  onChanged: (ProductData? value) {
+                    setState(() {
+                      selectedProduct = value;
+                      productId = value?.id ?? EMPTY;
+                      productName = value?.name ?? EMPTY;
+                    });
+                  },
+                  validator: (ProductData? value) {
+                    if (value == null) {
+                      return 'Produk harus dipilih';
+                    }
+                    return null;
+                  },
+                ),
+                const SpacerHeight(24),
+                CustomButton(
+                  text: StringApp.addItem,
+                  backgroundColor: ColorApp.primary,
+                  onPressed: () {
+                    if (selectedProduct == null) {
+                      SnackbarApp.topSnackbarError(StringApp.chooseItemValidation, context);
+                    } else {
+                      onAddProduct(
+                        RequestProductParam(
+                          selectedProduct!.id,
+                          selectedProduct!.name,
+                          1,
+                          'pcs',
+                          selectedProduct!.code,
+                          selectedProduct!.image,
+                        ),
+                      );
+                    }
+                  },
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      StringApp.listItem,
+                      style: StyleApp.textNormal.copyWith(
+                        fontWeight: FontWeight.w600,
+                        fontFamily: FontFamilyApp.inter,
+                      ),
+                    ),
+                    const SpacerHeight(16),
+                    if (products.isNotEmpty)
+                      ...List.generate(products.length, (index) {
+                        ValueNotifier<int> qty = ValueNotifier<int>(1);
+                        return ValueListenableBuilder<int>(
+                            valueListenable: qty,
+                            builder: (context, value, child) {
+                              return ReceiptItemCard(
+                                name: products[index].name,
+                                code: products[index].code,
+                                image: HelperApp.getUrlImage(products[index].image),
+                                onAdd: () {
+                                  // ignore: unused_local_variable
+                                  qty.value++;
+                                  onUpdateQuantity(RequestProductParam(
+                                    products[index].id,
+                                    products[index].name,
+                                    qty.value,
+                                    products[index].unit,
+                                    products[index].code,
+                                    products[index].image,
+                                  ));
+                                },
+                                onRemove: () {
+                                  if (qty.value > 1) {
+                                    qty.value--;
+                                    onUpdateQuantity(RequestProductParam(
+                                      products[index].id,
+                                      products[index].name,
+                                      qty.value,
+                                      products[index].unit,
+                                      products[index].code,
+                                      products[index].image,
+                                    ));
+                                  } else {
+                                    onRemove(products[index]);
+                                  }
+                                },
+                                qty: qty.value.toString(),
+                              );
+                            });
+                      })
+                    else
+                      const EmptyCard(
+                        message: StringApp.productNotYet,
+                      ),
+                  ],
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
   }
 
-  AppBar _appBar() {
-    return AppBar(
-      title: Text(initialIndex == 2 ? StringApp.newRequest : StringApp.itemSubmitted),
-      leading: IconButton(
-        onPressed: () {
-          if (initialIndex == 2) {
-            _pageController.jumpToPage(1);
-          } else {
-            Navigator.pop(context);
-          }
-        },
-        icon: const Icon(Icons.arrow_back),
+  Form _form() {
+    return Form(
+      key: formKey,
+      child: ListView(
+        padding: const EdgeInsets.all(16),
+        children: [
+          InputField(
+            text: StringApp.requestDate,
+            hint: StringApp.chooseRequestDate,
+            controller: _requestedDateController,
+            readOnly: true,
+            validator: (String? value) {
+              if (value!.isEmpty) {
+                return StringApp.requestDateValidation;
+              }
+              return null;
+            },
+            onTap: () {
+              DatePickerApp().showDateRangePicker(
+                context,
+                initialSelectedDate: selectedDate,
+                onSelectionChanged: (DateRangePickerSelectionChangedArgs args) {
+                  if (args.value is DateTime) {
+                    setState(() {
+                      selectedDate = args.value;
+                      _requestedDateController.text = DateFormatterApp.defaultDate(args.value.toString());
+                      _createRequestItemViewmodel.setRequestDate(DateFormatterApp.defaultDate(args.value.toString()));
+                    });
+                  }
+                },
+              );
+            },
+            suffixIcon: const Icon(
+              Icons.calendar_month_outlined,
+              color: ColorApp.greyText98,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 12),
+            child: InputDropdown(
+              items: divisions,
+              text: StringApp.division,
+              value: division,
+              onChanged: (String? value) {
+                setState(() {
+                  division = value;
+                  _createRequestItemViewmodel.setDepartmentName(division.toString());
+                });
+              },
+              hint: StringApp.division,
+            ),
+          ),
+          InputField(
+            padding: const EdgeInsets.only(top: 12),
+            controller: _requestedByController,
+            text: StringApp.requestBy,
+            hint: StringApp.requestBy,
+            enabled: false,
+          ),
+          InputField(
+            padding: const EdgeInsets.only(top: 12),
+            text: StringApp.note,
+            hint: StringApp.note,
+            controller: _noteController,
+            maxLines: 5,
+            validator: (String? value) {
+              if (value!.isEmpty) {
+                return StringApp.noteValidation;
+              }
+              return null;
+            },
+          ),
+        ],
       ),
+    );
+  }
+
+  TabBar _tabbar() {
+    return TabBar(
+      controller: _tabController,
+      dividerColor: ColorApp.borderEB,
+      indicatorColor: ColorApp.primary,
+      indicatorWeight: 1,
+      indicatorSize: TabBarIndicatorSize.tab,
+      padding: EdgeInsets.zero,
+      labelStyle: StyleApp.prompt.copyWith(
+        fontWeight: FontWeight.w500,
+        fontFamily: FontFamilyApp.inter,
+      ),
+      unselectedLabelStyle: StyleApp.prompt.copyWith(
+        fontFamily: FontFamilyApp.inter,
+        fontWeight: FontWeight.w500,
+        color: ColorApp.blackText.withOpacity(0.5),
+      ),
+      tabs: [
+        const Tab(
+          text: StringApp.detail,
+        ),
+        Tab(
+          text: StringApp.listItem.toUpperCase(),
+        ),
+      ],
     );
   }
 }
