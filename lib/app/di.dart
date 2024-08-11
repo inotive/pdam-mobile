@@ -216,7 +216,6 @@ initReceiptItemModule() {
     instance.registerFactory<ReceiveOrderReferenceUsecase>(() => ReceiveOrderReferenceUsecase(instance()));
     instance.registerFactory<ReceiveOrderReferenceDetailUsecase>(() => ReceiveOrderReferenceDetailUsecase(instance()));
     instance.registerFactory<ReceiveOrderSupplierUsecase>(() => ReceiveOrderSupplierUsecase(instance()));
-    instance.registerFactory<ProductByWarehouseUsecase>(() => ProductByWarehouseUsecase(instance()));
     instance.registerFactory<VendorUsecase>(() => VendorUsecase(instance()));
     instance.registerFactory<ReceiptViewmodel>(() => ReceiptViewmodel(
           instance(),
@@ -226,6 +225,9 @@ initReceiptItemModule() {
           instance(),
           instance(),
         ));
+    if (!GetIt.I.isRegistered<ProductByWarehouseUsecase>()) {
+      instance.registerFactory<ProductByWarehouseUsecase>(() => ProductByWarehouseUsecase(instance()));
+    }
   }
 }
 
@@ -254,8 +256,10 @@ initPurchaseOrderModule() {
 initCreatePurchaseRequestModule() {
   if (!GetIt.I.isRegistered<CreatePurchaseRequestUsecase>()) {
     instance.registerFactory<CreatePurchaseRequestUsecase>(() => CreatePurchaseRequestUsecase(instance()));
-    instance.registerFactory<ProductByWarehouseUsecase>(() => ProductByWarehouseUsecase(instance()));
     instance.registerFactory<CreateRequestItemViewmodel>(() => CreateRequestItemViewmodel(instance(), instance()));
+    if (!GetIt.I.isRegistered<ProductByWarehouseUsecase>()) {
+      instance.registerFactory<ProductByWarehouseUsecase>(() => ProductByWarehouseUsecase(instance()));
+    }
   }
 }
 

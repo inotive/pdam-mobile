@@ -131,8 +131,7 @@ class ReceiptViewmodel extends BaseViewModel implements ReceiptItemViewInputs, R
     }, (data) {
       inputState.add(ContentWithoutDimissState());
       SnackbarApp.topSnackbarSucces('Terima Barang berhasil disimpan', context);
-
-      Navigator.pushNamed(context, Routes.acceptedItem);
+      Navigator.pushReplacementNamed(context, Routes.acceptedItem);
     });
     // inputState.add(ContentState());
     // isCreateSuccesfully.add(true);

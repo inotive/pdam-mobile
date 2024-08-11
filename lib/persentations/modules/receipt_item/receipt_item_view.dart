@@ -97,9 +97,9 @@ class _ReceiptItemViewState extends State<ReceiptItemView> with SingleTickerProv
   onAddProduct(PurchaseRequestProduct data) {
     log("Product ===> ${data.qty}");
     productItem.add(data);
-    // productParam.add(ReceiptProductParam(data.id, 1));
-    // _receiptViewmodel.setProductList(productParam);
-    // log("On Add Product ===> $productParam");
+    productParam.add(ReceiptProductParam(data.id, 1));
+    _receiptViewmodel.setProductList(productParam);
+    log("On Add Product ===> $productParam");
     setState(() {});
   }
 
@@ -373,7 +373,7 @@ class _ReceiptItemViewState extends State<ReceiptItemView> with SingleTickerProv
               text: StringApp.reference,
               hint: 'Otomatis',
               controller: referenceController,
-              readOnly: true,
+              enabled: false,
               onChanged: (String? value) {},
             ),
             const SpacerHeight(12),
@@ -381,7 +381,7 @@ class _ReceiptItemViewState extends State<ReceiptItemView> with SingleTickerProv
               text: StringApp.createdBy,
               hint: StringApp.createdBy,
               controller: createdByController,
-              readOnly: true,
+              enabled: false,
               onChanged: (String? value) {
                 onEnable();
               },
