@@ -95,10 +95,11 @@ class _ReceiptItemViewState extends State<ReceiptItemView> with SingleTickerProv
   }
 
   onAddProduct(PurchaseRequestProduct data) {
+    log("Product ===> ${data.qty}");
     productItem.add(data);
-    productParam.add(ReceiptProductParam(data.id, 1));
-    _receiptViewmodel.setProductList(productParam);
-    log("On Add Product ===> $productParam");
+    // productParam.add(ReceiptProductParam(data.id, 1));
+    // _receiptViewmodel.setProductList(productParam);
+    // log("On Add Product ===> $productParam");
     setState(() {});
   }
 
@@ -225,8 +226,8 @@ class _ReceiptItemViewState extends State<ReceiptItemView> with SingleTickerProv
                     const SpacerHeight(16),
                     if (productItem.isNotEmpty)
                       ...List.generate(productItem.length, (index) {
-                        int parseQty = int.parse(productItem[index].qty);
-                        ValueNotifier<int> qty = ValueNotifier<int>(parseQty);
+                        // int parseQty = int.parse(productItem[index].qty);
+                        ValueNotifier<int> qty = ValueNotifier<int>(1);
                         return ValueListenableBuilder<int>(
                             valueListenable: qty,
                             builder: (context, value, child) {

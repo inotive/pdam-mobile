@@ -179,6 +179,7 @@ PurchaseRequestProductResponse _$PurchaseRequestProductResponseFromJson(
       json['created_at'] as String?,
       json['updated_at'] as String?,
       json['notes'] as String?,
+      json['image'] as String?,
     );
 
 Map<String, dynamic> _$PurchaseRequestProductResponseToJson(
@@ -192,4 +193,5 @@ Map<String, dynamic> _$PurchaseRequestProductResponseToJson(
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
       'notes': instance.notes,
+      'image': instance.image,
     };

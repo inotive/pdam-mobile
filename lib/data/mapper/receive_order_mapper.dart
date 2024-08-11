@@ -74,6 +74,7 @@ extension ReceiveOrderDetailProductResponseMapper on ReceiveOrderDetailProductRe
       this?.diterimaDiGudang.orEmpty() ?? EMPTY,
       this?.sisa.orEmpty() ?? EMPTY,
       this?.notes.orEmpty() ?? EMPTY,
+      this?.image.orEmpty() ?? EMPTY,
     );
   }
 }

@@ -131,6 +131,7 @@ class ReceiveOrderDetailProductResponse {
     this.diterimaDiGudang,
     this.sisa,
     this.notes,
+    this.image,
   );
 
   @JsonKey(name: "code")
@@ -157,6 +158,8 @@ class ReceiveOrderDetailProductResponse {
   String? sisa;
   @JsonKey(name: "notes")
   String? notes;
+  @JsonKey(name: "image")
+  String? image;
 
   factory ReceiveOrderDetailProductResponse.fromJson(Map<String, dynamic> json) =>
       _$ReceiveOrderDetailProductResponseFromJson(json);

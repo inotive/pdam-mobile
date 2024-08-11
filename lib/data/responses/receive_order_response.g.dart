@@ -125,6 +125,7 @@ ReceiveOrderDetailProductResponse _$ReceiveOrderDetailProductResponseFromJson(
       json['diterima_di_gudang'] as String?,
       json['sisa'] as String?,
       json['notes'] as String?,
+      json['image'] as String?,
     );
 
 Map<String, dynamic> _$ReceiveOrderDetailProductResponseToJson(
@@ -143,6 +144,7 @@ Map<String, dynamic> _$ReceiveOrderDetailProductResponseToJson(
       'diterima_di_gudang': instance.diterimaDiGudang,
       'sisa': instance.sisa,
       'notes': instance.notes,
+      'image': instance.image,
     };
 
 ReceiveOrderDetailDataResponse _$ReceiveOrderDetailDataResponseFromJson(

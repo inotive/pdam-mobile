@@ -80,6 +80,7 @@ class ReceiveOrderDetailProduct {
     this.diterimaDiGudang,
     this.sisa,
     this.notes,
+    this.image,
   );
 
   String code;
@@ -94,6 +95,7 @@ class ReceiveOrderDetailProduct {
   String diterimaDiGudang;
   String sisa;
   String notes;
+  String image;
 }
 
 class ReceiveOrderDetailData {

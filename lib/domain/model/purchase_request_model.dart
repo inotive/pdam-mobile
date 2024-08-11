@@ -91,6 +91,7 @@ class PurchaseRequestProduct {
     this.createdAt,
     this.updatedAt,
     this.notes,
+    this.image,
   );
 
   String code;
@@ -101,4 +102,5 @@ class PurchaseRequestProduct {
   String createdAt;
   String updatedAt;
   String notes;
+  String image;
 }

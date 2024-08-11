@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pdam_inventory/domain/model/vendor_model.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
+import 'package:pdam_inventory/persentations/resources/value_app.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
 class InputDropdownVendor extends StatelessWidget {
@@ -27,7 +28,11 @@ class InputDropdownVendor extends StatelessWidget {
       children: [
         Text(
           text,
-          style: StyleApp.textNormal.copyWith(),
+          style: StyleApp.textSm.copyWith(
+            fontWeight: FontWeight.w600,
+            color: ColorApp.greyTextA5,
+            fontFamily: FontFamilyApp.inter,
+          ),
         ),
         const SpacerHeight(8),
         DropdownSearch<VendorDataModel>(
@@ -44,7 +49,8 @@ class InputDropdownVendor extends StatelessWidget {
             dropdownSearchDecoration: InputDecoration(
               hintText: hint,
               hintStyle: StyleApp.textNormal.copyWith(
-                color: ColorApp.greyText,
+                color: ColorApp.greyText98,
+                fontFamily: FontFamilyApp.inter,
               ),
               fillColor: ColorApp.white,
               enabledBorder: OutlineInputBorder(

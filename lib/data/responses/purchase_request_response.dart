@@ -167,6 +167,7 @@ class PurchaseRequestProductResponse {
     this.createdAt,
     this.updatedAt,
     this.notes,
+    this.image,
   );
 
   @JsonKey(name: 'code')
@@ -185,6 +186,8 @@ class PurchaseRequestProductResponse {
   String? updatedAt;
   @JsonKey(name: 'notes')
   String? notes;
+  @JsonKey(name: 'image')
+  String? image;
 
   factory PurchaseRequestProductResponse.fromJson(Map<String, dynamic> json) =>
       _$PurchaseRequestProductResponseFromJson(json);

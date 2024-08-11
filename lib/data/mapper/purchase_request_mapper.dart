@@ -92,6 +92,7 @@ extension PurchaseRequestProductResponseMapper on PurchaseRequestProductResponse
       this?.createdAt.orEmpty() ?? EMPTY,
       this?.updatedAt.orEmpty() ?? EMPTY,
       this?.notes.orEmpty() ?? EMPTY,
+      this?.image.orEmpty() ?? EMPTY,
     );
   }
 }
