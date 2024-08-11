@@ -16,7 +16,6 @@ import 'package:pdam_inventory/persentations/modules/receipt_item/viewmodel/rece
 import 'package:pdam_inventory/persentations/modules/receipt_item/widgets/input_dropdown_product.dart';
 import 'package:pdam_inventory/persentations/modules/receipt_item/widgets/input_dropdown_reference.dart';
 import 'package:pdam_inventory/persentations/modules/receipt_item/widgets/input_dropdown_vendor.dart';
-import 'package:pdam_inventory/persentations/modules/receipt_item/widgets/input_dropdown_warehouse.dart';
 import 'package:pdam_inventory/persentations/modules/receipt_item/widgets/receipt_item_card.dart';
 import 'package:pdam_inventory/persentations/packages/state_renderer/state_renderer_impl.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
@@ -25,6 +24,7 @@ import 'package:pdam_inventory/persentations/resources/style_app.dart';
 import 'package:pdam_inventory/persentations/resources/value_app.dart';
 import 'package:pdam_inventory/persentations/widgets/button/custom_button.dart';
 import 'package:pdam_inventory/persentations/widgets/card/empty_card.dart';
+import 'package:pdam_inventory/persentations/widgets/forms/dropdown_warehouse/dropdown_warehouse.dart';
 import 'package:pdam_inventory/persentations/widgets/forms/file_input.dart';
 import 'package:pdam_inventory/persentations/widgets/forms/input_field.dart';
 import 'package:pdam_inventory/persentations/widgets/snackbar_app.dart';
@@ -420,23 +420,15 @@ class _ReceiptItemViewState extends State<ReceiptItemView> with SingleTickerProv
                   );
                 }),
             const SpacerHeight(12),
-            StreamBuilder<List<ReceiveOrderWarehouseData>>(
-                stream: _receiptViewmodel.outputReceiveOrderWarehouse,
-                builder: (context, snapshot) {
-                  List<ReceiveOrderWarehouseData> data = snapshot.data ?? List.empty();
-                  return InputDropdownWarehouse(
-                    items: data,
-                    text: StringApp.warehouse,
-                    value: warehouse,
-                    onChanged: (ReceiveOrderWarehouseData? value) {
-                      warehouse = value;
-                      onEnable();
-                      _receiptViewmodel.setWarehouseId(value?.id.toString() ?? '0');
-                      _receiptViewmodel.products(value?.id ?? 0);
-                    },
-                    hint: StringApp.searchWarehouse,
-                  );
-                }),
+            DropdownWarehouse(
+              selectedValue: warehouse,
+              onChanged: (ReceiveOrderWarehouseData? value) {
+                warehouse = value;
+                onEnable();
+                _receiptViewmodel.setWarehouseId(value?.id.toString() ?? '0');
+                _receiptViewmodel.products(value?.id ?? 0);
+              },
+            ),
             const SpacerHeight(12),
             FileInput(
               file: file,

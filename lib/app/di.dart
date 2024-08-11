@@ -211,8 +211,7 @@ initStockOpnameModule() {
 }
 
 initReceiptItemModule() {
-  if (!GetIt.I.isRegistered<ReceiveOrderWarehouseUsecase>()) {
-    instance.registerFactory<ReceiveOrderWarehouseUsecase>(() => ReceiveOrderWarehouseUsecase(instance()));
+  if (!GetIt.I.isRegistered<ReceiveOrderCreateUsecase>()) {
     instance.registerFactory<ReceiveOrderCreateUsecase>(() => ReceiveOrderCreateUsecase(instance()));
     instance.registerFactory<ReceiveOrderReferenceUsecase>(() => ReceiveOrderReferenceUsecase(instance()));
     instance.registerFactory<ReceiveOrderReferenceDetailUsecase>(() => ReceiveOrderReferenceDetailUsecase(instance()));
@@ -220,7 +219,6 @@ initReceiptItemModule() {
     instance.registerFactory<ProductByWarehouseUsecase>(() => ProductByWarehouseUsecase(instance()));
     instance.registerFactory<VendorUsecase>(() => VendorUsecase(instance()));
     instance.registerFactory<ReceiptViewmodel>(() => ReceiptViewmodel(
-          instance(),
           instance(),
           instance(),
           instance(),
