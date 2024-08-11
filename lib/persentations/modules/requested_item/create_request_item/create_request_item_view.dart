@@ -9,6 +9,7 @@ import 'package:pdam_inventory/app/helpers/helpers.dart';
 import 'package:pdam_inventory/data/local_source/app_preference.dart';
 import 'package:pdam_inventory/data/params/request_product_param.dart';
 import 'package:pdam_inventory/domain/model/product_model.dart';
+import 'package:pdam_inventory/domain/model/receive_order_model.dart';
 import 'package:pdam_inventory/persentations/modules/receipt_item/widgets/receipt_item_card.dart';
 import 'package:pdam_inventory/persentations/modules/requested_item/create_request_item/viewmodel/create_request_item_viewmodel.dart';
 import 'package:pdam_inventory/persentations/packages/state_renderer/state_renderer_impl.dart';
@@ -19,7 +20,7 @@ import 'package:pdam_inventory/persentations/resources/value_app.dart';
 import 'package:pdam_inventory/persentations/widgets/button/custom_button.dart';
 import 'package:pdam_inventory/persentations/widgets/card/empty_card.dart';
 import 'package:pdam_inventory/persentations/widgets/forms/dropdown_product.dart';
-import 'package:pdam_inventory/persentations/widgets/forms/input_dropdown.dart';
+import 'package:pdam_inventory/persentations/widgets/forms/dropdown_warehouse/dropdown_warehouse.dart';
 import 'package:pdam_inventory/persentations/widgets/forms/input_field.dart';
 import 'package:pdam_inventory/persentations/widgets/picker/date_picker.dart';
 import 'package:pdam_inventory/persentations/widgets/snackbar_app.dart';
@@ -47,19 +48,14 @@ class _CreateRequestItemViewState extends State<CreateRequestItemView> with Tick
 
   String productId = EMPTY;
   String productName = EMPTY;
-  String? division;
   ProductData? selectedProduct;
   DateTime selectedDate = DateTime.now();
+
+  ReceiveOrderWarehouseData? warehouse;
 
   int initialIndex = 0;
 
   List<RequestProductParam> products = [];
-  List<String> divisions = [
-    'Divisi A',
-    'Divisi B',
-    'Divisi C',
-    'Divisi d',
-  ];
 
   onAddProduct(RequestProductParam data) {
     products.add(data);
@@ -107,8 +103,8 @@ class _CreateRequestItemViewState extends State<CreateRequestItemView> with Tick
 
   onContinue() {
     if (formKey.currentState!.validate()) {
-      if (division == null) {
-        SnackbarApp.topSnackbarError(StringApp.divisionValidation, context);
+      if (warehouse == null) {
+        SnackbarApp.topSnackbarError(StringApp.warehouseValidation, context);
       } else {
         setState(() {
           _tabController.animateTo(1);
@@ -354,18 +350,15 @@ class _CreateRequestItemViewState extends State<CreateRequestItemView> with Tick
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 12),
-            child: InputDropdown(
-              items: divisions,
-              text: StringApp.division,
-              value: division,
-              onChanged: (String? value) {
+            padding: const EdgeInsets.only(top: 8.0),
+            child: DropdownWarehouse(
+              selectedValue: warehouse,
+              onChanged: (ReceiveOrderWarehouseData? value) {
                 setState(() {
-                  division = value;
-                  _createRequestItemViewmodel.setDepartmentName(division.toString());
+                  warehouse = value;
+                  _createRequestItemViewmodel.setDepartmentName(value?.name ?? EMPTY);
                 });
               },
-              hint: StringApp.division,
             ),
           ),
           InputField(

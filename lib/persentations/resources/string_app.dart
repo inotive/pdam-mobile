@@ -158,5 +158,6 @@ class StringApp {
   static const String chooseItemValidation = 'Pilih Barang Terlebih dahulu';
   static const String requestDateValidation = 'Tanggal permintaan harus dipilih';
   static const String divisionValidation = 'Divisi harus dipilih';
+  static const String warehouseValidation = 'Gudang harus dipilih';
   static const String noteValidation = 'Catatan wajib diisi';
 }

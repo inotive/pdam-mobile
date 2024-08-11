@@ -74,6 +74,7 @@ import 'package:pdam_inventory/persentations/modules/requested_item/create_reque
 import 'package:pdam_inventory/persentations/modules/requested_item/request_item/viewmodel/requested_detail_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/requested_item/request_item/viewmodel/requested_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/stock_opname/viewmodel/stock_opname_viewmodel.dart';
+import 'package:pdam_inventory/persentations/widgets/forms/dropdown_warehouse/viewmodel/warehouse_viewmodel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final instance = GetIt.instance;
@@ -131,6 +132,7 @@ Future<void> initAppModule() async {
   initReceiveOrderModule();
   initReceiveOrderDetailModule();
   initProductDetailModule();
+  initWarehouseModule();
 }
 
 initLoginModule() {
@@ -258,6 +260,13 @@ initCreatePurchaseRequestModule() {
   }
 }
 
+initWarehouseModule() {
+  if (!GetIt.I.isRegistered<ReceiveOrderWarehouseUsecase>()) {
+    instance.registerFactory<ReceiveOrderWarehouseUsecase>(() => ReceiveOrderWarehouseUsecase(instance()));
+    instance.registerFactory<WarehouseViewmodel>(() => WarehouseViewmodel(instance()));
+  }
+}
+
 resetModules() {
   instance.reset(dispose: false);
   initAppModule();
@@ -275,4 +284,5 @@ resetModules() {
   initNotificationModule();
   initPurchaseOrderModule();
   initCreatePurchaseRequestModule();
+  initWarehouseModule();
 }
