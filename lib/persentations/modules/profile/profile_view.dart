@@ -3,7 +3,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:pdam_inventory/app/di.dart';
 import 'package:pdam_inventory/data/local_source/app_preference.dart';
 import 'package:pdam_inventory/persentations/modules/profile/viewmodel/profile_viewmodel.dart';
-import 'package:pdam_inventory/persentations/modules/profile/widgets/profile_card.dart';
 import 'package:pdam_inventory/persentations/modules/profile/widgets/profile_form.dart';
 import 'package:pdam_inventory/persentations/packages/state_renderer/state_renderer_impl.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
@@ -56,7 +55,6 @@ class _ProfileViewState extends State<ProfileView> {
     return SafeArea(
       child: ListView(
         children: [
-          const ProfileCard(),
           const ProfileForm(),
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),

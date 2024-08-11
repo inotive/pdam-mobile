@@ -1,13 +1,18 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:pdam_inventory/app/di.dart';
 import 'package:pdam_inventory/data/local_source/app_preference.dart';
 import 'package:pdam_inventory/persentations/modules/profile/viewmodel/profile_viewmodel.dart';
+import 'package:pdam_inventory/persentations/modules/profile/widgets/profile_card.dart';
 import 'package:pdam_inventory/persentations/packages/state_renderer/state_renderer_impl.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
 import 'package:pdam_inventory/persentations/widgets/button/custom_button.dart';
 import 'package:pdam_inventory/persentations/widgets/forms/input_field.dart';
+import 'package:pdam_inventory/persentations/widgets/snackbar_app.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
 class ProfileForm extends StatefulWidget {
@@ -20,6 +25,8 @@ class ProfileForm extends StatefulWidget {
 class _ProfileFormState extends State<ProfileForm> {
   final AppPreference _appPreference = instance<AppPreference>();
   final ProfileViewModel _profileViewModel = instance<ProfileViewModel>();
+
+  File? file;
 
   TextEditingController _fullnameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
@@ -61,6 +68,21 @@ class _ProfileFormState extends State<ProfileForm> {
     super.initState();
   }
 
+  pickFile() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles();
+
+    if (result != null) {
+      setState(() {
+        file = File(result.files.single.path!);
+        _profileViewModel.setFile(file!);
+      });
+    } else {
+      // User canceled the picker
+      // ignore: use_build_context_synchronously
+      SnackbarApp.topSnackbarError('No Image Selected', context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<FlowState>(
@@ -76,6 +98,12 @@ class _ProfileFormState extends State<ProfileForm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          ProfileCard(
+            file: file,
+            onPickImage: () {
+              pickFile();
+            },
+          ),
           Text(
             StringApp.detailProfile,
             style: StyleApp.textNormal.copyWith(

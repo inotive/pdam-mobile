@@ -1,23 +1,22 @@
 import 'dart:io';
 
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pdam_inventory/app/di.dart';
 import 'package:pdam_inventory/app/extensions.dart';
 import 'package:pdam_inventory/data/local_source/app_preference.dart';
-import 'package:pdam_inventory/persentations/modules/profile/viewmodel/profile_viewmodel.dart';
 import 'package:pdam_inventory/persentations/resources/asset_app.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
 import 'package:pdam_inventory/persentations/resources/value_app.dart';
 import 'package:pdam_inventory/persentations/widgets/custom_cached_network_image.dart';
-import 'package:pdam_inventory/persentations/widgets/snackbar_app.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
 class ProfileCard extends StatefulWidget {
-  const ProfileCard({super.key});
+  final Function() onPickImage;
+  final File? file;
+  const ProfileCard({super.key, required this.onPickImage, this.file});
 
   @override
   State<ProfileCard> createState() => _ProfileCardState();
@@ -25,33 +24,16 @@ class ProfileCard extends StatefulWidget {
 
 class _ProfileCardState extends State<ProfileCard> {
   final AppPreference _appPreference = instance<AppPreference>();
-  final ProfileViewModel _profileViewModel = instance<ProfileViewModel>();
 
   String name = EMPTY;
   String role = EMPTY;
   String image = EMPTY;
-  File? file;
 
   setup() async {
     name = await _appPreference.getString(PREFS_KEY_NAME);
     role = await _appPreference.getString(PREFS_KEY_ROLE_NAME);
     image = await _appPreference.getString(PREFS_KEY_IMAGE);
     setState(() {});
-  }
-
-  pickFile() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles();
-
-    if (result != null) {
-      setState(() {
-        file = File(result.files.single.path!);
-        _profileViewModel.setFile(file!);
-      });
-    } else {
-      // User canceled the picker
-      // ignore: use_build_context_synchronously
-      SnackbarApp.topSnackbarError('No Image Selected', context);
-    }
   }
 
   @override
@@ -63,7 +45,9 @@ class _ProfileCardState extends State<ProfileCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 16, 20, 26),
+      padding: const EdgeInsets.only(
+        bottom: 26,
+      ),
       child: Stack(
         fit: StackFit.passthrough,
         children: [
@@ -86,10 +70,8 @@ class _ProfileCardState extends State<ProfileCard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 InkWell(
-                  onTap: () {
-                    pickFile();
-                  },
-                  child: file == null
+                  onTap: widget.onPickImage,
+                  child: widget.file == null
                       ? CustomNetworkImage(
                           height: 40,
                           width: 40,
@@ -104,7 +86,7 @@ class _ProfileCardState extends State<ProfileCard> {
                           ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(8),
-                            child: Image.file(file!, fit: BoxFit.cover),
+                            child: Image.file(widget.file!, fit: BoxFit.cover),
                           ),
                         ),
                 ),

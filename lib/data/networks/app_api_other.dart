@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -41,6 +42,7 @@ class AppServiceClientOther {
       'phone',
       phone,
     ));
+    log("Selected File: $file");
     if (file.path != "") {
       data.files.add(MapEntry(
         'file',
@@ -50,6 +52,7 @@ class AppServiceClientOther {
         ),
       ));
     }
+
     final result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<UpdateUserResponse>(Options(
       method: 'POST',
       headers: headers,
