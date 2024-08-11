@@ -12,6 +12,7 @@ class DatePickerApp {
     BuildContext context, {
     required DateTime initialSelectedDate,
     required Function(DateRangePickerSelectionChangedArgs) onSelectionChanged,
+    required Function() onYes,
   }) {
     showModalBottomSheet(
         context: context,
@@ -171,6 +172,7 @@ class DatePickerApp {
                   const SpacerHeight(24),
                   CustomButton(
                     onPressed: () {
+                      onYes();
                       Navigator.pop(context);
                     },
                     text: StringApp.yes,
