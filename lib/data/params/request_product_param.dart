@@ -1,7 +1,7 @@
 class RequestProductParam {
   RequestProductParam(this.id, this.name, this.qty, this.unit, this.code, this.image);
 
-  String id;
+  int id;
   String name;
   int qty;
   String unit;

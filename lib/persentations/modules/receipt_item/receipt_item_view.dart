@@ -13,7 +13,7 @@ import 'package:pdam_inventory/domain/model/purchase_request_model.dart';
 import 'package:pdam_inventory/domain/model/receive_order_model.dart';
 import 'package:pdam_inventory/domain/model/vendor_model.dart';
 import 'package:pdam_inventory/persentations/modules/receipt_item/viewmodel/receipt_viewmodel.dart';
-import 'package:pdam_inventory/persentations/modules/receipt_item/widgets/input_dropdown_product.dart';
+import 'package:pdam_inventory/persentations/widgets/forms/input_dropdown_product.dart';
 import 'package:pdam_inventory/persentations/modules/receipt_item/widgets/input_dropdown_reference.dart';
 import 'package:pdam_inventory/persentations/modules/receipt_item/widgets/input_dropdown_vendor.dart';
 import 'package:pdam_inventory/persentations/modules/receipt_item/widgets/receipt_item_card.dart';

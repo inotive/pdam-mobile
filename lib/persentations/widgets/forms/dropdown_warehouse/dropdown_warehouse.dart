@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pdam_inventory/app/di.dart';
 import 'package:pdam_inventory/domain/model/receive_order_model.dart';
-import 'package:pdam_inventory/persentations/modules/receipt_item/widgets/input_dropdown_warehouse.dart';
+import 'package:pdam_inventory/persentations/widgets/forms/input_dropdown_warehouse.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/widgets/forms/dropdown_warehouse/viewmodel/warehouse_viewmodel.dart';
 

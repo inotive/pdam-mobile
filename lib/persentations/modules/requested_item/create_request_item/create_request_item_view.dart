@@ -8,19 +8,20 @@ import 'package:pdam_inventory/app/helpers/date_formatter.dart';
 import 'package:pdam_inventory/app/helpers/helpers.dart';
 import 'package:pdam_inventory/data/local_source/app_preference.dart';
 import 'package:pdam_inventory/data/params/request_product_param.dart';
-import 'package:pdam_inventory/domain/model/product_model.dart';
+import 'package:pdam_inventory/domain/model/purchase_request_model.dart';
 import 'package:pdam_inventory/domain/model/receive_order_model.dart';
 import 'package:pdam_inventory/persentations/modules/receipt_item/widgets/receipt_item_card.dart';
 import 'package:pdam_inventory/persentations/modules/requested_item/create_request_item/viewmodel/create_request_item_viewmodel.dart';
 import 'package:pdam_inventory/persentations/packages/state_renderer/state_renderer_impl.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
+import 'package:pdam_inventory/persentations/resources/route_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
 import 'package:pdam_inventory/persentations/resources/value_app.dart';
 import 'package:pdam_inventory/persentations/widgets/button/custom_button.dart';
 import 'package:pdam_inventory/persentations/widgets/card/empty_card.dart';
-import 'package:pdam_inventory/persentations/widgets/forms/dropdown_product.dart';
 import 'package:pdam_inventory/persentations/widgets/forms/dropdown_warehouse/dropdown_warehouse.dart';
+import 'package:pdam_inventory/persentations/widgets/forms/input_dropdown_product.dart';
 import 'package:pdam_inventory/persentations/widgets/forms/input_field.dart';
 import 'package:pdam_inventory/persentations/widgets/picker/date_picker.dart';
 import 'package:pdam_inventory/persentations/widgets/snackbar_app.dart';
@@ -46,9 +47,8 @@ class _CreateRequestItemViewState extends State<CreateRequestItemView> with Tick
 
   final formKey = GlobalKey<FormState>();
 
-  String productId = EMPTY;
-  String productName = EMPTY;
-  ProductData? selectedProduct;
+  int productId = ZERO;
+  PurchaseRequestProduct? selectedProduct;
   DateTime selectedDate = DateTime.now();
 
   ReceiveOrderWarehouseData? warehouse;
@@ -91,6 +91,11 @@ class _CreateRequestItemViewState extends State<CreateRequestItemView> with Tick
   _bind() {
     _createRequestItemViewmodel.setRequestNumber(CodeFormatterApp.requestItem());
     _noteController.addListener(() => _createRequestItemViewmodel.setRequestDescription(_noteController.text));
+    _createRequestItemViewmodel.isCreateSuccesfully.stream.listen((isSuccess) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.pushReplacementNamed(context, Routes.requestedItem);
+      });
+    });
   }
 
   @override
@@ -119,7 +124,7 @@ class _CreateRequestItemViewState extends State<CreateRequestItemView> with Tick
       SnackbarApp.topSnackbarError(StringApp.youNotAddedProduct, context);
     } else {
       _createRequestItemViewmodel.setProductList(products);
-      _createRequestItemViewmodel.create(context);
+      _createRequestItemViewmodel.create();
     }
   }
 
@@ -201,22 +206,21 @@ class _CreateRequestItemViewState extends State<CreateRequestItemView> with Tick
             ),
             child: Column(
               children: [
-                DropdownProduct(
-                  selectedValue: selectedProduct,
-                  onChanged: (ProductData? value) {
-                    setState(() {
-                      selectedProduct = value;
-                      productId = value?.id ?? EMPTY;
-                      productName = value?.name ?? EMPTY;
-                    });
-                  },
-                  validator: (ProductData? value) {
-                    if (value == null) {
-                      return 'Produk harus dipilih';
-                    }
-                    return null;
-                  },
-                ),
+                StreamBuilder<List<PurchaseRequestProduct>>(
+                    stream: _createRequestItemViewmodel.outputProduct,
+                    builder: (context, snapshot) {
+                      List<PurchaseRequestProduct> data = snapshot.data ?? List.empty();
+                      return InputDropdownProduct(
+                        items: data,
+                        text: StringApp.itemName,
+                        onChanged: (PurchaseRequestProduct? value) {
+                          setState(() {
+                            selectedProduct = value;
+                          });
+                        },
+                        hint: StringApp.searchItem,
+                      );
+                    }),
                 const SpacerHeight(24),
                 CustomButton(
                   text: StringApp.addItem,
@@ -357,6 +361,7 @@ class _CreateRequestItemViewState extends State<CreateRequestItemView> with Tick
                 setState(() {
                   warehouse = value;
                   _createRequestItemViewmodel.setDepartmentName(value?.name ?? EMPTY);
+                  _createRequestItemViewmodel.products(value?.id ?? ZERO);
                 });
               },
             ),

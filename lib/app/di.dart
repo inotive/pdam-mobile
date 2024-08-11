@@ -254,7 +254,8 @@ initPurchaseOrderModule() {
 initCreatePurchaseRequestModule() {
   if (!GetIt.I.isRegistered<CreatePurchaseRequestUsecase>()) {
     instance.registerFactory<CreatePurchaseRequestUsecase>(() => CreatePurchaseRequestUsecase(instance()));
-    instance.registerFactory<CreateRequestItemViewmodel>(() => CreateRequestItemViewmodel(instance()));
+    instance.registerFactory<ProductByWarehouseUsecase>(() => ProductByWarehouseUsecase(instance()));
+    instance.registerFactory<CreateRequestItemViewmodel>(() => CreateRequestItemViewmodel(instance(), instance()));
   }
 }
 
