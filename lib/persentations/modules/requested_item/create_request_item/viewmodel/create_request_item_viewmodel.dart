@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'dart:async';
 
 import 'package:pdam_inventory/data/params/request_product_param.dart';

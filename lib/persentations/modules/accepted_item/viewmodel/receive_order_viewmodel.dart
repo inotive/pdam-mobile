@@ -6,6 +6,7 @@ import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_usecas
 import 'package:pdam_inventory/persentations/base/base_viewmodel.dart';
 import 'package:pdam_inventory/persentations/packages/state_renderer/state_renderer.dart';
 import 'package:pdam_inventory/persentations/packages/state_renderer/state_renderer_impl.dart';
+// ignore: depend_on_referenced_packages
 import 'package:rxdart/rxdart.dart';
 
 class ReceiveOrderViewmodel extends BaseViewModel implements ReceiveOrderViewmodelInputs, ReceiveOrderViewmodelOutputs {

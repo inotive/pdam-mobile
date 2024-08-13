@@ -1,3 +1,4 @@
+// ignore: depend_on_referenced_packages
 import 'package:dartz/dartz.dart';
 import 'package:pdam_inventory/data/data_source/notification_data_source.dart';
 import 'package:pdam_inventory/data/local_source/app_preference.dart';

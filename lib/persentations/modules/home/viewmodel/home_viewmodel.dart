@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'dart:async';
 import 'dart:ffi';
 
@@ -11,7 +13,7 @@ class HomeViewmodel extends BaseViewModel implements HomeViewmodelInputs, HomeVi
   final NotificationCountUsecase _notificationCountUsecase;
   HomeViewmodel(this._notificationCountUsecase);
 
-  StreamController _countStreamController = BehaviorSubject<int>();
+  final StreamController _countStreamController = BehaviorSubject<int>();
 
   @override
   void start() {

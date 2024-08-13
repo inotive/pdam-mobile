@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'dart:async';
 import 'dart:ffi';
 
@@ -10,10 +12,10 @@ import 'package:rxdart/rxdart.dart';
 
 class PurchaseOrderViewmodel extends BaseViewModel
     implements PurchaseOrderViewmodelInputs, PurchaseOrderViewmodelOutputs {
-  PurchaseOrderUsecase _purchaseOrderUsecase;
+  final PurchaseOrderUsecase _purchaseOrderUsecase;
   PurchaseOrderViewmodel(this._purchaseOrderUsecase);
 
-  StreamController _purchasOrderStreamController = BehaviorSubject<List<PurchaseOrderDate>>();
+  final StreamController _purchasOrderStreamController = BehaviorSubject<List<PurchaseOrderDate>>();
 
   @override
   void start() {

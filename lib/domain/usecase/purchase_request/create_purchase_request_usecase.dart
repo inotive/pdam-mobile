@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:dartz/dartz.dart';
 import 'package:pdam_inventory/data/networks/failure.dart';
 import 'package:pdam_inventory/data/requests/create_request_item_request.dart';

@@ -8,14 +8,14 @@ import 'package:pdam_inventory/persentations/packages/state_renderer/state_rende
 import 'package:pdam_inventory/persentations/packages/state_renderer/state_renderer_impl.dart';
 
 class LoginViewModel extends BaseViewModel implements LoginViewModelInputs, LoginViewModelOutputs {
-  LoginUsecase _loginUsecase;
+  final LoginUsecase _loginUsecase;
 
   LoginViewModel(this._loginUsecase);
 
-  StreamController _usernameStreamController = StreamController<String>.broadcast();
-  StreamController _passwordStreamController = StreamController<String>.broadcast();
+  final StreamController _usernameStreamController = StreamController<String>.broadcast();
+  final StreamController _passwordStreamController = StreamController<String>.broadcast();
 
-  StreamController _isAllInputsValidStreamController = StreamController<void>.broadcast();
+  final StreamController _isAllInputsValidStreamController = StreamController<void>.broadcast();
 
   StreamController isUserLoggedInSuccessfullyStreamController = StreamController<String>();
 
