@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
+import 'package:pdam_inventory/persentations/resources/value_app.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
 class CustomBadge extends StatelessWidget {
@@ -39,6 +40,7 @@ class CustomBadge extends StatelessWidget {
             style: StyleApp.textSm.copyWith(
               color: textColor,
               fontWeight: FontWeight.w600,
+              fontFamily: FontFamilyApp.inter,
             ),
           ),
         ],

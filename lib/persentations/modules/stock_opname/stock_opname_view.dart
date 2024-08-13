@@ -46,6 +46,7 @@ class _StockOpnameViewState extends State<StockOpnameView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorApp.white,
       appBar: AppBar(
         title: const Text(StringApp.stockOpname),
       ),
@@ -53,9 +54,10 @@ class _StockOpnameViewState extends State<StockOpnameView> {
         children: [
           _dropdowns(),
           Expanded(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
+            child: Container(
+              padding: const EdgeInsets.all(16.0),
+              color: ColorApp.primary.withOpacity(0.05),
+              child: SingleChildScrollView(
                 child: StreamBuilder<List<StockOpnameData>>(
                     stream: _stockOpnameViewmodel.outputStockOpname,
                     builder: (context, snapshot) {
@@ -89,9 +91,6 @@ class _StockOpnameViewState extends State<StockOpnameView> {
 
   Container _dropdowns() {
     return Container(
-      margin: const EdgeInsets.only(
-        bottom: 6,
-      ),
       padding: const EdgeInsets.symmetric(
         vertical: 24,
         horizontal: 16,
