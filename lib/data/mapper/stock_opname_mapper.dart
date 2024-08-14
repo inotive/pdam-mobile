@@ -15,7 +15,7 @@ extension StockOpnameDataResponseMapper on StockOpnameDataResponse? {
   StockOpnameData toDomain() {
     return StockOpnameData(
       this?.id.orZero() ?? ZERO,
-      this?.warehouseId.orEmpty() ?? EMPTY,
+      this?.warehouseId.orZero() ?? ZERO,
       this?.opnameNumber.orEmpty() ?? EMPTY,
       this?.date.orEmpty() ?? EMPTY,
       this?.description.orEmpty() ?? EMPTY,
@@ -28,6 +28,70 @@ extension StockOpnameDataResponseMapper on StockOpnameDataResponse? {
       this?.updatedAt.orEmpty() ?? EMPTY,
       this?.deletedAt.orEmpty() ?? EMPTY,
       this?.finishedDate.orEmpty() ?? EMPTY,
+    );
+  }
+}
+
+extension StockOpnameDetailResponseMapper on StockOpnameDetailResponse? {
+  StockOpnameDetail toDomain() {
+    return StockOpnameDetail(
+      this?.data.toDomain(),
+    );
+  }
+}
+
+extension StockOpnameDetailDataResponseMapper on StockOpnameDetailDataResponse? {
+  StockOpnameDetailData toDomain() {
+    List<StockOpnameProductData> products = (this?.products.map((item) => item.toDomain()) ?? const Iterable.empty())
+        .cast<StockOpnameProductData>()
+        .toList();
+
+    return StockOpnameDetailData(this?.detail.toDomain(), products);
+  }
+}
+
+extension StockOpnameDetailDataDetailResponseMapper on StockOpnameDetailDataDetailResponse? {
+  StockOpnameDetailDataDetail toDomain() {
+    return StockOpnameDetailDataDetail(
+      this?.id?.orZero() ?? ZERO,
+      this?.warehouseId?.orZero() ?? ZERO,
+      this?.opnameNumber?.orEmpty() ?? EMPTY,
+      this?.date?.orEmpty() ?? EMPTY,
+      this?.description?.orEmpty() ?? EMPTY,
+      this?.status?.orEmpty() ?? EMPTY,
+      this?.createdAt?.orEmpty() ?? EMPTY,
+      this?.updatedAt?.orEmpty() ?? EMPTY,
+      this?.warehouseName?.toDomain(),
+    );
+  }
+}
+
+extension StockOpnameWarehouseDataResponseMapper on StockOpnameWarehouseDataResponse? {
+  StockOpnameWarehouseData toDomain() {
+    return StockOpnameWarehouseData(
+      this?.id?.orZero() ?? ZERO,
+      this?.name?.orEmpty() ?? EMPTY,
+      this?.description?.orEmpty() ?? EMPTY,
+      this?.pic?.orZero() ?? ZERO,
+      this?.address?.orEmpty() ?? EMPTY,
+      this?.createdAt?.orEmpty() ?? EMPTY,
+      this?.updatedAt?.orEmpty() ?? EMPTY,
+    );
+  }
+}
+
+extension StockOpnameProductDataResponseMapper on StockOpnameProductDataResponse? {
+  StockOpnameProductData toDomain() {
+    return StockOpnameProductData(
+      this?.code?.orEmpty() ?? EMPTY,
+      this?.id?.orZero() ?? ZERO,
+      this?.name?.orEmpty() ?? EMPTY,
+      this?.unitName?.orEmpty() ?? EMPTY,
+      this?.lastStock?.orZero() ?? ZERO,
+      this?.actualStock?.orZero() ?? ZERO,
+      this?.difference?.orZero() ?? ZERO,
+      this?.createdAt?.orEmpty() ?? EMPTY,
+      this?.updatedAt?.orEmpty() ?? EMPTY,
     );
   }
 }

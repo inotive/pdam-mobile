@@ -160,4 +160,14 @@ class StringApp {
   static const String divisionValidation = 'Divisi harus dipilih';
   static const String warehouseValidation = 'Gudang harus dipilih';
   static const String noteValidation = 'Catatan wajib diisi';
+
+  static const String information = 'Informasi';
+  static const String opanameResult = 'Hasil Opname';
+  static const String searchOrScanProduct = 'Cari/Scan Produk';
+
+  static const String stockSystem = 'Stock Sistem';
+  static const String stockActual = 'Stock Fisit';
+  static const String different = 'Selisih';
+  static const String manageAt = 'Dikelola pada';
+  static const String noDataProducts = 'Product Tidak Ada';
 }

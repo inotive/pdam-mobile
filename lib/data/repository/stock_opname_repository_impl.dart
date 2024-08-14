@@ -37,4 +37,26 @@ class StockOpnameRepositoryImpl implements StockOpnameRepository {
       return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, StockOpnameDetail>> stockOpnameDetail(String id) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final response = await _stockOpnameDataSource.stockOpnameDetail(id);
+
+        if (response.meta?.code == ResponseCode.SUCCESS) {
+          return Right(response.toDomain());
+        } else {
+          log(response.meta?.message ?? '');
+          return Left(
+              Failure(response.meta?.code ?? ResponseCode.DEFAULT, response.meta?.message ?? ResponseMessage.DEFAULT));
+        }
+      } catch (error) {
+        log(error.toString());
+        return Left(ErrorHandler.handle(error).failure);
+      }
+    } else {
+      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+    }
+  }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pdam_inventory/app/extensions.dart';
 import 'package:pdam_inventory/domain/model/stock_opname_model.dart';
-import 'package:pdam_inventory/persentations/modules/stock_opname/stock_opname_detail_view.dart';
+import 'package:pdam_inventory/persentations/modules/stock_opname/detail/stock_opname_detail_view.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';

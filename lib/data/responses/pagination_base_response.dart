@@ -3,7 +3,6 @@
 import 'package:json_annotation/json_annotation.dart';
 part 'pagination_base_response.g.dart';
 
-@JsonSerializable()
 class PaginationBaseResponse {
   @JsonKey(name: 'links')
   LinksResponse? links;

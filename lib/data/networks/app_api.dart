@@ -123,6 +123,11 @@ abstract class AppServiceClient {
   Future<StockOpnameResponse> stockOpname(
     @Queries() Map<String, dynamic> queries,
   );
+
+  @GET('/mobile/stock-opname/{id}/show')
+  Future<StockOpnameDetailResponse> stockOpnameDetail(
+    @Path('id') String id,
+  );
   /* End Stock Opname */
 
   /* Notification */

@@ -77,6 +77,20 @@ class StateRenderer extends StatelessWidget {
             ],
           ),
         );
+      case StateRendererType.FULL_SCREEN_LOADING_STATE:
+        return Container(
+          decoration: const BoxDecoration(
+            color: ColorApp.white,
+          ),
+          child: _getItemsInColumn(
+            [
+              const SpinKitFadingCircle(
+                color: ColorApp.primary,
+                size: 42,
+              ),
+            ],
+          ),
+        );
       case StateRendererType.CONTENT_SCREEN_STATE:
         return Container();
       case StateRendererType.CONTENT_WITHOUT_DISMISS_SCREEN_STATE:

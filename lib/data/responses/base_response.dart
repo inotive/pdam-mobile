@@ -3,7 +3,6 @@
 import 'package:json_annotation/json_annotation.dart';
 part 'base_response.g.dart';
 
-@JsonSerializable()
 class BaseResponse {
   @JsonKey(name: 'meta')
   MetaResponse? meta;
@@ -34,7 +33,6 @@ class MessageResponse extends BaseResponse {
   Map<String, dynamic> toJson() => _$MessageResponseToJson(this);
 }
 
-@JsonSerializable()
 class BaseStatusResponse {
   @JsonKey(name: "status")
   StatusDataResponse? status;

@@ -6,29 +6,6 @@ part of 'pagination_base_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PaginationBaseResponse _$PaginationBaseResponseFromJson(
-        Map<String, dynamic> json) =>
-    PaginationBaseResponse()
-      ..links = json['links'] == null
-          ? null
-          : LinksResponse.fromJson(json['links'] as Map<String, dynamic>)
-      ..status = json['status'] == null
-          ? null
-          : StatusPaginationResponse.fromJson(
-              json['status'] as Map<String, dynamic>)
-      ..meta = json['meta'] == null
-          ? null
-          : MetaPaginationResponse.fromJson(
-              json['meta'] as Map<String, dynamic>);
-
-Map<String, dynamic> _$PaginationBaseResponseToJson(
-        PaginationBaseResponse instance) =>
-    <String, dynamic>{
-      'links': instance.links,
-      'status': instance.status,
-      'meta': instance.meta,
-    };
-
 LinksResponse _$LinksResponseFromJson(Map<String, dynamic> json) =>
     LinksResponse(
       json['first'] as String?,
