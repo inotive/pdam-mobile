@@ -1,5 +1,5 @@
 // ignore_for_file: depend_on_referenced_packages
-
+import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:pdam_inventory/data/data_source/history_stock_data_source.dart';
 import 'package:pdam_inventory/data/mapper/history_stock_mapper.dart';
@@ -28,6 +28,7 @@ class HistoryStockRepositoryImpl implements HistoryStockRepository {
               response.status?.code ?? ResponseCode.DEFAULT, response.status?.message ?? ResponseMessage.DEFAULT));
         }
       } catch (error) {
+        log(error.toString(), name: 'HistoryStockRepository');
         return Left(ErrorHandler.handle(error).failure);
       }
     } else {
