@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:pdam_inventory/app/di.dart';
 import 'package:pdam_inventory/app/helpers/date_formatter.dart';
 import 'package:pdam_inventory/domain/model/stock_opname_model.dart';
-import 'package:pdam_inventory/persentations/modules/stock_opname/viewmodel/stock_opname_viewmodel.dart';
-import 'package:pdam_inventory/persentations/modules/stock_opname/widgets/stock_opname_card.dart';
-import 'package:pdam_inventory/persentations/modules/stock_opname/widgets/stock_opname_skeleton.dart';
+import 'package:pdam_inventory/persentations/modules/stock_opname/stock_opname_list/viewmodel/stock_opname_viewmodel.dart';
+import 'package:pdam_inventory/persentations/modules/stock_opname/stock_opname_list/widgets/stock_opname_card.dart';
+import 'package:pdam_inventory/persentations/modules/stock_opname/stock_opname_list/widgets/stock_opname_skeleton.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
+import 'package:pdam_inventory/persentations/widgets/button/custom_button.dart';
 import 'package:pdam_inventory/persentations/widgets/card/empty_card.dart';
 import 'package:pdam_inventory/persentations/widgets/forms/input_dropdown.dart';
 import 'package:pdam_inventory/persentations/widgets/forms/input_field.dart';
@@ -74,7 +75,16 @@ class _StockOpnameViewState extends State<StockOpnameView> {
                       }
 
                       if (data.isEmpty) {
-                        return const EmptyCard(message: StringApp.stockOpnameNotYet);
+                        return Column(
+                          children: [
+                            const EmptyCard(message: StringApp.stockOpnameNotYet),
+                            const SpacerHeight(16),
+                            CustomButton(
+                              text: 'Buat Stock Opname',
+                              onPressed: () {},
+                            ),
+                          ],
+                        );
                       }
 
                       return Column(

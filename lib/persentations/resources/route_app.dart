@@ -13,7 +13,7 @@ import 'package:pdam_inventory/persentations/modules/purchase_item/purchase/purc
 import 'package:pdam_inventory/persentations/modules/receipt_item/receipt_item_view.dart';
 import 'package:pdam_inventory/persentations/modules/requested_item/request_item/requested_item_view.dart';
 import 'package:pdam_inventory/persentations/modules/splash/splash_view.dart';
-import 'package:pdam_inventory/persentations/modules/stock_opname/stock_opname_view.dart';
+import 'package:pdam_inventory/persentations/modules/stock_opname/stock_opname_list/stock_opname_view.dart';
 import 'package:pdam_inventory/persentations/modules/undefined/undefined_view.dart';
 
 class Routes {
