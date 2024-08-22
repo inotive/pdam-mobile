@@ -45,6 +45,7 @@ import 'package:pdam_inventory/domain/usecase/products/product_stock_history_use
 import 'package:pdam_inventory/domain/usecase/products/product_summary_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/products/product_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/products/product_warehouse_usecase.dart';
+import 'package:pdam_inventory/domain/usecase/purchase_order/purchase_order_detail_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/purchase_order/purchase_order_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/purchase_request/create_purchase_request_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/purchase_request_detail_usecase.dart';
@@ -70,6 +71,7 @@ import 'package:pdam_inventory/persentations/modules/notification/viewmodel/noti
 import 'package:pdam_inventory/persentations/modules/product/viewmodel/product_detail_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/product/viewmodel/product_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/profile/viewmodel/profile_viewmodel.dart';
+import 'package:pdam_inventory/persentations/modules/purchase_item/purchase/viewmodel/purchase_order_detail_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/purchase_item/purchase/viewmodel/purchase_order_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/receipt_item/viewmodel/receipt_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/requested_item/create_request_item/viewmodel/create_request_item_viewmodel.dart';
@@ -139,6 +141,7 @@ Future<void> initAppModule() async {
   initWarehouseModule();
   initStockOpnameDetailModule();
   initCreateStockOpnameModule();
+  initPurchaseOrderDetailModule();
 }
 
 initLoginModule() {
@@ -293,6 +296,13 @@ initCreateStockOpnameModule() {
   }
 }
 
+initPurchaseOrderDetailModule() {
+  if (!GetIt.I.isRegistered<PurchaseOrderDetailUsecase>()) {
+    instance.registerFactory<PurchaseOrderDetailUsecase>(() => PurchaseOrderDetailUsecase(instance()));
+    instance.registerFactory<PurchaseOrderDetailViewmodel>(() => PurchaseOrderDetailViewmodel(instance()));
+  }
+}
+
 resetModules() {
   instance.reset(dispose: false);
   initAppModule();
@@ -312,5 +322,6 @@ resetModules() {
   initCreatePurchaseRequestModule();
   initWarehouseModule();
   initStockOpnameDetailModule();
-  initStockOpnameDetailModule();
+  initCreateStockOpnameModule();
+  initPurchaseOrderDetailModule();
 }

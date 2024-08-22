@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mobkit_dashed_border/mobkit_dashed_border.dart';
+import 'package:pdam_inventory/app/helpers/currency_formatter.dart';
+import 'package:pdam_inventory/app/helpers/date_formatter.dart';
+import 'package:pdam_inventory/domain/model/purchase_order_model.dart';
 import 'package:pdam_inventory/persentations/modules/purchase_item/purchase/widgets/purchase_detail_text_item.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
@@ -8,7 +11,9 @@ import 'package:pdam_inventory/persentations/widgets/custom_cached_network_image
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
 class PurchaseDetailPoTab extends StatelessWidget {
-  const PurchaseDetailPoTab({super.key});
+  const PurchaseDetailPoTab({super.key, required this.data});
+
+  final PurchaseOrderDetailData? data;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +56,7 @@ class PurchaseDetailPoTab extends StatelessWidget {
           ),
           Expanded(
             child: Text(
-              'Rp. 919.000',
+              'Rp. 0',
               style: StyleApp.textNormal.copyWith(
                 color: ColorApp.greyText,
                 fontWeight: FontWeight.w700,
@@ -88,22 +93,22 @@ class PurchaseDetailPoTab extends StatelessWidget {
         children: [
           PurchaseDetailTextItem(
             name: StringApp.subtotal,
-            value: 'Rp. 900.000',
+            value: 'Rp. 0',
           ),
           SpacerHeight(12.0),
           PurchaseDetailTextItem(
             name: StringApp.discount,
-            value: '(10%) - Rp. 900.000',
+            value: '(10%) - Rp. 0',
           ),
           SpacerHeight(12.0),
           PurchaseDetailTextItem(
             name: StringApp.delivery,
-            value: '+ Rp. 100.000',
+            value: '+ Rp. 0',
           ),
           SpacerHeight(12.0),
           PurchaseDetailTextItem(
             name: StringApp.tax,
-            value: '+ Rp. 9.900',
+            value: '+ Rp. 0',
           ),
         ],
       ),
@@ -114,26 +119,28 @@ class PurchaseDetailPoTab extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Column(
-        children: [
-          _productItem(),
-          const SpacerHeight(12),
-          _productItem(),
-          const SpacerHeight(12),
-          _productItem(),
-        ],
+        children: data?.products
+                ?.map((product) => _productItem(
+                      product.image,
+                      product.name,
+                      product.qty,
+                      product.unitName,
+                      int.parse(product.price),
+                    ))
+                .toList() ??
+            [],
       ),
     );
   }
 
-  Row _productItem() {
+  Row _productItem(String imageUrl, String name, String stock, String unitName, int price) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const CustomNetworkImage(
+        CustomNetworkImage(
           height: 40,
           width: 40,
-          url:
-              'https://s3-alpha-sig.figma.com/img/492e/aef3/023115226ab55879588194128edabbc1?Expires=1721001600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=OnXPf31kgmeL~gM8cTP9dL8PnLe4oQCbdX0jMbpDosf1oqFDqv58bdrROmGmjQ8UbQQJtg2Vxx7qRU8jrZmpe7UyqzxNsXWzra44GZgC3yHUN3C1U~2fspWALUJGpSsFURhwUZAxrmAcw2knUZbxes21PEm2GoCT0WGlZUsjYaIN4nZvGsWRTJyv2mH9kF6XkoGCQR7jimrN9fVq9UBVccvjhtqM4lB0a57PceczQKpa9r6YlBjPhZXN6Rsza9ZlCrlcWgwhoO9WfFdbhbQzqcK-qYjBLcm5lOnygRyoWaimV7sKrR~abaMVz2qFQY9GIZ0RYtK9XamKOOfqOgrzaw__',
+          url: imageUrl,
         ),
         const SpacerWidth(12),
         Expanded(
@@ -141,13 +148,13 @@ class PurchaseDetailPoTab extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Equal Tee Coupler hdpe 75mm",
+                name,
                 style: StyleApp.textNormal.copyWith(
                   fontWeight: FontWeight.w700,
                 ),
               ),
               Text(
-                '3 Buah',
+                '$stock $unitName',
                 style: StyleApp.textSm.copyWith(
                   color: ColorApp.greyText,
                 ),
@@ -157,7 +164,7 @@ class PurchaseDetailPoTab extends StatelessWidget {
         ),
         const SpacerWidth(6),
         Text(
-          'Rp 300.000',
+          CurrencyFormatterApp.rupiahFormat(price),
           style: StyleApp.textNormal.copyWith(
             color: ColorApp.greyText,
           ),
@@ -176,33 +183,33 @@ class PurchaseDetailPoTab extends StatelessWidget {
   }
 
   Padding _detail() {
-    return const Padding(
-      padding: EdgeInsets.all(16.0),
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
           PurchaseDetailTextItem(
             name: StringApp.referenceNomor,
-            value: '2145672FDSFW',
+            value: data?.detail?.requestNumber ?? EMPTY,
           ),
-          SpacerHeight(12.0),
+          const SpacerHeight(12.0),
           PurchaseDetailTextItem(
             name: StringApp.transactionDate,
-            value: '06 Juli 2024',
+            value: data?.detail?.createdAt == EMPTY ? "-" : DateFormatterApp.formatIndoDate(data?.detail?.createdAt),
           ),
-          SpacerHeight(12.0),
+          const SpacerHeight(12.0),
           PurchaseDetailTextItem(
             name: StringApp.supplier,
-            value: '200658',
+            value: data?.detail?.departmentName ?? EMPTY,
           ),
-          SpacerHeight(12.0),
+          const SpacerHeight(12.0),
           PurchaseDetailTextItem(
             name: StringApp.status,
-            value: 'Menunggu Persetujuan',
+            value: data?.detail?.status ?? EMPTY,
           ),
-          SpacerHeight(12.0),
+          const SpacerHeight(12.0),
           PurchaseDetailTextItem(
             name: StringApp.createdBy,
-            value: 'Samantha Cole',
+            value: data?.detail?.requestName ?? EMPTY,
           ),
         ],
       ),

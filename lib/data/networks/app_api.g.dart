@@ -816,6 +816,37 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
+  Future<PurchaseOrderDetailResponse> purchaseOrderDetail(
+    String token,
+    String id,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<PurchaseOrderDetailResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/mobile/purchase-order/${id}/show',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final _value = PurchaseOrderDetailResponse.fromJson(_result.data!);
+    return _value;
+  }
+
+  @override
   Future<VendorResponse> vendors(
     String token,
     Map<String, dynamic> queries,

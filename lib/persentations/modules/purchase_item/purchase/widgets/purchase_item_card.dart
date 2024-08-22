@@ -19,7 +19,7 @@ class PurchaseItemCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const PurchaseItemDetailView(),
+            builder: (context) => PurchaseItemDetailView(id: data.id.toString()),
           ),
         );
       },

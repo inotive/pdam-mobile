@@ -6,4 +6,5 @@ import 'package:pdam_inventory/domain/model/purchase_order_model.dart';
 
 abstract class PurchaseOrderRepository {
   Future<Either<Failure, PurchaseOrder>> purchaseOrder();
+  Future<Either<Failure, PurchaseOrderDetail>> purchaseOrderDetail(String id);
 }

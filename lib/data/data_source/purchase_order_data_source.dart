@@ -4,6 +4,7 @@ import 'package:pdam_inventory/data/responses/purchase_order_response.dart';
 
 abstract class PurchaseOrderDataSource {
   Future<PurchaseOrderResponse> purchaseOrder();
+  Future<PurchaseOrderDetailResponse> purchaseOrderDetail(String id);
 }
 
 class PurchaseOrderDataSourceImpl implements PurchaseOrderDataSource {
@@ -17,5 +18,12 @@ class PurchaseOrderDataSourceImpl implements PurchaseOrderDataSource {
     String token = await _appPreference.getUserToken();
 
     return await _appServiceClient.purchaseOrder(token);
+  }
+
+  @override
+  Future<PurchaseOrderDetailResponse> purchaseOrderDetail(String id) async {
+    String token = await _appPreference.getUserToken();
+
+    return await _appServiceClient.purchaseOrderDetail(token, id);
   }
 }

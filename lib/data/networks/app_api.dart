@@ -163,6 +163,12 @@ abstract class AppServiceClient {
   Future<PurchaseOrderResponse> purchaseOrder(
     @Header(AUTHORIZATION) String token,
   );
+
+  @GET('/mobile/purchase-order/{id}/show')
+  Future<PurchaseOrderDetailResponse> purchaseOrderDetail(
+    @Header(AUTHORIZATION) String token,
+    @Path('id') String id,
+  );
   /* End Purchase Order */
 
   /* Vendor */

@@ -1,23 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:pdam_inventory/app/di.dart';
+import 'package:pdam_inventory/domain/model/purchase_order_model.dart';
+import 'package:pdam_inventory/persentations/modules/purchase_item/purchase/viewmodel/purchase_order_detail_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/purchase_item/purchase/widgets/purchase_detail_po_tab.dart';
 import 'package:pdam_inventory/persentations/modules/purchase_item/purchase/widgets/purchase_detail_status_tab.dart';
+import 'package:pdam_inventory/persentations/packages/state_renderer/state_renderer_impl.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
 
 class PurchaseItemDetailView extends StatefulWidget {
-  const PurchaseItemDetailView({super.key});
-
+  const PurchaseItemDetailView({super.key, required this.id});
+  final String id;
   @override
   State<PurchaseItemDetailView> createState() => _PurchaseItemDetailViewState();
 }
 
 class _PurchaseItemDetailViewState extends State<PurchaseItemDetailView> with TickerProviderStateMixin {
+  final PurchaseOrderDetailViewmodel _detailViewmodel = instance<PurchaseOrderDetailViewmodel>();
+
   late TabController _tabController;
+
+  _bind() {
+    _detailViewmodel.detail(widget.id);
+  }
 
   @override
   void initState() {
     _tabController = TabController(length: 2, vsync: this);
+    _bind();
     super.initState();
   }
 
@@ -27,22 +38,41 @@ class _PurchaseItemDetailViewState extends State<PurchaseItemDetailView> with Ti
       appBar: AppBar(
         title: const Text(StringApp.detailPurchaseItem),
       ),
-      body: Column(
-        children: [
-          _header(),
-          _tabbar(),
-          Expanded(
-            child: TabBarView(
-              controller: _tabController,
-              children: const [
-                PurchaseDetailPoTab(),
-                PurchaseDetailStatusTab(),
-              ],
-            ),
-          ),
-        ],
-      ),
+      body: StreamBuilder<FlowState>(
+          stream: _detailViewmodel.outputState,
+          builder: (context, snapshot) {
+            return snapshot.data?.getScreenWidget(
+                  context,
+                  _getContentWidgets(),
+                  () {},
+                ) ??
+                Container();
+          }),
     );
+  }
+
+  Widget _getContentWidgets() {
+    return StreamBuilder<PurchaseOrderDetailData>(
+        stream: _detailViewmodel.outputPurchaseOrderDetail,
+        builder: (context, snapshot) {
+          return Column(
+            children: [
+              _header(),
+              _tabbar(),
+              Expanded(
+                child: TabBarView(
+                  controller: _tabController,
+                  children: [
+                    PurchaseDetailPoTab(
+                      data: snapshot.data,
+                    ),
+                    const PurchaseDetailStatusTab(),
+                  ],
+                ),
+              ),
+            ],
+          );
+        });
   }
 
   TabBar _tabbar() {
