@@ -25,33 +25,33 @@ class HistoryStockDataResponse {
   );
 
   @JsonKey(name: 'id')
-  int? id;
+  String? id;
   @JsonKey(name: 'purchase_request_id')
-  int? purchaseRequestId;
+  String? purchaseRequestId;
   @JsonKey(name: 'purchase_order_id')
-  int? purchaseOrderId;
+  String? purchaseOrderId;
   @JsonKey(name: 'type')
   String? type;
   @JsonKey(name: 'source')
   String? source;
   @JsonKey(name: 'product_id')
-  int? productId;
+  String? productId;
   @JsonKey(name: 'created_at')
   String? createdAt;
   @JsonKey(name: 'updated_at')
   String? updatedAt;
   @JsonKey(name: 'receive_order_id')
-  int? receiveOrderId;
+  String? receiveOrderId;
   @JsonKey(name: 'stock_opname_id')
-  int? stockOpnameId;
+  String? stockOpnameId;
   @JsonKey(name: 'reference_number')
   String? referenceNumber;
   @JsonKey(name: 'last_stock')
-  int? lastStock;
+  String? lastStock;
   @JsonKey(name: 'qty')
-  int? qty;
+  String? qty;
   @JsonKey(name: 'current_stock')
-  int? currentStock;
+  String? currentStock;
   @JsonKey(name: 'product_name')
   String? productName;
 

@@ -9,20 +9,20 @@ part of 'history_stock_response.dart';
 HistoryStockDataResponse _$HistoryStockDataResponseFromJson(
         Map<String, dynamic> json) =>
     HistoryStockDataResponse(
-      (json['id'] as num?)?.toInt(),
-      (json['purchase_request_id'] as num?)?.toInt(),
-      (json['purchase_order_id'] as num?)?.toInt(),
+      json['id'] as String?,
+      json['purchase_request_id'] as String?,
+      json['purchase_order_id'] as String?,
       json['type'] as String?,
       json['source'] as String?,
-      (json['product_id'] as num?)?.toInt(),
+      json['product_id'] as String?,
       json['created_at'] as String?,
       json['updated_at'] as String?,
-      (json['receive_order_id'] as num?)?.toInt(),
-      (json['stock_opname_id'] as num?)?.toInt(),
+      json['receive_order_id'] as String?,
+      json['stock_opname_id'] as String?,
       json['reference_number'] as String?,
-      (json['last_stock'] as num?)?.toInt(),
-      (json['qty'] as num?)?.toInt(),
-      (json['current_stock'] as num?)?.toInt(),
+      json['last_stock'] as String?,
+      json['qty'] as String?,
+      json['current_stock'] as String?,
       json['product_name'] as String?,
     );
 

@@ -6,20 +6,20 @@ import 'package:pdam_inventory/persentations/resources/string_app.dart';
 extension HistoryStockDataResponseMapper on HistoryStockDataResponse? {
   HistoryStockData toDomain() {
     return HistoryStockData(
-      this?.id.orZero() ?? ZERO,
-      this?.purchaseRequestId.orZero() ?? ZERO,
-      this?.purchaseOrderId.orZero() ?? ZERO,
+      this?.id.orEmpty() ?? EMPTY,
+      this?.purchaseRequestId.orEmpty() ?? EMPTY,
+      this?.purchaseOrderId.orEmpty() ?? EMPTY,
       this?.type.orEmpty() ?? EMPTY,
       this?.source.orEmpty() ?? EMPTY,
-      this?.productId.orZero() ?? ZERO,
+      this?.productId.orEmpty() ?? EMPTY,
       this?.createdAt.orEmpty() ?? EMPTY,
       this?.updatedAt.orEmpty() ?? EMPTY,
-      this?.receiveOrderId.orZero() ?? ZERO,
-      this?.stockOpnameId.orZero() ?? ZERO,
+      this?.receiveOrderId.orEmpty() ?? EMPTY,
+      this?.stockOpnameId.orEmpty() ?? EMPTY,
       this?.referenceNumber.orEmpty() ?? EMPTY,
-      this?.lastStock.orZero() ?? ZERO,
-      this?.qty.orZero() ?? ZERO,
-      this?.currentStock.orZero() ?? ZERO,
+      this?.lastStock.orEmpty() ?? EMPTY,
+      this?.qty.orEmpty() ?? EMPTY,
+      this?.currentStock.orEmpty() ?? EMPTY,
       this?.productName.orEmpty() ?? EMPTY,
     );
   }
