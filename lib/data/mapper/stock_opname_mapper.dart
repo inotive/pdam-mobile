@@ -15,7 +15,7 @@ extension StockOpnameDataResponseMapper on StockOpnameDataResponse? {
   StockOpnameData toDomain() {
     return StockOpnameData(
       this?.id.orZero() ?? ZERO,
-      this?.warehouseId.orZero() ?? ZERO,
+      this?.warehouseId.orEmpty() ?? EMPTY,
       this?.opnameNumber.orEmpty() ?? EMPTY,
       this?.date.orEmpty() ?? EMPTY,
       this?.description.orEmpty() ?? EMPTY,
@@ -83,15 +83,15 @@ extension StockOpnameWarehouseDataResponseMapper on StockOpnameWarehouseDataResp
 extension StockOpnameProductDataResponseMapper on StockOpnameProductDataResponse? {
   StockOpnameProductData toDomain() {
     return StockOpnameProductData(
-      this?.code?.orEmpty() ?? EMPTY,
-      this?.id?.orZero() ?? ZERO,
-      this?.name?.orEmpty() ?? EMPTY,
-      this?.unitName?.orEmpty() ?? EMPTY,
-      this?.lastStock?.orZero() ?? ZERO,
-      this?.actualStock?.orZero() ?? ZERO,
-      this?.difference?.orZero() ?? ZERO,
-      this?.createdAt?.orEmpty() ?? EMPTY,
-      this?.updatedAt?.orEmpty() ?? EMPTY,
+      code: this?.code?.orEmpty() ?? EMPTY,
+      id: this?.id?.orZero() ?? ZERO,
+      name: this?.name?.orEmpty() ?? EMPTY,
+      unitName: this?.unitName?.orEmpty() ?? EMPTY,
+      lastStock: this?.lastStock?.orZero() ?? ZERO,
+      actualStock: this?.actualStock?.orZero() ?? ZERO,
+      difference: this?.difference?.orZero() ?? ZERO,
+      createdAt: this?.createdAt?.orEmpty() ?? EMPTY,
+      updatedAt: this?.updatedAt?.orEmpty() ?? EMPTY,
     );
   }
 }

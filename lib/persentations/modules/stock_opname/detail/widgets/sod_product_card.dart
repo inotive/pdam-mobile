@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pdam_inventory/app/helpers/date_formatter.dart';
 import 'package:pdam_inventory/domain/model/stock_opname_model.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
@@ -132,7 +133,7 @@ class SODProductCard extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    StringApp.manageAt,
+                    DateFormatterApp.formatIndoDate(product.createdAt),
                     style: StyleApp.textSm.copyWith(
                       color: ColorApp.greyText,
                     ),

@@ -166,8 +166,11 @@ class StringApp {
   static const String searchOrScanProduct = 'Cari/Scan Produk';
 
   static const String stockSystem = 'Stock Sistem';
-  static const String stockActual = 'Stock Fisit';
+  static const String stockActual = 'Stock Fisik';
   static const String different = 'Selisih';
   static const String manageAt = 'Dikelola pada';
   static const String noDataProducts = 'Product Tidak Ada';
+  static const String confirmCreateOpname = 'Konfirmasi Pembuatan Opname';
+  static const String areYouSure = 'Apakah Anda Yakin';
+  static const String yesCreateOpname = 'Ya, Buat Opname';
 }

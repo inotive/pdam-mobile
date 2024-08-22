@@ -1,3 +1,5 @@
+import 'package:pdam_inventory/persentations/resources/string_app.dart';
+
 class StockOpname {
   StockOpname(this.data);
 
@@ -23,7 +25,7 @@ class StockOpnameData {
   );
 
   int id;
-  int warehouseId;
+  String warehouseId;
   String opnameNumber;
   String date;
   String description;
@@ -95,17 +97,17 @@ class StockOpnameWarehouseData {
 }
 
 class StockOpnameProductData {
-  StockOpnameProductData(
-    this.code,
-    this.id,
-    this.name,
-    this.unitName,
-    this.lastStock,
-    this.actualStock,
-    this.difference,
-    this.createdAt,
-    this.updatedAt,
-  );
+  StockOpnameProductData({
+    required this.code,
+    required this.id,
+    required this.name,
+    required this.unitName,
+    required this.lastStock,
+    required this.actualStock,
+    required this.difference,
+    required this.createdAt,
+    required this.updatedAt,
+  });
 
   String code;
   int id;
@@ -116,4 +118,40 @@ class StockOpnameProductData {
   int difference;
   String createdAt;
   String updatedAt;
+
+  factory StockOpnameProductData.empty() => StockOpnameProductData(
+        code: EMPTY,
+        id: ZERO,
+        name: EMPTY,
+        unitName: EMPTY,
+        lastStock: ZERO,
+        actualStock: ZERO,
+        difference: ZERO,
+        createdAt: EMPTY,
+        updatedAt: EMPTY,
+      );
+
+  StockOpnameProductData copyWith({
+    String? code,
+    int? id,
+    String? name,
+    String? unitName,
+    int? lastStock,
+    int? actualStock,
+    int? difference,
+    String? createdAt,
+    String? updatedAt,
+  }) {
+    return StockOpnameProductData(
+      code: code ?? this.code,
+      id: id ?? this.id,
+      name: name ?? this.name,
+      unitName: unitName ?? this.unitName,
+      lastStock: lastStock ?? this.lastStock,
+      actualStock: actualStock ?? this.actualStock,
+      difference: difference ?? this.difference,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+    );
+  }
 }

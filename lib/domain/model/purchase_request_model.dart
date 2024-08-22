@@ -1,3 +1,5 @@
+import 'package:pdam_inventory/persentations/resources/string_app.dart';
+
 class PurchaseRequestPagination {
   PurchaseRequestPagination(this.data);
 
@@ -92,6 +94,9 @@ class PurchaseRequestProduct {
     this.updatedAt,
     this.notes,
     this.image,
+    this.min,
+    this.max,
+    this.stock,
   );
 
   String code;
@@ -103,4 +108,22 @@ class PurchaseRequestProduct {
   String updatedAt;
   String notes;
   String image;
+  String min;
+  String max;
+  String stock;
+
+  factory PurchaseRequestProduct.empty() => PurchaseRequestProduct(
+        EMPTY,
+        ZERO,
+        EMPTY,
+        EMPTY,
+        EMPTY,
+        EMPTY,
+        EMPTY,
+        EMPTY,
+        EMPTY,
+        EMPTY,
+        EMPTY,
+        EMPTY,
+      );
 }

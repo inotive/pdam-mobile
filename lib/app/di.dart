@@ -57,6 +57,7 @@ import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_refere
 import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_supplier_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/receive_order/receive_order_warehouse_usecase.dart';
+import 'package:pdam_inventory/domain/usecase/stock_opname/stock_opname_create_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/stock_opname/stock_opname_detail_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/stock_opname/stock_opname_usecase.dart';
 import 'package:pdam_inventory/domain/usecase/vendor/vendor_usecase.dart';
@@ -74,6 +75,7 @@ import 'package:pdam_inventory/persentations/modules/receipt_item/viewmodel/rece
 import 'package:pdam_inventory/persentations/modules/requested_item/create_request_item/viewmodel/create_request_item_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/requested_item/request_item/viewmodel/requested_detail_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/requested_item/request_item/viewmodel/requested_viewmodel.dart';
+import 'package:pdam_inventory/persentations/modules/stock_opname/create_stock_opname/viewmodel/create_stock_opname_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/stock_opname/detail/viewmodel/stock_opname_detail_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/stock_opname/stock_opname_list/viewmodel/stock_opname_viewmodel.dart';
 import 'package:pdam_inventory/persentations/widgets/forms/dropdown_warehouse/viewmodel/warehouse_viewmodel.dart';
@@ -136,6 +138,7 @@ Future<void> initAppModule() async {
   initProductDetailModule();
   initWarehouseModule();
   initStockOpnameDetailModule();
+  initCreateStockOpnameModule();
 }
 
 initLoginModule() {
@@ -280,6 +283,16 @@ initStockOpnameDetailModule() {
   }
 }
 
+initCreateStockOpnameModule() {
+  if (!GetIt.I.isRegistered<StockOpnameCreateUsecase>()) {
+    instance.registerFactory<StockOpnameCreateUsecase>(() => StockOpnameCreateUsecase(instance()));
+    instance.registerFactory<CreateStockOpnameViewmodel>(() => CreateStockOpnameViewmodel(instance(), instance()));
+    if (!GetIt.I.isRegistered<ProductByWarehouseUsecase>()) {
+      instance.registerFactory<ProductByWarehouseUsecase>(() => ProductByWarehouseUsecase(instance()));
+    }
+  }
+}
+
 resetModules() {
   instance.reset(dispose: false);
   initAppModule();
@@ -298,5 +311,6 @@ resetModules() {
   initPurchaseOrderModule();
   initCreatePurchaseRequestModule();
   initWarehouseModule();
+  initStockOpnameDetailModule();
   initStockOpnameDetailModule();
 }

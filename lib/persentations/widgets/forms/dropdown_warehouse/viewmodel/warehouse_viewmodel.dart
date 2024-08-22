@@ -21,7 +21,9 @@ class WarehouseViewmodel extends BaseViewModel implements WarehouseViewmodelInpu
   }
 
   _warehouse() async {
-    Map<String, dynamic> queries = {};
+    Map<String, dynamic> queries = {
+      'limit': 50,
+    };
     (await _receiveOrderWarehouseUsecase.execute(queries)).fold((failure) {
       inputState.add(ErrorState(StateRendererType.SNACKBAR_ERROR_STATE, failure.message));
     }, (data) {

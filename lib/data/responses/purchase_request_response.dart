@@ -168,6 +168,9 @@ class PurchaseRequestProductResponse {
     this.updatedAt,
     this.notes,
     this.image,
+    this.min,
+    this.max,
+    this.stock,
   );
 
   @JsonKey(name: 'code')
@@ -188,6 +191,12 @@ class PurchaseRequestProductResponse {
   String? notes;
   @JsonKey(name: 'image')
   String? image;
+  @JsonKey(name: 'min')
+  String? min;
+  @JsonKey(name: 'max')
+  String? max;
+  @JsonKey(name: 'stock')
+  String? stock;
 
   factory PurchaseRequestProductResponse.fromJson(Map<String, dynamic> json) =>
       _$PurchaseRequestProductResponseFromJson(json);

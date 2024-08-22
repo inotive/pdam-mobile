@@ -11,7 +11,7 @@ class InputDropdownProduct extends StatelessWidget {
   final String text;
   final Function(PurchaseRequestProduct?) onChanged;
   final String hint;
-  final String? value;
+  final PurchaseRequestProduct? value;
   const InputDropdownProduct({
     super.key,
     required this.items,
@@ -45,6 +45,7 @@ class InputDropdownProduct extends StatelessWidget {
             ),
           ),
           items: items,
+          selectedItem: value,
           dropdownDecoratorProps: DropDownDecoratorProps(
             dropdownSearchDecoration: InputDecoration(
               hintText: hint,

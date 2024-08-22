@@ -7,6 +7,7 @@ import 'package:pdam_inventory/persentations/modules/stock_opname/stock_opname_l
 import 'package:pdam_inventory/persentations/modules/stock_opname/stock_opname_list/widgets/stock_opname_skeleton.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
+import 'package:pdam_inventory/persentations/widgets/bottom_sheet/confirm_stock_opname_bottom_sheet.dart';
 import 'package:pdam_inventory/persentations/widgets/button/custom_button.dart';
 import 'package:pdam_inventory/persentations/widgets/card/empty_card.dart';
 import 'package:pdam_inventory/persentations/widgets/forms/input_dropdown.dart';
@@ -81,7 +82,9 @@ class _StockOpnameViewState extends State<StockOpnameView> {
                             const SpacerHeight(16),
                             CustomButton(
                               text: 'Buat Stock Opname',
-                              onPressed: () {},
+                              onPressed: () {
+                                confirmCreateBottomSheet(context);
+                              },
                             ),
                           ],
                         );

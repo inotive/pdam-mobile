@@ -5,6 +5,7 @@ import 'package:pdam_inventory/app/config_app.dart';
 import 'package:pdam_inventory/data/networks/dio_factory.dart';
 import 'package:pdam_inventory/data/params/receipt_produt_param.dart';
 import 'package:pdam_inventory/data/params/request_product_param.dart';
+import 'package:pdam_inventory/data/params/stock_opname_product_param.dart';
 import 'package:pdam_inventory/data/responses/authentication_response.dart';
 import 'package:pdam_inventory/data/responses/base_response.dart';
 import 'package:pdam_inventory/data/responses/history_stock_response.dart';
@@ -122,6 +123,15 @@ abstract class AppServiceClient {
   @GET('/mobile/stock-opname')
   Future<StockOpnameResponse> stockOpname(
     @Queries() Map<String, dynamic> queries,
+  );
+
+  @POST('/mobile/stock-opname')
+  Future<MessageResponse> createStockOpname(
+    @Field('warehouse_id') String warehouseId,
+    @Field('opname_number') String opnameNumber,
+    @Field('date') String date,
+    @Field('description') String description,
+    @Field('product_list') List<StockOpnameProductParam> productList,
   );
 
   @GET('/mobile/stock-opname/{id}/show')

@@ -808,3 +808,217 @@ abstract class _CreatePurchaseRequestObject
   _$$CreatePurchaseRequestObjectImplCopyWith<_$CreatePurchaseRequestObjectImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$CreateStockOpnameObject {
+  String get warehouseId => throw _privateConstructorUsedError;
+  String get opnameNumber => throw _privateConstructorUsedError;
+  String get date => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  List<StockOpnameProductParam> get products =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $CreateStockOpnameObjectCopyWith<CreateStockOpnameObject> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CreateStockOpnameObjectCopyWith<$Res> {
+  factory $CreateStockOpnameObjectCopyWith(CreateStockOpnameObject value,
+          $Res Function(CreateStockOpnameObject) then) =
+      _$CreateStockOpnameObjectCopyWithImpl<$Res, CreateStockOpnameObject>;
+  @useResult
+  $Res call(
+      {String warehouseId,
+      String opnameNumber,
+      String date,
+      String description,
+      List<StockOpnameProductParam> products});
+}
+
+/// @nodoc
+class _$CreateStockOpnameObjectCopyWithImpl<$Res,
+        $Val extends CreateStockOpnameObject>
+    implements $CreateStockOpnameObjectCopyWith<$Res> {
+  _$CreateStockOpnameObjectCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? warehouseId = null,
+    Object? opnameNumber = null,
+    Object? date = null,
+    Object? description = null,
+    Object? products = null,
+  }) {
+    return _then(_value.copyWith(
+      warehouseId: null == warehouseId
+          ? _value.warehouseId
+          : warehouseId // ignore: cast_nullable_to_non_nullable
+              as String,
+      opnameNumber: null == opnameNumber
+          ? _value.opnameNumber
+          : opnameNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      products: null == products
+          ? _value.products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<StockOpnameProductParam>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$CreateStockOpnameObjectImplCopyWith<$Res>
+    implements $CreateStockOpnameObjectCopyWith<$Res> {
+  factory _$$CreateStockOpnameObjectImplCopyWith(
+          _$CreateStockOpnameObjectImpl value,
+          $Res Function(_$CreateStockOpnameObjectImpl) then) =
+      __$$CreateStockOpnameObjectImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String warehouseId,
+      String opnameNumber,
+      String date,
+      String description,
+      List<StockOpnameProductParam> products});
+}
+
+/// @nodoc
+class __$$CreateStockOpnameObjectImplCopyWithImpl<$Res>
+    extends _$CreateStockOpnameObjectCopyWithImpl<$Res,
+        _$CreateStockOpnameObjectImpl>
+    implements _$$CreateStockOpnameObjectImplCopyWith<$Res> {
+  __$$CreateStockOpnameObjectImplCopyWithImpl(
+      _$CreateStockOpnameObjectImpl _value,
+      $Res Function(_$CreateStockOpnameObjectImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? warehouseId = null,
+    Object? opnameNumber = null,
+    Object? date = null,
+    Object? description = null,
+    Object? products = null,
+  }) {
+    return _then(_$CreateStockOpnameObjectImpl(
+      null == warehouseId
+          ? _value.warehouseId
+          : warehouseId // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == opnameNumber
+          ? _value.opnameNumber
+          : opnameNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == products
+          ? _value._products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<StockOpnameProductParam>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CreateStockOpnameObjectImpl implements _CreateStockOpnameObject {
+  _$CreateStockOpnameObjectImpl(this.warehouseId, this.opnameNumber, this.date,
+      this.description, final List<StockOpnameProductParam> products)
+      : _products = products;
+
+  @override
+  final String warehouseId;
+  @override
+  final String opnameNumber;
+  @override
+  final String date;
+  @override
+  final String description;
+  final List<StockOpnameProductParam> _products;
+  @override
+  List<StockOpnameProductParam> get products {
+    if (_products is EqualUnmodifiableListView) return _products;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_products);
+  }
+
+  @override
+  String toString() {
+    return 'CreateStockOpnameObject(warehouseId: $warehouseId, opnameNumber: $opnameNumber, date: $date, description: $description, products: $products)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CreateStockOpnameObjectImpl &&
+            (identical(other.warehouseId, warehouseId) ||
+                other.warehouseId == warehouseId) &&
+            (identical(other.opnameNumber, opnameNumber) ||
+                other.opnameNumber == opnameNumber) &&
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            const DeepCollectionEquality().equals(other._products, _products));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, warehouseId, opnameNumber, date,
+      description, const DeepCollectionEquality().hash(_products));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CreateStockOpnameObjectImplCopyWith<_$CreateStockOpnameObjectImpl>
+      get copyWith => __$$CreateStockOpnameObjectImplCopyWithImpl<
+          _$CreateStockOpnameObjectImpl>(this, _$identity);
+}
+
+abstract class _CreateStockOpnameObject implements CreateStockOpnameObject {
+  factory _CreateStockOpnameObject(
+          final String warehouseId,
+          final String opnameNumber,
+          final String date,
+          final String description,
+          final List<StockOpnameProductParam> products) =
+      _$CreateStockOpnameObjectImpl;
+
+  @override
+  String get warehouseId;
+  @override
+  String get opnameNumber;
+  @override
+  String get date;
+  @override
+  String get description;
+  @override
+  List<StockOpnameProductParam> get products;
+  @override
+  @JsonKey(ignore: true)
+  _$$CreateStockOpnameObjectImplCopyWith<_$CreateStockOpnameObjectImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
