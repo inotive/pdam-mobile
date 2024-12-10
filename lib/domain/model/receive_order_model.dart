@@ -124,7 +124,7 @@ class ReceiveOrderWarehouseData {
 
   int id;
   String name;
-  String pic;
+  int pic;
   String description;
   String address;
   String createdAt;

@@ -190,7 +190,7 @@ ReceiveOrderWarehouseDataResponse _$ReceiveOrderWarehouseDataResponseFromJson(
     ReceiveOrderWarehouseDataResponse(
       (json['id'] as num?)?.toInt(),
       json['name'] as String?,
-      json['pic'] as String?,
+      (json['pic'] as num?)?.toInt(),
       json['description'] as String?,
       json['address'] as String?,
       json['created_at'] as String?,

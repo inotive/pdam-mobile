@@ -101,7 +101,7 @@ extension ReceiveOrderWarehouseDataResponseMapper on ReceiveOrderWarehouseDataRe
     return ReceiveOrderWarehouseData(
       this?.id.orZero() ?? ZERO,
       this?.name.orEmpty() ?? EMPTY,
-      this?.pic.orEmpty() ?? EMPTY,
+      this?.pic.orZero() ?? ZERO,
       this?.description.orEmpty() ?? EMPTY,
       this?.address.orEmpty() ?? EMPTY,
       this?.createdAt.orEmpty() ?? EMPTY,

@@ -211,7 +211,7 @@ class ReceiveOrderWarehouseDataResponse {
   @JsonKey(name: "name")
   String? name;
   @JsonKey(name: "pic")
-  String? pic;
+  int? pic;
   @JsonKey(name: "description")
   String? description;
   @JsonKey(name: "address")
