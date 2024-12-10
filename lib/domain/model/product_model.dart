@@ -116,9 +116,9 @@ class ProductStockHistoryData {
     this.date,
   );
 
-  String lastStock;
-  String qty;
-  String currentStock;
+  int lastStock;
+  int qty;
+  int currentStock;
   String createdAt;
   String type;
   String date;

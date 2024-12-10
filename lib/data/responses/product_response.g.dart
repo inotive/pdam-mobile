@@ -182,9 +182,9 @@ Map<String, dynamic> _$ProductWarehouseResponseToJson(
 ProductStockHistoryDataResponse _$ProductStockHistoryDataResponseFromJson(
         Map<String, dynamic> json) =>
     ProductStockHistoryDataResponse(
-      json['last_stock'] as String?,
-      json['qty'] as String?,
-      json['current_stock'] as String?,
+      (json['last_stock'] as num?)?.toInt(),
+      (json['qty'] as num?)?.toInt(),
+      (json['current_stock'] as num?)?.toInt(),
       json['created_at'] as String?,
       json['type'] as String?,
       json['date'] as String?,

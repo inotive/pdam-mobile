@@ -102,9 +102,9 @@ extension ProductWarehouseResponseMapper on ProductWarehouseResponse? {
 extension ProductStockHistoryDataResponseMapper on ProductStockHistoryDataResponse? {
   ProductStockHistoryData toDomain() {
     return ProductStockHistoryData(
-      this?.lastStock.orEmpty() ?? EMPTY,
-      this?.qty.orEmpty() ?? EMPTY,
-      this?.currentStock.orEmpty() ?? EMPTY,
+      this?.lastStock.orZero() ?? ZERO,
+      this?.qty.orZero() ?? ZERO,
+      this?.currentStock.orZero() ?? ZERO,
       this?.createdAt.orEmpty() ?? EMPTY,
       this?.type.orEmpty() ?? EMPTY,
       this?.date.orEmpty() ?? EMPTY,

@@ -194,11 +194,11 @@ class ProductStockHistoryDataResponse {
   );
 
   @JsonKey(name: 'last_stock')
-  String? lastStock;
+  int? lastStock;
   @JsonKey(name: 'qty')
-  String? qty;
+  int? qty;
   @JsonKey(name: 'current_stock')
-  String? currentStock;
+  int? currentStock;
   @JsonKey(name: 'created_at')
   String? createdAt;
   @JsonKey(name: 'type')
