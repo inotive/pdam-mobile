@@ -192,11 +192,11 @@ class PurchaseRequestProductResponse {
   @JsonKey(name: 'image')
   String? image;
   @JsonKey(name: 'min')
-  String? min;
+  int? min;
   @JsonKey(name: 'max')
-  String? max;
+  int? max;
   @JsonKey(name: 'stock')
-  String? stock;
+  int? stock;
 
   factory PurchaseRequestProductResponse.fromJson(Map<String, dynamic> json) =>
       _$PurchaseRequestProductResponseFromJson(json);

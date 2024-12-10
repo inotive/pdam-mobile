@@ -180,9 +180,9 @@ PurchaseRequestProductResponse _$PurchaseRequestProductResponseFromJson(
       json['updated_at'] as String?,
       json['notes'] as String?,
       json['image'] as String?,
-      json['min'] as String?,
-      json['max'] as String?,
-      json['stock'] as String?,
+      (json['min'] as num?)?.toInt(),
+      (json['max'] as num?)?.toInt(),
+      (json['stock'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$PurchaseRequestProductResponseToJson(

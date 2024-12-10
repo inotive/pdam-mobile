@@ -108,9 +108,9 @@ class PurchaseRequestProduct {
   String updatedAt;
   String notes;
   String image;
-  String min;
-  String max;
-  String stock;
+  int min;
+  int max;
+  int stock;
 
   factory PurchaseRequestProduct.empty() => PurchaseRequestProduct(
         EMPTY,
@@ -122,8 +122,8 @@ class PurchaseRequestProduct {
         EMPTY,
         EMPTY,
         EMPTY,
-        EMPTY,
-        EMPTY,
-        EMPTY,
+        ZERO,
+        ZERO,
+        ZERO,
       );
 }

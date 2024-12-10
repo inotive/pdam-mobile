@@ -191,9 +191,9 @@ class _CreateStockOpnameViewState extends State<CreateStockOpnameView> with Tick
                               id: selectedProduct!.id,
                               name: selectedProduct!.name,
                               unitName: selectedProduct!.unitName,
-                              lastStock: int.parse(selectedProduct!.stock),
+                              lastStock: selectedProduct!.stock,
                               actualStock: 0,
-                              difference: int.parse(selectedProduct!.stock),
+                              difference: selectedProduct!.stock,
                               createdAt: selectedProduct!.createdAt,
                               updatedAt: selectedProduct!.updatedAt,
                             );

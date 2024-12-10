@@ -93,9 +93,9 @@ extension PurchaseRequestProductResponseMapper on PurchaseRequestProductResponse
       this?.updatedAt.orEmpty() ?? EMPTY,
       this?.notes.orEmpty() ?? EMPTY,
       this?.image.orEmpty() ?? EMPTY,
-      this?.min.orEmpty() ?? EMPTY,
-      this?.max.orEmpty() ?? EMPTY,
-      this?.stock.orEmpty() ?? EMPTY,
+      this?.min.orZero() ?? ZERO,
+      this?.max.orZero() ?? ZERO,
+      this?.stock.orZero() ?? ZERO,
     );
   }
 }
