@@ -34,7 +34,7 @@ class _SplashViewState extends State<SplashView> {
 
   @override
   void initState() {
-    _onStart();
+    // _onStart();
     super.initState();
   }
 
@@ -70,7 +70,7 @@ class _SplashViewState extends State<SplashView> {
               borderRadius: BorderRadius.circular(16),
             ),
             child: Image.asset(
-              ImageApp.logoSplash,
+              ImageApp.logo,
               width: 180,
             ),
           ),
