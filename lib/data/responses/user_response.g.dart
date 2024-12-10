@@ -14,7 +14,7 @@ UserDataResponse _$UserDataResponseFromJson(Map<String, dynamic> json) =>
       json['email_verified_at'] as String?,
       json['created_at'] as String?,
       json['updated_at'] as String?,
-      json['role_id'] as String?,
+      (json['role_id'] as num?)?.toInt(),
       json['username'] as String?,
       json['no_telp'] as String?,
       json['role'] == null

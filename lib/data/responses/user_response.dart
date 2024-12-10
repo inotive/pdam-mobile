@@ -32,7 +32,7 @@ class UserDataResponse {
   @JsonKey(name: "updated_at")
   String? updatedAt;
   @JsonKey(name: "role_id")
-  String? roleId;
+  int? roleId;
   @JsonKey(name: "username")
   String? username;
   @JsonKey(name: "no_telp")

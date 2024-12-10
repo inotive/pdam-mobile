@@ -2,9 +2,28 @@
   "project_info": {
     "project_number": "509556517644",
     "project_id": "pdam-inventory",
-    "storage_bucket": "pdam-inventory.appspot.com"
+    "storage_bucket": "pdam-inventory.firebasestorage.app"
   },
   "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:509556517644:android:58532bbf6c89d7cf887729",
+        "android_client_info": {
+          "package_name": "com.inotive.pdam"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDR4uKT0pHsO9uBe-RT-4SrQ9B5KhQU9zw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
     {
       "client_info": {
         "mobilesdk_app_id": "1:509556517644:android:3dbd28571c646139887729",

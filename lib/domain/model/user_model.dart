@@ -19,7 +19,7 @@ class UserData {
   String emailVerifiedAt;
   String createdAt;
   String updatedAt;
-  String roleId;
+  int roleId;
   String username;
   String noTelp;
   RoleData? role;

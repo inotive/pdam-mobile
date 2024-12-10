@@ -12,7 +12,7 @@ extension UserDataResponseMapper on UserDataResponse? {
       this?.emailVerifiedAt.orEmpty() ?? EMPTY,
       this?.createdAt.orEmpty() ?? EMPTY,
       this?.updatedAt.orEmpty() ?? EMPTY,
-      this?.roleId.orEmpty() ?? EMPTY,
+      this?.roleId.orZero() ?? ZERO,
       this?.username.orEmpty() ?? EMPTY,
       this?.noTelp.orEmpty() ?? EMPTY,
       this?.role.toDomain(),

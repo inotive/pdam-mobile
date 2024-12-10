@@ -17,20 +17,20 @@ class HistoryStockData {
     this.productName,
   );
 
-  String id;
-  String purchaseRequestId;
-  String purchaseOrderId;
+  int id;
+  int purchaseRequestId;
+  int purchaseOrderId;
   String type;
   String source;
-  String productId;
+  int productId;
   String createdAt;
   String updatedAt;
-  String receiveOrderId;
-  String stockOpnameId;
+  int receiveOrderId;
+  int stockOpnameId;
   String referenceNumber;
-  String lastStock;
-  String qty;
-  String currentStock;
+  int lastStock;
+  int qty;
+  int currentStock;
   String productName;
 }
 
