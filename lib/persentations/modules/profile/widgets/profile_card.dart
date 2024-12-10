@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:pdam_inventory/app/di.dart';
 import 'package:pdam_inventory/app/extensions.dart';
 import 'package:pdam_inventory/data/local_source/app_preference.dart';
@@ -118,20 +117,20 @@ class _ProfileCardState extends State<ProfileCard> {
               ],
             ),
           ),
-          Positioned(
-            right: 16,
-            top: 20,
-            child: Container(
-              height: 32,
-              width: 32,
-              padding: const EdgeInsets.all(4),
-              decoration: BoxDecoration(
-                color: ColorApp.white,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: SvgPicture.asset(IconApp.settings),
-            ),
-          ),
+          // Positioned(
+          //   right: 16,
+          //   top: 20,
+          //   child: Container(
+          //     height: 32,
+          //     width: 32,
+          //     padding: const EdgeInsets.all(4),
+          //     decoration: BoxDecoration(
+          //       color: ColorApp.white,
+          //       borderRadius: BorderRadius.circular(8),
+          //     ),
+          //     child: SvgPicture.asset(IconApp.settings),
+          //   ),
+          // ),
         ],
       ),
     );
