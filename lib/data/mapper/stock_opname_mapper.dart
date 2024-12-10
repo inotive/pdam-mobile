@@ -15,7 +15,7 @@ extension StockOpnameDataResponseMapper on StockOpnameDataResponse? {
   StockOpnameData toDomain() {
     return StockOpnameData(
       this?.id.orZero() ?? ZERO,
-      this?.warehouseId.orEmpty() ?? EMPTY,
+      this?.warehouseId.orZero() ?? ZERO,
       this?.opnameNumber.orEmpty() ?? EMPTY,
       this?.date.orEmpty() ?? EMPTY,
       this?.description.orEmpty() ?? EMPTY,

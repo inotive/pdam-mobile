@@ -25,7 +25,7 @@ class StockOpnameData {
   );
 
   int id;
-  String warehouseId;
+  int warehouseId;
   String opnameNumber;
   String date;
   String description;

@@ -38,7 +38,7 @@ class StockOpnameDataResponse {
   @JsonKey(name: 'id')
   int? id;
   @JsonKey(name: 'warehouse_id')
-  String? warehouseId;
+  int? warehouseId;
   @JsonKey(name: 'opname_number')
   String? opnameNumber;
   @JsonKey(name: 'date')

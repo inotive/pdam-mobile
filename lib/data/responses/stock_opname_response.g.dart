@@ -38,7 +38,7 @@ StockOpnameDataResponse _$StockOpnameDataResponseFromJson(
         Map<String, dynamic> json) =>
     StockOpnameDataResponse(
       (json['id'] as num?)?.toInt(),
-      json['warehouse_id'] as String?,
+      (json['warehouse_id'] as num?)?.toInt(),
       json['opname_number'] as String?,
       json['date'] as String?,
       json['description'] as String?,
