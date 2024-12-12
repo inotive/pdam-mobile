@@ -66,7 +66,7 @@ extension ReceiveOrderDetailProductResponseMapper on ReceiveOrderDetailProductRe
       this?.id.orZero() ?? ZERO,
       this?.name.orEmpty() ?? EMPTY,
       this?.unitName.orEmpty() ?? EMPTY,
-      this?.qty.orEmpty() ?? EMPTY,
+      this?.qty.orZero() ?? ZERO,
       this?.price.orEmpty() ?? EMPTY,
       this?.pesan.orEmpty() ?? EMPTY,
       this?.totalBarangDiterimaSebelumnya.orEmpty() ?? EMPTY,

@@ -117,7 +117,7 @@ ReceiveOrderDetailProductResponse _$ReceiveOrderDetailProductResponseFromJson(
       (json['id'] as num?)?.toInt(),
       json['name'] as String?,
       json['unit_name'] as String?,
-      json['qty'] as String?,
+      (json['qty'] as num?)?.toInt(),
       json['price'] as String?,
       json['pesan'] as String?,
       json['total_barang_diterima_sebelumnya'] as String?,

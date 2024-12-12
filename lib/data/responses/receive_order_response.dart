@@ -143,7 +143,7 @@ class ReceiveOrderDetailProductResponse {
   @JsonKey(name: "unit_name")
   String? unitName;
   @JsonKey(name: "qty")
-  String? qty;
+  int? qty;
   @JsonKey(name: "price")
   String? price;
   @JsonKey(name: "pesan")

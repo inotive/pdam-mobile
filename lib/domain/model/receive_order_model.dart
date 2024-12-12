@@ -87,7 +87,7 @@ class ReceiveOrderDetailProduct {
   int id;
   String name;
   String unitName;
-  String qty;
+  int qty;
   String price;
   String pesan;
   String totalBarangDiterimaSebelumnya;
