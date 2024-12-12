@@ -9,6 +9,7 @@ import 'package:pdam_inventory/persentations/modules/main_menu/main_menu_view.da
 import 'package:pdam_inventory/persentations/modules/notification/notification_view.dart';
 import 'package:pdam_inventory/persentations/modules/product/product_view.dart';
 import 'package:pdam_inventory/persentations/modules/product/search_product_view.dart';
+import 'package:pdam_inventory/persentations/modules/requested_item/request_item/search_requested_item_view.dart';
 import 'package:pdam_inventory/persentations/modules/requested_item/create_request_item/create_request_item_view.dart';
 import 'package:pdam_inventory/persentations/modules/purchase_item/purchase/purchase_item_view.dart';
 import 'package:pdam_inventory/persentations/modules/receipt_item/receipt_item_view.dart';
@@ -33,6 +34,7 @@ class Routes {
   static const String searchProduct = '/search-product';
   static const String createRequestItem = '/create-request-item';
   static const String searchAcceptedItem = '/search-accepted-item';
+  static const String searchRequestedItem = '/search-requested-item';
 }
 
 class RouterGenerator {
@@ -77,6 +79,8 @@ class RouterGenerator {
         return MaterialPageRoute(builder: (_) => const CreateRequestItemView());
       case Routes.searchAcceptedItem:
         return MaterialPageRoute(builder: (_) => const SearchAcceptedItemView());
+      case Routes.searchRequestedItem:
+        return MaterialPageRoute(builder: (_) => const SearchRequestedItemView());
       default:
         return MaterialPageRoute(builder: (_) => const UndefinedView());
     }

@@ -9,6 +9,7 @@ import 'package:pdam_inventory/persentations/resources/route_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
 import 'package:pdam_inventory/persentations/widgets/card/empty_card.dart';
+import 'package:pdam_inventory/persentations/widgets/forms/search_input_field.dart';
 import 'package:pdam_inventory/persentations/widgets/shimmer/shimmer_widget.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
@@ -39,6 +40,21 @@ class _RequestedItemViewState extends State<RequestedItemView> {
       appBar: AppBar(
         title: const Text(
           StringApp.requestedItem,
+        ),
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(64),
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            child: SearchInputField(
+              hint: StringApp.search,
+              readOnly: true,
+              onTap: () => Navigator.pushNamed(context, Routes.searchRequestedItem),
+              suffixIcon: const Icon(
+                Icons.search,
+                color: ColorApp.black,
+              ),
+            ),
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(

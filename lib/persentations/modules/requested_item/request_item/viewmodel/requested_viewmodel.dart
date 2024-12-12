@@ -52,6 +52,20 @@ class RequestedViewModel extends BaseViewModel implements RequestedViewModelInpu
   }
 
   @override
+  search(String query) async {
+    Map<String, dynamic> q = {
+      'q': query,
+    };
+
+    (await _purchaseRequestUsecase.execute(q)).fold((failure) {
+      inputState.add(ErrorState(StateRendererType.SNACKBAR_ERROR_STATE, failure.message));
+    }, (data) async {
+      inputState.add(ContentState());
+      inputPurchaseRequest.add(data.data);
+    });
+  }
+
+  @override
   Sink get inputPurchaseRequest => _purchaseRequestStreamController.sink;
 
   @override
@@ -69,6 +83,7 @@ class RequestedViewModel extends BaseViewModel implements RequestedViewModelInpu
 abstract class RequestedViewModelInputs {
   Sink get inputPurchaseRequest;
   Sink get inputPurchaseSummaryRequest;
+  search(String query);
 }
 
 abstract class RequestedViewModelOutputs {
