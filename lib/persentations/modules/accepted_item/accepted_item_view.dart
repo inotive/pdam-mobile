@@ -9,6 +9,8 @@ import 'package:pdam_inventory/persentations/resources/route_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/widgets/card/empty_card.dart';
 
+import '../../widgets/forms/search_input_field.dart';
+
 class AcceptedItemView extends StatefulWidget {
   const AcceptedItemView({super.key});
 
@@ -35,6 +37,21 @@ class _AcceptedItemViewState extends State<AcceptedItemView> {
       backgroundColor: ColorApp.grey,
       appBar: AppBar(
         title: const Text(StringApp.acceptedItem),
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(64),
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            child: SearchInputField(
+              hint: StringApp.search,
+              readOnly: true,
+              onTap: () => Navigator.pushNamed(context, Routes.searchAcceptedItem),
+              suffixIcon: const Icon(
+                Icons.search,
+                color: ColorApp.black,
+              ),
+            ),
+          ),
+        ),
       ),
       floatingActionButton: _fab(context),
       body: StreamBuilder<List<ReceiveOrderDate>>(

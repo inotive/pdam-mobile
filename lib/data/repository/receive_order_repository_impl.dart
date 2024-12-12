@@ -18,10 +18,12 @@ class ReceiveOrderRepositoryImpl implements ReceiveOrderRepository {
   ReceiveOrderRepositoryImpl(this._networkInfo, this._receiveOrderDataSource);
 
   @override
-  Future<Either<Failure, ReceiveOrderPagination>> receiveOrders() async {
+  Future<Either<Failure, ReceiveOrderPagination>> receiveOrders(
+    Map<String, dynamic> queries,
+  ) async {
     if (await _networkInfo.isConnected) {
       try {
-        final response = await _receiveOrderDataSource.receiveOrders();
+        final response = await _receiveOrderDataSource.receiveOrders(queries);
 
         if (response.status?.code == ResponseCode.SUCCESS) {
           return Right(response.toDomain());

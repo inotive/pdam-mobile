@@ -173,4 +173,5 @@ class StringApp {
   static const String confirmCreateOpname = 'Konfirmasi Pembuatan Opname';
   static const String areYouSure = 'Apakah Anda Yakin';
   static const String yesCreateOpname = 'Ya, Buat Opname';
+  static const String search = 'Cari';
 }

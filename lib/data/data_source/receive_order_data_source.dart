@@ -4,7 +4,9 @@ import 'package:pdam_inventory/data/responses/base_response.dart';
 import 'package:pdam_inventory/data/responses/receive_order_response.dart';
 
 abstract class ReceiveOrderDataSource {
-  Future<ReceiveOrderPaginationResponse> receiveOrders();
+  Future<ReceiveOrderPaginationResponse> receiveOrders(
+    Map<String, dynamic> queries,
+  );
   Future<ReceiveOrderDetailResponse> receiveOrderDetail(int id);
   Future<ReceiveOrderWarehouseResponse> receiveOrderWarehouse(Map<String, dynamic> queries);
   Future<ReceiveOrderReferenceResponse> receiveOrderReference(Map<String, dynamic> queries);
@@ -18,8 +20,8 @@ class ReceiveOrderDataSourceImpl implements ReceiveOrderDataSource {
   ReceiveOrderDataSourceImpl(this._appServiceClient);
 
   @override
-  Future<ReceiveOrderPaginationResponse> receiveOrders() async {
-    return await _appServiceClient.receiveOrders();
+  Future<ReceiveOrderPaginationResponse> receiveOrders(Map<String, dynamic> queries) async {
+    return await _appServiceClient.receiveOrders(queries);
   }
 
   @override

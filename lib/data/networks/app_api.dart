@@ -83,7 +83,9 @@ abstract class AppServiceClient {
 
   /* Receive Order */
   @GET('/mobile/receive-order')
-  Future<ReceiveOrderPaginationResponse> receiveOrders();
+  Future<ReceiveOrderPaginationResponse> receiveOrders(
+    @Queries() Map<String, dynamic> queries,
+  );
 
   @GET('/mobile/receive-order/{id}/show')
   Future<ReceiveOrderDetailResponse> receiveOrderDetail(@Path() int id);

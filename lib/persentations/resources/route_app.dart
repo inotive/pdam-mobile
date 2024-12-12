@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pdam_inventory/app/di.dart';
 import 'package:pdam_inventory/persentations/modules/accepted_item/accepted_item_view.dart';
+import 'package:pdam_inventory/persentations/modules/accepted_item/search_accepted_item_view.dart';
 import 'package:pdam_inventory/persentations/modules/auth/login/login_view.dart';
 import 'package:pdam_inventory/persentations/modules/history_stock/history_stock_view.dart';
 import 'package:pdam_inventory/persentations/modules/history_stock/search_history_stock_view.dart';
@@ -31,6 +32,7 @@ class Routes {
   static const String login = '/login';
   static const String searchProduct = '/search-product';
   static const String createRequestItem = '/create-request-item';
+  static const String searchAcceptedItem = '/search-accepted-item';
 }
 
 class RouterGenerator {
@@ -73,6 +75,8 @@ class RouterGenerator {
       case Routes.createRequestItem:
         initCreatePurchaseRequestModule();
         return MaterialPageRoute(builder: (_) => const CreateRequestItemView());
+      case Routes.searchAcceptedItem:
+        return MaterialPageRoute(builder: (_) => const SearchAcceptedItemView());
       default:
         return MaterialPageRoute(builder: (_) => const UndefinedView());
     }

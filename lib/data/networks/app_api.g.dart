@@ -13,7 +13,7 @@ class _AppServiceClient implements AppServiceClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://pdam.inotivedev.com/api';
+    baseUrl ??= 'http://192.168.0.101:8000/api';
   }
 
   final Dio _dio;
@@ -370,9 +370,11 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
-  Future<ReceiveOrderPaginationResponse> receiveOrders() async {
+  Future<ReceiveOrderPaginationResponse> receiveOrders(
+      Map<String, dynamic> queries) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.addAll(queries);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(

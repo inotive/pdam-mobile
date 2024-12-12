@@ -3,7 +3,9 @@ import 'package:pdam_inventory/app/helpers/date_formatter.dart';
 import 'package:pdam_inventory/domain/model/receive_order_model.dart';
 import 'package:pdam_inventory/persentations/modules/accepted_item/widgets/accepted_item_card.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
+import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
+import 'package:pdam_inventory/persentations/widgets/card/empty_card.dart';
 
 class AcceptedItemByDateCard extends StatelessWidget {
   const AcceptedItemByDateCard(this.data, {super.key});
@@ -12,26 +14,34 @@ class AcceptedItemByDateCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 24.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            DateFormatterApp.formatIndoDate(data.date),
-            style: StyleApp.textNormal.copyWith(
-              color: ColorApp.borderB3,
-              fontStyle: FontStyle.italic,
+    return data.receiveOrder.isEmpty
+        ? const Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 24,
             ),
-          ),
-          ...List.generate(data.receiveOrder.length, (idx) {
-            return Padding(
-              padding: const EdgeInsets.only(top: 8),
-              child: AcceptedItemCard(data.receiveOrder[idx]),
-            );
-          }),
-        ],
-      ),
-    );
+            child: EmptyCard(message: StringApp.acceptedItemNotYet),
+          )
+        : Padding(
+            padding: const EdgeInsets.only(bottom: 24.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  DateFormatterApp.formatIndoDate(data.date),
+                  style: StyleApp.textNormal.copyWith(
+                    color: ColorApp.borderB3,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+                ...List.generate(data.receiveOrder.length, (idx) {
+                  return Padding(
+                    padding: const EdgeInsets.only(top: 8),
+                    child: AcceptedItemCard(data.receiveOrder[idx]),
+                  );
+                }),
+              ],
+            ),
+          );
   }
 }
