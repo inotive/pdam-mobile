@@ -180,7 +180,7 @@ class PurchaseRequestProductResponse {
   @JsonKey(name: 'name')
   String? name;
   @JsonKey(name: 'qty')
-  String? qty;
+  int? qty;
   @JsonKey(name: 'unit_name')
   String? unitName;
   @JsonKey(name: 'created_at')

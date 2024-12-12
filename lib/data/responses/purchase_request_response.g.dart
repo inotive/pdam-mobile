@@ -174,7 +174,7 @@ PurchaseRequestProductResponse _$PurchaseRequestProductResponseFromJson(
       json['code'] as String?,
       (json['id'] as num?)?.toInt(),
       json['name'] as String?,
-      json['qty'] as String?,
+      (json['qty'] as num?)?.toInt(),
       json['unit_name'] as String?,
       json['created_at'] as String?,
       json['updated_at'] as String?,

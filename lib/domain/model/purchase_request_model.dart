@@ -102,7 +102,7 @@ class PurchaseRequestProduct {
   String code;
   int id;
   String name;
-  String qty;
+  int qty;
   String unitName;
   String createdAt;
   String updatedAt;
@@ -116,7 +116,7 @@ class PurchaseRequestProduct {
         EMPTY,
         ZERO,
         EMPTY,
-        EMPTY,
+        ZERO,
         EMPTY,
         EMPTY,
         EMPTY,

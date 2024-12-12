@@ -146,7 +146,7 @@ class ReceiptViewmodel extends BaseViewModel implements ReceiptItemViewInputs, R
       inputReferenceDetail.add(data.data);
       refProducts = data.data?.products ?? List.empty();
       refProductsParams =
-          data.data?.products.map((item) => ReceiptProductParam(item.id, int.parse(item.qty))).toList() ?? List.empty();
+          data.data?.products.map((item) => ReceiptProductParam(item.id, item.qty)).toList() ?? List.empty();
     });
   }
 

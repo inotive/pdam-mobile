@@ -87,7 +87,7 @@ extension PurchaseRequestProductResponseMapper on PurchaseRequestProductResponse
       this?.code.orEmpty() ?? EMPTY,
       this?.id.orZero() ?? ZERO,
       this?.name.orEmpty() ?? EMPTY,
-      this?.qty.orEmpty() ?? EMPTY,
+      this?.qty.orZero() ?? ZERO,
       this?.unitName.orEmpty() ?? EMPTY,
       this?.createdAt.orEmpty() ?? EMPTY,
       this?.updatedAt.orEmpty() ?? EMPTY,
