@@ -25,7 +25,6 @@ import 'package:pdam_inventory/persentations/resources/value_app.dart';
 import 'package:pdam_inventory/persentations/widgets/button/custom_button.dart';
 import 'package:pdam_inventory/persentations/widgets/card/empty_card.dart';
 import 'package:pdam_inventory/persentations/widgets/forms/dropdown_warehouse/dropdown_warehouse.dart';
-import 'package:pdam_inventory/persentations/widgets/forms/file_input.dart';
 import 'package:pdam_inventory/persentations/widgets/forms/input_field.dart';
 import 'package:pdam_inventory/persentations/widgets/snackbar_app.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
@@ -429,13 +428,13 @@ class _ReceiptItemViewState extends State<ReceiptItemView> with SingleTickerProv
                 _receiptViewmodel.products(value?.id ?? 0);
               },
             ),
-            const SpacerHeight(12),
-            FileInput(
-              file: file,
-              onTap: () {
-                pickFile();
-              },
-            ),
+            // const SpacerHeight(12),
+            // FileInput(
+            //   file: file,
+            //   onTap: () {
+            //     pickFile();
+            //   },
+            // ),
             const SpacerHeight(12),
             InputField(
               text: StringApp.note,
