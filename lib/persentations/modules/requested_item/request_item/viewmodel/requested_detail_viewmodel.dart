@@ -28,7 +28,7 @@ class RequestedDetailViewModel extends BaseViewModel
   detail(int id) async {
     inputState.add(LoadingState(stateRendererType: StateRendererType.POPUP_LOADING_STATE));
     (await _purchaseRequestDetailUsecase.execute(id)).fold((failure) {
-      inputState.add(ErrorState(StateRendererType.POPUP_ERROR_STATE, failure.message));
+      inputState.add(ErrorState(StateRendererType.SNACKBAR_ERROR_STATE, failure.message));
     }, (data) async {
       inputState.add(ContentState());
       inputPurchaseDetailRequest.add(data.data);
