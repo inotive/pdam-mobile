@@ -58,8 +58,20 @@ class _CreateRequestItemViewState extends State<CreateRequestItemView> with Tick
   List<RequestProductParam> products = [];
 
   onAddProduct(RequestProductParam data) {
-    products.add(data);
-    log("On Add Product ===> $products");
+    final checkedProduct = products.where((el) => el.id == data.id).isNotEmpty;
+    log(checkedProduct.toString());
+    if (!checkedProduct) {
+      products.add(data);
+    } else {
+      int index = products.indexWhere((item) => item.id.toString().contains(data.id.toString()));
+      products.update(
+        index,
+        products[index].copyWith(
+          qty: products[index].qty + 1,
+        ),
+      );
+    }
+    log(products.toString());
     setState(() {});
   }
 
@@ -262,7 +274,7 @@ class _CreateRequestItemViewState extends State<CreateRequestItemView> with Tick
                     const SpacerHeight(16),
                     if (products.isNotEmpty)
                       ...List.generate(products.length, (index) {
-                        ValueNotifier<int> qty = ValueNotifier<int>(1);
+                        ValueNotifier<int> qty = ValueNotifier<int>(products[index].qty);
                         return ValueListenableBuilder<int>(
                             valueListenable: qty,
                             builder: (context, value, child) {
