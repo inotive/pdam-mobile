@@ -181,18 +181,18 @@ class _LoginViewState extends State<LoginView> {
                       ),
                     ),
                   ),
-                  const SpacerHeight(8),
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: Text(
-                      "${StringApp.forgotPassword}?",
-                      style: StyleApp.textSm.copyWith(
-                        color: ColorApp.blue,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      textAlign: TextAlign.right,
-                    ),
-                  ),
+                  // const SpacerHeight(8),
+                  // Align(
+                  //   alignment: Alignment.topRight,
+                  //   child: Text(
+                  //     "${StringApp.forgotPassword}?",
+                  //     style: StyleApp.textSm.copyWith(
+                  //       color: ColorApp.blue,
+                  //       fontWeight: FontWeight.w600,
+                  //     ),
+                  //     textAlign: TextAlign.right,
+                  //   ),
+                  // ),
                   const SpacerHeight(24),
                   CustomButton(
                     onPressed: () {
