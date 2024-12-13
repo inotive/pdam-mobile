@@ -151,6 +151,7 @@ class _StockOpnameViewState extends State<StockOpnameView> {
                   context,
                   initialSelectedDate: selectedDate,
                   onYes: () {
+                    _dateController.text = DateFormatterApp.defaultDate(selectedDate.toString());
                     _stockOpnameViewmodel.setDate(_dateController.text);
                   },
                   onSelectionChanged: (DateRangePickerSelectionChangedArgs args) {

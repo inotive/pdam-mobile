@@ -13,7 +13,7 @@ class _AppServiceClient implements AppServiceClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://192.168.0.101:8000/api';
+    baseUrl ??= 'https://pdam.inotivedev.com/api';
   }
 
   final Dio _dio;

@@ -336,7 +336,11 @@ class _CreateRequestItemViewState extends State<CreateRequestItemView> with Tick
               DatePickerApp().showDateRangePicker(
                 context,
                 initialSelectedDate: selectedDate,
-                onYes: () {},
+                onYes: () {
+                  _requestedDateController.text = DateFormatterApp.defaultDate(selectedDate.toString());
+                  _createRequestItemViewmodel
+                      .setRequestDate(DateFormatterApp.defaultDate(_requestedDateController.text));
+                },
                 onSelectionChanged: (DateRangePickerSelectionChangedArgs args) {
                   if (args.value is DateTime) {
                     setState(() {

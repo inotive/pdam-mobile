@@ -323,7 +323,10 @@ class _CreateStockOpnameViewState extends State<CreateStockOpnameView> with Tick
               DatePickerApp().showDateRangePicker(
                 context,
                 initialSelectedDate: selectedDate,
-                onYes: () {},
+                onYes: () {
+                  _requestedDateController.text = DateFormatterApp.defaultDate(selectedDate.toString());
+                  _stockOpnameViewmodel.setDate(DateFormatterApp.defaultDate(_requestedDateController.text));
+                },
                 onSelectionChanged: (DateRangePickerSelectionChangedArgs args) {
                   if (args.value is DateTime) {
                     setState(() {

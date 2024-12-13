@@ -10,7 +10,7 @@ class AppServiceClientOther {
     this.baseUrl,
   }) {
     // baseUrl ??= 'https://pdam.inotivedev.com/api';
-    baseUrl ??= 'http://192.168.0.101:8000/api';
+    baseUrl ??= 'http://192.168.0.112:8000/api';
   }
 
   final Dio _dio;
