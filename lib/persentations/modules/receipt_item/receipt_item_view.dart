@@ -94,10 +94,30 @@ class _ReceiptItemViewState extends State<ReceiptItemView> with SingleTickerProv
   }
 
   onAddProduct(PurchaseRequestProduct data) {
+    final checkedProduct = productItem.where((el) => el.id == data.id).isNotEmpty;
+    if (!checkedProduct) {
+      productItem.add(data);
+      productParam.add(ReceiptProductParam(data.id, 1));
+      _receiptViewmodel.setProductList(productParam);
+    } else {
+      int index = productItem.indexWhere((item) => item.id.toString().contains(data.id.toString()));
+      int indexParam = productParam.indexWhere((item) => item.id.toString().contains(data.id.toString()));
+      productItem.update(
+        index,
+        productItem[index].copyWith(
+          qty: productItem[index].qty + 1,
+        ),
+      );
+      productParam.update(
+        indexParam,
+        productParam[indexParam].copyWith(
+          qty: productParam[indexParam].qty + 1,
+        ),
+      );
+      _receiptViewmodel.setProductList(productParam);
+    }
     log("Product ===> ${data.qty}");
-    productItem.add(data);
-    productParam.add(ReceiptProductParam(data.id, 1));
-    _receiptViewmodel.setProductList(productParam);
+
     log("On Add Product ===> $productParam");
     setState(() {});
   }
@@ -226,7 +246,7 @@ class _ReceiptItemViewState extends State<ReceiptItemView> with SingleTickerProv
                     if (productItem.isNotEmpty)
                       ...List.generate(productItem.length, (index) {
                         // int parseQty = int.parse(productItem[index].qty);
-                        ValueNotifier<int> qty = ValueNotifier<int>(1);
+                        ValueNotifier<int> qty = ValueNotifier<int>(productItem[index].qty);
                         return ValueListenableBuilder<int>(
                             valueListenable: qty,
                             builder: (context, value, child) {
@@ -297,7 +317,7 @@ class _ReceiptItemViewState extends State<ReceiptItemView> with SingleTickerProv
                         items: data,
                         text: StringApp.itemName,
                         onChanged: (PurchaseRequestProduct? value) {
-                          onAddProduct(value!);
+                          onAddProduct(value!.copyWith(qty: 1));
                           onEnable();
                         },
                         hint: StringApp.searchItem,
@@ -323,7 +343,7 @@ class _ReceiptItemViewState extends State<ReceiptItemView> with SingleTickerProv
                     const SpacerHeight(16),
                     if (productItem.isNotEmpty)
                       ...List.generate(productItem.length, (index) {
-                        ValueNotifier<int> qty = ValueNotifier<int>(1);
+                        ValueNotifier<int> qty = ValueNotifier<int>(productItem[index].qty);
                         return ValueListenableBuilder<int>(
                             valueListenable: qty,
                             builder: (context, value, child) {

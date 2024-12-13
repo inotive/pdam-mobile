@@ -15,4 +15,10 @@ class ReceiptProductParam {
   String toString() {
     return '''\n    {\n 'id': $id,\n'qty': $qty,\n}''';
   }
+
+  ReceiptProductParam copyWith({
+    int? id,
+    int? qty,
+  }) =>
+      ReceiptProductParam(id ?? this.id, qty ?? this.qty);
 }

@@ -126,4 +126,33 @@ class PurchaseRequestProduct {
         ZERO,
         ZERO,
       );
+
+  PurchaseRequestProduct copyWith({
+    String? code,
+    int? id,
+    String? name,
+    int? qty,
+    String? unitName,
+    String? createdAt,
+    String? updatedAt,
+    String? notes,
+    String? image,
+    int? min,
+    int? max,
+    int? stock,
+  }) =>
+      PurchaseRequestProduct(
+        code ?? this.code,
+        id ?? this.id,
+        name ?? this.name,
+        qty ?? this.qty,
+        unitName ?? this.unitName,
+        createdAt ?? this.createdAt,
+        updatedAt ?? this.updatedAt,
+        notes ?? this.notes,
+        image ?? this.image,
+        min ?? this.min,
+        max ?? this.max,
+        stock ?? this.stock,
+      );
 }
