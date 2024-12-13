@@ -4,6 +4,7 @@ import 'package:pdam_inventory/domain/model/notification_model.dart';
 import 'package:pdam_inventory/persentations/modules/notification/viewmodel/notification_viewmodel.dart';
 import 'package:pdam_inventory/persentations/modules/notification/widgets/notification_card.dart';
 import 'package:pdam_inventory/persentations/packages/state_renderer/state_renderer_impl.dart';
+import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/widgets/card/empty_card.dart';
 
@@ -51,6 +52,17 @@ class _NotificationViewState extends State<NotificationView> {
             stream: _notificationViewmodel.outputNotification,
             builder: (context, snapshot) {
               List<NotificationData> data = snapshot.data ?? List.empty();
+
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Padding(
+                  padding: EdgeInsets.only(top: 40),
+                  child: Center(
+                    child: CircularProgressIndicator(
+                      color: ColorApp.primary,
+                    ),
+                  ),
+                );
+              }
 
               if (snapshot.hasData) {
                 return Column(
