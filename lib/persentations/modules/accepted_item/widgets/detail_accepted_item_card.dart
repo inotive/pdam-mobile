@@ -4,7 +4,6 @@ import 'package:mobkit_dashed_border/mobkit_dashed_border.dart';
 import 'package:pdam_inventory/domain/model/receive_order_model.dart';
 import 'package:pdam_inventory/persentations/resources/asset_app.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
-import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
 import 'package:pdam_inventory/persentations/widgets/custom_cached_network_image.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
@@ -35,28 +34,28 @@ class DetailAcceptedItemCard extends StatelessWidget {
             ),
             child: Column(
               children: [
-                _item(
-                  StringApp.message,
-                  data.pesan,
-                ),
+                // _item(
+                //   StringApp.message,
+                //   data.pesan,
+                // ),
+                // const SpacerHeight(6),
+                // _item(
+                //   StringApp.totalItemPreviouslyReceived,
+                //   data.totalBarangDiterimaSebelumnya,
+                // ),
+                // const SpacerHeight(6),
+                // _item(
+                //   StringApp.receivedOnShelf,
+                //   data.diterimaDiRak,
+                // ),
+                // const SpacerHeight(6),
+                // _item(
+                //   StringApp.receivedOnWarehouse,
+                //   data.diterimaDiGudang,
+                // ),
                 const SpacerHeight(6),
                 _item(
-                  StringApp.totalItemPreviouslyReceived,
-                  data.totalBarangDiterimaSebelumnya,
-                ),
-                const SpacerHeight(6),
-                _item(
-                  StringApp.receivedOnShelf,
-                  data.diterimaDiRak,
-                ),
-                const SpacerHeight(6),
-                _item(
-                  StringApp.receivedOnWarehouse,
-                  data.diterimaDiGudang,
-                ),
-                const SpacerHeight(6),
-                _item(
-                  StringApp.remainder,
+                  'Stock saat ini',
                   data.sisa,
                 ),
               ],
@@ -150,10 +149,10 @@ class DetailAcceptedItemCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                Text(
-                  'Rp. ${data.price}',
-                  style: StyleApp.textNormal,
-                ),
+                // Text(
+                //   'Rp. ${data.price}',
+                //   style: StyleApp.textNormal,
+                // ),
               ],
             ),
           ],

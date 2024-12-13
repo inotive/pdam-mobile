@@ -64,7 +64,7 @@ class _ProfileViewState extends State<ProfileView> {
                 _appPreference.removeString(PREFS_KEY_IS_USER_LOGGED_IN);
                 _appPreference.removeString(PREFS_KEY_NAME);
                 // _profileViewModel.logout();
-                Navigator.pushReplacementNamed(context, Routes.login);
+                Navigator.of(context).pushReplacementNamed(Routes.login);
               },
               text: StringApp.logout,
               textColor: ColorApp.red,
