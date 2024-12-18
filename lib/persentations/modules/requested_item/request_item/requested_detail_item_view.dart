@@ -113,7 +113,7 @@ class _RequestedDetailItemViewState extends State<RequestedDetailItemView> {
                 children: [
                   Text(
                     purchase?.requestNumber ?? '-',
-                    style: StyleApp.textXl.copyWith(
+                    style: StyleApp.textLg.copyWith(
                       color: ColorApp.blackText,
                       fontWeight: FontWeight.w700,
                     ),
