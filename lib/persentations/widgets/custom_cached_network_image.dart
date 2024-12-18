@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:pdam_inventory/persentations/widgets/shimmer/shimmer_widget.dart';
+import 'package:flutter_svg/svg.dart';
+
+import '../resources/asset_app.dart';
 
 class CustomNetworkImage extends StatelessWidget {
   final String? url;
@@ -11,6 +13,7 @@ class CustomNetworkImage extends StatelessWidget {
   final bool? isCanZoom;
   final VoidCallback? onTap;
   final Widget? errorWidget;
+  final Widget? placeholder;
 
   const CustomNetworkImage(
       {super.key,
@@ -21,19 +24,40 @@ class CustomNetworkImage extends StatelessWidget {
       this.fit = BoxFit.cover,
       this.isCanZoom = false,
       this.onTap,
-      this.errorWidget});
+      this.errorWidget,
+      this.placeholder});
 
   @override
   Widget build(BuildContext context) {
     Widget customPhoto(double? heightx, double? widthx, BoxFit? fitx, double? radius) {
       return CachedNetworkImage(
         imageUrl: url.toString(),
-        placeholder: (context, url) => ShimmerWidget(
-          height: heightx ?? 0,
-          width: widthx ?? 0,
-          radius: radius ?? 0,
-        ),
-        errorWidget: (context, url, error) => errorWidget ?? const Icon(Icons.error),
+        placeholder: (context, url) =>
+            placeholder ??
+            Container(
+              height: heightx ?? 0,
+              width: heightx ?? 0,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(radius ?? 0),
+              ),
+              child: SvgPicture.asset(
+                IconApp.placeholder,
+              ),
+            ),
+        errorWidget: (context, url, error) =>
+            errorWidget ??
+            Container(
+              height: heightx ?? 0,
+              width: heightx ?? 0,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(radius ?? 0),
+              ),
+              child: SvgPicture.asset(
+                IconApp.placeholder,
+              ),
+            ),
         height: heightx,
         width: widthx,
         fit: fitx,

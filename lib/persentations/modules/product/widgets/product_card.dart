@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:pdam_inventory/app/helpers/helpers.dart';
 import 'package:pdam_inventory/domain/model/product_model.dart';
 import 'package:pdam_inventory/persentations/modules/product/product_detail_view.dart';
+import 'package:pdam_inventory/persentations/resources/asset_app.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
@@ -36,6 +38,28 @@ class ProductCard extends StatelessWidget {
               width: 40,
               borderRadius: 4,
               url: HelperApp.getUrlImage(data.image),
+              errorWidget: Container(
+                height: 40,
+                width: 40,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: SvgPicture.asset(
+                  IconApp.placeholder,
+                ),
+              ),
+              placeholder: Container(
+                height: 40,
+                width: 40,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: SvgPicture.asset(
+                  IconApp.placeholder,
+                ),
+              ),
             ),
             const SpacerWidth(12),
             Expanded(
