@@ -281,7 +281,7 @@ class _CreateRequestItemViewState extends State<CreateRequestItemView> with Tick
                               return ReceiptItemCard(
                                 name: products[index].name,
                                 code: products[index].code,
-                                image: HelperApp.getUrlImage(products[index].image),
+                                image: products[index].image == '' ? '' : HelperApp.getUrlImage(products[index].image),
                                 onAdd: () {
                                   // ignore: unused_local_variable
                                   qty.value++;

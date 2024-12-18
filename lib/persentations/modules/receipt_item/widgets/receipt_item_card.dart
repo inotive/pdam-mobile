@@ -46,16 +46,17 @@ class ReceiptItemCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomNetworkImage(
-                  height: 44,
-                  width: 44,
-                  borderRadius: 4,
-                  url: image,
-                ),
+                if (image != '')
+                  CustomNetworkImage(
+                    height: 44,
+                    width: 44,
+                    borderRadius: 4,
+                    url: image,
+                  ),
                 const SpacerHeight(8),
                 Text(
                   name,
-                  style: StyleApp.textSm.copyWith(
+                  style: StyleApp.textNormal.copyWith(
                     fontWeight: FontWeight.w600,
                     fontFamily: FontFamilyApp.inter,
                   ),
@@ -63,7 +64,7 @@ class ReceiptItemCard extends StatelessWidget {
                 const SpacerHeight(2),
                 Text(
                   code,
-                  style: StyleApp.textXs.copyWith(
+                  style: StyleApp.textSm.copyWith(
                     color: ColorApp.greyText,
                     fontSize: FontSizeApp.xss,
                     fontFamily: FontFamilyApp.inter,
