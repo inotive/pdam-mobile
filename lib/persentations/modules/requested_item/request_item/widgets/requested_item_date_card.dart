@@ -3,6 +3,7 @@ import 'package:pdam_inventory/domain/model/purchase_request_model.dart';
 import 'package:pdam_inventory/persentations/modules/requested_item/request_item/widgets/requested_item_card.dart';
 import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
+import 'package:pdam_inventory/persentations/widgets/card/empty_card.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
 class RequestedItemDateCard extends StatelessWidget {
@@ -29,15 +30,19 @@ class RequestedItemDateCard extends StatelessWidget {
             ),
           ),
           const SpacerHeight(8),
-          ...List.generate(
-            data.purchaseRequest.length,
-            (idx) {
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: RequestedItemCard(data.purchaseRequest[idx]),
-              );
-            },
-          ),
+          data.purchaseRequest.isEmpty
+              ? const EmptyCard(message: 'Data yang anda cari tidak ada')
+              : Column(
+                  children: List.generate(
+                    data.purchaseRequest.length,
+                    (idx) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: RequestedItemCard(data.purchaseRequest[idx]),
+                      );
+                    },
+                  ),
+                ),
         ],
       ),
     );
