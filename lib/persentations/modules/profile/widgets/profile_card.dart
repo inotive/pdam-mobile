@@ -9,7 +9,7 @@ import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/string_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
 import 'package:pdam_inventory/persentations/resources/value_app.dart';
-import 'package:pdam_inventory/persentations/widgets/custom_cached_network_image.dart';
+import 'package:pdam_inventory/persentations/widgets/image/profile_image.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
 class ProfileCard extends StatefulWidget {
@@ -71,11 +71,9 @@ class _ProfileCardState extends State<ProfileCard> {
                 InkWell(
                   onTap: widget.onPickImage,
                   child: widget.file == null
-                      ? CustomNetworkImage(
-                          height: 40,
-                          width: 40,
-                          borderRadius: 8,
+                      ? ProfileImage(
                           url: image,
+                          borderRadius: 8,
                         )
                       : Container(
                           height: 40,

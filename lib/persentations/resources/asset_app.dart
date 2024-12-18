@@ -38,6 +38,7 @@ class IconApp {
   static const String profile = "$ICON_APP/ic-profile.svg";
   static const String settings = "$ICON_APP/ic-settings.svg";
   static const String upload = "$ICON_APP/ic-upload.svg";
+  static const String placeholder = "$ICON_APP/ic-placeholder.svg";
 }
 
 class AnimationApp {

@@ -1,0 +1,3 @@
+
+com.inotivedev.pdam_inventory
+com.inotive.pdam

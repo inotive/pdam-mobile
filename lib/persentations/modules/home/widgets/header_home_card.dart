@@ -5,7 +5,7 @@ import 'package:pdam_inventory/persentations/resources/color_app.dart';
 import 'package:pdam_inventory/persentations/resources/route_app.dart';
 import 'package:pdam_inventory/persentations/resources/style_app.dart';
 import 'package:pdam_inventory/persentations/widgets/button/icon_circle_button.dart';
-import 'package:pdam_inventory/persentations/widgets/custom_cached_network_image.dart';
+import 'package:pdam_inventory/persentations/widgets/image/profile_image.dart';
 import 'package:pdam_inventory/persentations/widgets/spacer.dart';
 
 class HeaderHomeCard extends StatelessWidget {
@@ -34,12 +34,7 @@ class HeaderHomeCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          CustomNetworkImage(
-            height: 40,
-            width: 40,
-            borderRadius: 40,
-            url: image,
-          ),
+          ProfileImage(url: image),
           const SpacerWidth(12),
           Expanded(
             child: Column(

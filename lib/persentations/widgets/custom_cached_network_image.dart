@@ -10,6 +10,7 @@ class CustomNetworkImage extends StatelessWidget {
   final BoxFit? fit;
   final bool? isCanZoom;
   final VoidCallback? onTap;
+  final Widget? errorWidget;
 
   const CustomNetworkImage(
       {super.key,
@@ -19,7 +20,8 @@ class CustomNetworkImage extends StatelessWidget {
       this.borderRadius = 0,
       this.fit = BoxFit.cover,
       this.isCanZoom = false,
-      this.onTap});
+      this.onTap,
+      this.errorWidget});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,7 @@ class CustomNetworkImage extends StatelessWidget {
           width: widthx ?? 0,
           radius: radius ?? 0,
         ),
-        errorWidget: (context, url, error) => const Icon(Icons.error),
+        errorWidget: (context, url, error) => errorWidget ?? const Icon(Icons.error),
         height: heightx,
         width: widthx,
         fit: fitx,
