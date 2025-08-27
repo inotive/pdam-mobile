@@ -9,8 +9,8 @@ class AppServiceClientOther {
     this._dio, {
     this.baseUrl,
   }) {
-    // baseUrl ??= 'https://pdam.inotivedev.com/api';
-    baseUrl ??= 'http://192.168.0.112:8000/api';
+    baseUrl ??= 'https://pdam.inotivedev.com/api';
+    // baseUrl ??= 'http://192.168.0.112:8000/api';
   }
 
   final Dio _dio;
@@ -54,29 +54,31 @@ class AppServiceClientOther {
       ));
     }
 
-    final result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<UpdateUserResponse>(Options(
+    final result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<UpdateUserResponse>(Options(
       method: 'POST',
       headers: headers,
       extra: extra,
     )
-        .compose(
-          _dio.options,
-          '/auth/update',
-          queryParameters: queryParameters,
-          data: data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/auth/update',
+              queryParameters: queryParameters,
+              data: data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = UpdateUserResponse.fromJson(result.data!);
     return value;
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
-        !(requestOptions.responseType == ResponseType.bytes || requestOptions.responseType == ResponseType.stream)) {
+        !(requestOptions.responseType == ResponseType.bytes ||
+            requestOptions.responseType == ResponseType.stream)) {
       if (T == String) {
         requestOptions.responseType = ResponseType.plain;
       } else {

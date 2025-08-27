@@ -31,8 +31,18 @@ class UserDataResponse {
   String? createdAt;
   @JsonKey(name: "updated_at")
   String? updatedAt;
-  @JsonKey(name: "role_id")
+  @JsonKey(name: "role_id", fromJson: _stringToInt, toJson: _intToString)
   int? roleId;
+
+  static int? _stringToInt(dynamic value) {
+    if (value == null) return null;
+    if (value is int) return value;
+    if (value is String) return int.tryParse(value);
+    return null;
+  }
+
+  static String? _intToString(int? value) => value?.toString();
+
   @JsonKey(name: "username")
   String? username;
   @JsonKey(name: "no_telp")
@@ -42,7 +52,8 @@ class UserDataResponse {
   @JsonKey(name: "image")
   String? image;
 
-  factory UserDataResponse.fromJson(Map<String, dynamic> json) => _$UserDataResponseFromJson(json);
+  factory UserDataResponse.fromJson(Map<String, dynamic> json) =>
+      _$UserDataResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserDataResponseToJson(this);
 }
@@ -68,7 +79,8 @@ class RoleDataResponse {
   @JsonKey(name: 'updated_at')
   String? updatedAt;
 
-  factory RoleDataResponse.fromJson(Map<String, dynamic> json) => _$RoleDataResponseFromJson(json);
+  factory RoleDataResponse.fromJson(Map<String, dynamic> json) =>
+      _$RoleDataResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$RoleDataResponseToJson(this);
 }

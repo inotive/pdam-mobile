@@ -1,0 +1,2 @@
+E:/Inotive/pdam-mobile/android/app/.cxx/Debug/64i721u3/x86/CMakeFiles/edit_cache.dir
+E:/Inotive/pdam-mobile/android/app/.cxx/Debug/64i721u3/x86/CMakeFiles/rebuild_cache.dir
